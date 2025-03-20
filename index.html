@@ -1,2 +1,14 @@
 <h1>hello world</h1>
 <p>Could you also kindly provide us with the alias to write to the network folder \fdsfs\gfdgdf?</p>
+
+<p>import pandas as pd
+
+    # Sample DataFrame
+    data = {'numbers': ['123456', '123456789012345678', '123456789012']}
+    df = pd.DataFrame(data)
+    
+    # Normalize to 12 digits: Pad with zeros if <12 digits, truncate if >12 digits
+    df['normalized'] = df['numbers'].apply(lambda x: str(x).zfill(12)[:12])
+    
+    print(df)
+    </p>
