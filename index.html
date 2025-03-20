@@ -19,3 +19,15 @@
     df_renamed = df.rename(columns={'col1': 'new_col_a', 'col3': 'new_col_c'})
     print("\nDataFrame after renaming specific columns:")
     print(df_renamed)</p>
+
+<p>from pyspark.sql import SparkSession
+
+    # Create Spark Session with increased memory
+    spark = SparkSession.builder \
+        .appName("Avoid Heap Memory Error") \
+        .config("spark.driver.memory", "4g") \  # Increase driver memory
+        .config("spark.executor.memory", "4g") \  # Increase executor memory
+        .config("spark.executor.memoryOverhead", "1g") \  # Additional overhead memory
+        .config("spark.sql.shuffle.partitions", "200") \  # Reduce shuffle partitions if needed
+        .getOrCreate()
+    </p>
