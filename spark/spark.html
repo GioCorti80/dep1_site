@@ -29,3 +29,7 @@ spark = SparkSession.builder \
         .config("spark.sql.shuffle.partitions", "200") \  # Reduce shuffle partitions if needed
         .getOrCreate()
 </pre>
+<pre>
+.withColumn("col1", F.format_string("%.0f", F.col("col1").cast("double"))) \
+                 .withColumn("col2", F.format_string("%.0f", F.col("col2").cast("double")))
+</pre>
