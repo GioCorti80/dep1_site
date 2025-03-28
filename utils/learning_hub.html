@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Background with White Text</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<h1>Learning</h1>
+<h3>Stored procedures</h3>
+<pre>
+    BigQuery stored procedures allow you to encapsulate SQL logic into reusable blocks, similar to functions or procedures in other programming languages. Here's a breakdown of how they work and where you can find learning resources:
+
+    **How BigQuery Stored Procedures Work:**
+    
+    1.  **Creation:**
+        * You define a stored procedure using the `CREATE PROCEDURE` or `CREATE OR REPLACE PROCEDURE` statement.
+        * The procedure consists of a series of SQL statements, variable declarations, control flow statements (like `IF`, `WHILE`, and `FOR`), and error handling.
+        * You can define input and output parameters for the procedure, allowing you to pass data in and out.
+    
+    2.  **Execution:**
+        * You execute a stored procedure using the `CALL` statement.
+        * You can pass input parameter values to the procedure when you call it.
+        * BigQuery executes the SQL statements within the procedure's body.
+        * If the procedure has output parameters, BigQuery returns the output values to the caller.
+    
+    3.  **Benefits:**
+        * **Modularity:** Break down complex SQL logic into smaller, manageable units.
+        * **Reusability:** Execute the same logic multiple times without rewriting code.
+        * **Maintainability:** Easier to update and modify code in one place.
+        * **Improved Performance:** Can potentially reduce network traffic by performing multiple operations on the BigQuery server.
+        * **Control Flow:** Implement conditional logic and loops within SQL.
+    
+    4.  **Key Elements:**
+        * **Parameters:** `IN`, `OUT`, and `INOUT` parameters for data flow.
+        * **Variables:** Declare variables to store intermediate results.
+        * **Control Flow:** `IF`, `WHILE`, and `FOR` statements for conditional logic and loops.
+        * **Exception Handling:** `BEGIN...EXCEPTION...END` blocks for error management.
+        * **Transactions:** Ability to execute multiple statements as a single atomic unit.
+    
+    **Where to Find Learning Resources:**
+    
+    * **Google Cloud Documentation:**
+        * The official Google Cloud documentation is the most comprehensive and up-to-date resource.
+        * Specifically, look for the BigQuery stored procedures documentation:
+            * [Working with BigQuery stored procedures](https://www.google.com/search?q=https://cloud.google.com/bigquery/docs/stored-procedures)
+            * This documentation contains syntax rules, examples, and best practices.
+    * **Google Cloud Skills Boost/Coursera:**
+        * Google Cloud offers online courses and learning paths through platforms like Google Cloud Skills Boost (formerly Qwiklabs) and Coursera.
+        * Search for courses related to BigQuery or data warehousing to find modules covering stored procedures.
+    * **Online Tutorials and Blogs:**
+        * Many online tutorials and blog posts provide practical examples and step-by-step instructions for using BigQuery stored procedures.
+        * Search for keywords like "BigQuery stored procedures tutorial" or "BigQuery stored procedures examples."
+    * **Stack Overflow and Google Groups:**
+        * Stack Overflow and Google Groups are excellent resources for finding answers to specific questions and troubleshooting issues related to BigQuery stored procedures.
+        * When searching, add the "google-bigquery" tag to filter for relevant content.
+    * **Books:**
+        * While there are not many books dedicated solely to BigQuery stored procedures, books on Google BigQuery and cloud data warehousing often include sections on stored procedures.
+            * Search for books on "Google BigQuery" or "Cloud Data Warehousing with Google Cloud."
+            * When looking at book descriptions, check the table of contents or index for sections on stored procedures.
+    
+    **Tips for Learning:**
+    
+    * Start with simple examples and gradually increase complexity.
+    * Experiment with different parameter types and control flow statements.
+    * Practice writing stored procedures for common data processing tasks.
+    * Refer to the official documentation for syntax and best practices.
+    * Use the google clouds shell to test your code.
+    * Use the BigQuery web UI to view the results of your stored procedures.
+    
+</pre>
