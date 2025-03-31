@@ -80,3 +80,62 @@ def union_dataframes(dfs):
   result = bpd.concat(extended_dfs, ignore_index=True)
   return result
 </pre>
+
+<pre>
+    def union_dataframes_with_type_handling(dfs):
+    """
+    Performs a union of a list of BigFrames DataFrames, handling different columns and data types.
+  
+    Args:
+      dfs: A list of BigFrames DataFrames.
+  
+    Returns:
+      A single BigFrames DataFrame containing the union of all input DataFrames.
+    """
+  
+    if not dfs:
+      return bpd.DataFrame()
+  
+    if len(dfs) == 1:
+      return dfs[0]
+  
+    all_columns = set()
+    column_types = {}  # Store column names and their inferred types
+    for df in dfs:
+      all_columns.update(df.columns)
+      for col in df.columns:
+        if col not in column_types:
+          column_types[col] = df[col].dtype
+        else:
+          # If column exists in multiple dfs, choose the most general type to avoid errors.
+          # This part is crucial for type compatibility.
+          if (pd.api.types.is_numeric_dtype(df[col].dtype) and
+              pd.api.types.is_numeric_dtype(column_types[col])):
+            #If both are numeric, ensure same numeric type. if not, use float64
+            if column_types[col]!=df[col].dtype:
+              column_types[col] = 'float64'
+          elif (pd.api.types.is_datetime64_any_dtype(df[col].dtype) and
+                pd.api.types.is_datetime64_any_dtype(column_types[col])):
+            column_types[col] = 'datetime64[ns]'
+          elif pd.api.types.is_string_dtype(df[col].dtype) or pd.api.types.is_string_dtype(column_types[col]):
+            column_types[col] = 'object'
+          else:
+            column_types[col] = 'object' #default to object if types are not compatible.
+  
+    all_columns = list(all_columns)
+  
+    extended_dfs = []
+    for df in dfs:
+      missing_columns = [col for col in all_columns if col not in df.columns]
+      extended_df = df.copy()
+      for col in missing_columns:
+        extended_df[col] = bpd.NA
+        extended_df = extended_df.astype({col: column_types[col]}) #cast the NA columns to the correct type
+  
+      for col in df.columns:
+          extended_df = extended_df.astype({col:column_types[col]}) #cast existing columns to the correct type.
+      extended_dfs.append(extended_df[all_columns])
+  
+    result = bpd.concat(extended_dfs, ignore_index=True)
+    return result
+</pre>
