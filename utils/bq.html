@@ -37,3 +37,10 @@ FROM
 WHERE 
     table_name = 'your_table_name';
 </pre>
+<h4>STORED PROCEDURES</h4>
+<pre>
+CREATE OR REPLACE PROCEDURE my_dataset.get_user_details(IN user_id INT64)
+BEGIN
+    SELECT * FROM my_dataset.users WHERE id = user_id;
+END;
+</pre>
