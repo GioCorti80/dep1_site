@@ -46,26 +46,37 @@ def convert_columns_to_string(df: bpd.DataFrame, columns: list) -> bpd.DataFrame
 </pre>
 <pre>
 union between multiple dataframes with different columns
-def union_dataframes(dataframes):
-    """
-    Perform a union of a list of dataframes that can have different columns.
-    
-    Parameters:
-        dataframes (list of pd.DataFrame): List of dataframes to union.
-    
-    Returns:
-        pd.DataFrame: A single dataframe containing the union of all input dataframes.
-    """
-    if not dataframes:
-        return pd.DataFrame()
+def union_dataframes(dfs):
+  """
+  Performs a union of a list of BigFrames DataFrames, handling different columns.
 
-    # Get the union of all columns across the dataframes
-    all_columns = set().union(*[df.columns for df in dataframes])
+  Args:
+    dfs: A list of BigFrames DataFrames.
 
-    # Reindex each dataframe to ensure they have the same columns, filling missing values with None
-    reindexed_dataframes = [df.reindex(columns=all_columns, fill_value=None) for df in dataframes]
+  Returns:
+    A single BigFrames DataFrame containing the union of all input DataFrames.
+  """
 
-    # Concatenate all dataframes
-    result = pd.concat(reindexed_dataframes, ignore_index=True)
-    return result
+  if not dfs:
+    return bpd.DataFrame()  # Return an empty DataFrame if the input list is empty
+
+  if len(dfs) == 1:
+    return dfs[0]
+
+  all_columns = set()
+  for df in dfs:
+    all_columns.update(df.columns)
+
+  all_columns = list(all_columns)
+
+  extended_dfs = []
+  for df in dfs:
+    missing_columns = [col for col in all_columns if col not in df.columns]
+    extended_df = df.copy() # important to copy the dataframe to avoid altering the original
+    for col in missing_columns:
+      extended_df[col] = bpd.NA  # Add missing columns with NA values
+    extended_dfs.append(extended_df[all_columns])
+
+  result = bpd.concat(extended_dfs, ignore_index=True)
+  return result
 </pre>
