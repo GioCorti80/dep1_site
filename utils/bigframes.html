@@ -24,19 +24,21 @@ you can union multiple DataFrames with different columns using the union() metho
 </pre>
 
 <pre>
-    import bigframes.pandas as bpd
+import bigframes.pandas as bpd
 
-    def get_column_list_as_string(df: bpd.DataFrame) -> str:
-        """
-        Returns a comma-separated string of column names from a BigFrames DataFrame.
-        
-        :param df: BigFrames DataFrame
-        :return: String containing column names separated by commas
-        """
-        return ', '.join(df.columns)
+def convert_columns_to_string(df: bpd.DataFrame) -> bpd.DataFrame:
+    """
+    Converts all columns in a BigFrames DataFrame to string type.
     
-    # Example usage:
-    # df = bpd.read_gbq("SELECT * FROM my_dataset.my_table")
-    # print(get_column_list_as_string(df))
+    :param df: BigFrames DataFrame
+    :return: BigFrames DataFrame with all columns as strings
+    """
+    return df.astype(str)
+
+# Example usage:
+# df = bpd.read_gbq("SELECT * FROM my_dataset.my_table")
+# df = convert_columns_to_string(df)
+# print(df.dtypes)
+    
     
 </pre>
