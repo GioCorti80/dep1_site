@@ -43,7 +43,29 @@ def convert_columns_to_string(df: bpd.DataFrame, columns: list) -> bpd.DataFrame
 # df = bpd.read_gbq("SELECT * FROM my_dataset.my_table")
 # df = convert_columns_to_string(df, ['column1', 'column2'])
 # print(df.dtypes)
+</pre>
+<pre>
+union between multiple dataframes with different columns
+def union_dataframes(dataframes):
+    """
+    Perform a union of a list of dataframes that can have different columns.
+    
+    Parameters:
+        dataframes (list of pd.DataFrame): List of dataframes to union.
+    
+    Returns:
+        pd.DataFrame: A single dataframe containing the union of all input dataframes.
+    """
+    if not dataframes:
+        return pd.DataFrame()
 
-    
-    
+    # Get the union of all columns across the dataframes
+    all_columns = set().union(*[df.columns for df in dataframes])
+
+    # Reindex each dataframe to ensure they have the same columns, filling missing values with None
+    reindexed_dataframes = [df.reindex(columns=all_columns, fill_value=None) for df in dataframes]
+
+    # Concatenate all dataframes
+    result = pd.concat(reindexed_dataframes, ignore_index=True)
+    return result
 </pre>
