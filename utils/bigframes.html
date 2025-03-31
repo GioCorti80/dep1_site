@@ -22,3 +22,21 @@
 In Google BigFrames (Pandas API for BigQuery),
 you can union multiple DataFrames with different columns using the union() method while aligning columns properly.
 </pre>
+
+<pre>
+    import bigframes.pandas as bpd
+
+    def get_column_list_as_string(df: bpd.DataFrame) -> str:
+        """
+        Returns a comma-separated string of column names from a BigFrames DataFrame.
+        
+        :param df: BigFrames DataFrame
+        :return: String containing column names separated by commas
+        """
+        return ', '.join(df.columns)
+    
+    # Example usage:
+    # df = bpd.read_gbq("SELECT * FROM my_dataset.my_table")
+    # print(get_column_list_as_string(df))
+    
+</pre>
