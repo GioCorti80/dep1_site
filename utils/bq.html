@@ -45,3 +45,9 @@ BEGIN
 END;
 </pre>
 <pre>schedule="0 19 * * 3",  # Runs every Wednesday at 19:00 UTC</pre>
+
+<pre>PARSE DATE
+    SELECT PARSE_DATE('%Y-%m-%d', date_string) AS parsed_date
+    FROM your_table;
+   
+</pre>
