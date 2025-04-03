@@ -21,3 +21,5 @@
 def strip_dataframe(df):
     return df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 </pre>
+<pre># Rename columns
+    df = df.rename(columns={'old_name1': 'new_name1', 'old_name2': 'new_name2'})</pre>
