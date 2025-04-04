@@ -23,3 +23,16 @@ def strip_dataframe(df):
 </pre>
 <pre># Rename columns
     df = df.rename(columns={'old_name1': 'new_name1', 'old_name2': 'new_name2'})</pre>
+
+<pre>
+from datetime import datetime
+
+# Example date
+date_obj = datetime(2025, 4, 4)
+
+# Convert to string in yyyy-MM-dd format
+date_str = date_obj.strftime("%Y-%m-%d")
+
+print(date_str)  # Output: 2025-04-04
+
+</pre>
