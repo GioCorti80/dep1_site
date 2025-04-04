@@ -33,3 +33,14 @@ spark = SparkSession.builder \
 .withColumn("col1", F.format_string("%.0f", F.col("col1").cast("double"))) \
                  .withColumn("col2", F.format_string("%.0f", F.col("col2").cast("double")))
 </pre>
+<h3>Set temporary gcs bucket</h3>
+<pre>
+    from pyspark.sql import SparkSession
+
+    # Initialize SparkSession with BigQuery connector and GCS bucket configuration
+    spark = SparkSession.builder \
+        .appName("WriteToBigQuery") \
+        .config("spark.jars.packages", "com.google.cloud:spark-bigquery-connector:0.34.0") \
+        .config("spark.hadoop.google.cloud.bigquery.connector.temporaryGcsBucket", "your-temp-gcs-bucket") \
+        .getOrCreate()
+</pre>
