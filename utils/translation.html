@@ -69,3 +69,13 @@ to confirm whether they are also unused by the process.
     The query performs a daily extraction directly from the t_trd_ana_ndg_glober table. Therefore, any changes to that table will impact the retrieved records.  Also, the number of records returned is affected by missing data in the UAT environment. There's no specific process for extracting only the delta."
 </pre>
 <pre>Yes, the scope of the position file is the same as that of the counterparty query.</pre>
+
+<pre>
+Hi Alexandru,
+
+The issue we're seeing might be specific to the UAT environment, as the 'missing' field seems to be First_name.
+
+In production, the person's first and last names are separated by a plus sign (+). However, in UAT, due to data masking, this separation doesn't occur, and the names appear as a single string. This could be why the split operation isn't working correctly.
+
+We can modify the query to try and handle this specific scenario.
+</pre>
