@@ -57,3 +57,39 @@ END;
     .option("table", "your_project.your_dataset.your_table") \
     .load()
 </pre>
+<pre>
+from pyspark.sql import SparkSession
+from google.cloud import bigquery
+from pyspark.sql.types import StructType, StructField, StringType
+
+# Define table parameters
+project_id = "your_project_id"
+dataset = "your_dataset"
+table = "your_table"
+table_id = f"{project_id}.{dataset}.{table}"
+
+# Initialize BigQuery client
+bq_client = bigquery.Client()
+
+# Check if table exists in BigQuery
+def table_exists_bq(table_id):
+    try:
+        bq_client.get_table(table_id)
+        return True
+    except Exception:
+        return False
+
+# Main logic
+if table_exists_bq(table_id):
+    df = spark.read.format("bigquery").option("table", table_id).load()
+else:
+    schema = StructType([
+        StructField("ndg", StringType(), True),
+        StructField("codice_evento", StringType(), True)
+    ])
+    df = spark.createDataFrame([], schema)
+
+# Now `df` is either read from BigQuery or an empty DataFrame with the required schema
+df.show()
+    
+</pre>
