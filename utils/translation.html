@@ -64,15 +64,7 @@ to confirm whether they are also unused by the process.
     Ok, thank you, Surendhar. You may now proceed with triggering DAG
 </pre>
 <pre>
-Option 1 (Original, slightly polished):
+    Hi Alexandru,
 
-Hi Alexandru,
-
-The query performs a daily extraction directly from the t_trd_ana_ndg_glober table. Therefore, any changes to that table will impact the retrieved records. There's no specific process for extracting only the delta.
-
-Option 2 (Slightly more formal):
-
-Hi Alexandru,
-
-Please note that the query executes a daily extraction from the t_trd_ana_ndg_glober table. Consequently, modifications to the table will affect the retrieved records. A specific delta extraction process is not currently implemented.
+    The query performs a daily extraction directly from the t_trd_ana_ndg_glober table. Therefore, any changes to that table will impact the retrieved records.  Also, the number of records returned is affected by missing data in the UAT environment. There's no specific process for extracting only the delta."
 </pre>
