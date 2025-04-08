@@ -36,3 +36,69 @@ date_str = date_obj.strftime("%Y-%m-%d")
 print(date_str)  # Output: 2025-04-04
 
 </pre>
+<pre>
+    import pandas as pd
+
+    def compare_excel_files(file1, file2, sheet_name=0):
+        """
+        Compares two Excel files and returns the differences.
+    
+        Args:
+            file1 (str): Path to the first Excel file.
+            file2 (str): Path to the second Excel file.
+            sheet_name (int or str): Sheet name or index to compare. Default is first sheet (0).
+    
+        Returns:
+            dict: {
+                'only_in_file1': DataFrame,
+                'only_in_file2': DataFrame,
+                'differences': DataFrame
+            }
+        """
+        df1 = pd.read_excel(file1, sheet_name=sheet_name, dtype=str)
+        df2 = pd.read_excel(file2, sheet_name=sheet_name, dtype=str)
+    
+        # Align columns
+        df1 = df1.reindex(sorted(df1.columns), axis=1)
+        df2 = df2.reindex(sorted(df2.columns), axis=1)
+    
+        # Reset index for row-wise comparison
+        df1 = df1.fillna('').reset_index(drop=True)
+        df2 = df2.fillna('').reset_index(drop=True)
+    
+        # Find common and unique rows
+        merged = df1.merge(df2, how='outer', indicator=True)
+        only_in_file1 = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
+        only_in_file2 = merged[merged['_merge'] == 'right_only'].drop(columns=['_merge'])
+    
+        # Find differing rows (same index, different content)
+        differences = pd.DataFrame()
+        min_len = min(len(df1), len(df2))
+        for i in range(min_len):
+            if not df1.iloc[i].equals(df2.iloc[i]):
+                diff_row = pd.DataFrame({
+                    'Row': [i],
+                    'File1': [df1.iloc[i].to_dict()],
+                    'File2': [df2.iloc[i].to_dict()]
+                })
+                differences = pd.concat([differences, diff_row], ignore_index=True)
+    
+        return {
+            'only_in_file1': only_in_file1,
+            'only_in_file2': only_in_file2,
+            'differences': differences
+        }
+
+
+        result = compare_excel_files('file1.xlsx', 'file2.xlsx')
+
+        print("Rows only in file1:")
+        print(result['only_in_file1'])
+        
+        print("\nRows only in file2:")
+        print(result['only_in_file2'])
+        
+        print("\nRow-wise differences:")
+        print(result['differences'])
+        
+</pre>
