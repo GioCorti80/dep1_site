@@ -108,3 +108,60 @@ print(date_str)  # Output: 2025-04-04
     today = datetime.date.today()
     today_string = today.strftime("%Y-%m-%d")
 </pre>
+<pre>
+import pandas as pd
+
+def compare_excel_files(file1_path, file2_path, key_column):
+    """
+    Compares two Excel files and identifies new rows and different content.
+
+    Args:
+        file1_path (str): Path to the first Excel file.
+        file2_path (str): Path to the second Excel file.
+        key_column (str): The column to use as a unique identifier for rows.
+
+    Returns:
+        tuple: (new_rows, changed_rows) where:
+            new_rows (pandas.DataFrame): DataFrame containing rows present in file2 but not in file1.
+            changed_rows (pandas.DataFrame): DataFrame containing rows with changed content between file1 and file2.
+    """
+    try:
+        df1 = pd.read_excel(file1_path)
+        df2 = pd.read_excel(file2_path)
+    except FileNotFoundError:
+        return None, None # handles errors if the files do not exist.
+    except Exception as e:
+        print(f"An error occurred reading the excel files: {e}")
+        return None, None
+
+    # Find new rows (rows in df2 that are not in df1 based on the key column)
+    new_rows = df2[~df2[key_column].isin(df1[key_column])]
+
+    # Find changed rows
+    merged_df = pd.merge(df1, df2, on=key_column, suffixes=('_file1', '_file2'), how='outer', indicator=True)
+    changed_rows = merged_df[(merged_df['_merge'] == 'both')]
+
+    changed_rows = changed_rows[~(changed_rows.filter(regex='_file1$').apply(lambda x: x.astype(str)) == changed_rows.filter(regex='_file2$').apply(lambda x: x.astype(str))).all(axis=1)]
+
+    return new_rows, changed_rows
+
+# Example usage:
+file1 = 'file1.xlsx'
+file2 = 'file2.xlsx'
+key_col = 'ID'  # Replace with the actual column name that uniquely identifies rows
+
+new_rows_df, changed_rows_df = compare_excel_files(file1, file2, key_col)
+
+if new_rows_df is not None and changed_rows_df is not None:
+    if not new_rows_df.empty:
+        print("New Rows:")
+        print(new_rows_df)
+    else:
+        print("No new rows found.")
+
+    if not changed_rows_df.empty:
+        print("\nChanged Rows:")
+        print(changed_rows_df)
+    else:
+        print("\nNo changed rows found.")
+</pre>
