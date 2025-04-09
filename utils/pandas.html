@@ -165,3 +165,19 @@ if new_rows_df is not None and changed_rows_df is not None:
     else:
         print("\nNo changed rows found.")
 </pre>
+
+<pre>
+df_file1 = pd.read_excel(file1)
+df_file2 = pd.read_excel(file2)
+
+# Find rows in file1 not in file2
+diff_file1 = df_file1[~df_file1.apply(tuple, axis=1).isin(df_file2.apply(tuple, axis=1))]
+
+# Find rows in file2 not in file1
+diff_file2 = df_file2[~df_file2.apply(tuple, axis=1).isin(df_file1.apply(tuple, axis=1))]
+
+# Combine differences
+differences = pd.concat([diff_file1, diff_file2], keys=['File1 Only', 'File2 Only'])
+
+print(differences)
+</pre>
