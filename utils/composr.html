@@ -21,3 +21,14 @@
 If you want your DAG to run every Tuesday at 10:00 AM, update the schedule_interval to:
 0 10 * * 2
 </pre>
+
+<pre>
+    from datetime import datetime, timedelta
+    
+    def is_third_friday(execution_date: datetime) -> bool:
+        """Return True only if the date is the 3rd Friday of the month"""
+        if execution_date.weekday() != 4:  # 4 is Friday
+            return False
+        day = execution_date.day
+        return 15 <= day <= 21
+</pre>
