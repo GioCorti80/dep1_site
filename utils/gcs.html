@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Background with White Text</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<h1>GCS</h1>
+<h3>Config</h3>
+<pre>
+from google.cloud import storage
+
+def list_gcs_objects(bucket_name, prefix=None):
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+
+    blobs = client.list_blobs(bucket_or_name=bucket, prefix=prefix)
+
+    return [blob.name for blob in blobs]
+
+# Example usage
+bucket_name = 'your-bucket-name'
+all_files = list_gcs_objects(bucket_name)
+
+print(all_files)  # This will be a list of file paths
+    
+</pre>
