@@ -35,3 +35,19 @@ all_files = list_gcs_objects(bucket_name)
 print(all_files)  # This will be a list of file paths
     
 </pre>
+<pre>
+from google.cloud import storage
+
+def list_folders(bucket_name, prefix=""):
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+    blobs = client.list_blobs(bucket_name, prefix=prefix, delimiter='/')
+
+    print("Folders:")
+    for folder in blobs.prefixes:
+        print(folder)
+
+# Example usage
+list_folders("your-bucket-name", prefix="optional/path/")
+    
+</pre>
