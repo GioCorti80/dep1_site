@@ -139,3 +139,33 @@ def union_dataframes(dfs):
     result = bpd.concat(extended_dfs, ignore_index=True)
     return result
 </pre>
+<pre>
+import bigframes.pandas as bpd
+
+# Assuming you have a BigFrames DataFrame named 'bf_df'
+# Drop a single column
+bf_df = bf_df.drop(columns=['column_to_drop'])
+
+# Drop multiple columns
+columns_to_drop = ['column_one', 'column_two', 'column_three']
+bf_df = bf_df.drop(columns=columns_to_drop)
+
+# To drop columns in place (modify the original DataFrame):
+bf_df.drop(columns=columns_to_drop, inplace=True)
+</pre>
+<pre>
+import bigframes.pandas as bpd
+
+# Assuming you have a BigFrames DataFrame named 'bf_df'
+# Rename a single column
+bf_df = bf_df.rename(columns={'old_name': 'new_name'})
+
+# Rename multiple columns
+new_column_names = {'old_name_1': 'new_name_1',
+                    'old_name_2': 'new_name_2',
+                    'old_name_3': 'new_name_3'}
+bf_df = bf_df.rename(columns=new_column_names)
+
+# To rename columns in place:
+bf_df.rename(columns=new_column_names, inplace=True)
+</pre>
