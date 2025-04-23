@@ -245,3 +245,16 @@ The process concluded with the following status: HEALTH CHECK FAILED – file no
 </pre>
 <pre>Hi Sourav,
     I’ve finished now—feel free to proceed whenever you're ready.</pre>
+
+<pre>
+To complete the analysis, we created DAG 125479 to upload data to the Oracle staging area.
+During the last run, it executed successfully, and I expect the tables have been loaded.
+
+The table b103_mm_priorira is no longer being updated, and the two models have been consolidated into the table b104_priorità.
+
+The Assegni priorità table should have been populated correctly.
+The tm_weekly_health_check is currently not part of the DAG's tasks.
+
+The DAG’s activity ends with loading the staging area and sending the OK files.
+However, we do not have visibility into what happens within Oracle during the transition from the staging area to the Oracle tables. For this reason, I’ll need to follow up with Salvatore.
+</pre>
