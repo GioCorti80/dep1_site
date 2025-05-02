@@ -190,3 +190,9 @@ date_obj = datetime.strptime(date_str, "%Y-%m-%d")
 <pre>
 pd.set_option('display.max_columns', None)
 </pre>
+<pre>
+class Args:
+def __init__(self, **kwargs):
+    for key, value in kwargs.items():
+        setattr(self, key, value)
+</pre>
