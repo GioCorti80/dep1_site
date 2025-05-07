@@ -169,3 +169,7 @@ bf_df = bf_df.rename(columns=new_column_names)
 # To rename columns in place:
 bf_df.rename(columns=new_column_names, inplace=True)
 </pre>
+<pre>
+substring:
+bf_df['first_three'] = bf_df['original_string'].str[:3]
+</pre>
