@@ -41,3 +41,23 @@ for entry in entries:
     user_email = entry.payload['authenticationInfo']['principalEmail']
     print(f"User: {user_email} — Log time: {entry.timestamp}")
 </pre>
+<pre>
+from google.cloud import logging
+
+client = logging.Client()
+
+# Same filter as before
+filter_str = """
+resource.type="bigquery_project"
+protoPayload.methodName="jobservice.jobcompleted"
+protoPayload.serviceData.jobCompletedEvent.eventName="QUERY_JOB_COMPLETED"
+"""
+
+entries = client.list_entries(filter_=filter_str)
+
+for entry in entries:
+    proto_payload = entry.proto_payload  # <-- Correct
+    user_email = proto_payload.get('authenticationInfo', {}).get('principalEmail')
+    print(f"User: {user_email} — Log time: {entry.timestamp}")
+    
+</pre>
