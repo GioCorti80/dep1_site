@@ -22,3 +22,22 @@ resource.type="bigquery_project"
 protoPayload.methodName="jobservice.jobcompleted"
 protoPayload.serviceData.jobCompletedEvent.eventName="QUERY_JOB_COMPLETED"
 </pre>
+<pre>
+from google.cloud import logging
+
+client = logging.Client()
+logger = client.logger('')
+
+# Example advanced filter (same as UI)
+filter_str = """
+resource.type="bigquery_project"
+protoPayload.methodName="jobservice.jobcompleted"
+protoPayload.serviceData.jobCompletedEvent.eventName="QUERY_JOB_COMPLETED"
+"""
+
+entries = client.list_entries(filter_=filter_str)
+
+for entry in entries:
+    user_email = entry.payload['authenticationInfo']['principalEmail']
+    print(f"User: {user_email} — Log time: {entry.timestamp}")
+</pre>
