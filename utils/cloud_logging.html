@@ -17,3 +17,8 @@
 </head>
 <h1>cloud logging</h1>
 <h3>Config</h3>
+<pre>
+resource.type="bigquery_project"
+protoPayload.methodName="jobservice.jobcompleted"
+protoPayload.serviceData.jobCompletedEvent.eventName="QUERY_JOB_COMPLETED"
+</pre>
