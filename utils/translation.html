@@ -449,3 +449,6 @@ From the next release, they’ll run at 10 AM UTC for counterparty and 11 AM UTC
 Hi Hanumantha,
 For the TM process, we load data into the stg_tm_assegni_priorita table in the Oracle staging area.
 </pre>
+<pre>
+The DAG is triggered by the Transaction Monitoring DAG, which has the triggering of the tm_oracle DAG as its final task.
+</pre>
