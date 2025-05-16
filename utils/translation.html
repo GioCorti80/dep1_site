@@ -483,3 +483,16 @@ Giving this function and these paramters Hi wanna know if you think that:
 the given condition -w (where) and the condition -b (business_date)
 produce that the job (airflow dag) is going to extract all the record in the given table (-p idenficativo is a unique identifier)
 </pre>
+<pre>
+To investigate the issue in production, I need to manually trigger the following DAG:
+TM_ORACLE_CUSTOM with the parameters:
+
+json
+Copia
+Modifica
+{
+  "param1": "2024-05",
+  "param2": "de"
+}
+I’ve submitted service request RITM45454545 to the operations team with this request.
+</pre>
