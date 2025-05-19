@@ -196,3 +196,6 @@ def __init__(self, **kwargs):
     for key, value in kwargs.items():
         setattr(self, key, value)
 </pre>
+<pre>
+df.to_gbq(table_full_id, project_id=project_id, if_exists='replace')
+</pre>
