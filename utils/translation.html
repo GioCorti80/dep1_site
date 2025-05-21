@@ -567,3 +567,12 @@ Modifica
 The request is within the same SR, which can be closed once this is completed.
 Thank you.
 </pre>
+<pre>
+da quello che è emerso dalla call di ieri sembra che l'informazione relativa alla user_email riferita all'user_id non sia nativamente presente nel log looker e anche il progetto che ci hanno presentato utilizzava una taella di transcodifica tra user_id/mail che viene aggiornata settimanalmente.
+Hanno però detto che sarebbe possibile aggiungere anche il dato relativo alla mail ma è necessario fare una modifica lato google/looker per aggiungere la label/tag relativa alla user_email in modo da avere tutte le informazioni.
+
+Se la soluzione di integrare i log di google con l'informazione della mail non sarà percorribile in tempi brevi bisognarà procedere con la modalità pensata inizialmente che prevere la creazione di una tabella di raccordo da mettere in join con i log in modo da avere le info necessarie (timestamp, quary_eseguita, user_mail, user_id)
+
+Nel meeting non è stato trattato il tema del service-account necessario per la scrittura della tabella direttamente sul progetto 
+
+</pre>
