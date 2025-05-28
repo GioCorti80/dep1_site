@@ -78,3 +78,35 @@ def list_file_versions(bucket_name, file_name):
     except Exception as e:
         print(f"An error occurred: {e}")
 </pre>
+<pre>
+def delete_file_and_all_versions(bucket_name, file_name):
+    """Deletes a file and all its versions from a Google Cloud Storage bucket."""
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(file_name)
+
+    try:
+        # List all versions of the blob
+        versions = storage_client.list_blobs(
+            bucket, prefix=file_name, versions=True
+        )
+
+        deleted_count = 0
+        for version in versions:
+            if version.name == file_name:
+                generation_match_precondition = (
+                    version.generation if version.generation else 0
+                )
+                version.delete(if_generation_match=generation_match_precondition)
+                print(f"Deleted version: {version.name} (Generation: {version.generation})")
+                deleted_count += 1
+
+        if deleted_count > 0:
+            print(f"Successfully deleted {deleted_count} version(s) of '{file_name}' from '{bucket_name}'.")
+        else:
+            print(f"File '{file_name}' not found or has no versions in '{bucket_name}'.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+</pre>
