@@ -51,3 +51,30 @@ def list_folders(bucket_name, prefix=""):
 list_folders("your-bucket-name", prefix="optional/path/")
     
 </pre>
+<pre>
+from google.cloud import storage
+
+def list_file_versions(bucket_name, file_name):
+    """Lists all versions of a specific file in a Google Cloud Storage bucket."""
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+
+    try:
+        versions = storage_client.list_blobs(
+            bucket, prefix=file_name, versions=True
+        )
+
+        print(f"Versions of '{file_name}' in '{bucket_name}':")
+        found_versions = False
+        for version in versions:
+            if version.name == file_name:
+                found_versions = True
+                print(f"  Name: {version.name}, Generation: {version.generation}, Updated: {version.updated}")
+
+        if not found_versions:
+            print(f"File '{file_name}' not found or has no versions in '{bucket_name}'.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+</pre>
