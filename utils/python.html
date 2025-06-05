@@ -31,3 +31,19 @@ print(filtered_list2)
 from google.cloud.logging_v2.services.logging_service_v2 import LoggingServiceV2Client
 
 </pre>
+<pre>
+from datetime import datetime, timedelta
+
+project_id = "your-gcp-project-id"
+log_filter = 'resource.type="cloud_function" AND severity>=ERROR'
+
+# Example: Last 24 hours
+start = datetime.utcnow() - timedelta(days=1)
+end = datetime.utcnow()
+
+logs = read_logs(project_id, log_filter, start, end)
+
+for entry in logs:
+    print(f"{entry.timestamp} - {entry.severity} - {entry.text_payload or entry.json_payload}")
+
+</pre>
