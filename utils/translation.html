@@ -777,3 +777,16 @@ Once the issue is resolved, I'll try submitting it again.
 Hi Janani,
 Yes, I'm currently testing the changes in the dev env
 </pre>
+<pre>
+Hi Lavania,
+
+We’ve done an initial check with Ankit and identified the issue in six tables. The problem is related to reading from the dqm_kqi table, which now includes a new column dt_period in the updated schema.
+
+Based on the knowledge transfer (KT), we need to run the following ALTER TABLE statements in production to add this new column:
+
+alter1
+
+alter2
+
+alter3
+</pre>
