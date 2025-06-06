@@ -47,3 +47,35 @@ for entry in logs:
     print(f"{entry.timestamp} - {entry.severity} - {entry.text_payload or entry.json_payload}")
 
 </pre>
+<pre>
+import holidays
+from datetime import date, datetime
+
+def is_working_day(input_date=None, country='US'):
+    """
+    Checks if a given date (or today if not provided) is a working day.
+    Excludes weekends and public holidays.
+
+    Args:
+        input_date (str or datetime.date or datetime.datetime, optional): 
+            The date to check. If None, uses today. 
+            If string, format should be 'YYYY-MM-DD'.
+        country (str): Country code for holidays (default 'US').
+
+    Returns:
+        bool: True if it's a working day, False otherwise.
+    """
+    if input_date is None:
+        check_date = date.today()
+    elif isinstance(input_date, str):
+        check_date = datetime.strptime(input_date, "%Y-%m-%d").date()
+    elif isinstance(input_date, (date, datetime)):
+        check_date = input_date.date() if isinstance(input_date, datetime) else input_date
+    else:
+        raise ValueError("Invalid date format. Use None, a 'YYYY-MM-DD' string, or a date object.")
+    
+    holiday_dates = holidays.country_holidays(country)
+    
+    return check_date.weekday() < 5 and check_date not in holiday_dates
+
+</pre>
