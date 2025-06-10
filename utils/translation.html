@@ -920,3 +920,16 @@ The Oracle table load is expected to complete in about two hours.
 I've prepared the following PR for the DAG related to Looker logs, including the addition of the looker_slug column.
 Could you please review and approve it?
 I've also added handling for cases where there are no log rows.</pre>
+<pre>
+Ciao Laura,
+ti inoltro in allegato la nuova estrazione event_driven.
+Nell'ultima estrazione automatica non ha estratto righe ne nella parte new ne in quella old in quanto l'estrazione precedente new non aveva estratto nessuna riga.
+Nella nuova release nell'old inserirò solo il filtreo a partire dal mese di maggio 2025.
+
+La nuova estrazione allegata contiene la sostituzione della tabella b22 e i filtri sullo stato.
+Le colonne sono le seguenti:
+- STATO_PRATICA: presenza di pratiche delle categoria indicate nella tabella actual
+- Colonne TIPO_PROFILO_NEW a DT_FINE_VALIDITA_NEW sono le colonne della nuova tabella di classificazione
+
+Le righe in rosso sono quelle che verrebbero escluse in relazione allo status mentre gli ndg nel perimetro polizze sono già stati esclusi.
+</pre>
