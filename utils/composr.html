@@ -112,3 +112,56 @@ def load_csv_to_bigquery():
     upload_task >> update_task
 
 </pre>
+<pre>
+from airflow import DAG
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from datetime import datetime
+
+PROJECT_ID = "your-project"
+DATASET = "your_dataset"
+STAGING_TABLE = f"{PROJECT_ID}.{DATASET}.staging_table"
+MAIN_TABLE = f"{PROJECT_ID}.{DATASET}.main_table"
+GCS_BUCKET = "your-gcs-bucket"
+GCS_OBJECT = "path/to/update_file.csv"  # e.g., "uploads/update_file.csv"
+
+default_args = {
+    "start_date": datetime(2024, 1, 1),
+}
+
+with DAG("update_user_email_from_gcs", default_args=default_args, schedule_interval=None, catchup=False) as dag:
+
+    load_csv_from_gcs = GCSToBigQueryOperator(
+        task_id="load_csv_to_staging_table",
+        bucket=GCS_BUCKET,
+        source_objects=[GCS_OBJECT],
+        destination_project_dataset_table=STAGING_TABLE,
+        schema_fields=[
+            {"name": "user_id", "type": "STRING", "mode": "NULLABLE"},
+            {"name": "user_email", "type": "STRING", "mode": "NULLABLE"},
+        ],
+        source_format="CSV",
+        skip_leading_rows=1,
+        write_disposition="WRITE_TRUNCATE",
+        autodetect=False,
+    )
+
+    update_main_table = BigQueryInsertJobOperator(
+        task_id="update_main_table",
+        configuration={
+            "query": {
+                "query": f"""
+                    UPDATE `{MAIN_TABLE}` AS main
+                    SET main.user_email = updates.user_email
+                    FROM `{STAGING_TABLE}` AS updates
+                    WHERE main.user_id = updates.user_id
+                """,
+                "useLegacySql": False,
+            }
+        },
+        location="US",  # Change if your dataset is in another region
+    )
+
+    load_csv_from_gcs >> update_main_table
+
+</pre>
