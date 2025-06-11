@@ -41,3 +41,62 @@ schedule_interval='0 11 7 * *'
 <pre>
 0 10 1-5 * *
 </pre>
+<pre>
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from datetime import datetime
+from google.cloud import bigquery
+
+# Set your values
+PROJECT_ID = "your-project"
+DATASET = "your_dataset"
+MAIN_TABLE = f"{PROJECT_ID}.{DATASET}.main_table"
+STAGING_TABLE = f"{PROJECT_ID}.{DATASET}.staging_table"
+CSV_PATH = "/path/to/update_file.csv"  # Update this
+
+default_args = {
+    "start_date": datetime(2024, 1, 1),
+    "retries": 1,
+}
+
+with DAG("update_user_email_dag", schedule_interval=None, default_args=default_args, catchup=False) as dag:
+
+    def load_csv_to_bigquery():
+        client = bigquery.Client()
+        job_config = bigquery.LoadJobConfig(
+            source_format=bigquery.SourceFormat.CSV,
+            skip_leading_rows=1,
+            autodetect=True,
+            write_disposition="WRITE_TRUNCATE",
+        )
+        with open(CSV_PATH, "rb") as source_file:
+            job = client.load_table_from_file(source_file, STAGING_TABLE, job_config=job_config)
+        job.result()
+
+    upload_task = PythonOperator(
+        task_id="upload_csv_to_staging",
+        python_callable=load_csv_to_bigquery,
+    )
+
+    update_query = f"""
+    UPDATE `{MAIN_TABLE}` AS main
+    SET main.user_email = updates.user_email
+    FROM `{STAGING_TABLE}` AS updates
+    WHERE main.user_id = updates.user_id
+    """
+
+    update_task = BigQueryInsertJobOperator(
+        task_id="update_main_table",
+        configuration={
+            "query": {
+                "query": update_query,
+                "useLegacySql": False,
+            }
+        },
+        location="US",  # adjust if needed
+    )
+
+    upload_task >> update_task
+
+</pre>
