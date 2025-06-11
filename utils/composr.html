@@ -62,22 +62,34 @@ default_args = {
 
 with DAG("update_user_email_dag", schedule_interval=None, default_args=default_args, catchup=False) as dag:
 
-    def load_csv_to_bigquery():
-        client = bigquery.Client()
-        job_config = bigquery.LoadJobConfig(
-            source_format=bigquery.SourceFormat.CSV,
-            skip_leading_rows=1,
-            autodetect=True,
-            write_disposition="WRITE_TRUNCATE",
-        )
-        with open(CSV_PATH, "rb") as source_file:
-            job = client.load_table_from_file(source_file, STAGING_TABLE, job_config=job_config)
-        job.result()
+def load_csv_to_bigquery():
+    from google.cloud import bigquery
 
-    upload_task = PythonOperator(
-        task_id="upload_csv_to_staging",
-        python_callable=load_csv_to_bigquery,
+    client = bigquery.Client()
+
+    # Define explicit schema
+    schema = [
+        bigquery.SchemaField("user_id", "STRING"),
+        bigquery.SchemaField("user_email", "STRING"),
+    ]
+
+    job_config = bigquery.LoadJobConfig(
+        schema=schema,
+        source_format=bigquery.SourceFormat.CSV,
+        skip_leading_rows=1,  # Skip headers even if wrong or messy
+        write_disposition="WRITE_TRUNCATE",
+        autodetect=False,  # Important: you want your schema, not inferred
     )
+
+    with open("/path/to/update_file.csv", "rb") as source_file:
+        load_job = client.load_table_from_file(
+            source_file,
+            destination="your-project.your_dataset.staging_table",
+            job_config=job_config,
+        )
+
+    load_job.result()  # Wait for completion
+
 
     update_query = f"""
     UPDATE `{MAIN_TABLE}` AS main
