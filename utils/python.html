@@ -79,3 +79,6 @@ def is_working_day(input_date=None, country='US'):
     return check_date.weekday() < 5 and check_date not in holiday_dates
 
 </pre>
+<pre>
+df_with_new_date = df.withColumn("new_date", add_months(df["start_date"], 3))
+</pre>
