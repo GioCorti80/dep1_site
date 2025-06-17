@@ -173,3 +173,24 @@ bf_df.rename(columns=new_column_names, inplace=True)
 substring:
 bf_df['first_three'] = bf_df['original_string'].str[:3]
 </pre>
+<pre>
+import bigframes.pandas as bpd
+import numpy as np
+
+# Load the table
+df = bpd.read_gbq("SELECT name, score FROM your_dataset.students")
+
+# Define conditions
+conditions = [
+    df["score"] >= 90,
+    df["score"] >= 75
+]
+choices = ["Excellent", "Good"]
+
+# Apply CASE WHEN using np.select
+df["rating"] = np.select(conditions, choices, default="Needs Improvement")
+
+# Optional: convert to Pandas to see the result locally
+df.to_pandas()
+
+</pre>
