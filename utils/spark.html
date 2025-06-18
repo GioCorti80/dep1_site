@@ -44,3 +44,8 @@ spark = SparkSession.builder \
         .config("spark.hadoop.google.cloud.bigquery.connector.temporaryGcsBucket", "your-temp-gcs-bucket") \
         .getOrCreate()
 </pre>
+<pre>
+# Convert rows to a list of tuples
+list_of_tuples = [tuple(row) for row in df.collect()]
+print(list_of_tuples)
+</pre>
