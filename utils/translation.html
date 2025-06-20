@@ -1151,3 +1151,11 @@ Could you please mark the Dataproc step as succeeded for the following DAG run d
 The task is currently marked as failed, even though the Dataproc job completed successfully.
 For reference, I have opened support request SR 3434343.
 </pre>
+<pre>
+Hi Igor,
+The DAG we are currently using is the following:
+looker_bigquery.py, which queries the logs of the dev-mtool project.
+
+The DAG you mentioned, which uses the dblooker project, returns a gcloud.logging.read PERMISSION_DENIED error,
+whereas the looker_bigquery DAG (file: looker_bq_queries) works correctly.
+</pre>
