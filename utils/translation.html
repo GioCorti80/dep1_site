@@ -1206,3 +1206,18 @@ Il comando utilizzato è infatti gcloud project get-iam-policy che ha finalità 
 
 Cordiali Saluti
 </pre>
+<pre>
+This is to clarify that the gcloud projects get-iam-policy command was used as part of a controlled test conducted in the development environment during the implementation of the PG2 log feature.
+
+The command was embedded within a Composer DAG and was used solely to retrieve the IAM policy associated with the sa-composer service account. Its exclusive purpose was to verify permissions as part of a test scenario — no modifications or write operations were performed.
+
+This step was necessary to support development work involving data integration between two separate GCP projects (mtool and dblooker). Given that cross-project access is involved, it was essential to validate which permissions were already granted to ensure proper handling during future integration.
+
+It's important to note that:
+
+The command in question (gcloud projects get-iam-policy) is strictly read-only.
+
+The process resulted in an error, as confirmed by the logs.
+
+The operation was part of a one-time test and will not be repeated.
+</pre>
