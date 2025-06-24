@@ -1195,3 +1195,14 @@ The code was designed only to retrieve information, not to perform any modificat
 
 The command used was in fact gcloud projects get-iam-policy, which is strictly for querying assigned roles and permissions.
 </pre>
+<pre>
+Ciao Davide,
+esatto si tratta di un test eseguito in dev nell'ambito dello sviluppo dei log PG2 tramite dag composer.
+L'istruzione gcloud get-iam-policy inserita nel codice era servita per interrogare i permessi del sa-composer alle sole finalità di test.
+Lo sviluppo infatti prevede l'integrazione di dati tra 2 progetti diversi (mtool e dblooker).
+Il codice aveva solo finalità di interrogazione e non di modifica in ogni caso il processo (come si evince dai log) ha restituito un errore e non sarà più replicato.
+
+Il comando utilizzato è infatti gcloud project get-iam-policy che ha finalità solo di interrogative (roles and permission assigned)
+
+Cordiali Saluti
+</pre>
