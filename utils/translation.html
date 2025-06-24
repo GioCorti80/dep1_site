@@ -1184,3 +1184,14 @@ The following command had been implemented in the code, which does not attempt a
 However, the command failed and will not be executed again.
 Feel free to contact me if you need any further clarification.
 </pre>
+<pre>
+Hi Davide,
+
+Yes, this was a test carried out in the development environment as part of the PG2 log development work.
+The gcloud command included in the code was used solely to query the permissions of the sa-composer service account for testing purposes.
+
+The development involves data integration between two separate projects (mtool and dblooker).
+The code was designed only to retrieve information, not to perform any modifications. In any case, as shown in the logs, the process returned an error and will not be repeated.
+
+The command used was in fact gcloud projects get-iam-policy, which is strictly for querying assigned roles and permissions.
+</pre>
