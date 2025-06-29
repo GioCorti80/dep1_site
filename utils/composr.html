@@ -165,3 +165,17 @@ with DAG("update_user_email_from_gcs", default_args=default_args, schedule_inter
     load_csv_from_gcs >> update_main_table
 
 </pre>
+<pre>
+from airflow.providers.google.cloud.sensors.gcs import GoogleCloudStorageObjectExistenceSensor
+from datetime import timedelta
+
+check_file_sensor = GoogleCloudStorageObjectExistenceSensor(
+    task_id="check_gcs_file",
+    bucket="your-bucket-name",
+    object="path/to/your_file.csv",  # Adjust this path
+    poke_interval=60,                # Check every 60 seconds
+    timeout=3 * 60 * 60,             # 3 hours in seconds (10,800s)
+    mode="poke",                     # or "reschedule" to reduce worker load
+)
+
+</pre>
