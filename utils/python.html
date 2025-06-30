@@ -87,3 +87,45 @@ import sys
 print(f"Python version: {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
 print("PySpark version:", spark.version)
 </pre>
+<pre>
+import pandas as pd
+import io
+import sys
+
+# Create a sample DataFrame
+data = {
+    'col1': [1, 2, 3, 4, 5],
+    'col2': ['A', 'B', 'C', 'D', 'E'],
+    'col3': [10.1, 20.2, None, 40.4, 50.5],
+    'col4': pd.to_datetime(['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05'])
+}
+df = pd.DataFrame(data)
+
+# Specify the filename for the output
+output_filename = "df_info_output.txt"
+
+# Create a string buffer to capture the output
+buffer = io.StringIO()
+
+# Redirect stdout to the buffer
+sys.stdout = buffer
+
+# Call df.info() - its output will now go to the buffer
+df.info()
+
+# Restore stdout to its original state (the console)
+sys.stdout = sys.__stdout__
+
+# Get the captured output from the buffer
+captured_output = buffer.getvalue()
+
+# Write the captured output to a text file
+with open(output_filename, 'w') as f:
+    f.write(captured_output)
+
+print(f"df.info() output saved to '{output_filename}'")
+
+# You can also print the captured output to verify
+# print("\n--- Captured Output ---")
+# print(captured_output)
+</pre>
