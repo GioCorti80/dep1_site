@@ -82,3 +82,8 @@ def is_working_day(input_date=None, country='US'):
 <pre>
 df_with_new_date = df.withColumn("new_date", add_months(df["start_date"], 3))
 </pre>
+<pre>
+import sys
+print(f"Python version: {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
+print("PySpark version:", spark.version)
+</pre>
