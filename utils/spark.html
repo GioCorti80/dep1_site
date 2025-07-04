@@ -70,3 +70,6 @@ empty_df.printSchema()
 empty_df.show()
 
 </pre>
+<pre>
+df = df.withColumn("size_gb", col("size_bytes") / 1073741824)
+</pre>
