@@ -73,3 +73,11 @@ empty_df.show()
 <pre>
 df = df.withColumn("size_gb", col("size_bytes") / 1073741824)
 </pre>
+<pre>
+resource.type="dataproc_cluster"
+resource.labels.cluster_name="your-cluster-name"
+logName="projects/your-project-id/logs/dataproc.googleapis.com%2Fdriver"
+severity>=ERROR
+textPayload:"1234-job1"
+
+</pre>
