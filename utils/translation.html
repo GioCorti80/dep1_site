@@ -1399,3 +1399,16 @@ The query in the Excel file uses SELECT *, and the tables were modified on 2025-
 <pre>
 I believe the latest run was on 2025-06-09, while the changes to the tables were made on 2025-06-13.
 </pre>
+<pre>
+Hi Hanumantha,
+I've opened this SR to address the issues with DG.
+The following DAGs need to be triggered:
+
+* dag1
+* dag2
+
+—and only after these have run, then trigger:
+
+* dag3
+
+</pre>
