@@ -81,3 +81,34 @@ severity>=ERROR
 textPayload:"1234-job1"
 
 </pre>
+<pre>
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, DateType, DoubleType
+from datetime import date
+
+# Create Spark session
+spark = SparkSession.builder.appName("example").getOrCreate()
+
+# Define schema
+schema = StructType([
+    StructField("col1", StringType(), True),
+    StructField("col2", StringType(), True),
+    StructField("col3_date", DateType(), True),
+    StructField("col4_double", DoubleType(), True)
+])
+
+# Create data
+data = [
+    ("A1", "B1", date(2024, 7, 1), 10.5),
+    ("A2", "B2", date(2024, 7, 2), 20.0),
+    ("A3", "B3", None, None),  # This row has null for date and double
+    ("A4", "B4", date(2024, 7, 4), 40.7)
+]
+
+# Create DataFrame
+df = spark.createDataFrame(data, schema=schema)
+
+# Show DataFrame
+df.show()
+
+</pre>
