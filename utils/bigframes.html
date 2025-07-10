@@ -197,3 +197,25 @@ df.to_pandas()
 <pre>
 mese_ambito_value_count_df = bf_df.groupby(['MESE_RIF', 'AMBITO'])['value'].count().reset_index(name='value_count')
 </pre>
+<pre>
+print(bf_df.describe())
+
+# 2. Get statistics including specific percentiles
+# You can specify any percentiles you want between 0 and 1
+custom_percentiles = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99]
+print(f"\nDescriptive statistics with custom percentiles: {custom_percentiles}")
+print(bf_df.describe(percentiles=custom_percentiles))
+
+# 3. Get statistics for ALL columns (including categorical/object types)
+# For non-numeric columns, it will show count, unique, top (most frequent), and freq (frequency of top)
+print("\nDescriptive statistics for all columns (numeric and non-numeric):")
+print(bf_df.describe(include='all'))
+
+# 4. Get statistics only for specific data types (e.g., only object/string columns)
+print("\nDescriptive statistics only for categorical (object) columns:")
+print(bf_df.describe(include=['object']))
+
+# 5. Exclude specific data types
+print("\nDescriptive statistics excluding categorical (object) columns:")
+print(bf_df.describe(exclude=['object']))
+</pre>
