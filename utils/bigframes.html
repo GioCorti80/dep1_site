@@ -194,3 +194,6 @@ df["rating"] = np.select(conditions, choices, default="Needs Improvement")
 df.to_pandas()
 
 </pre>
+<pre>
+mese_ambito_value_count_df = bf_df.groupby(['MESE_RIF', 'AMBITO'])['value'].count().reset_index(name='value_count')
+</pre>
