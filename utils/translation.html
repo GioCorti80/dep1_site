@@ -1483,3 +1483,6 @@ Le righe individuate sono sensibilmente inferiori rispetto ai mesi precedenti
 Hi Ankit,
 The issue is probably with the tbl_eap table, which I modified during the last test. I dropped the dt_period column because I believe that in UAT, some raw tables haven't been migrated to native yet.
 </pre>
+<pre>
+Yes, the DAG is working in UAT, and the issue isn’t with the DAG itself — it runs fine in Composer — but rather with the raw table schemas in UAT being different from those in production.
+</pre>
