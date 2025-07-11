@@ -110,3 +110,6 @@ def delete_file_and_all_versions(bucket_name, file_name):
     except Exception as e:
         print(f"An error occurred: {e}")
 </pre>
+<pre>
+gsutil mv gs://my-data-bucket/documents/report.txt gs://my-data-bucket/documents/report.csv
+</pre>
