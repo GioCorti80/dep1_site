@@ -104,5 +104,7 @@ SELECT DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY)
 <pre>
 ^\[process \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}:\d{2}\] -\s*
 ^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}:\d+\+\d{2}:\d{2}\] \{.*?\} INFO -\s*
+\b(pwcc_dataset\.\w+)\b
+'db-project.\1'
 
 </pre>
