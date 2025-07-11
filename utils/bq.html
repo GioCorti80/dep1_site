@@ -103,5 +103,6 @@ SELECT DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY)
 <pre>DATE_TRUNC(DATE_SUB(CURRENT_DATE, INTERVAL 3 MONTH), QUARTER) and DATE_TRUNC(CURRENT_DATE, QUARTER) - 1</pre>
 <pre>
 ^\[process \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}:\d{2}\] -\s*
+^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}:\d+\+\d{2}:\d{2}\] \{.*?\} INFO -\s*
 
 </pre>
