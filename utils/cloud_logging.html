@@ -61,3 +61,40 @@ for entry in entries:
     print(f"User: {user_email} — Log time: {entry.timestamp}")
     
 </pre>
+<pre>
+from pyspark.sql.functions import regexp_extract_all, col, regexp_replace, udf
+from pyspark.sql.types import ArrayType, StringType
+
+import re
+
+# Define a UDF to extract all 12-digit numbers following 'ndg' in the query
+def extract_ndg_ids(query):
+    if query is None:
+        return []
+    # Make query lowercase for easier matching
+    query = query.lower()
+    
+    # This regex finds 12-digit strings following 'ndg' patterns
+    # Matches 'ndg = '...' or 'ndg in (...)'
+    matches = re.findall(r"ndg\s*(?:=|in)\s*\(?\s*['\"](\d{12})['\"](?:\s*,\s*['\"](\d{12})['\"])*", query)
+
+    ndg_ids = []
+
+    for match in matches:
+        for val in match:
+            if val:  # avoid empty strings from optional groups
+                ndg_ids.append(val)
+    
+    # Also find other 12-digit numbers in the context of ndg=...
+    extra_matches = re.findall(r"ndg\s*=\s*['\"](\d{12})['\"]", query)
+    ndg_ids.extend(extra_matches)
+
+    return list(set(ndg_ids))  # deduplicate
+
+# Register UDF
+extract_ndg_ids_udf = udf(extract_ndg_ids, ArrayType(StringType()))
+
+# Apply to DataFrame
+df_with_ndg = df.withColumn("num", extract_ndg_ids_udf(col("query")))
+
+</pre>
