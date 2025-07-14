@@ -179,3 +179,30 @@ check_file_sensor = GoogleCloudStorageObjectExistenceSensor(
 )
 
 </pre>
+<pre>
+from airflow.sensors.python import PythonSensor
+from airflow.providers.google.cloud.hooks.gcs import GCSHook
+import fnmatch
+
+def check_gcs_file_with_wildcard(**context):
+    bucket = 'your-bucket-name'
+    prefix = 'folder/'  # optional, narrow down search
+    pattern = 'filename_*_2025.csv'
+
+    hook = GCSHook(gcp_conn_id='google_cloud_default')
+    files = hook.list(bucket_name=bucket, prefix=prefix)
+    
+    for file in files:
+        if fnmatch.fnmatch(file, f"{prefix}{pattern}"):
+            return True
+    return False
+
+wait_for_file = PythonSensor(
+    task_id='wait_for_file_with_wildcard',
+    python_callable=check_gcs_file_with_wildcard,
+    poke_interval=30,
+    timeout=600,
+    mode='poke',
+)
+
+</pre>
