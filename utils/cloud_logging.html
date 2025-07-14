@@ -98,3 +98,64 @@ extract_ndg_ids_udf = udf(extract_ndg_ids, ArrayType(StringType()))
 df_with_ndg = df.withColumn("num", extract_ndg_ids_udf(col("query")))
 
 </pre>
+<pre>
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, regexp_extract, regexp_replace, split, explode
+
+# Initialize Spark Session (if not already initialized)
+spark = SparkSession.builder.appName("ExtractNDG").getOrCreate()
+
+# Sample Data (replace with your actual DataFrame)
+data = [
+    ("select * from table where ndg in ('012345678912', '987654321012')",),
+    ("select * from table where ndg='998877665544'",),
+    ("select * from another_table where user_id = 'abc' and ndg in ('112233445566', '223344556677', '334455667788')",),
+    ("select * from yet_another_table where some_column = 'value'",), # No NDG
+    ("select * from sales where ndg = '123456789012' OR customer_type = 'premium'",)
+]
+df = spark.createDataFrame(data, ["query_sql"])
+
+# Define the regular expression pattern
+# This pattern looks for 'ndg=' or 'ndg in (' followed by one or more
+# 12-digit numbers enclosed in single quotes, potentially separated by commas.
+# It captures the numbers themselves.
+ndg_pattern = r"ndg\s*(?:=|in\s*\()\s*('(\d{12})'(?:,\s*'(\d{12})')*)\)?"
+
+# Extract the potential NDG string
+# The first group (group 1) will capture '012345678912', '987654321012' or '012345678912'
+df_extracted = df.withColumn(
+    "extracted_ndg_string",
+    regexp_extract(col("query_sql"), ndg_pattern, 1)
+)
+
+# Clean up the extracted string: remove quotes and spaces, then split by comma
+df_cleaned = df_extracted.withColumn(
+    "ndg_array_raw",
+    split(regexp_replace(col("extracted_ndg_string"), r"['\s]", ""), ",")
+)
+
+# Filter out empty arrays that might result from no match or malformed matches
+df_filtered_ndg = df_cleaned.withColumn(
+    "ndg_array",
+    when(size(col("ndg_array_raw")) > 0, col("ndg_array_raw")).otherwise(array())
+)
+
+# Explode the array to get a new row for each NDG
+# This is useful if you want each NDG to be a separate entry.
+df_exploded = df_filtered_ndg.withColumn("customer_id", explode(col("ndg_array")))
+
+# Select and show the relevant columns
+df_final = df_exploded.select("query_sql", "customer_id").filter(col("customer_id") != "")
+
+df_final.show(truncate=False)
+
+# If you prefer to keep all NDGs in a single column as an array or a comma-separated string,
+# you can skip the explode step and simply cast or join the array:
+df_array_ndg = df_filtered_ndg.select("query_sql", col("ndg_array").alias("customer_ids_array"))
+df_array_ndg.show(truncate=False)
+
+# If you want a comma-separated string:
+from pyspark.sql.functions import array_join
+df_string_ndg = df_filtered_ndg.withColumn("customer_ids_string", array_join(col("ndg_array"), ", "))
+df_string_ndg.select("query_sql", "customer_ids_string").show(truncate=False)
+</pre>
