@@ -135,3 +135,20 @@ from datetime import datetime
 filename = f"file_strs_{datetime.now().strftime('%Y_%m')}.ok"
 print(filename)
 </pre>
+<pre>
+from google.cloud import bigquery
+
+# Initialize BigQuery client
+client = bigquery.Client()
+
+# Define your table in the format: project.dataset.table
+table_id = "your-project.your_dataset.your_table"
+
+# Get the table metadata
+table = client.get_table(table_id)
+
+# Get the last modified time (returns timestamp in milliseconds)
+last_modified_time = table.modified  # This is a datetime.datetime object
+
+print(f"Last modified time: {last_modified_time}")
+</pre>
