@@ -1617,3 +1617,6 @@ Il prossimo run è schedulato per il 19/07/2025 dal quale si potrete verificare 
 
 Cordiali Saluti.
 </pre>
+<pre>
+df = df.withColumn("filtered_array", filter(col("array_col"), lambda x: (x.isNotNull()) & (x != "")))
+</pre>
