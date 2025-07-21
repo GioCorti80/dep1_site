@@ -1621,23 +1621,7 @@ Cordiali Saluti.
 df = df.withColumn("filtered_array", filter(col("array_col"), lambda x: (x.isNotNull()) & (x != "")))
 </pre>
 <pre>
-from pyspark.sql.functions import col, transform, regexp_replace
+Please trigger DAG 125479-4-DATAVAULT with the configuration {"par1": "arg1"}.
 
-df = spark.createDataFrame([
-    ([" a  b ", "c   d", "   e   f  "],),
-    (["g h", "i    j"],),
-    ([],),
-    (None,)
-], ["array_col"])
-
-df_cleaned = df.withColumn(
-    "normalized_array",
-    transform(
-        col("array_col"),
-        lambda x: regexp_replace(x, "\\s+", " ")  # replace multiple spaces with one
-    )
-)
-
-df_cleaned.show(truncate=False)
-
+Once it completes, please mark the dbaction task of DAG 125479-4-REPORT_PY_DBACTION as successful.
 </pre>
