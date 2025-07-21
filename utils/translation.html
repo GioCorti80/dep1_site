@@ -1657,3 +1657,10 @@ Kindly clear the send_Email task so that the newly produced file can be sent.
 <pre>
 The issue is still related to the dbaction DAG in handling the file that arrived on Saturday. It will be resolved in the upcoming release.
 </pre>
+<pre>
+This step is necessary to ensure the file is available for the script, which processes only the most recent file in the bucket. Since the file was received a few days ago, it needs to be copied to another folder so it can be correctly picked up by the script.
+</pre>
+<pre>
+There were a few sentences in Italian in the last post.
+Here is the correct version:
+</pre>
