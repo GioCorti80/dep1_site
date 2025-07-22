@@ -152,3 +152,43 @@ last_modified_time = table.modified  # This is a datetime.datetime object
 
 print(f"Last modified time: {last_modified_time}")
 </pre>
+<pre>
+from google.cloud import storage
+from datetime import datetime
+
+def get_latest_file_from_gcs(bucket_name, folder='', prefix='', extension=''):
+    """
+    Returns the latest file in a GCS bucket directory based on last modified time.
+
+    Parameters:
+    - bucket_name (str): Name of the GCS bucket.
+    - folder (str): Folder path inside the bucket ('' means root). Should not start with '/'.
+    - prefix (str): Prefix of the file name.
+    - extension (str): File extension to filter (e.g. '.csv', '.json').
+
+    Returns:
+    - str: Full GCS path of the latest file (gs://bucket_name/path/to/file).
+    """
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+
+    # Normalize folder path
+    folder_prefix = folder.strip('/')
+    full_prefix = f"{folder_prefix}/{prefix}".lstrip('/') if folder_prefix else prefix
+
+    blobs = client.list_blobs(bucket_name, prefix=full_prefix)
+
+    # Filter by extension and track latest blob
+    latest_blob = None
+    for blob in blobs:
+        if extension and not blob.name.endswith(extension):
+            continue
+        if latest_blob is None or blob.updated > latest_blob.updated:
+            latest_blob = blob
+
+    if latest_blob:
+        return f"gs://{bucket_name}/{latest_blob.name}"
+    else:
+        return None
+
+</pre>
