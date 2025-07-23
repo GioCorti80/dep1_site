@@ -1578,9 +1578,18 @@ I reran the DAG a short while ago, but no looker_user_id was retrieved for user 
 Could you please check whether the db-lok_tab table is populated correctly?
 </pre>
 <pre>
+<<<<<<< HEAD
+nibal,
+
+A script issue is currently blocking the generation of a business report.
+Would it be possible to include the necessary fix in next week’s release to avoid delays until month-end?
+
+Thank you for your support.
+=======
 Hi Akshay,
 
 It looks like it's working now, but I need to revise the query because the same user has been extracted multiple times. I’ll either need to apply a DISTINCT on the user_id or include the date/timestamp in the join key.
+<<<<<<< HEAD
 </pre>
 <pre>
 Buongiorno Agnese,
@@ -1588,4 +1597,123 @@ in questo momento il processo di invio alla Vs casella mail ha ancora una parte 
 Abbiamo preparato una fix per sistemare il problema riscontrato in fase di lettura del file e siamo in attesa dell'autorizzazione per il deploy se possibile in questa settimana.
 
 Ciao.
+=======
+>>>>>>> d5e995f60c3afe2cf7f50864f1e127064a3d161a
+</pre>
+<pre>
+Request to Include Fix in Next Week’s Release
+Hi Anibal,
+Due to an issue in a script that is currently preventing the generation of a business report, a code fix is required.
+Would it be possible to include this fix in next week’s release, in order to avoid leaving the report unavailable until the end of the month?
+</pre>
+<pre>
+Hi Ionela,
+
+Yesterday, the updated position_wm.csv report was sent to DBExchange, including the fixes for the issues identified in the columns.
+Could you please confirm that the file was received correctly?
+
+Best regards,
+Andrea
+</pre>
+<pre>
+We’ve updated the query in production with the July 16th release.
+The next run is scheduled for the 19th.
+Please review the new results when available.
+</pre>
+<pre>
+Abbiamo aggiornto la query relativa al report.
+Il prossimo run è schedulato per il 19/07/2025 dal quale si potrete verificare se l'implementazione risulta corretta.
+
+Cordiali Saluti.
+</pre>
+<pre>
+df = df.withColumn("filtered_array", filter(col("array_col"), lambda x: (x.isNotNull()) & (x != "")))
+</pre>
+<pre>
+Please trigger DAG 125479-4-DATAVAULT with the configuration {"par1": "arg1"}.
+
+Once it completes, please mark the dbaction task of DAG 125479-4-REPORT_PY_DBACTION as successful.
+</pre>
+<pre>
+Hi Hanumantha,
+
+I was expecting the job to fail, but the file was generated correctly. I’m planning to address the issue with a fix in the next release.
+
+In the meantime, could you please mark the dbaction task in DAG 125479-4-DBACTION as successful? This will allow the process to complete by sending the file to the end user.
+
+Thank you again for your support.
+</pre>
+<pre>
+Hi Hanumantha,
+
+I wanted to ask if it would be possible to execute the following DAGs with the corresponding steps and parameters:
+
+DAG: adhocchecks
+Execute a file copy from one bucket to another:
+gsutil cp gs://bucket1/path/to/file gs://bucket2/path/to/file
+This step is necessary to ensure the file is available for the script that it reads only the last file in the bucket ed essendo pervenuto nei giorni precedenti è necessario copiarlo in un'altra cartella
+
+DAG: 125479-4-DATAVAULT
+Please trigger this DAG as part of the workflow.
+{par1
+par2
+par3}
+
+DAG: 125479-4-DBACTION
+DAG: 125479-4-DBACTION
+Kindly clear the send_Email task so that the newly produced file can be sent.
+</pre>
+<pre>
+The issue is still related to the dbaction DAG in handling the file that arrived on Saturday. It will be resolved in the upcoming release.
+</pre>
+<pre>
+This step is necessary to ensure the file is available for the script, which processes only the most recent file in the bucket. Since the file was received a few days ago, it needs to be copied to another folder so it can be correctly picked up by the script.
+</pre>
+<pre>
+There were a few sentences in Italian in the last post.
+Here is the correct version:
+</pre>
+<pre>
+Request for Approval – DBACTION Report Fix
+
+Hi Anibal,
+
+As mentioned in the previous email, I have prepared the Pull Request related to the fix for the DBACTION report.
+We kindly ask for your approval to proceed with an exceptional release this week to deploy the fix.
+In the meantime, we are manually managing the DAG run in production with custom parameters, with support from the L2 team.
+
+Thank you.
+</pre>
+<pre>
+Hi Hanumanntha,
+
+I saw that the file was created for the DAG you triggered.
+Could you please mark the dbaction step of the DBACTION DAG as successful to trigger the sending process?
+
+Thank you!
+</pre>
+<pre>
+I haven’t received any confirmation yet.
+This is the response I got when I made the request last week.
+I'll try reaching out to Anibal on teams.
+</pre>
+<pre>
+Hanumantha just replied a short while ago with the go-ahead to proceed.
+</pre>
+<pre>
+Hi Igor,
+
+These are the activities carried out for the log sink on the monitoring tool project db-dev-mtool:
+
+Creation of the log_sink to a BigQuery table
+
+Granting access to the table for the service account of the pwcc project
+
+Subsequently, the same activities were performed for the dblooker part, specifically for the log_user table.
+</pre>
+<pre>
+Yes, it’s working fine in dev.
+We need to modify the log sink query because the Looker service account used in UAT/PRD is different from the one used in DEV.
+I need to check with Akshay on how to make this change.
+>>>>>>> 7704ca8661f519a03650531204a27fa3f0b97967
 </pre>
