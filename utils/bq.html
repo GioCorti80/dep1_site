@@ -107,4 +107,6 @@ SELECT DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY)
 \b(pwcc_dataset\.\w+)\b
 'db-project.\1'
 
+
+pd.to_datetime(df['date_str'], format='%d/%m/%Y')
 </pre>
