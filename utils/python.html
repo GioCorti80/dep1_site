@@ -193,23 +193,14 @@ def get_latest_file_from_gcs(bucket_name, folder='', prefix='', extension=''):
 
 </pre>
 <pre>
-Buongiorno Fabio,
-a seguito dell'implementazione della fix eseguita ieri non è stato più necessario eseguire l'invio del file Report_Concentrazione con un intervento manuale.
-Il file csv che avete ricevuto stamattina è stato prodotto con il separatore ";" per renderlo leggibile.
-Se il formato del file che avete ricevuto Vi risulta corretto non sarà necessario procedere con altre modifiche al processo automatico nella prossima release (la cui data limite per eventuali fix è entro la mattina del 28/07).
+import re
 
-Ciao.
+text = """
+Some SQL or text that mentions pwcc_dqm.tab1, pwcc_dqm.tab2, and maybe pwcc_dqm.tab3
+even inside longer strings or comments like 'select * from pwcc_dqm.tab4'.
+"""
 
-Andrea
+# Regular expression to match pwcc_dqm.<table_name>
+matches = re.findall(r'\bpwcc_dqm\.\w+\b', text)
 
-</pre>
-<pre>
-i Akshai,
-I just needed a quick confirmation regarding the project names in DBLooker for the UAT and PRD environments:
-
-UAT project: prj-uat1
-
-PRD project: prj-prd1
-
-I don’t have access to view these projects directly, and I’m currently updating the code for the release in PRD and UAT.
 </pre>
