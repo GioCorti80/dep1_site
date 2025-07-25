@@ -204,3 +204,21 @@ even inside longer strings or comments like 'select * from pwcc_dqm.tab4'.
 matches = re.findall(r'\bpwcc_dqm\.\w+\b', text)
 
 </pre>
+<pre>
+from google.cloud import bigquery
+from google.api_core.exceptions import NotFound
+
+# Initialize client
+client = bigquery.Client()
+
+# Define table ID: 'project.dataset.table'
+table_id = "your-project.your_dataset.your_table"
+
+try:
+    client.get_table(table_id)  # API request
+    print(f"✅ Table {table_id} exists.")
+    table_exists = True
+except NotFound:
+    print(f"❌ Table {table_id} does not exist.")
+    table_exists = False
+</pre>
