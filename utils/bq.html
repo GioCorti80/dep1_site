@@ -110,3 +110,39 @@ SELECT DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 1 DAY)
 
 pd.to_datetime(df['date_str'], format='%d/%m/%Y')
 </pre>
+<pre>
+def append_dataframe_to_bigquery_table(dataframe, table_id, partition_field, is_partitioned=True, write_mode="append", replace_partition=False):
+    """
+    Appends a PySpark DataFrame to an existing BigQuery table, with options for partitioning, write mode, and replacing a single partition.
+
+    Args:
+        dataframe (DataFrame): The PySpark DataFrame to append.
+        table_id (str): The ID of the BigQuery table to append to.
+        partition_field (str): The name of the date column to partition by.
+        is_partitioned (bool): Whether the table is partitioned. Defaults to True.
+        write_mode (str): The write mode ("append" or "overwrite"). Defaults to "append".
+        replace_partition (bool): Whether to replace a single partition. Defaults to False.
+    """
+    if replace_partition and write_mode.lower() == "overwrite":
+        raise ValueError("Cannot use replace_partition with overwrite write mode.")
+
+    if replace_partition:
+        # Delete the existing partition
+        partition_value = dataframe.select(partition_field).first()[0]
+        spark.read.format("bigquery") \
+            .option("table", table_id) \
+            .option("partitionField", partition_field) \
+            .option("partitionValue", partition_value) \
+            .load() \
+            .createOrReplaceTempView("partition_to_delete")
+        spark.sql(f"DELETE FROM `{table_id}` WHERE `{partition_field}` = '{partition_value}'")
+
+    dataframe.write \
+        .format("bigquery") \
+        .option("table", table_id) \
+        .option("partitionField", partition_field) \
+        .option("writeDisposition", write_mode.upper()) \
+        .option("createDisposition", "CREATE_IF_NEEDED") \
+        .option("requirePartitionFilter", is_partitioned) \
+        .save()
+</pre>
