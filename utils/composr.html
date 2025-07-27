@@ -207,5 +207,7 @@ wait_for_file = PythonSensor(
 
 </pre>
 <pre>
-schedule_interval='0 17 * * *'
+from airflow.utils.trigger_rule import TriggerRule
+
+trigger_rule=TriggerRule.ALL_DONE
 </pre>
