@@ -1756,3 +1756,17 @@ Could you please provide the dblooker service accounts that appear in the logs a
 Hi Hanumantha,
 It's now possible to mark the dbaction step as successful so that the send_email task can run.
 </pre>
+<pre>
+Per il report event_driven è stata segnalata una questione legata all'estrazione della dt_evento.
+Nel caso di AN1 la dt_evento sulla quale viene fatto il filtro per assegnare una determinata segnalazione nello sheet old/new
+Nel caso di evento AN1 la data assegnata è quella corrispondente con la dt_variazione 
+quello che si è verificato è che se un soggetto è diventato professional successivamente alla variazione dei legami l'evento viene comunque intercettato con la dt_evento legata alla variazione
+la stessa questione vale anche per gli eventi AN2 dove la dt_evento è quella della variazione del gestore e se un soggetto diventa professional in un momento successivo l'evento antecedente alla trasformazione in professional l'evento viene intercettato con data della variazione del gestore.
+Per superare il problema bisogna inserire nel processo un'altra condizione che prevede che la dt_variazione sia >= dt_assegnazione del profilo professional.
+#######
+Nel report event_driven è emersa un'anomalia nella gestione della dt_evento per gli eventi AN1 e AN2.
+Attualmente, per entrambi i casi, la dt_evento corrisponde alla dt_variazione (rispettivamente di legami per AN1 e di gestore per AN2). Tuttavia, se il soggetto diventa professional dopo la variazione, l’evento viene comunque intercettato con una data precedente alla trasformazione in professional.
+Per correggere questo comportamento, è necessario aggiungere una condizione al processo:
+
+dt_variazione ≥ dt_assegnazione del profilo professional.
+</pre>
