@@ -1793,3 +1793,13 @@ Hi Ionela,
 I’ve attempted to resend the files, but despite 16 attempts, the connection to the dbExchange server continues to be rejected.
 I’ve opened incident INC125489 with dbExchange to proceed with further investigations.
 </pre>
+<pre>
+Event Driven:
+AN1:
+Il problema è relativo all'attuale modalità di calcolo della DATA_REPORT che è il discrimine per l'assegnazione delle segnalazioni allo sheet OLD/NEW.
+Attualmente per AN1 il campo DATA_REPORT fa riferimento alla data di variazione del legame
+mentre la classificazione professional questa è considerata alla data attuale.
+Se un soggetto diventa PRF ed in passato ha eseguito delle variazioni nei legami rilevanti per AN1 anche prima di essere classificato professional nel momento del passaggio a professional vengono intercettate anche le variazioni eseguite in precedenza.
+Per quanto concerne AN2 vale la stessa regola dove la variazione del tipo_gestore è il riferimento per l'identificazione della data_report.
+Per AN2 alcune segnalazioni sono riconducibili ad un'aggiustamento della query di estrazione delle variazioni tipo_gestore senza variazione cod_gestore
+</pre>
