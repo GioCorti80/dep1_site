@@ -1753,81 +1753,24 @@ service account
 Could you please provide the dblooker service accounts that appear in the logs as executing queries on behalf of users in UAT and PROD?
 </pre>
 <pre>
-Hi Hanumantha,
+Hi Surendhar,
+in relazione alla SR rti424322 and the dag 125479-4-DBACTION
 It's now possible to mark the dbaction step as successful so that the send_email task can run.
 </pre>
 <pre>
-Per il report event_driven è stata segnalata una questione legata all'estrazione della dt_evento.
-Nel caso di AN1 la dt_evento sulla quale viene fatto il filtro per assegnare una determinata segnalazione nello sheet old/new
-Nel caso di evento AN1 la data assegnata è quella corrispondente con la dt_variazione 
-quello che si è verificato è che se un soggetto è diventato professional successivamente alla variazione dei legami l'evento viene comunque intercettato con la dt_evento legata alla variazione
-la stessa questione vale anche per gli eventi AN2 dove la dt_evento è quella della variazione del gestore e se un soggetto diventa professional in un momento successivo l'evento antecedente alla trasformazione in professional l'evento viene intercettato con data della variazione del gestore.
-Per superare il problema bisogna inserire nel processo un'altra condizione che prevede che la dt_variazione sia >= dt_assegnazione del profilo professional.
-#######
-Nel report event_driven è emersa un'anomalia nella gestione della dt_evento per gli eventi AN1 e AN2.
-Attualmente, per entrambi i casi, la dt_evento corrisponde alla dt_variazione (rispettivamente di legami per AN1 e di gestore per AN2). Tuttavia, se il soggetto diventa professional dopo la variazione, l’evento viene comunque intercettato con una data precedente alla trasformazione in professional.
-Per correggere questo comportamento, è necessario aggiungere una condizione al processo:
+Subject: Approval Required for Whitelisting IPs on DBExchange Server
 
-dt_variazione ≥ dt_assegnazione del profilo professional.
-</pre>
-<pre>
-Hi Ionela,
-today I noticed there are issues with the SFTP transfer via dbexchange for the counter_party and position reports.
-The process has attempted to send the files multiple times (20 attempts), but the requests keep getting rejected.
-I'm trying to resend them now, but there still appear to be some issues.
-</pre>
-<pre>
-Ciao Cristina,
-gli utenti hanno ricevuto le ultime 2 estrazioni settimanali con la query modificata per accedere alle tabelle raw e gestire le righe deleted.
-Ho provato a contattarli via mail 2 volte oggi e nei giorni scorsi ma non ho ricevuto feedback rispetto alla bontà della nuova estrazione.
-Metto l'incident in solved confirmed in quanto se il problema fosse diverso dalla questione relativa alle righe deleted richiederebbe un'analisi ulteriore da parte dei business analyst.
-</pre>
-<pre>
-We are trying to transfer files via the Dbexchange server: server.test.com.
-With each attempt—made every 6 minutes—we consistently receive an authentication_failed error.
-We have made over 20 attempts, all resulting in a rejected SFTP connection.
-Could you please advise us on how to proceed?
-</pre>
-<pre>
-Hi Ionela,
-I’ve attempted to resend the files, but despite 16 attempts, the connection to the dbExchange server continues to be rejected.
-I’ve opened incident INC125489 with dbExchange to proceed with further investigations.
-</pre>
-<pre>
-Event Driven:
-AN1:
-Il problema è relativo all'attuale modalità di calcolo della DATA_REPORT che è il discrimine per l'assegnazione delle segnalazioni allo sheet OLD/NEW.
-Attualmente per AN1 il campo DATA_REPORT fa riferimento alla data di variazione del legame
-mentre la classificazione professional questa è considerata alla data attuale.
-Se un soggetto diventa PRF ed in passato ha eseguito delle variazioni nei legami rilevanti per AN1 anche prima di essere classificato professional nel momento del passaggio a professional vengono intercettate anche le variazioni eseguite in precedenza.
-Per quanto concerne AN2 vale la stessa regola dove la variazione del tipo_gestore è il riferimento per l'identificazione della data_report.
-Per AN2 alcune segnalazioni sono riconducibili ad un'aggiustamento della query di estrazione delle variazioni tipo_gestore senza variazione cod_gestore
-</pre>
-<pre>
-transate in english in natural and professiona lway
-Hi Antonio,
-abbiamo eseguito la modifica nelle connessioni come da indicazioni.
-Oggi c'è stato il primo run giornaliero dopo la release e in prod e la connessione sftp per l'invio del file  sanction_embrago è stata respinta per Authentication Failed.
-Ti chiedo chi è necessario contattare per verificare la connessione
+Hi Davide and Marco,
 
+Since July 28th, we’ve been unable to send the counterparty and position files to Glober via DBExchange.
 
-ChatGPT ha detto:
-Sure, here’s a natural and professional English translation of your message:
+We opened incident INC15644 and were informed that the IP addresses we're connecting from are not whitelisted on their side.
+They’ve requested that we attach ITAO’s approval to the incident in order to proceed with adding the IPs to their whitelist.
 
-Subject: SFTP Connection Issue After Release
+Could you please support us in obtaining this approval so we can resume sending the reports?
 
-Hi Antonio,
-We’ve applied the changes to the connections as instructed.
-Today was the first daily run following the release into production, and the SFTP connection used to send the sanction_embargo file was rejected due to an Authentication Failed error.
-
-Could you please let us know who we should contact to check the connection?
-
-Best regards,
+Thank you,
 [Your Name]
 
-Let me know if you'd like to tailor it for a specific tone (e.g., more formal, internal team, client-facing, etc.).
-</pre>
-<pre>
-Cristina had added this Jira task for the August 13th release.
-Should I update it to the 29th?
+Original message in the incident:
 </pre>
