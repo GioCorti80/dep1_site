@@ -111,4 +111,9 @@ df = spark.createDataFrame(data, schema=schema)
 # Show DataFrame
 df.show()
 
+df_with_age = df.withColumn(
+    "age",
+    floor(months_between(current_date(), col("date_of_birth")) / 12)
+)
+
 </pre>
