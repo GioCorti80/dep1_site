@@ -1830,13 +1830,19 @@ Could you please check whether the IP addresses from which you're receiving the 
 Best regards,
 </pre>
 <pre>
-Hi Sangram,
+Hi GCP Firewall Team,
 
-Just to clarify, this is not a firewall issue on our side.
+Since July 28th, 2025, we've been experiencing issues connecting to the DbExchange server via Composer when attempting to send files over SFTP.
 
-DbExchange needs the IP addresses used by our GCP Composer environment so they can add them to their whitelist. Currently, connections from our IPs are being rejected by their server, as mentioned in the attached email.
+According to the DbExchange team, the IP addresses from which our GCP Composer environment connects are not currently included in their whitelist.
 
-The SFTP connection to the DbExchange server is established, but the login is being denied.
+We have checked the relevant service tags, but we are unable to find the IPs shown in the connection logs as being rejected by the DbExchange server.
 
-I'll try to write this up under "GCP_firewall" for reference
+We’d like to clarify that the SFTP connection to the DbExchange server is successfully established, but the server is rejecting it due to our IP address (from the Composer production environment, project: dbf-fsddf-fsdfds) not being whitelisted on their side.
+
+Could you please help us retrieve the list of IP addresses used by Composer for the above project, so we can provide it to the DbExchange team for whitelisting?
+
+Thank you in advance for your support.
+
+Best regards,
 </pre>
