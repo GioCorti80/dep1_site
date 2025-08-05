@@ -224,3 +224,19 @@ except NotFound:
 
 bool_value = value.lower() == "true"
 </pre>
+<pre>
+from datetime import datetime
+
+# Get today's date
+now = datetime.now()
+
+# Format the date strings
+date_str = now.strftime("%Y%m%d")
+datetime_str = now.strftime("%Y%m%d%H%M%S")
+
+# Build the filename
+filename = f"125479-4_Log_auditing_{date_str}_{datetime_str}.csv"
+
+print(filename)
+
+</pre>
