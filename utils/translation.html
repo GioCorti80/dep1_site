@@ -1917,3 +1917,11 @@ il profilo professional risulta avere data_validità compresa tra yyyy-mmm-dd e 
 Ti allego le segnalazioni del foglio old che sono state scartate sulla base di questi criteri.
 Dobbiamo verificare come identificare il profili bloccati all'interno del nuovo tracciato in quanto riporta una data fine validità.
 </pre>
+<pre>
+Hi Ashwini,
+I’ve run some checks for the past 30 days, and everything is currently working correctly.
+There was an issue on August 2nd, 2025, when the data-proc job failed and was retriggered a few days later — but that was the only occurrence. All subsequent runs have completed successfully.
+
+Regarding the schedule:
+In Airflow, the execution date always refers to the start of the data interval, which is typically the day before for a daily scheduled DAG. This means that a DAG run scheduled for, say, August 3rd is actually processing data for August 2nd. This is expected behavior by design.
+</pre>
