@@ -1919,9 +1919,9 @@ Dobbiamo verificare come identificare il profili bloccati all'interno del nuovo 
 </pre>
 <pre>
 Hi Ashwini,
-I’ve run some checks for the past 30 days, and everything is currently working correctly.
+I’ve reviewed the past 30 days, and everything is working as expected.
 There was an issue on August 2nd, 2025, when the data-proc job failed and was retriggered a few days later — but that was the only occurrence. All subsequent runs have completed successfully.
+There’s no need to recover that date, as each run sends the JSON file to be overwritten.
 
-Regarding the schedule:
-In Airflow, the execution date always refers to the start of the data interval, which is typically the day before for a daily scheduled DAG. This means that a DAG run scheduled for, say, August 3rd is actually processing data for August 2nd. This is expected behavior by design.
+Regarding the schedule: in Airflow, the execution date refers to the start of the data interval, which means a daily DAG scheduled for August 3rd processes data for August 2nd. This is expected behavior by design.
 </pre>
