@@ -1926,8 +1926,9 @@ There’s no need to recover that date, as each run sends the JSON file to be ov
 Regarding the schedule: in Airflow, the execution date refers to the start of the data interval, which means a daily DAG scheduled for August 3rd processes data for August 2nd. This is expected behavior by design.
 </pre>
 <pre>
-Hi Ionela,
-I believe this is a situation where we don’t have a price for a specific security in our systems.
-If needed, it can be set to zero.
-I’ll run some tests, although the change can only be deployed to production with the next release, which is scheduled for the 28th.
+Hi Ashwini,
+
+I'll need to change the current schedule from a cron expression to @daily. I can make this change in the next release on August 28th.
+
+I'll run some tests in the development environment and get back to you.
 </pre>
