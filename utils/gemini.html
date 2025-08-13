@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Background with White Text</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<h1>Gemini</h1>
+<h3>Config</h3>
+<pre>
+import os
+import glob
+import google.generativeai as genai
+
+# Set API key
+os.environ["GOOGLE_API_KEY"] = "YOUR_API_KEY_HERE"
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+# Model for deep reasoning
+model = genai.GenerativeModel("gemini-1.5-pro")
+
+# Read multiple Python files
+code_files = glob.glob("path/to/your/project/**/*.py", recursive=True)
+all_code = ""
+
+for file_path in code_files:
+    with open(file_path, "r", encoding="utf-8") as f:
+        all_code += f"\n\n# File: {file_path}\n" + f.read()
+
+# Prompt for analysis
+prompt = f"""
+Analyze the following Python project code across multiple files.
+Please:
+1. Explain the overall purpose of the project.
+2. Describe what each file does.
+3. Identify potential bugs or inefficiencies.
+4. Suggest improvements.
+
+Code:
+{all_code}
+"""
+
+# Send to Gemini
+response = model.generate_content(prompt)
+
+# Output analysis
+print(response.text)
+
+</pre>
