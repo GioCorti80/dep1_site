@@ -57,3 +57,25 @@ response = model.generate_content(prompt)
 print(response.text)
 
 </pre>
+<pre>
+import os
+import google.generativeai as genai
+
+# 1. Set your API key (replace with your actual key from Google AI Studio)
+os.environ["GOOGLE_API_KEY"] = "YOUR_API_KEY_HERE"
+
+# 2. Configure the client
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+# 3. Choose a model (Gemini 1.5 Pro is powerful, 1.5 Flash is faster)
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+# 4. Send a prompt to Gemini
+prompt = "Write a Python function to check if a number is prime."
+response = model.generate_content(prompt)
+
+# 5. Print the response
+print("Gemini's answer:\n")
+print(response.text)
+
+</pre>
