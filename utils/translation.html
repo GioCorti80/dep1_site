@@ -1953,3 +1953,16 @@ Andrea
 <pre>
 I accidentally pressed the cancel workflow button, but the deployment process was completed anyway.
 </pre>
+<pre>
+Hi [Name],
+
+The log collection project is essentially based on a query against Cloud Logging. The potential impact on our project seems related to changes in the parameters used in the log_sink, particularly the principalEmail.
+
+In the monitoring tool project, impersonation has not yet been implemented. However, I checked the pwcc UAT project, where it has been implemented with parameters such as Param1, Param2, and Param3.
+
+From what I understood, in the new impersonation setup a new service account was created, while the existing dblooker service account remained unchanged. When querying the logs, the new service account appears as an internal attribute that does not affect the query behind our log_sink.
+
+In the mtool project, however, the service account we monitor appears to differ from the one in pwcc.
+
+Could you please confirm whether the new impersonation required the creation of a new dblooker service account (shown in the principalEmail field), or if only a new impersonator account was created while keeping the existing dblooker account unchanged?
+</pre>
