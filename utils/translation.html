@@ -1956,13 +1956,23 @@ I accidentally pressed the cancel workflow button, but the deployment process wa
 <pre>
 Hi [Name],
 
-The log collection project is essentially based on a query against Cloud Logging. The potential impact on our project seems related to changes in the parameters used in the log_sink, particularly the principalEmail.
+The DBlooker BigQuery log extraction relies on queries against Cloud Logging. The main potential impact for our project concerns changes in the parameters used in the log_sink, particularly principalEmail.
 
-In the monitoring tool project, impersonation has not yet been implemented. However, I checked the pwcc UAT project, where it has been implemented with parameters such as Param1, Param2, and Param3.
+Currently, in the mtool project, we use the following parameters:
 
-From what I understood, in the new impersonation setup a new service account was created, while the existing dblooker service account remained unchanged. When querying the logs, the new service account appears as an internal attribute that does not affect the query behind our log_sink.
+principalEmail
 
-In the mtool project, however, the service account we monitor appears to differ from the one in pwcc.
+resource.type
 
-Could you please confirm whether the new impersonation required the creation of a new dblooker service account (shown in the principalEmail field), or if only a new impersonator account was created while keeping the existing dblooker account unchanged?
+logName
+
+I also reviewed the new service account impersonation setup. In the monitoring tool project, impersonation is not yet implemented. However, I checked the pwcc UAT project (125479), where it is in place with the same parameters (principalEmail, resource.type, logName).
+
+From my analysis, in the new impersonation setup a new service account is created, while the existing DBlooker service account remains unchanged. When querying logs, the new account appears only as an internal attribute and does not affect the log_sink query.
+
+For reference, in the pwcc UAT project I tested this using the service account specified in impersonation.yaml with the following query:
+[insert query here]
+In summary, any modification to the DBlooker service account will require corresponding updates to the log_sink.
+
+Best regards,
 </pre>
