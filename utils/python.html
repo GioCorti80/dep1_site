@@ -247,3 +247,48 @@ result = subprocess.run(["ls", "-l"], capture_output=True, text=True)
 print(result.stdout)
 
 </pre>
+<pre>
+import requests
+from requests.exceptions import RequestException
+import os
+
+def check_api_connection(api_url):
+    """
+    Checks if a public API endpoint is reachable using a HEAD request.
+
+    :param api_url: The full URL of the public API endpoint to check.
+    :return: True if the connection is successful, False otherwise.
+    """
+    # No headers are needed for public APIs that don't require authentication.
+    print(f"Attempting to connect to: {api_url}")
+    print("-" * 30)
+
+    try:
+        # Use requests.head() to send a HEAD request.
+        # The timeout parameter prevents the script from hanging indefinitely.
+        response = requests.head(api_url, timeout=5)
+
+        # A status code in the 200 range (2xx) indicates success.
+        if response.status_code >= 200 and response.status_code < 300:
+            print("✅ Connection successful!")
+            print(f"Status Code: {response.status_code}")
+            return True
+        else:
+            print(f"❌ Connection failed. Status Code: {response.status_code}")
+            # The 'reason' provides a human-readable explanation of the status code
+            print(f"Reason: {response.reason}")
+            return False
+
+    except RequestException as e:
+        # This catches any network-related errors (e.g., DNS failure, connection refused).
+        print(f"❌ An error occurred: {e}")
+        return False
+
+# --- Main part of the script ---
+if __name__ == "__main__":
+    # This is a public API endpoint that doesn't require an API key.
+    # It's a great choice for testing the script's functionality.
+    PUBLIC_API_URL = "https://jsonplaceholder.typicode.com/posts/1"
+
+    check_api_connection(PUBLIC_API_URL)
+</pre>
