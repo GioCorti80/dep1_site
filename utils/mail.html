@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Background with White Text</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<h1>Translation</h1>
+<h3>Config</h3>
+<pre>
+Ciao Giovanni,
+
+attualmente la connessione non va a buon fine perché manca il certificato/chain di certificati nel trust store locale. Questo porta l’errore di SSL certificate verification failed nello script, mentre da AWP viene riportato come connection timeout.
+
+Una possibile soluzione tecnica è installare o configurare i certificati corretti sul sistema in modo che la connessione possa essere validata.
+
+È bene sottolineare che la disabilitazione del controllo SSL (es. verify=False) è sconsigliata:
+
+espone al rischio di intercettazioni o attacchi man-in-the-middle,
+
+non garantisce l’autenticità del server a cui ci si connette,
+
+può avere implicazioni di conformità normativa.
+</pre>
