@@ -292,3 +292,44 @@ if __name__ == "__main__":
 
     check_api_connection(PUBLIC_API_URL)
 </pre>
+<pre>
+import requests
+from requests.exceptions import RequestException
+import os
+import urllib3
+
+# Disable SSL warnings for unverified HTTPS requests
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+def check_api_connection(api_url):
+    """
+    Checks if a public API endpoint is reachable using a HEAD request.
+
+    :param api_url: The full URL of the public API endpoint to check.
+    :return: True if the connection is successful, False otherwise.
+    """
+    print(f"Attempting to connect to: {api_url}")
+    print("-" * 30)
+
+    try:
+        # Add verify=False to skip SSL certificate verification
+        response = requests.head(api_url, timeout=5, verify=False)
+
+        if 200 <= response.status_code < 300:
+            print("✅ Connection successful!")
+            print(f"Status Code: {response.status_code}")
+            return True
+        else:
+            print(f"❌ Connection failed. Status Code: {response.status_code}")
+            print(f"Reason: {response.reason}")
+            return False
+
+    except RequestException as e:
+        print(f"❌ An error occurred: {e}")
+        return False
+
+# --- Main part of the script ---
+if __name__ == "__main__":
+    PUBLIC_API_URL = "https://jsonplaceholder.typicode.com/posts/1"
+    check_api_connection(PUBLIC_API_URL)
+</pre>
