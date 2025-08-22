@@ -333,3 +333,21 @@ if __name__ == "__main__":
     PUBLIC_API_URL = "https://jsonplaceholder.typicode.com/posts/1"
     check_api_connection(PUBLIC_API_URL)
 </pre>
+<pre>
+from datetime import date, timedelta
+import calendar
+
+# Get today's date
+today = date.today()
+
+# Get the first day of the current month
+first_day_this_month = today.replace(day=1)
+
+# Subtract one day → last day of previous month
+last_day_prev_month = first_day_this_month - timedelta(days=1)
+
+# Format as string
+result = last_day_prev_month.strftime("%Y-%m-%d")
+print(result)
+
+</pre>
