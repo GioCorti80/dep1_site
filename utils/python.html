@@ -351,3 +351,17 @@ result = last_day_prev_month.strftime("%Y-%m-%d")
 print(result)
 
 </pre>
+<pre>
+from datetime import datetime
+
+# Get the current date and time
+current_date = datetime.now()
+
+# Extract the month as a number
+month_number = current_date.month
+
+if month_number in [1,4,7,10]:
+  print("trimestre")
+else:
+  print("mensile")
+</pre>
