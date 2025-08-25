@@ -386,23 +386,22 @@ print(f"The last day of the previous month is: {last_day_str}")
 <pre>
 import requests
 from requests.exceptions import RequestException
-import os
+import certifi
 
-def check_api_connection(api_url, ca_cert_path):
+def check_api_connection(api_url):
     """
     Checks if a public API endpoint is reachable using a HEAD request.
 
     :param api_url: The full URL of the public API endpoint to check.
-    :param ca_cert_path: Path to the PEM certificate or bundle to use for SSL verification.
     :return: True if the connection is successful, False otherwise.
     """
     print(f"Attempting to connect to: {api_url}")
-    print(f"Using certificate: {ca_cert_path}")
+    print(f"Using certifi CA bundle: {certifi.where()}")
     print("-" * 30)
 
     try:
-        # Use verify=<path-to-pem> to validate against your PEM certificate
-        response = requests.head(api_url, timeout=5, verify=ca_cert_path)
+        # Use certifi's CA bundle for SSL verification
+        response = requests.head(api_url, timeout=5, verify=certifi.where())
 
         if 200 <= response.status_code < 300:
             print("✅ Connection successful!")
@@ -420,9 +419,6 @@ def check_api_connection(api_url, ca_cert_path):
 # --- Main part of the script ---
 if __name__ == "__main__":
     PUBLIC_API_URL = "https://jsonplaceholder.typicode.com/posts/1"
+    check_api_connection(PUBLIC_API_URL)
 
-    # Replace this with the path to your exported PEM certificate or CA bundle
-    PEM_CERT_PATH = "/path/to/company_ca_bundle.pem"
-
-    check_api_connection(PUBLIC_API_URL, PEM_CERT_PATH)
 </pre>
