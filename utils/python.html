@@ -365,3 +365,21 @@ if month_number in [1,4,7,10]:
 else:
   print("mensile")
 </pre>
+<pre>
+from datetime import datetime, timedelta
+
+# Get the current date
+current_date = datetime.now()
+
+# Get the first day of the current month
+first_day_of_current_month = current_date.replace(day=1)
+
+# Subtract one day to get the last day of the previous month
+last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+
+# Format the date as a string in 'YYYY-MM-DD' format
+last_day_str = last_day_of_previous_month.strftime('%Y-%m-%d')
+
+# Print the final result
+print(f"The last day of the previous month is: {last_day_str}")
+</pre>
