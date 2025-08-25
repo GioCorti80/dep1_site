@@ -422,3 +422,31 @@ if __name__ == "__main__":
     check_api_connection(PUBLIC_API_URL)
 
 </pre>
+<pre>
+import ssl
+import socket
+
+def fetch_cert_chain(hostname, port=443, output_file="company_ca_bundle.pem"):
+    # Create a connection and wrap with SSL to fetch certs
+    ctx = ssl.create_default_context()
+    conn = ctx.wrap_socket(socket.socket(socket.AF_INET), server_hostname=hostname)
+    conn.connect((hostname, port))
+
+    # Get the full certificate chain
+    der_certs = conn.getpeercert(True)
+    chain = conn.getpeercertchain() if hasattr(conn, "getpeercertchain") else [der_certs]
+
+    conn.close()
+
+    # Write the certs to a PEM file
+    with open(output_file, "wb") as f:
+        for cert in chain:
+            pem = ssl.DER_cert_to_PEM_cert(cert)
+            f.write(pem.encode("utf-8"))
+
+    print(f"✅ Certificate chain for {hostname} saved to {output_file}")
+
+
+if __name__ == "__main__":
+    fetch_cert_chain("company.openapi.com")
+</pre>
