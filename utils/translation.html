@@ -2042,13 +2042,13 @@ Hi Ionela,
 After yesterday’s release, starting today the position file has also been sent to production with the requested changes.
 </pre>
 <pre>
-Hi Janani,
-Regarding the issue on microfondato, I had checked the wrong query (bancll0d instead of banclldo). For banclldo, the data should be weekly, and indeed as of 2025-04-30 there are no rows.
-The last available date in April is 2025-04-25.
-
-I will open an SR to run it with the following parameters:
+Hi Surendhar,
+I have opened a service request to trigger the DAG 1255479-prmbanclldo, as the file sent yesterday is still empty,
+with the following parameters:
 
 param1
 
 param2
+
+The file is empty because it is a weekly file, and the last available data for April is 2025-04-25.
 </pre>
