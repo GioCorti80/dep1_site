@@ -167,3 +167,22 @@ SELECT
 FROM
   your_table;
 </pre>
+<pre>
+query = f"""
+    SELECT
+        partition_id,
+        TIMESTAMP_MICROS(last_modified_time) AS last_updated_datetime
+    FROM
+        `{project_id}.{dataset_id}.INFORMATION_SCHEMA.PARTITIONS`
+    WHERE
+        table_name = '{table_name}'
+    ORDER BY
+        partition_id DESC
+"""
+
+# Execute the query
+query_job = client.query(query)
+
+# Fetch the results
+results = query_job.result()
+</pre>
