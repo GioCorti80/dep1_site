@@ -1,0 +1,11 @@
+SELECT
+    date,
+    FORMAT('%d-%02d', EXTRACT(YEAR FROM date), EXTRACT(QUARTER FROM date)) AS quarter
+FROM
+    your_table
+    , DATE_ADD(date, INTERVAL 10 DAY) AS date_plus_10_days
+    , MAX(other_date_column) OVER (
+        PARTITION BY group_column
+        ORDER BY date
+        RANGE BETWEEN CURRENT ROW AND INTERVAL 6 MONTH FOLLOWING
+    ) AS max_other_date_within_6_months

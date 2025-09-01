@@ -146,3 +146,10 @@ def append_dataframe_to_bigquery_table(dataframe, table_id, partition_field, is_
         .option("requirePartitionFilter", is_partitioned) \
         .save()
 </pre>
+<pre>
+, MAX(other_date_column) OVER (
+    PARTITION BY group_column
+    ORDER BY date
+    RANGE BETWEEN CURRENT ROW AND INTERVAL 6 MONTH FOLLOWING
+) AS max_other_date_within_6_months
+</pre>
