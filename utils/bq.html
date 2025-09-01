@@ -147,9 +147,9 @@ def append_dataframe_to_bigquery_table(dataframe, table_id, partition_field, is_
         .save()
 </pre>
 <pre>
-, MAX(other_date_column) OVER (
-    PARTITION BY group_column
-    ORDER BY date
-    RANGE BETWEEN CURRENT ROW AND INTERVAL 6 MONTH FOLLOWING
-) AS max_other_date_within_6_months
+SELECT MAX(t2.other_date_column)
+FROM your_table t2
+WHERE t2.group_column = t1.group_column
+    AND t2.date_column BETWEEN t1.date_column 
+                            AND DATE_ADD(t1.date_column, INTERVAL 6 MONTH)
 </pre>
