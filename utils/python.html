@@ -450,3 +450,6 @@ def fetch_cert_chain(hostname, port=443, output_file="company_ca_bundle.pem"):
 if __name__ == "__main__":
     fetch_cert_chain("company.openapi.com")
 </pre>
+<pre>
+Get-ChildItem | Sort-Object -Descending -Property @{Expression={$_.Length}} | Format-Table Name, @{Name="Size (MB)"; Expression={"{0:N2}" -f ($_.Length/1MB)}}
+</pre>
