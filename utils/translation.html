@@ -2053,12 +2053,7 @@ param2
 The file is empty because it is a weekly file, and the last available data for April is 2025-04-25.
 </pre>
 <pre>
-Get-ChildItem -Directory | ForEach-Object {
-    $size = (Get-ChildItem $_.FullName -Recurse | Measure-Object Length -Sum).Sum
-    [PSCustomObject]@{
-        Folder = $_.Name
-        SizeMB = "{0:N2}" -f ($size / 1MB)
-    }
-} | Sort-Object SizeMB -Descending | Format-Table -AutoSize
-
+Hi Akshay,
+Yesterday we granted the dblooker Cloud Function service account access to the table.
+However, when trying to extract data from the dblooker table, we receive the following error:
 </pre>
