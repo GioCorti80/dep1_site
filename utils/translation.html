@@ -2054,7 +2054,11 @@ The file is empty because it is a weekly file, and the last available data for A
 </pre>
 <pre>
 Get-ChildItem -Directory | ForEach-Object {
-    $_.FullName
-    (Get-ChildItem $_.FullName -Recurse | Measure-Object Length -Sum).Sum / 1MB
-}
+    $size = (Get-ChildItem $_.FullName -Recurse | Measure-Object Length -Sum).Sum
+    [PSCustomObject]@{
+        Folder = $_.Name
+        SizeMB = "{0:N2}" -f ($size / 1MB)
+    }
+} | Sort-Object SizeMB -Descending | Format-Table -AutoSize
+
 </pre>
