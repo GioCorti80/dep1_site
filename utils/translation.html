@@ -2053,7 +2053,8 @@ param2
 The file is empty because it is a weekly file, and the last available data for April is 2025-04-25.
 </pre>
 <pre>
-Hi Sangram,
-Thanks, but no need. Those are changes for the next release. For now, just pushing this PR is enough:
-url
+Get-ChildItem -Directory | ForEach-Object {
+    $_.FullName
+    (Get-ChildItem $_.FullName -Recurse | Measure-Object Length -Sum).Sum / 1MB
+}
 </pre>
