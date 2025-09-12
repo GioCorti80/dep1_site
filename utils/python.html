@@ -453,3 +453,24 @@ if __name__ == "__main__":
 <pre>
 Get-ChildItem | Sort-Object -Descending -Property @{Expression={$_.Length}} | Format-Table Name, @{Name="Size (MB)"; Expression={"{0:N2}" -f ($_.Length/1MB)}}
 </pre>
+<pre>
+from datetime import datetime
+import calendar
+
+date_str = "2024-12"
+
+# Parse year and month
+year, month = map(int, date_str.split("-"))
+
+# Get the last day of the month
+last_day = calendar.monthrange(year, month)[1]
+
+# Build the final date
+last_date = datetime(year, month, last_day)
+
+# Format as dd/mm/yyyy
+formatted = last_date.strftime("%d/%m/%Y")
+
+print(formatted)  # 31/12/2024
+
+</pre>
