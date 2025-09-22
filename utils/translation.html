@@ -2072,6 +2072,12 @@ Only after the completion of the previous DAG, you can clear the tasks from 1254
 The DAGs have completed successfully. Now I’d like to ask if you could clear the two failed tasks in the DAG 125479-4-DG_Only_KQI.
 </pre>
 <pre>
-Ok, thank you.
-Could you please check if there is any data in your table dblooker.pdd.trtr?
+Hi Christian,
+
+We performed the test in UAT and identified an issue with the dblooker service account’s access to our table. Together with Akshay, we analyzed the problem and it seems that the job_user role is missing from the dblooker service account (please refer below to the activity performed in DEV).
+
+I would like to ask Igor / Monish if it’s possible to add the same permissions also in UAT.
+
+For the production deployment, we will also need to grant the permissions to the production dblooker service account, which is: abcd@sa.it
+.
 </pre>
