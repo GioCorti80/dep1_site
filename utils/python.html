@@ -474,3 +474,30 @@ formatted = last_date.strftime("%d/%m/%Y")
 print(formatted)  # 31/12/2024
 
 </pre>
+<pre>
+import pandas as pd
+import glob
+import os
+
+# folder path with your Excel files
+folder_path = "path/to/your/folder"
+
+# list all Excel files in the folder
+files = glob.glob(os.path.join(folder_path, "*.xlsx"))
+
+dfs = []
+
+for file in files:
+    try:
+        df = pd.read_excel(file, sheet_name="ML_MESE")
+        dfs.append(df)
+    except ValueError:
+        # this happens if the file doesn't have the sheet ML_MESE
+        print(f"Sheet 'ML_MESE' not found in {file}")
+
+# concatenate all into one DataFrame
+final_df = pd.concat(dfs, ignore_index=True)
+
+print(final_df.shape)
+
+</pre>
