@@ -501,3 +501,40 @@ final_df = pd.concat(dfs, ignore_index=True)
 print(final_df.shape)
 
 </pre>
+<pre>
+from pyspark.sql.types import (
+    StructType, StructField, StringType, IntegerType, FloatType, 
+    BooleanType, DateType, TimestampType, DecimalType
+)
+
+def bq_to_spark_type(bq_field):
+    """
+    Convert BigQuery field to PySpark data type.
+    bq_field: google.cloud.bigquery.SchemaField object
+    """
+    bq_type = bq_field.field_type
+    # For NUMERIC/BIGNUMERIC, use precision and scale if available
+    if bq_type in ["NUMERIC", "BIGNUMERIC"]:
+        precision = getattr(bq_field, "precision", 38)  # Default BigQuery NUMERIC precision
+        scale = getattr(bq_field, "scale", 9)           # Default BigQuery NUMERIC scale
+        return DecimalType(precision=precision, scale=scale)
+    mapping = {
+        "STRING": StringType(),
+        "INT64": IntegerType(),
+        "FLOAT64": FloatType(),
+        "BOOLEAN": BooleanType(),
+        "DATE": DateType(),
+        "TIMESTAMP": TimestampType(),
+        "DATETIME": TimestampType()
+    }
+    return mapping.get(bq_type, StringType())
+
+from google.cloud import bigquery
+
+bq_client = bigquery.Client()
+table_id = "your_project.your_dataset.your_table"
+table = bq_client.get_table(table_id)
+
+spark_schema = StructType([StructField(f.name, bq_to_spark_type(f), True) for f in table.schema])
+
+</pre>
