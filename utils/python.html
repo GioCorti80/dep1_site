@@ -538,3 +538,15 @@ table = bq_client.get_table(table_id)
 spark_schema = StructType([StructField(f.name, bq_to_spark_type(f), True) for f in table.schema])
 
 </pre>
+<pre>
+df_with_ts = df.withColumn("event_ts", F.current_timestamp())
+
+df_with_ts.write \
+    .format("bigquery") \
+    .option("table", "project_id.dataset.table_name") \
+    .option("partitionField", "event_ts") \
+    .option("partitionType", "DAY") \
+    .option("partitionRequireFilter", "true") \
+    .mode("append") \
+    .save()
+</pre>
