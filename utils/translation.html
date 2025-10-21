@@ -2211,3 +2211,16 @@ please find attached the specific record from the raw table bancll1t that we cou
 Below is the query I used for this specific case.
 The join is based on the primary key fields between the trusted and raw tables, along with business_date_start and dt_period.
 </pre>
+<pre>
+ciao Enrico,
+ho predisposto il dag relativo all'invio giornaliero.
+
+vedo che la tabella non ha un aggiornamento quotidiano ma diversi giorni vengono saltati e attualmente il relativo DAG è il pausa dal 01/10/2025.
+
+Dall'analisi della query vedo che viene utilizzata la current_date da confrontare con la business_date_start.
+nell'actual a fronte del job del 10/10/2025 alle ore 22 la business_date risulta essere del 10/10. Se il dag girasse il giorno successivo 11/10 dovrebbe estrarre la business_date del 10/10 ossia sul giorno precedente
+
+Volevo inoltre chiederti se il file da inviare dovrà avere un naming definito e se nel formato csv dovrà avere come separatore virgola o punto e virgola.
+
+Ciao.
+</pre>
