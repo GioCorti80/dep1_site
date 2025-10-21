@@ -550,3 +550,12 @@ df_with_ts.write \
     .mode("append") \
     .save()
 </pre>
+<pre>
+import ast
+s = "{'a': 1, 'b': '2', 'c': 3}"
+d = ast.literal_eval(s)
+print(d)
+
+for key, value in d.items():
+    globals()[key] = value
+</pre>
