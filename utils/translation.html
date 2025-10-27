@@ -2225,9 +2225,9 @@ Volevo inoltre chiederti se il file da inviare dovrà avere un naming definito e
 Ciao.
 </pre>
 <pre>
-Per quanto riguarda i test in Python, sull’ambiente AWP è possibile installare il package PySpark per l’esecuzione di test locali su subset di dati.
+Hi Ionela,
+Both scripts are based on the same initial scope related to the table t_trd_ana_glober.
+Right now, the data in the table is malformed — in particular, the cod_gestore field.
 
-Attualmente, i job PySpark possono essere eseguiti sul cluster Dataproc esclusivamente tramite DAG di Composer, e non direttamente dalla console GCP da parte dei singoli utenti.
-
-Per le attività di test su Dataproc è disponibile l’ambiente dev; è tuttavia necessario disporre delle abilitazioni appropriate nella landing zone per potervi accedere.
+This table is populated from a file provided by some users, who upload it to a shared network folder. From what I can see, in the past it used to be a CSV file, but it looks like this time an XLSX file was used instead, and reading that file caused the issue during the table load.
 </pre>
