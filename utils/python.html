@@ -559,3 +559,39 @@ print(d)
 for key, value in d.items():
     globals()[key] = value
 </pre>
+<pre>
+from google.cloud import bigquery
+
+client = bigquery.Client()
+
+target_columns = ["id", "name", "age", "country"]
+tables = [
+    "project.dataset.table_202501",
+    "project.dataset.table_202502",
+    "project.dataset.table_202503"
+]
+
+def get_table_columns(table_name: str):
+    """Fetch schema of a BigQuery table."""
+    table = client.get_table(table_name)
+    return [field.name for field in table.schema]
+
+queries = []
+
+for table_name in tables:
+    existing_cols = get_table_columns(table_name)
+    select_parts = []
+    for col in target_columns:
+        if col in existing_cols:
+            select_parts.append(col)
+        else:
+            select_parts.append(f"NULL AS {col}")
+    query = f"SELECT {', '.join(select_parts)} FROM `{table_name}`"
+    queries.append(query)
+
+# Combine them into a UNION ALL query
+final_query = "\nUNION ALL\n".join(queries)
+
+print(final_query)
+
+</pre>
