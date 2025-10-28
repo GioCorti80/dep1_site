@@ -595,3 +595,46 @@ final_query = "\nUNION ALL\n".join(queries)
 print(final_query)
 
 </pre>
+<pre>
+from google.cloud import bigquery
+
+client = bigquery.Client()
+
+# Your target columns
+target_columns = ["id", "name", "age", "country"]
+tables = [
+    "project.dataset.table_202501",
+    "project.dataset.table_202502",
+    "project.dataset.table_202503"
+]
+
+# Step 1: Collect schemas
+table_schemas = {}
+for table_name in tables:
+    table = client.get_table(table_name)
+    table_schemas[table_name] = {f.name: f.field_type for f in table.schema}
+
+# Step 2: Decide a canonical type per column
+# (Prefer STRING since it can represent most other types safely)
+canonical_types = {col: "STRING" for col in target_columns}
+
+# Step 3: Build aligned SELECT statements
+queries = []
+for table_name in tables:
+    schema = table_schemas[table_name]
+    select_parts = []
+    for col in target_columns:
+        if col in schema:
+            # CAST if needed
+            select_parts.append(f"CAST({col} AS {canonical_types[col]}) AS {col}")
+        else:
+            # Missing column -> NULL with cast
+            select_parts.append(f"CAST(NULL AS {canonical_types[col]}) AS {col}")
+    queries.append(f"SELECT {', '.join(select_parts)} FROM `{table_name}`")
+
+# Step 4: Combine into final query
+final_query = "\nUNION ALL\n".join(queries)
+
+print(final_query)
+
+</pre>
