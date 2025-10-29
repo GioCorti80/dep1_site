@@ -638,3 +638,8 @@ final_query = "\nUNION ALL\n".join(queries)
 print(final_query)
 
 </pre>
+<pre>
+s = "sancion_daily_20250510"
+cleaned = re.sub(r"_\d{8}$", "", s)
+print(cleaned)  # sancion_daily
+</pre>
