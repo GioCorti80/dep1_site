@@ -670,3 +670,26 @@ def convert_to_ebcdic_fixed_block(input_file, output_file, record_length=2179, e
 convert_to_ebcdic_fixed_block("input.txt", "output.ebc")
 
 </pre>
+<pre>
+def convert_to_ascii_with_lf(input_file, output_file):
+    """
+    Convert a text file to ASCII with LF line endings.
+    
+    Args:
+        input_file (str): Path to the input file (any encoding).
+        output_file (str): Path to the output ASCII file.
+    """
+    with open(input_file, 'r', encoding='utf-8', errors='ignore') as infile, \
+         open(output_file, 'w', encoding='ascii', errors='ignore', newline='\n') as outfile:
+        
+        for line in infile:
+            # Normalize all line endings and write with LF
+            cleaned_line = line.rstrip('\r\n')
+            outfile.write(cleaned_line + '\n')
+
+    print(f"✅ Converted to ASCII with LF line endings: {output_file}")
+
+# Example usage:
+convert_to_ascii_with_lf("input.txt", "output_ascii_lf.txt")
+
+</pre>
