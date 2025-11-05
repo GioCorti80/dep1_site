@@ -725,3 +725,40 @@ def convert_ebcdic_fb_to_ascii(input_file, output_file, record_length=2179, enco
 convert_ebcdic_fb_to_ascii("input.ebc", "output_ascii.txt")
 
 </pre>
+<pre>
+file_path = 'your_ebcdic_file.dat'
+ebcdic_encoding = 'cp280' 
+decoded_records = []
+
+# 1. Open in Binary Read Mode ('rb')
+try:
+    with open(file_path, 'rb') as file:
+        # 2. Iterate over the raw bytes, separated by the EBCDIC New Line byte (\x15)
+        # The file.read().split() method reads the entire file into memory first.
+        # For very large files, consider a streaming approach or mmap.
+        
+        # Note: The split byte \x15 is the EBCDIC equivalent of ASCII \n
+        for ebcdic_record in file.read().split(b'\x15'):
+            # The split operation may leave an empty byte string at the end
+            if ebcdic_record: 
+                # 3. Decode the byte record using the EBCDIC encoding
+                try:
+                    utf8_string = ebcdic_record.decode(ebcdic_encoding).strip()
+                    decoded_records.append(utf8_string)
+                except UnicodeDecodeError as e:
+                    print(f"Skipping record due to decoding error: {e}")
+                    # You may want to log the ebcdic_record here for inspection
+                    
+    print(f"Successfully decoded {len(decoded_records)} records.")
+    
+    # Example: Print the first 5 decoded records
+    for i, record in enumerate(decoded_records[:5]):
+        print(f"Record {i+1}: {record}")
+
+except LookupError:
+    print(f"Error: The encoding '{ebcdic_encoding}' is unknown. Try 'ibm280' or install the 'ebcdic' package.")
+except FileNotFoundError:
+    print(f"Error: The file '{file_path}' was not found.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+</pre>
