@@ -639,7 +639,34 @@ print(final_query)
 
 </pre>
 <pre>
-s = "sancion_daily_20250510"
-cleaned = re.sub(r"_\d{8}$", "", s)
-print(cleaned)  # sancion_daily
+import codecs
+
+def convert_to_ebcdic_fixed_block(input_file, output_file, record_length=2179, encoding='cp037'):
+    """
+    Convert a text file to EBCDIC fixed block format.
+    
+    Args:
+        input_file (str): Path to the input text file.
+        output_file (str): Path to the output EBCDIC file.
+        record_length (int): Fixed record length in bytes (default 2179).
+        encoding (str): EBCDIC encoding (default IBM cp037, used in US).
+    """
+    with open(input_file, 'r', encoding='utf-8') as infile, open(output_file, 'wb') as outfile:
+        for line in infile:
+            # Remove newline characters and encode in EBCDIC
+            ebcdic_line = line.rstrip('\r\n').encode(encoding)
+            
+            # Truncate or pad to fixed length
+            if len(ebcdic_line) > record_length:
+                ebcdic_line = ebcdic_line[:record_length]
+            else:
+                ebcdic_line = ebcdic_line.ljust(record_length, b' ')
+            
+            outfile.write(ebcdic_line)
+
+    print(f"✅ Conversion complete. Output file: {output_file}")
+
+# Example usage:
+convert_to_ebcdic_fixed_block("input.txt", "output.ebc")
+
 </pre>
