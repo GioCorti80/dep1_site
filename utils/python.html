@@ -694,11 +694,34 @@ convert_to_ascii_with_lf("input.txt", "output_ascii_lf.txt")
 
 </pre>
 <pre>
-import chardet
+import codecs
 
-with open("your_file.txt", "rb") as f:
-    raw_data = f.read(10000)  # read a sample
-    result = chardet.detect(raw_data)
+def convert_ebcdic_fb_to_ascii(input_file, output_file, record_length=2179, encoding='cp037'):
+    """
+    Convert an EBCDIC fixed block file to ASCII text.
+    
+    Args:
+        input_file (str): Path to the EBCDIC file (fixed block).
+        output_file (str): Path to the output ASCII text file.
+        record_length (int): Length of each fixed record in bytes (default 2179).
+        encoding (str): EBCDIC code page (default 'cp037' for US).
+    """
+    with open(input_file, 'rb') as infile, open(output_file, 'w', encoding='utf-8', newline='\n') as outfile:
+        while True:
+            # Read one fixed block (record)
+            record = infile.read(record_length)
+            if not record:
+                break
 
-print(result)
+            # Decode EBCDIC to ASCII (UTF-8 text)
+            ascii_line = record.decode(encoding, errors='ignore').rstrip()
+
+            # Write each record as a line with LF
+            outfile.write(ascii_line + '\n')
+
+    print(f"✅ Conversion complete. Output file: {output_file}")
+
+# Example usage:
+convert_ebcdic_fb_to_ascii("input.ebc", "output_ascii.txt")
+
 </pre>
