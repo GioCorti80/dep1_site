@@ -693,3 +693,12 @@ def convert_to_ascii_with_lf(input_file, output_file):
 convert_to_ascii_with_lf("input.txt", "output_ascii_lf.txt")
 
 </pre>
+<pre>
+import chardet
+
+with open("your_file.txt", "rb") as f:
+    raw_data = f.read(10000)  # read a sample
+    result = chardet.detect(raw_data)
+
+print(result)
+</pre>
