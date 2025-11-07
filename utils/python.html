@@ -765,3 +765,6 @@ except Exception as e:
 <pre>
 df = df.withColumn(c, F.regexp_replace(F.col(c), r"[\r\n]+", " "))
 </pre>
+<pre>
+pdf.to_csv("output_ebcdic_cp280.csv", index=False, encoding="cp280", sep=";")
+</pre>
