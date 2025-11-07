@@ -762,3 +762,6 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
 </pre>
+<pre>
+df = df.withColumn(c, F.regexp_replace(F.col(c), r"[\r\n]+", " "))
+</pre>
