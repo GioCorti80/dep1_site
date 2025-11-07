@@ -768,3 +768,9 @@ df = df.withColumn(c, F.regexp_replace(F.col(c), r"[\r\n]+", " "))
 <pre>
 pdf.to_csv("output_ebcdic_cp280.csv", index=False, encoding="cp280", sep=";")
 </pre>
+<pre>
+with open("output_utf8.csv", "r", encoding="utf-8") as fin, \
+     open("output_cp280.csv", "wb") as fout:
+    for line in fin:
+        fout.write(line.encode("cp280"))
+</pre>
