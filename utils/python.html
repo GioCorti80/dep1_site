@@ -774,3 +774,30 @@ with open("output_utf8.csv", "r", encoding="utf-8") as fin, \
     for line in fin:
         fout.write(line.encode("cp280"))
 </pre>
+<pre>
+# Method 1: Using codecs
+import codecs
+
+input_file = 'input.ebc'
+output_file = 'output.txt'
+
+# Open the EBCDIC file with cp500 encoding
+with codecs.open(input_file, 'r', encoding='cp500') as f_in:
+    content = f_in.read()
+
+# Write the content in UTF-8
+with open(output_file, 'w', encoding='utf-8') as f_out:
+    f_out.write(content)
+
+
+# Method 2: Using open with encoding (Python 3+)
+input_file = 'input.ebc'
+output_file = 'output.txt'
+
+with open(input_file, 'r', encoding='cp500') as f_in:
+    content = f_in.read()
+
+with open(output_file, 'w', encoding='utf-8') as f_out:
+    f_out.write(content)
+
+</pre>
