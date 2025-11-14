@@ -121,3 +121,11 @@ df_with_age = df.withColumn(
 spark.read.option("encoding", "Cp280").csv("/path/to/output_cp280")
 
 </pre>
+<pre>
+df_clean = df.withColumn(
+    "letters",
+    F.expr("filter(letters, x -> x is not null and x <> '')")
+)
+
+df_clean.show(truncate=False)
+</pre>
