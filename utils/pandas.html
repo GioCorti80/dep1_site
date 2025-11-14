@@ -222,11 +222,47 @@ def count_below_thresholds(group):
         threshold = thresholds.loc[group.name, col]
         counts[f"{col}_count"] = (group['value'] <= threshold).sum()
     return pd.Series(counts)
+    from google.cloud import bigquery
 
-counts = df.groupby('group').apply(count_below_thresholds)
+    def create_bigquery_view(project_id, dataset_id, view_id, query_file_path):
+        """
+        Creates a BigQuery view from a SQL query file stored in a GCS bucket.
+        
+        Args:
+            project_id (str): GCP project ID.
+            dataset_id (str): BigQuery dataset ID.
+            view_id (str): Name of the view to create.
+            query_file_path (str): GCS path to the SQL query file (e.g., 'gs://bucket-name/path/query.sql').
+        
+        Returns:
+            google.cloud.bigquery.table.TableListItem: The created view object.
+        """
+        from google.cloud import storage
+        
+        client = bigquery.Client(project=project_id)
+        storage_client = storage.Client(project=project_id)
+        
+        # Parse GCS path
+        path_parts = query_file_path.replace('gs://', '').split('/', 1)
+        bucket_name = path_parts[0]
+        blob_path = path_parts[1]
+        
+        # Read query from GCS bucket
+        bucket = storage_client.bucket(bucket_name)
+        blob = bucket.blob(blob_path)
+        query = blob.download_as_string().decode('utf-8')
+        
+        # Create view
+        view_id_full = f"{project_id}.{dataset_id}.{view_id}"
+        view = bigquery.TableReference.from_string(view_id_full)
+        view_obj = bigquery.Table(view, schema=[])
+        view_obj.view_query = query
+        
+        view_obj = client.create_table(view_obj, exists_ok=True)
+        print(f"View {view_id_full} created successfully.")
+        
+        return view_obj
 
-# Combine thresholds and counts (optional)
-result = pd.concat([thresholds, counts], axis=1)
-print(result)
-
+    # Example usage:
+    # create_bigquery_view('my-project', 'my_dataset', 'my_view', 'gs://my-bucket/queries/view_query.sql')
 </pre>
