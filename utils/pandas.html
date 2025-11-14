@@ -259,6 +259,8 @@ def count_below_thresholds(group):
         view_obj.view_query = query
         
         view_obj = client.create_table(view_obj, exists_ok=True)
+
+        result = client.update_table(table, ["view_query"])
         print(f"View {view_id_full} created successfully.")
         
         return view_obj

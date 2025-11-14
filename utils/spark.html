@@ -129,3 +129,25 @@ df_clean = df.withColumn(
 
 df_clean.show(truncate=False)
 </pre>
+<pre>
+# 1. Create dataframe
+data = [("col1a", "col2a"), ("col1b", "col2b")]
+df = spark.createDataFrame(data, ["col1", "col2"])
+
+# 2. Append to BigQuery
+df.write \
+  .format("bigquery") \
+  .option("table", "myproject.mydataset.mytable") \
+  .mode("append") \
+  .save()
+
+# 3. Extract one row
+row = df.filter(df.col1 == "col1a").first()
+
+# 4. Assign fields to variables
+col1_value = row["col1"]
+col2_value = row["col2"]
+
+print(col1_value, col2_value)
+
+</pre>
