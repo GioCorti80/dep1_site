@@ -801,3 +801,13 @@ with open(output_file, 'w', encoding='utf-8') as f_out:
     f_out.write(content)
 
 </pre>
+<pre>
+# Calculate the rank of 'salary' within each 'department'
+# This requires a column to define the sort order within the partition, which is often handled
+# by ensuring the underlying BigQuery execution includes the necessary ORDER BY.
+
+# A common pattern is to use transform or apply with the required aggregation:
+df['dept_rank'] = df.groupby('department')['salary'].transform(
+    lambda x: x.rank(method='dense') # Applies dense rank within each department group
+)
+</pre>
