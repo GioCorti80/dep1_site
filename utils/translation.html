@@ -2419,8 +2419,11 @@ We kindly request that you look into this issue.
 Thank you.
 </pre>
 <pre>
-Buongiorno Elena,
-ho provato a verificare e sembra che il file non venga inviato a GCP da DDH. Ho aperto il seguente incident per chiedere una verifica della problematica.
+Ciao Antonio,
+mi è stato segnalato un problema relativo al file ndg_glober_yyyymmgg.csv, che fino al 12/11 veniva depositato dall’utente sulla cartella di rete e da lì trasferito al bucket GCP.
 
-Ciao.
+Negli ultimi giorni il processo si è interrotto e il file non viene più letto né prelevato dalla cartella di rete.
+Sembrerebbe che il trasferimento non fosse gestito tramite DDH, ma probabilmente tramite un processo on-premise. Su DDH è stata recentemente censita l’interfaccia IN1871_01 per questo file, ma risulta ancora in fase di implementazione in UAT.
+
+Ti chiedo se sai indicarmi a chi posso rivolgermi per verificare lo stato dei job on-premise relativi al caricamento del file e se risulta che tali job siano stati eventualmente bloccati.
 </pre>
