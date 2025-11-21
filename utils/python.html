@@ -852,3 +852,29 @@ df2_fixed = add_missing_cols(df2, cols)
 
 df_union = df1_fixed.union(df2_fixed)
 </pre>
+<pre>
+from pyspark.sql import functions as F
+
+# 1. Columns of df1 (keep this order)
+cols_df1 = df1.columns
+
+# 2. Columns of df2 not present in df1 (append these at the end)
+cols_df2_extra = [c for c in df2.columns if c not in cols_df1]
+
+# 3. Final ordered column list
+final_cols = cols_df1 + cols_df2_extra
+
+# ------------ helper to add missing columns and reorder -------------
+def align_columns(df, final_cols):
+    missing = set(final_cols) - set(df.columns)
+    for col in missing:
+        df = df.withColumn(col, F.lit(None))
+    return df.select(final_cols)
+
+# 4. Align both DataFrames
+df1_aligned = align_columns(df1, final_cols)
+df2_aligned = align_columns(df2, final_cols)
+
+# 5. Union
+df_union = df1_aligned.unionByName(df2_aligned)
+</pre>
