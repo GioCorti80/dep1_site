@@ -811,3 +811,21 @@ df['dept_rank'] = df.groupby('department')['salary'].transform(
     lambda x: x.rank(method='dense') # Applies dense rank within each department group
 )
 </pre>
+<pre>
+from pyspark.sql import functions as F, Window
+
+w_pos = Window.partitionBy("group").orderBy("value")
+w_neg = Window.partitionBy("group").orderBy(F.desc("value"))
+
+df_selected = (
+    df
+    .withColumn("pos_rn", F.row_number().over(w_pos))   # smallest positive
+    .withColumn("neg_rn", F.row_number().over(w_neg))   # largest negative (closest to 0)
+    .filter(
+        ((F.col("value") > 0) & (F.col("pos_rn") == 1)) |
+        ((F.col("value") < 0) & (F.col("neg_rn") == 1))
+    )
+    .drop("pos_rn", "neg_rn")
+)
+
+</pre>
