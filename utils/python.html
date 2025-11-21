@@ -877,4 +877,10 @@ df2_aligned = align_columns(df2, final_cols)
 
 # 5. Union
 df_union = df1_aligned.unionByName(df2_aligned)
+
+
+df_count = (
+    df.groupBy("group")
+      .agg(F.sum(F.when(F.col("flag") == "Y", 1).otherwise(0)).alias("count_Y"))
+)
 </pre>
