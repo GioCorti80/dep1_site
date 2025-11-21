@@ -836,3 +836,19 @@ df_flagged = (
 )
 
 </pre>
+<pre>
+from pyspark.sql import functions as F
+
+def add_missing_cols(df, cols):
+    missing = set(cols) - set(df.columns)
+    for col in missing:
+        df = df.withColumn(col, F.lit(None))
+    return df.select(cols)  # reorder columns
+Step 3 — Apply the function to both DataFrames
+python
+Copia codice
+df1_fixed = add_missing_cols(df1, cols)
+df2_fixed = add_missing_cols(df2, cols)
+
+df_union = df1_fixed.union(df2_fixed)
+</pre>
