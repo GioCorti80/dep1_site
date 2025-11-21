@@ -828,4 +828,11 @@ df_selected = (
     .drop("pos_rn", "neg_rn")
 )
 
+df_flagged = (
+    df.withColumn(
+        "no_negative_flag",
+        F.when(F.min(F.col("value") < 0).over(w) == False, "Y").otherwise("N")
+    )
+)
+
 </pre>
