@@ -885,3 +885,49 @@ df_with_count = df.withColumn(
     F.sum(F.when(F.col("flag") == "Y", 1).otherwise(0)).over(w)
 )
 </pre>
+<pre>
+#create temporay table
+df.write.format("bigquery") \
+    .option("temporaryGcsBucket", "<your-gcs-bucket>") \
+    .mode("overwrite") \
+    .save("project.dataset.temp_table")
+
+MERGE INTO `project.dataset.target_table` AS T
+USING `project.dataset.temp_table` AS S
+ON T.key_col = S.key_col
+WHEN MATCHED THEN
+  UPDATE SET *
+WHEN NOT MATCHED THEN
+  INSERT *
+
+</pre>
+
+<pre>
+#use pure python bigquery client
+from google.cloud import bigquery
+
+client = bigquery.Client()
+
+job_config = bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE")
+
+job = client.load_table_from_dataframe(
+    df, "project.dataset.temp_table", job_config=job_config
+)
+
+job.result()
+
+merge_sql = """
+MERGE INTO `project.dataset.target_table` AS T
+USING `project.dataset.temp_table` AS S
+ON T.key_col = S.key_col
+WHEN MATCHED THEN
+  UPDATE SET *
+WHEN NOT MATCHED THEN
+  INSERT *
+"""
+
+query_job = client.query(merge_sql)
+query_job.result()
+
+
+</pre>
