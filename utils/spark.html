@@ -151,3 +151,17 @@ col2_value = row["col2"]
 print(col1_value, col2_value)
 
 </pre>
+<pre>
+--conf spark.dynamicAllocation.enabled=true
+--conf spark.dynamicAllocation.minExecutors=1
+--conf spark.dynamicAllocation.maxExecutors=50
+--conf spark.dynamicAllocation.schedulerBacklogTimeout=10s
+--conf spark.dynamicAllocation.sustainedSchedulerBacklogTimeout=20s
+--conf spark.dynamicAllocation.executorIdleTimeout=30s
+
+--conf spark.default.parallelism=200
+--conf spark.sql.shuffle.partitions=200
+
+--conf spark.bigquery.parallelism=200
+--conf spark.bigquery.maxParallelism=200
+</pre>
