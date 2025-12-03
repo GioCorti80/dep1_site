@@ -186,3 +186,8 @@ query_job = client.query(query)
 # Fetch the results
 results = query_job.result()
 </pre>
+<pre>
+resource.type="bigquery_resource"
+severity>=WARNING
+text:("Read" OR "read session" OR "storage" OR "quota" OR "stream")
+</pre>
