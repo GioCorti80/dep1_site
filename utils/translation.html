@@ -2501,8 +2501,14 @@ Hi Hanumantha;
 thanks for your support. The Dataproc cluster was freshly created, but it seems that the issue is still not resolved. The job gets stuck at the same point without using CPU or resources. It looks like something may have changed in the autoscaling policy or in the configuration.
 </pre>
 <pre>
-Hi Surendhar,
-Regarding DAG 125479-4-DBACTION, could you please mark the running task as failed and then pause the DAG?
-I’ve opened an SR for this: RITM1154545.
-We will evaluate what to do after the release.
+Ciao Antonio,
+per la prossima release vorrei provare ad eseguire l'installazione del package bigframes su dataproc.
+Si tratta di un package che sto testando da tempo su awp sviluppato direttamente da google e che consente di eseguire trasformazioni bigquery usando la sintassi pandas in luogo dell'sql
+In sostanza è una modalità da affiancare di pyspark in quanto a differenza di pandas consente di eseguire le trasformazioni in modalità distribuita (su bigquery).
+Questo per consentire da un lato in riutilizzo del codice python attraverso funzioni e di aver un consumo di dati inferiore rispetto all'attuale modalità.
+Il package è presente su artifactory però ha parecchie dipendenze con altri packages in particolare pandas/numpy e pyarrow che potrebbero venire aggiornati con l'installazione e inoltre prevede l'aggiunta di altri packages di default legati al machine learning.
+Proverei ad eseguire dei test in dev in questo periodo dove non sono previste release.
+Volevo chiederti se vedevi particolari controindicazioni nel procedere con l'installazione che in linee teorica potrebbe essere fatta anche su composer.
+
+Grazie
 </pre>
