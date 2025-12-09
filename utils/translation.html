@@ -2560,14 +2560,7 @@ Thanks!
 </pre>
 <pre>
 Hi Sahana,
-based on the analysis, it looks like on that date the same NDG was sent to the frontend twice for two different countries (this was a known SRP6 issue, now fixed). This appears to have created duplicates—possibly because the see_md_out file generation performs the join on NDG.
+based on the analysis, it seems that on that date the same NDG was sent to the frontend twice for two different countries (this was a known SRP6 issue, now fixed). This appears to have caused duplicates—possibly because the see_md_out file generation joins on NDG.
 
-To resolve the issue, the duplicates need to be removed from the raw table. This can be done by running a BigQuery query like the one below (I still need to test it):
-
-bq query \
-  --use_legacy_sql=false \
-  --destination_table='my_project:my_dataset.my_table$20240101' \
-  --replace \
-  "SELECT DISTINCT * FROM `my_project.my_dataset.my_table` 
-   WHERE transaction_date = '2024-01-01'"
+One possible way to address the issue could be to remove the duplicates from the raw table using a BigQuery query like the one below. I still need to test it and confirm whether this approach is allowed and feasible:
 </pre>
