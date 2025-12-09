@@ -2565,7 +2565,20 @@ based on the analysis, it seems that on that date the same NDG was sent to the f
 One possible way to address the issue could be to remove the duplicates from the raw table using a BigQuery query like the one below. I still need to test it and confirm whether this approach is allowed and feasible:
 </pre>
 <pre>
-The issue is related to the cloud-logging package and using PySpark actions inside log statements. For some reason, since 27-11, this approach forces execution only on the cluster’s driver node, causing the job to hang. Fortunately, this logging method was used only for this script and does not affect transaction monitoring, where the monthly DAG is currently running correctly.
+Hi Anibal,
 
-Fixing the daily DAG will require a release update.
+I’m kindly requesting, if possible, to include the deployment of the following PR for the app-reporting-python repository in this week’s release:
+[PR link]
+
+This fix resolves issues with the following DAGs:
+
+Position_wm (daily DAG blocked since 27th November)
+
+pcorrelate (biweekly DAG)
+
+The reports are currently not being generated due to an issue with the cloud-logging package when using PySpark actions inside log statements.
+
+The fix has been successfully tested in UAT. Including it in this week’s release will restore the Position_wm daily report and allow the job to resume.
+
+Thank you!
 </pre>
