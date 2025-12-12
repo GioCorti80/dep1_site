@@ -2546,3 +2546,62 @@ Hi Ionela,
 The recent release did not resolve the position_wm report issue; it remains stuck in both Production and UAT. We are actively running tests to pinpoint the root cause.
 Since Monday is a holiday in Italy, if I am not able to identify the issue before then, I will schedule a call with the development team on Tuesday to discuss possible causes and solutions.
 </pre>
+<pre>
+Hi Andrea,
+could you please resend the attachments in a zip file? Outlook blocked them because of the .py extension.
+
+Thanks!
+</pre>
+<pre>
+Hi Surendhar,
+could you please mark the DAG 125479-dag as succeeded and then pause it? We're working on resolving the issue.
+
+Thanks!
+</pre>
+<pre>
+Hi Sahana,
+based on the analysis, it seems that on that date the same NDG was sent to the frontend twice for two different countries (this was a known SRP6 issue, now fixed). This appears to have caused duplicates—possibly because the see_md_out file generation joins on NDG.
+
+One possible way to address the issue could be to remove the duplicates from the raw table using a BigQuery query like the one below. I still need to test it and confirm whether this approach is allowed and feasible:
+</pre>
+<pre>
+Request to Deploy PR for Fixing Blocked DAGs in This Week’s Release
+Hi Anibal,
+
+I’m kindly requesting, if possible, to include the deployment of the following PR for the app-reporting-python repository in this week’s release:
+[PR link]
+
+This fix resolves issues with the following DAGs:
+
+Position_wm (daily DAG blocked since 27th November)
+
+pcorrelate (biweekly DAG)
+
+The reports are currently not being generated due to an issue with the cloud-logging package when using PySpark actions inside log statements.
+
+The fix has been successfully tested in UAT. Including it in this week’s release will restore the Position_wm daily report and allow the job to resume.
+
+Thank you!
+</pre>
+<pre>
+The incident concerns some missing partitions in the table t_trd_b1t. There are rows that appear in the raw table but not in the trusted table.
+</pre>
+<pre>
+Hi Anusha,
+the incident can be closed, although the missing partitions will still need to be recovered next year.
+</pre>
+<pre>
+Hi Ionela,
+we believe we have identified the issue, and the UAT tests were successful.
+The production release is scheduled for this afternoon, and I’ll update you on the outcome of the run as soon as it’s completed.
+</pre>
+<pre>
+Hi Surendhar,
+I see that the production deployment has completed. Could you please unpause the 125479-POSITION DAG? I’ve opened SR RIT4545454.
+</pre>
+<pre>
+Hi Surendhar,
+my apologies — I need to correct my previous request. We need to pause 125479-4 POSITION2 and unpause 125479-POSITION. I realized there’s an issue in the SFTP connection string of the v2 DAG, which I will fix in the next release.
+
+Thank you for your help, and sorry for the confusion.
+</pre>

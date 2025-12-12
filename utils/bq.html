@@ -191,3 +191,20 @@ resource.type="bigquery_resource"
 severity>=WARNING
 text:("Read" OR "read session" OR "storage" OR "quota" OR "stream")
 </pre>
+<pre>
+from google.cloud import bigquery
+
+client = bigquery.Client()
+
+source_table = "source-project.source_dataset.my_table"  
+destination_table = "target-project.target_dataset.my_table"
+
+job = client.copy_table(
+    sources=source_table,
+    destination=destination_table,
+    job_config=bigquery.CopyJobConfig(write_disposition="WRITE_EMPTY")
+)
+
+job.result()  # Wait for completion
+print("Table copied successfully!")
+</pre>
