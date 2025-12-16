@@ -2611,3 +2611,20 @@ As requested, we have sent the requested files to UAT.
 Best regards,
 Andrea
 </pre>
+<pre>
+Hi everyone,
+
+The deployment of the following DAG related to the provided reports has been completed in the dev environment.
+
+The files modified for execution on Dataproc are available at the following bucket links:
+
+app-reporting-python: link
+
+app-composer: link
+
+To complete the deployment, the static table REPORT_N30_2 must be created.
+
+Currently, the Dataproc service account of the pwcc project does not appear to have the job.creator role on the dev-dwh project; as a result, the Dataproc script fails with a permission error when using the DATAMART parameter.
+
+I will check with the DevOps team to confirm whether we need to request the required permissions or follow a different procedure.
+</pre>
