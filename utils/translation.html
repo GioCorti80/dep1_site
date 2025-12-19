@@ -2628,3 +2628,21 @@ Currently, the Dataproc service account of the pwcc project does not appear to h
 
 I will check with the DevOps team to confirm whether we need to request the required permissions or follow a different procedure.
 </pre>
+<pre>
+Subject: Role binding request – Dataproc pwcc service account access to DWH project
+
+As discussed during yesterday’s meeting, the N30 Python report, currently executed via Dataproc in the pwcc project, needs to read BigQuery tables hosted in the dwh project.
+
+Current status
+
+Service account: sa_dataproc_pwcc
+
+Execution project: pwcc
+
+Data project: dwh
+
+Missing permission: BigQuery Job User / Job Creator on the dwh project
+
+Request
+We kindly ask to proceed with the required IAM role binding on the dwh project, granting the appropriate BigQuery job execution role to the sa_dataproc_pwcc service account in order to enable query execution.
+</pre>
