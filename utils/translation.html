@@ -2628,3 +2628,13 @@ Currently, the Dataproc service account of the pwcc project does not appear to h
 
 I will check with the DevOps team to confirm whether we need to request the required permissions or follow a different procedure.
 </pre>
+<pre>
+Hi Surendhar,
+
+The DAG failed at the `bashCommandTask` and was retriggered the next day at 3:00 AM. As a result, on 2025-12-20 two files dated 2025-12-20 were generated, and the file for 2025-12-19 was skipped.
+
+I verified that the extraction for the 19th (Friday) would have been identical to that of the 20th, based on the attached queries.
+
+If required, we can manually trigger the **adhocchecks** DAG and send the 20th file renamed as the 19th, using the appropriate parameters.
+
+</pre>
