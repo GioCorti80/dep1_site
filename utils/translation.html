@@ -2629,6 +2629,16 @@ Currently, the Dataproc service account of the pwcc project does not appear to h
 I will check with the DevOps team to confirm whether we need to request the required permissions or follow a different procedure.
 </pre>
 <pre>
+<<<<<<< HEAD
+Hi Surendhar,
+
+The DAG failed at the `bashCommandTask` and was retriggered the next day at 3:00 AM. As a result, on 2025-12-20 two files dated 2025-12-20 were generated, and the file for 2025-12-19 was skipped.
+
+I verified that the extraction for the 19th (Friday) would have been identical to that of the 20th, based on the attached queries.
+
+If required, we can manually trigger the **adhocchecks** DAG and send the 20th file renamed as the 19th, using the appropriate parameters.
+
+=======
 Subject: Role binding request – Dataproc pwcc service account access to DWH project
 
 As discussed during yesterday’s meeting, the N30 Python report, currently executed via Dataproc in the pwcc project, needs to read BigQuery tables hosted in the dwh project.
@@ -2651,4 +2661,5 @@ Buongiorno,
 l'ndg risulta correttamente caricato sulla tabella di riferimento trusted per glober.
 Se ti riferisci ai report position_wm_structured e counterparty_wm_structured questi sono stati prodotti prima del caricamento della tabella con il nuovo ndg avvenuto alle 8 di stamattina.
 L'ndg sarà presente nei report di domani.
+>>>>>>> cd8716547424bac9f57694c17b8ceaad633f1e7c
 </pre>

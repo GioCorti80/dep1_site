@@ -983,8 +983,25 @@ if __name__ == "__main__":
 
 </pre>
 <pre>
-from importlib.metadata import version
+from datetime import datetime, timedelta
 
+# Today
+today = datetime.today()
+
+# Day before today (yesterday)
+yesterday = today - timedelta(days=1)
+
+# Day before yesterday
+day_before_yesterday = today - timedelta(days=2)
+
+# Format dates
+yesterday_str = yesterday.strftime("%d%b%Y")
+day_before_yesterday_str = day_before_yesterday.strftime("%d%b%Y")
+
+print("Yesterday:", yesterday_str)
+print("Day before yesterday:", day_before_yesterday_str)
+
+<<<<<<< HEAD
 version("db-dtypes")
 
 pip install \
@@ -994,4 +1011,6 @@ pip install \
   pandas==1.5.3 \
   google-cloud-bigquery==3.13.0
 
+=======
+>>>>>>> dd676d1459b4d4c8e4fb6a1d4b7a6758406e36cc
 </pre>
