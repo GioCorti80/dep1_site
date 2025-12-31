@@ -2670,3 +2670,12 @@ Could you please clear the DAG run for Report_aui for the dates 16 December and 
 
 Thank you.
 </pre>
+<pre>
+Hi Ashwini,
+the issue is related to the t_trd_tmp table and the ndg_cointestazione column, which contains an empty string value that causes the error.
+
+A temporary solution is to update the t_trd_tmp table and replace the empty value with 0.
+
+Using adhoc_checks:
+{param: select * from tr}
+</pre>
