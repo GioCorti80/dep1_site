@@ -2694,3 +2694,28 @@ The checks I performed are as follows:
 Hi Ionela,
 we need to raise a request to deploy the new files to UAT. I’ll try to submit the request between today and tomorrow.
 </pre>
+<pre>
+Abbiamo completato il deploy in ambiente UAT degli script N30, utilizzando parametri temporanei per il bucket di storage e senza configurare la schedulazione dei DAG.
+
+Gli script sono stati aggiornati secondo quanto riportato nell’allegato.
+
+I test eseguiti sia sul layer TRUSTED sia sul layer DATAMART hanno restituito esito positivo, impostando manualmente i parametri di data come segue:
+
+25jan2026
+
+26jan2026
+
+Restiamo in attesa delle attività necessarie per il passaggio in ambiente di produzione, che includono:
+
+configurazione del role binding IAM per il service account dataproc-pwcc, al fine di abilitare l’accesso in lettura alle tabelle DWH;
+
+definizione delle date di schedulazione dei DAG;
+
+indicazione del bucket di destinazione definitivo.
+
+Se vuoi, posso anche:
+
+adattare il testo a una mail formale o a un verbale di rilascio;
+
+allinearlo a una terminolo
+</pre>
