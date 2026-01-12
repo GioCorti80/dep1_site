@@ -208,3 +208,7 @@ job = client.copy_table(
 job.result()  # Wait for completion
 print("Table copied successfully!")
 </pre>
+<pre>
+WHERE date_field BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL (EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) + 5) DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL (EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) - 2) DAY)
+
+</pre>
