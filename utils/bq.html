@@ -235,4 +235,10 @@ FROM
 WHERE
   date_field BETWEEN (SELECT previous_monday FROM date_ranges) AND (SELECT previous_friday FROM date_ranges);
 
+WHERE date_field BETWEEN
+  DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 7 DAY)
+  AND
+  DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK(MONDAY)), INTERVAL 3 DAY)
+
+
 </pre>
