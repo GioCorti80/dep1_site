@@ -211,4 +211,28 @@ print("Table copied successfully!")
 <pre>
 WHERE date_field BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL (EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) + 5) DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL (EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) - 2) DAY)
 
+WITH date_ranges AS (
+  SELECT
+    -- Current date
+    CURRENT_DATE() AS today,
+
+    -- Day of the week (1 = Sunday, 7 = Saturday)
+    EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) AS day_of_week,
+
+    -- Calculate days to subtract to get to the previous Monday
+    -- If today is Tuesday (day 3), we subtract 6 days to get to the previous Monday
+    -- This formula ensures we always get the previous Monday
+    DATE_SUB(CURRENT_DATE(), INTERVAL ((EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) + 5) % 7) DAY) AS previous_monday,
+
+    -- Previous Friday is 4 days after the previous Monday
+    DATE_ADD(DATE_SUB(CURRENT_DATE(), INTERVAL ((EXTRACT(DAYOFWEEK FROM CURRENT_DATE()) + 5) % 7) DAY, INTERVAL 4 DAY) AS previous_friday
+)
+
+SELECT
+  *
+FROM
+  your_table
+WHERE
+  date_field BETWEEN (SELECT previous_monday FROM date_ranges) AND (SELECT previous_friday FROM date_ranges);
+
 </pre>
