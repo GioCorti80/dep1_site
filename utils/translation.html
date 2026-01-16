@@ -2768,3 +2768,8 @@ The only remaining step is to apply the same configuration in the Prod environme
 df['date_str'] = df['timestamp_col'].dt.strftime('%Y-%m-%d')
 
 </pre>
+<pre>
+Hi Sumeet,
+the file name is currently generated with the suffix of the day on which the run is executed. In this case, it was the 16th because, due to some dependencies, the run was delayed to the following day.
+We will need to modify the DAG to use the logical date instead.
+</pre>
