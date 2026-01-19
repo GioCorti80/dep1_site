@@ -2789,10 +2789,19 @@ The SDP_UPDATE DAG is now successful.
 Regarding report_controllo_concentrazione, it comes from the trusted repository, and I don’t understand why it is failing, since the underlying table has been created even though the DAG failed.
 </pre>
 <pre>
-Hi Ashwini,
+The partition in the trusted table was created successfully, but the job is failing on the DWH side.
 
-Could you please mark the failed DAG for the 2026-01-15 COB as successful?
+Could you please mark the wait task in the report_dbaction DAG as successful so that the report can be produced?
 
-I believe that once this is done, the 2026-01-16 run will start, as the dependency on past parameters is currently blocking the execution.
-If the new run fails again, I will contact Himam, as he developed the trusted DAG for the report_concentrazione.
+In the meantime, I will work with Himam to understand why the job is failing.
+
+
+Hi Himam,
+
+The Report_controllo_concentrazione DAG is failing in production.
+The partitions of the trusted table have been created correctly and are aligned with the raw data.
+
+Could you please advise on how we should proceed to resolve the issue, which currently requires manual intervention?
+
+Thank you.
 </pre>
