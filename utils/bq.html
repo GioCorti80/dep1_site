@@ -242,3 +242,16 @@ WHERE date_field BETWEEN
 
 
 </pre>
+<pre>
+bq query --use_legacy_sql=false \
+'INSERT INTO `my_project.my_dataset.sales_table` (order_id, amount, event_date)
+ WITH filtered_orders AS (
+   SELECT 
+     id, 
+     price, 
+     DATE(timestamp) as d 
+   FROM `my_project.my_dataset.raw_events` 
+   WHERE DATE(timestamp) = "2023-10-01"
+ )
+ SELECT id, price, d FROM filtered_orders'
+</pre>
