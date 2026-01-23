@@ -259,3 +259,12 @@ bq query --use_legacy_sql=false \
 DELETE FROM `project.dataset.table`
 WHERE DATE(timestamp_partition_col) = DATE '2026-01-20';
 </pre>
+<pre>
+SELECT
+  partition_id,
+  TIMESTAMP_MILLIS(last_modified_time) AS last_modified_time
+FROM `project.dataset.INFORMATION_SCHEMA.PARTITIONS`
+WHERE table_name = 'your_table'
+ORDER BY partition_id;
+
+</pre>
