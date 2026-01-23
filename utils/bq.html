@@ -255,3 +255,7 @@ bq query --use_legacy_sql=false \
  )
  SELECT id, price, d FROM filtered_orders'
 </pre>
+<pre>
+DELETE FROM `project.dataset.table`
+WHERE DATE(timestamp_partition_col) = DATE '2026-01-20';
+</pre>
