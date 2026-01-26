@@ -275,4 +275,7 @@ df = pd.read_excel("data.xlsx")
 
 data = df.to_dict(orient="records")
 print(data)
+
+for col in date_cols:
+    df[col] = pd.to_datetime(df[col], dayfirst=True).dt.strftime("%Y-%m-%d")
 </pre>
