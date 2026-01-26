@@ -268,3 +268,11 @@ def count_below_thresholds(group):
     # Example usage:
     # create_bigquery_view('my-project', 'my_dataset', 'my_view', 'gs://my-bucket/queries/view_query.sql')
 </pre>
+<pre>
+import pandas as pd
+
+df = pd.read_excel("data.xlsx")
+
+data = df.to_dict(orient="records")
+print(data)
+</pre>
