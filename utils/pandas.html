@@ -278,4 +278,16 @@ print(data)
 
 for col in date_cols:
     df[col] = pd.to_datetime(df[col], dayfirst=True).dt.strftime("%Y-%m-%d")
+
+df_count = (
+df.groupby(["date", "country"], as_index=False)
+    .agg(cnt=("user_id", "count"))
+)
+
+df_pivot = df_count.pivot(
+    index="date",
+    columns="country",
+    values="cnt"
+)
+
 </pre>
