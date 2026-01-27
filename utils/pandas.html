@@ -289,5 +289,6 @@ df_pivot = df_count.pivot(
     columns="country",
     values="cnt"
 )
+df["date_str"] = df["date"].dt.strftime("%Y-%m-%d")
 
 </pre>
