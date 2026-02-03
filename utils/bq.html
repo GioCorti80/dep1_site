@@ -270,13 +270,13 @@ ORDER BY partition_id;
 </pre>
 <pre>
 SELECT
-  row,
-  COUNT(*) AS dup_count
-FROM (
-  SELECT AS STRUCT * AS row
-  FROM `project.dataset.table`
-)
-GROUP BY row
-HAVING COUNT(*) > 1;
+  column_name,
+  data_type,
+  is_nullable,
+  ordinal_position
+FROM `project.dataset.INFORMATION_SCHEMA.COLUMNS`
+WHERE table_name = 'your_table'
+ORDER BY ordinal_position;
+
 
 </pre>
