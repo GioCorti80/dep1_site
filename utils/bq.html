@@ -268,3 +268,15 @@ WHERE table_name = 'your_table'
 ORDER BY partition_id;
 
 </pre>
+<pre>
+SELECT
+  row,
+  COUNT(*) AS dup_count
+FROM (
+  SELECT AS STRUCT * AS row
+  FROM `project.dataset.table`
+)
+GROUP BY row
+HAVING COUNT(*) > 1;
+
+</pre>
