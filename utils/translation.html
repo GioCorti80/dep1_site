@@ -2992,3 +2992,27 @@ Andrea
 
 Hi Hanumantha, we may need to truncate the partition after that date, as we’re getting an ‘already acquired partition’ error in the triggered job
 </pre>
+
+<pre>
+Hi Hanumantha,
+
+I’m in contact with Ashwini, and I think the best approach—since this is a small table—is to reload all the business dates by following these steps:
+
+1) Run the ad hoc DAG:
+125479-adhocdag
+
+{}
+
+{}
+
+{}
+
+2) After the above tasks are completed, reload the business dates in the following order:
+125479_proposte
+
+{}
+
+{}
+
+{}
+</pre>
