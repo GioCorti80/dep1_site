@@ -1,0 +1,3038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Background with White Text</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<h1>Translation</h1>
+<h3>Config</h3>
+<pre>
+Hi Deeraj,  
+
+Regarding the attached public key, I would need to know whether it has already been uploaded to the production Secret Manager or if it will be uploaded in the next release.  
+
+Thank you!
+</pre>
+<pre>
+Regarding the technical account svc_8960FTRE and change request CHG5445656,
+
+In order to write to the network folder \dbg.db.com\res_res via SFTP Composer, we need to:
+
+Create an alias to enable writing to the network folder
+
+Address the issue where we currently encounter an error when attempting to establish an SFTP connection
+
+Let me know if you need any refinements
+</pre>
+
+<pre>
+Only after the previous DAG has finished running, trigger the following DAG: 125464-fsdfsd.
+</pre>
+<pre>
+Hi Surendhar,
+
+I just opened this SR (RITM54454) a little while ago to manually run the following DAGs:
+
+Thank you!
+</pre>
+
+<pre>
+Hi Igor,
+
+Currently, the following folders are definitely not used by the transaction monitoring process:
+/app.tr/uat
+/app.tr/test
+
+I still need to check the folders:
+/app.tr/tmonitor (packed in a zip file)
+/app.tr/bin
+
+to confirm whether they are also unused by the process.
+</pre>
+<pre>
+    Ok, thank you, Surendhar. You may now proceed with triggering DAG
+</pre>
+<pre>
+    Hi Alexandru,
+
+    The query performs a daily extraction directly from the t_trd_ana_ndg_glober table. Therefore, any changes to that table will impact the retrieved records.  Also, the number of records returned is affected by missing data in the UAT environment. There's no specific process for extracting only the delta."
+</pre>
+<pre>Yes, the scope of the position file is the same as that of the counterparty query.</pre>
+
+<pre>
+Hi Alexandru,
+
+The issue we're seeing might be specific to the UAT environment, as the 'missing' field seems to be First_name.
+
+In production, the person's first and last names are separated by a plus sign (+). However, in UAT, due to data masking, this separation doesn't occur, and the names appear as a single string. This could be why the split operation isn't working correctly.
+
+We can modify the query to try and handle this specific scenario.
+</pre>
+<pre>
+Hi Surendhar,
+Yesterday I opened SR RTI353454 to request the pause of the following DAG:
+124324 fdsfdsfds
+We need it to be paused before the automatic run scheduled for tomorrow.
+Could you please take care of it?
+</pre>
+
+<pre>
+Hi Surendhar,
+Yesterday I opened SR RIT5454 with a request to trigger the following DAG in production:
+125974 fsfdsfs
+Could you please proceed with this when possible?
+</pre>
+<pre>
+Hi Alexandru,
+I’ve updated the query to address the issue related to splitting the First_name and Last_name fields.
+The file was sent this morning via DBExchange UAT and includes all 18 expected fields.
+</pre>
+
+<pre>
+    The name you provided does not match any report I have managed.
+    It's not a report that I was involved with.
+</pre>
+<pre>
+Hi Igor,
+I tried testing the new workflow, but it seems that the modified files in the repository are not being updated.
+This issue occurs for both transaction-monitoring and app-reporting-python.
+The modified files are not being reflected in the bucket.
+
+For example:
+
+For transaction-monitoring: gs://fsdfdsfsdds
+
+For reporting-python: gs://fsdfdsfsdds
+</pre>
+<pre>
+Hi Igor,
+Alright, the branch for transaction-monitoring has already been merged into RELEASE_dbc_dev.
+I’ve checked the files in the reporting-python bucket, and they’re now updated and aligned with the repository.
+I’m now proceeding with the deployment of the transaction-monitoring dev branch.
+</pre>
+<pre>
+Hi Janani,
+I’ve prepared the following PR for reporting-engine, which includes updates to both report_list_engine and reporting_mandatory.xlsx.
+It has now been approved for dev, and I’ve also raised the PR for UAT.
+</pre>
+<pre>
+Hi Alexandru,
+I'm attaching to this email the extraction from UAT, which contains some data.
+We've also sent the GPG file via DBExchange.
+</pre>
+<pre>
+Buongiorno
+per poter eseguire l'implementazione su rotool della virtual-region il run del mese di aprile parità dopo la release prevista in data odierna.
+
+Ciao.
+</pre>
+<pre>
+In order to write via SFTP to the folder \\dbg\fsdsf\fgdf, we need to create an alias for the user svc_898989 that allows this technical user to write to the specified folder (ACL has already been assigned).
+</pre>
+<pre>
+Could you please unpause the following DAG:
+
+125479 Transaction Monitoring
+
+The DAG should start automatically. If it doesn't, we kindly ask you to trigger it manually.
+</pre>
+
+<pre>
+Hi Surendhar,
+I've opened SR RIT2423432 to request the unpause of the following DAG:
+125479 Transaction Monitoring.
+It should start automatically, but if it doesn’t, please trigger it manually.
+</pre>
+<pre>
+    Thanks, Surendhar. I’ll monitor the DAG this morning.
+</pre>
+<pre>
+git è purtroppo un software indispensabile per poter operare i rilasci e viene utilizzato in locale sul pc
+</pre>
+<pre>
+Hi Surendhar,
+Could you kindly share the Dataproc log for ID432 fsdfdsfdsfsfdsfsfsdds?
+Thanks!
+</pre>
+<pre>
+ciao Alessandro,
+non ho mai provato a recuperare file dalle cartelle di rete.
+So che su alcune cartelle è possibile fare tasto-destro>proprietà e poi cliccare sul tab "versioni precedenti" però non sono sicuro che sia una funzione sempre attiva
+</pre>
+<pre>
+Hi Surendhar,
+In relation to SR RIT23423 for transaction-monitoring, could you please trigger the following DAG?
+12354 dag-persistent
+with the following parameters:
+
+This is to attempt recovery of the transaction-monitoring fin_instr task that failed due to resource issues.
+</pre>
+<pre>
+lo storico dei file dovrebbe essere ancora presente sul bucket di produzione al quale però non avviamo accesso direttamente ed è necessario ottenere un'autorizzazione per poter scaricare i file. Puoi provare a chiedere ad Antonio Sannino
+</pre>
+<pre>
+OK, thanks Surendhar.
+Could you please mark the fin task of the transaction-monitoring DAG as Succeeded, so the DAG can continue with the next tasks?
+</pre>
+<pre>
+gsutil ls gs://your-bucket-name/path/to/directory/Posizioni_202505*
+</pre>
+<pre>
+The current query isn’t set up to retrieve data from previous days. I believe the request is about the possibility of downloading files from earlier extractions already stored in the bucket.
+</pre>
+<pre>
+The current query isn’t set up to retrieve data from previous days. I believe the request refers to downloading files from earlier extractions already stored in the bucket.
+Here’s the list of files:
+    
+    file1
+    
+    file2
+    
+    file3
+</pre>
+<pre>
+I’ve opened a support request to download these three Dataproc logs. Not sure if this is something I can ask you about—let me know.
+Thanks!
+</pre>
+<pre>
+Hi Surendhar,
+I opened SR RIT1362323 to trigger the following DAG in production:
+
+125479 controlli**
+</pre>
+<pre>
+    Hi Hanumantha,
+    We unpaused and triggered the DAG yesterday after the release, along with Surendhar. It can remain in the active state. I had paused the DAG earlier just to wait for the changes in the last release.
+</pre>
+<pre>
+Hi Surendhar,
+I’ve opened a support request (SR RIT434234) to trigger the following DAG:
+qwerw-tm-sftp
+</pre>
+<pre>
+Hi Laraib,
+
+Following our previous call, I confirm the Sigma file was uploaded today, April 17, 2025. This was done after confirmation due to the initial health check failure.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+test1
+    </pre>
+<pre>
+    Ciao Laura,
+si tratta di un problema con la lettura del mapping specification
+è stata aggiunta una riga che contiene la il testo b22 e pertanto c'è un problema nella lettura della tabelle specificatamente per questo report
+Il problema non sarà risolvibile se non nella prossima release nel frattempo entro settimana prossima provo a verificare se riesco ad eseguire il run su awp ma il codice richiede un adattamento
+Per evitare problemi in futuro
+</pre>
+<pre>
+Dear [Recipient],
+Please find attached the final report of the Sigma Transaction Monitoring process.
+The process concluded with the following status: HEALTH CHECK FAILED – file not uploaded.
+</pre>
+<pre>Hi Sourav,
+    I’ve finished now—feel free to proceed whenever you're ready.</pre>
+
+<pre>
+<<<<<<< HEAD
+I'm Gio Corti, a developer with NAR 125479. I'm working with GCP, Python, and PySpark. Code Assist is helping me with app development.
+</pre>
+<pre>
+Hi Enrico,
+
+Please find attached the extracted JSON file.
+
+Business date: 2025-04-22
+
+Best regards,
+Andrea
+=======
+Last year, DAG 125479 was created to upload tables to the Oracle staging area.
+During the most recent run, it executed successfully, and I expect that the tables have been loaded.
+
+The table b103_mm_priorira is no longer being updated, and the two models have been consolidated into the table b104_priorità.
+
+The Assegni priorità table should have been populated correctly.
+The tm_weekly_health_check is currently not included among the DAG’s tasks.
+
+The DAG’s activity ends with loading the staging area and sending the OK files.
+However, we do not have visibility into what happens within Oracle during the transition from the staging area to the Oracle tables. For this reason, I’ll need to follow up with Salvatore.
+</pre>
+
+<pre>
+Good morning everyone,
+Please find attached the file that was generated.
+>>>>>>> bdb6237954e51497e4a3da8a36cbb308c4a0d4b5
+</pre>
+<pre>
+We need to create an alias for the account svc_909809 so that it has write access to the following folder:
+\\dbg.adasd\dsfgdgd\fsfds
+</pre>
+<pre>
+    Hi Surendhar, I’m sorry, but I don’t believe I’ve been involved with this report in the past.
+    Hi Surendhar, I’m afraid I haven’t worked on this report before.
+</pre>
+<pre>
+Hi Snagram,
+this isn’t a report related to transaction monitoring.
+
+Thanks,
+Andrea
+</pre>
+<pre>
+Hi Hanumantha,
+The job has run successfully.
+Thank you.
+</pre>
+<pre>
+Ciao Antonio Ho partecipato Ieri alla riunione di monitoring tool relativa però alla parte caricamenti 
+Allo stato attuale ho accesso alla landing zone e al repository 
+Da quello che ho capito La parte relativa alla reportistica dovrebbe partire dopo il caricamento dei databart 
+Attualmente non mi è chiaro il meccanismo di deploit che viene utilizzato perché non vedo delle tag in composer 
+Ho visto che sono presenti dalle Store procedurs i Bee query relativamente al caricamento delle tabelle 
+
+attualmente non sono chiari i meccanismi di deploy
+    
+</pre>
+<pre>
+Hi Enrico,
+Please find attached the output generated by the code.
+
+Best regards
+</pre>
+<pre>
+Hi everyone,
+I’m running into an issue with these two PRs, specifically with the SLDC controls for the unit tests.
+I keep getting an error: "Cache service responded with 422", even after trying several times.
+
+Has anyone encountered this before or has any advice? Thanks in advance!
+</pre>
+<pre>
+translate in english in natural and  clear way
+Buongiorno,
+si tratta di un report mensile previsto nella versione originaria del report.
+Se non più necessario provvediamo a rimuoverlo.
+
+Ciao.
+
+
+Ciao Alberto,
+volevo solo informari che settimana scorsa ho aperto la seguente CHG relativamente alla richiesta per la creazione di un alias per quanto riguarda il tecnical account svc_8956456 per poter scrivere sulla sottocartella sfdfsdfd.
+
+Ciao e Grazie
+</pre>
+<pre>
+    Ciao Alberto,
+    in relazione alla change sai dirmi quale alias dell'account devo utilizzare?
+    
+</pre>
+<pre>
+Hi all,
+I’m encountering an issue with the SDLC checks for UAT on the following two PRs:
+
+pr1
+
+pr2
+Could you please take a look?
+</pre>
+<pre>
+Ciao Andrea,
+un rilascio per i test verrà eseguito nella prossima release del 08/05 il run è previsto per il 15 mentre per quanto riguarda le estrazioni dovrei eseguirle in giornata
+</pre>
+
+<pre>
+The view reported in the incidents refers to the new models implemented in 2024, with the upload process having commenced at the end of 2024. The corresponding BigQuery tables are as follows:
+</pre>
+<pre>
+The staging area is populated via the trigger of the following DAG:
+</pre>
+<pre>
+The table TM_WEEKLY_HEALTH_CHECK is not part of the Oracle staging area upload process.
+
+The table b103_mm_priorita is no longer populated as it has been merged into b103_priorita.
+
+The DT_RIF_BUSINESS column is not present in the BigQuery tables, which are instead partitioned by the DATA_RIF field. This column is created directly by the Control-M process on Oracle.
+</pre>
+<pre>
+Hi Hanumantha,
+
+I've added comments to the two incidents regarding the issues users encountered with Oracle.
+</pre>
+<pre>
+Hi Navend, I've attached the correct files.
+Hi Navend, here are the updated/correct files for you.
+</pre>
+<pre>
+Hi Sattwik,
+Unfortunately, I haven’t developed any jobs or applications so far that involve connecting Dataproc to on-prem Hive.
+The connection string you used looks correct.
+
+This is the connection string I usually used (only on on-prem EAP):
+jdbcs:88fsfdsfsd
+However, as I mentioned, I’ve never developed jobs that read data from Hive EAP through GCP Dataproc.
+</pre>
+<pre>
+Buongiorno a tutti,
+la presente per comunicare che nella prossima release (run monthly del 05/2025) nella mail finale sarà aggiunta l'informazione relativa all'upload del file su dbexchange.
+Di seguito gli esempi delle nuove mail inviate
+</pre>
+<pre>
+Hey Surendhar,
+
+I opened service request SR54545 a few days ago. Could you please put the following on hold until this month's release? This is to prevent it from running automatically.
+</pre>
+<pre>
+On the development side, we can include the scheduling change in the next release on May 21st.
+Currently, both reports are scheduled to run daily at 10 AM.
+</pre>
+<pre>
+Hi Surendhar,
+I’ve just opened service request RIT43243 to unpause the DAG 1235fd.
+Could you please reactivate the DAG so it can run automatically today at 9 AM?
+</pre>
+<pre>
+Ciao Antonio,
+attualmente non ho ancora contattato Priyanka ho provato a fare alcuni test su log explorer per capire quali soluzioni potrebbero essere implementabili con l'utilizzo di python oppure soluzioni infrastrutturali nativa GCP con l'uso dei log_sink per l'esportazione dei log
+A questo punto sarebbe utile schedulare una call per capire quale soluzione hanno scelto e che tipo di filtri inserire nella query su cloud log
+</pre>
+<pre>
+Ok, thank you.
+I was running some tests on Cloud Logging.
+Do you have the name of the service account and the filters I should use to retrieve the relevant data from Cloud Logging?
+Are the logs related to the project dretre-gdgfdgdf?
+
+As a final output, are you expecting a BigQuery table or a file? And what information should we extract — only the queries, or is there additional data you would like us to retrieve?
+</pre>
+<pre>
+Today, the monthly process ran: the table assegni_priorita was updated via the staging table stg_tm_priorita, and the file pwcfsfds.ok was sent.
+</pre>
+<pre>
+Creating the development space is required to use the Assist Code Gemini application as a VS Code extension (as per the instructions at the following link).
+</pre>
+<pre>
+Hi Prianka,
+
+Okay, I'll be on today's call.
+</pre>
+
+<pre>
+Hi Hanumantha,
+Yes, thank you. The end user would like the extraction to be relaunched using the new query after the release.
+</pre>
+<pre>
+Hi Laraib,
+the JSON file containing the alerts was uploaded on May 9, 2025, and should have been visible starting the following day, May 10, 2025.
+</pre>
+<pre>
+Hi all,
+I can’t join the meeting this morning due to mandatory training, I’m continuing with my tasks.
+</pre>
+<pre>
+Hi Alexandru,
+the DAGs are currently scheduled at 10 AM UTC with no dependencies on other pipelines.
+From the next release, they’ll run at 10 AM UTC for counterparty and 11 AM UTC for position.
+</pre>
+<pre>
+Hi Hanumantha,
+For the TM process, we load data into the stg_tm_assegni_priorita table in the Oracle staging area.
+</pre>
+<pre>
+The DAG is triggered by the Transaction Monitoring DAG, which has the triggering of the tm_oracle DAG as its final task.
+</pre>
+<pre>
+Hi Tarun,
+It’s not a process I’m familiar with. It seems more like something that falls under the responsibilities of a Business Analyst or someone involved in DWH table
+</pre>
+<pre>
+Hi Alexandru,
+The schedule you indicated works for me, so the DAGs will be scheduled as follows:
+
+10 AM UTC for counterparty
+
+11 AM UTC for position
+</pre>
+<pre>
+Ciao Luca,
+potrebbe essere schedulato per la prossima release che potrebbe essere all'inizio di giugno.
+Trattandosi di un invio su cartella di rete bisognerebbe verificare se esistono già altri report gcp che vengono inviati a tale cartella.
+In caso affermativo l'implementazione è veloce.
+In caso contrario bisognerà verificare che esista già un account tecnico che può scrivere sulla cartella di rete (anche se non collegato a gcp) altrimenti bisogna crearlo. In quest'ultimo caso i tempi si potrebbero allungare.
+
+Vedo però che la cartella è la stessa dell'id1901 e altri report quindi non è necessario fare altre operazioni.
+Non sono sicuro che siamo ancora in tempo per la release del 21/05 pertanto potrebbe andare nella release di inizio giugno.
+
+Ti faccio sapere.
+
+Ciao.
+</pre>
+<pre>
+Giving this function and these paramters Hi wanna know if you think that:
+the given condition -w (where) and the condition -b (business_date)
+produce that the job (airflow dag) is going to extract all the record in the given table (-p idenficativo is a unique identifier)
+</pre>
+<pre>
+To investigate the issue in production, I need to manually trigger the following DAG:
+TM_ORACLE_CUSTOM with the parameters:
+
+json
+Copia
+Modifica
+{
+  "param1": "2024-05",
+  "param2": "de"
+}
+I’ve submitted service request RITM45454545 to the operations team with this request.
+</pre>
+<pre>
+Thanks, Surendhar.
+The load of the single table stg_assegni_priorita completed successfully.
+@Tarun, could you please check if the staging table has been correctly populated with approximately 18,000 rows for the specified business date?
+
+Here’s a summary of the parameters:
+
+Table: stg_tm_assegni_priorita
+
+File OK: PWCC_TR_FDFSFD
+</pre>
+<pre>
+Planned release of the new version on 21-05-2025.
+</pre>
+<pre>
+GEMINI
+Creating the dev folder is required to use the Assist Code Gemini application as a VS Code extension, as outlined in the instructions at the following link.
+</pre>
+<pre>
+The recovery of missing data in the tables will be carried out in the May 21 release by manually triggering DAG `125479-4-TM-ORACLE`.
+</pre>
+<pre>
+To upload the file to the designated folder, we require the appropriate alias.
+</pre>
+<pre>
+Ciao Antonio,
+alla fine si è trattato di un incontro di knowledge sharing dove Scott ci ha mostrato una soluzione da loro adottata per il monitoraggio dei costi.
+Attualmente loro utilizzano una tabella statica per il mapping tra user_id e e-mail che aggiornano con cadenza periodica.
+Pryanka gli ha spiegato il nostro use case è legato ad un tema di sicurezza e che il nostro problema è quello di dover mantenere la tabella di mapping.
+Sembrebbe possibile però inserire una label/tag nei log che includa anche l'e-mail oltre all'user_id in modo che non sia necessaria una tabella di raccordo. Si tratta però di una richiesta che andrebbe discussa con il team di looker.
+</pre>
+<pre>
+Could you please trigger the DAG "125479-4-REPORT_PY_COUNT_OPE" twice? The parameters for each run are as follows:
+
+First run:
+
+JSON
+
+{"param": "N", "dt_inizio": "2025-01"}
+Second run:
+
+JSON
+
+{"param": "N", "dt_inizio": "2025-02"}
+</pre>
+<pre>
+Hi Surendhar,
+
+I've raised service request RITM45454545 to trigger the following DAG in production:
+
+DAG Name: 125479-4 countope
+
+Parameters:
+
+JSON
+
+{"param": "N", "dt_inizio": "2025-02"}
+</pre>
+<pre>
+Thank you, Surendhar,
+Since the run was successful, I kindly ask if you could trigger it one last time with the following parameters:
+125479-4-REPORT_PY_COUNT_OPE
+
+json
+Copia
+Modifica
+{"param": "N",  
+"dt_inizio": "2025-01"}
+The request is within the same SR, which can be closed once this is completed.
+Thank you.
+</pre>
+<pre>
+da quello che è emerso dalla call di ieri sembra che l'informazione relativa alla user_email riferita all'user_id non sia nativamente presente nel log looker e anche il progetto che ci hanno presentato utilizzava una taella di transcodifica tra user_id/mail che viene aggiornata settimanalmente.
+Hanno però detto che sarebbe possibile aggiungere anche il dato relativo alla mail ma è necessario fare una modifica lato google/looker per aggiungere la label/tag relativa alla user_email in modo da avere tutte le informazioni.
+
+Se la soluzione di integrare i log di google con l'informazione della mail non sarà percorribile in tempi brevi bisognarà procedere con la modalità pensata inizialmente che prevere la creazione di una tabella di raccordo da mettere in join con i log in modo da avere le info necessarie (timestamp, quary_eseguita, user_mail, user_id)
+
+Nel meeting non è stato trattato il tema del service-account necessario per la scrittura della tabella direttamente sul progetto 
+
+</pre>
+<pre>
+ciao Antonio,
+il run dei 2 script si è concluso correttamente
+I 2 file vengono inviati un di seguito all'altro mentre il primo file quello _ctrl.csv per il secondo la dag ha eseguito 2 tentativi un a distanza di 1hr (primo tentativo non andato a buon fine mentre il secondo ok).
+Questo per entrambi gli script.
+Pertando le tempistiche sono risultate essere le seguenti:
+Counterparty:
+dag_start: 10 AM utc
+file 1
+file 2
+
+Position:
+dag_start: 11 AM utc
+file 1
+file 2
+</pre>
+<pre>
+Hi Tarun,
+Today the DAG for the full load of the Oracle tables related to the Transaction Monitoring project was run.
+Could you please check if the DWH tables were loaded correctly?
+</pre>
+<pre>
+Hi Alexandru,
+We need to apply the same change on our side of the DAG in the upcoming release on June 5th, due to an unexpected issue with the DBExchange servers.
+Regarding the usual internal folder, it's simply about delivering the report to a Deutsche Bank internal network folder for internal use.
+</pre>
+<pre>
+Hi Surendhar,
+The DAG 125479-estraz_cus failed this morning.
+I've opened SR 545464654.
+Could you please re-trigger the DAG?
+
+Thanks a lot,
+Best regards,
+Bye
+</pre>
+<pre>
+Hi Surendhar,
+I see that the Spark session isn’t starting due to infrastructure issues.
+Would it be possible to mark the previous run as succeeded and try triggering the DAG again from scratch, to check if the issue has been resolved?
+
+Thanks!
+</pre>
+<pre>
+Normally, it only takes a few minutes, but I see that the job is currently stuck in the queued state.
+</pre>
+<pre>
+The DAG has failed again. I'll wait for the next scheduled run tomorrow morning to see if the issue persists.
+</pre>
+<pre>
+I triggered the DAG in production, and the results are pending insertion into the Oracle DWH.
+</pre>
+<pre>
+Task details:
+
+Load the attached public key into the secret named public_key_glober_secret.
+</pre>
+<pre>
+Yes, Sangram, I'm starting the task today.
+</pre>
+<pre>
+We are experiencing some issues with sending files via SFTP to dbexchange.
+In many cases, the transfers fail and multiple attempts are needed.
+Could you please let us know what parameters or guidelines we should follow to reduce the number of failed transfers?
+</pre>
+<pre>
+Hi Surendhar,
+
+The DAG 125479-4-REPORT_PY_EVENT_DRIVEN failed this morning at 12:00.
+I see that the Composer environment is now up and running.
+
+Could you please trigger the DAG again?
+
+I've opened a support request: SR RIT45454545.
+
+Thanks a lot!
+</pre>
+<pre>
+Effettivamente la versione rilasciata in produzione contiene ancora il filtro solo per gli estinti.
+Inoltro in allegato l'estrazione eseguita manualmente con la rimozione del filtro
+</pre>
+<pre>
+si tratta di tabelle piccole che in accordo con Antonio per ora continuiamo ad aggiornare su oracle (forse per ancora qualche run mensile). Verranno poi migrate
+</pre>
+<pre>
+Hi Tarun,
+I’ve requested the trigger of DAG 125479-TM-ORACLE to restart the loading process.
+</pre>
+<pre>
+Hi Tarun,
+there are some filtering issues with the weekly_tm table in the Oracle DAG, due to a different partitioning column. This will be fixed in the next release.
+
+Regarding the vw_fact_tm_weekly_health_check table,
+could you please confirm the name of the staging table and the correct naming of the expected .ok file, so I can include them in the next release as well?
+</pre>
+<pre>
+Is there another table that contains the word weekly, like stg_tm_weekly_health?
+Because Genovese also mentioned the table vw_fact_weekly_health_check in the incident, but it wasn’t included in the initial scope that had been provided.
+</pre>
+<pre>
+Hi all,
+I’d like to ask if the correct naming for the "OK" file for the table is the following:
+pwcc_tm_transaction
+</pre>
+<pre>
+Hi all,
+I’d like to confirm if the correct naming for the "OK" file that triggers the Control-M condition for the VM_HEALTH_TM table is:
+PWCC_TRANSACTION_TM_WEEKLY_HEALTH_CHECK_
+</pre>
+<pre>
+Hello everyone,
+Could you please confirm if the correct name of the "OK" file that triggers the Control-M condition for the VM_HEALTH_TM table is:
+PWCC_TRANSACTION_TM_WEEKLY_HEALTH_CHECK_?
+</pre>
+<pre>
+translate in english in a professional and clear way
+Hi Antonio,
+
+Based on the list of reports generated and sent via SFTP, I couldn't find any CSV file named dg_pc_001.csv.
+As per the most recent run, the credit card DAG produces the following files:
+- dg_pc_001a.csv
+- dg_pc_001b.csv
+- dg_pc_001c.csv
+- dg_pc_001e.csv
+Unfortunately, I'm unable to view the SFTP task log for March related to the DAG 125479-carte_Dicredito (maybe due to log retention).
+However, looking at the log for April (may run), it shows the following files were sent:
+- 001a → 001a.csv
+- 001a → 001b.csv
+- 001a → 001c.csv
+
+It might be worth checking on the SAS side whether the files were received correctly and whether any of them were discarded.
+</pre>
+<pre>
+ciao Enrico,
+l'operazione si potrebbe fare con python inserendo le variabili (dipende da che tipo variabili si tratta).
+Con l'sql penso si possano creare delle tabelle intermedie con i dati da utilizzare.
+In entrambi i casi andrebbe poi creato un dag per gestire le dipendenze dalle tabelle DQM
+</pre>
+<pre>
+Hi Dherraj,
+I wanted to ask if the release of the new public key for key_glober is planned for the next release.
+
+Thanks!
+</pre>
+<pre>
+si tratta della tabella con le segnalazioni storiche usata per il blocco degli ndg già segnalati
+</pre>
+<pre>
+Ciao Antonio,
+Christian per un problema su monitoring-tool ha chiesto se possiamo verificare se esiste qualche dag o processo su trusted per il caricamento parziale di un file.
+Ti ricordi se esiste un dag specifico che fa questa attività (ho chiesto anche a Davide se riesce a varificare)
+</pre>
+<pre>
+<<<<<<< HEAD
+ciao Walter,
+se vuoi ci sono dalle 11 alle 12
+=======
+Hi all,
+Could someone please approve the following PRs for python-reports and transaction-monitoring, as discussed during yesterday's GCP scope review:
+
+git1
+
+git2
+
+Thanks!
+</pre>
+<pre>
+Hi Sangram,
+I've just added the testing subtask. These are from older Jira stories.
+>>>>>>> 60e8b6c40ac373744d0b1d2778fa28cfd9f8f566
+</pre>
+<pre>
+ciao Enrico
+si tratta di un problema specifico per il modello tax_evasion per quello che riguarda la funzione che crea la colonna alert paese
+</pre>
+<pre>
+Hi Pryanka,
+I'm available now.
+The problem mainly concerns the deploy action in the Composer repo — it fails at a certain point, and currently it's not possible to deploy an individual branch.
+</pre>
+<pre>
+Here’s the PR — it’s not approved since I only made a few changes for testing in dev.
+</pre>
+<pre>
+Alright, thank you Pryanka. I’ll monitor the workflow to check if it’s functioning properly.
+</pre>
+<pre>
+Okay, thank you Pryanka — it seems to be working now.
+</pre>
+<pre>
+There are several others, but I tested these ones.
+</pre>
+<pre>
+Hi Janani,
+I'm currently unable to test it in the dev environment due to an issue with the reporting-engine.jar.
+Once the issue is resolved, I'll try submitting it again.
+</pre>
+<pre>
+Hi Janani,
+Yes, I'm currently testing the changes in the dev env
+</pre>
+<pre>
+Hi Lavania,
+
+We’ve done an initial check with Ankit and identified the issue in six tables. The problem is related to reading from the dqm_kqi table, which now includes a new column dt_period in the updated schema.
+
+Based on the knowledge transfer (KT), we need to run the following ALTER TABLE statements in production to add this new column:
+
+alter1
+
+alter2
+
+alter3
+</pre>
+<pre>
+The issue is caused by the presence of the SELECT * statement in the KQI query that generates the tables.
+</pre>
+<pre>
+Hi Sangram,
+We're unable to reproduce the error in UAT. Could you please provide us with the following Dataproc logs so we can investigate further:
+
+log1
+
+log2
+
+log3
+
+Thank you!
+
+</pre>
+<pre>
+No, I didn't update any table in UAT except for the PRG one.
+I think the issue with data_lake is due to 'bancll2d', which wasn't mentioned in Lavanya's email.
+</pre>
+<pre>
+Hi Sangram,
+In the Credito al Consumo log, we found an issue while reading the dwdtdbman1 table. It seems to be related to a corrupted Avro file in the partition for period=20250526.
+Could you please check if there’s any problem reading the table for the period 20250526?
+</pre>
+<pre>
+Okay, for the other DAGs, the issue might be resolved by running an ALTER TABLE to add the dt_period column to the tables. Could you please confirm if it's appropriate to open an SR with the CCO_DDSRTE group?
+Thanks.
+</pre>
+<pre>
+Could you please run the following ALTER TABLE statements first, and only after that, trigger the DAGs: DAG1, DAG2, and DAG3?
+</pre>
+<pre>
+Hi Surendhar,
+
+I’ve opened SR RIT56456 to trigger the following DAGs:
+
+125479 - trigger1
+with these parameters:
+{para1, para2}
+
+125479 - tm_oracle
+(no parameters)
+</pre>
+<pre>
+Hi Ankit,
+I raised SR RITM138338943 on Friday to request changes to the tables.
+I’m now waiting for the team to implement the updates.
+</pre>
+<pre>
+I haven’t received the email mentioned, and in order to proceed, the necessary changes to the tables need to be made as indicated in the SR. You could possibly reply in this way.
+</pre>
+<pre>
+Hi Anda,
+We’ve made the changes to the public key in production and started sending the files from Friday onward.
+Could you please check if they have been received correctly?
+
+Thanks!
+Best regards.
+</pre>
+<pre>
+Hi Tarun,
+On Friday, the staging tables were re-uploaded to fix the two that were empty.
+Regarding the incident, could you please check the dt_business_dt column? SAS is having trouble reading it due to what seems to be an incorrect format.
+Can you confirm if the issue originates from Oracle, or if it’s on the SAS side?
+
+Thanks!
+</pre>
+<pre>
+Hi Ashwini,
+I believe the instruction should be as shown below.
+However, Surendhar is already performing the operation.
+Once he’s done, I’ll ask you to clear the failed tasks in Composer.
+
+Thanks!
+</pre>
+<pre>
+Hi Surendhar,
+The instructions worked correctly.
+Could you please proceed with clearing the following tasks in the DAG related to 125479-4-DG_Only_KQI?
+
+Regarding the task for "credito al consumo", there was an issue with the dwhma table at period=20250526, where it seems a corrupted Avro file is present. This doesn't cause the process to fail, but it may be affecting the results.
+
+Let’s see if the issue occurs again with this new run—if it does, we’ll need to intervene directly on the table.
+
+Thanks!
+</pre>
+<pre>
+Hi Sangram,
+We’ve executed the table alteration instructions.
+Can we try resubmitting the DAG to check if the issue with the swhmm table has also been resolved?
+
+Thanks!
+</pre>
+<pre>
+Hi Tarun,
+On Friday, the staging tables were re-uploaded to fix the two that were empty:
+
+table1
+
+table2
+
+The other tables should not have any data population issues.
+
+Regarding the incident, could you please check the dt_business_dt column? SAS is having trouble reading it due to what seems to be an incorrect format.
+Can you confirm whether the issue comes from Oracle, or if it’s on the SAS side?
+
+Thanks!
+</pre>
+<pre>
+Hi Sangram,
+We’ve completed the table alteration as instructed.
+We can now try resubmitting the DAG to see if the issue with the swhmm table has been resolved as well.
+
+Thanks!
+</pre>
+<pre>
+Hi Ankit,
+I think we can reactivate and run the DAG — it might be getting disabled by default in UAT after deployments.
+</pre>
+<pre>
+Good morning everyone,
+I wanted to inform you that the monthly run of the Transaction Monitoring DAG was executed today.
+At the same time, the Oracle DAG started running a few minutes ago to reload the tables updated with the new month of May.
+The Oracle table load is expected to complete in about two hours.
+</pre>
+<pre>Hi Priyanka,
+I've prepared the following PR for the DAG related to Looker logs, including the addition of the looker_slug column.
+Could you please review and approve it?
+I've also added handling for cases where there are no log rows.</pre>
+<pre>
+Ciao Laura,
+ti inoltro in allegato la nuova estrazione event_driven.
+Nell'ultima estrazione automatica non ha estratto righe ne nella parte new ne in quella old in quanto l'estrazione precedente new non aveva estratto nessuna riga.
+Nella nuova release nell'old inserirò solo il filtreo a partire dal mese di maggio 2025.
+
+La nuova estrazione allegata contiene la sostituzione della tabella b22 e i filtri sullo stato.
+Le colonne sono le seguenti:
+- STATO_PRATICA: presenza di pratiche delle categoria indicate nella tabella actual
+- Colonne TIPO_PROFILO_NEW a DT_FINE_VALIDITA_NEW sono le colonne della nuova tabella di classificazione
+
+Le righe in rosso sono quelle che verrebbero escluse in relazione allo status mentre gli ndg nel perimetro polizze sono già stati esclusi.
+</pre>
+<pre>
+Hi Hanumantha,
+
+The latest data upload to the staging tables now includes the rows for May 2025. These were missing from the upload on June 6th and were generated by the transaction_monitoring DAG run on June 9th, 2025.
+
+We need to load this new data into the fact tables to keep them aligned with GCP.
+
+Best Regards,
+Andrea
+</pre>
+<pre>
+Hi Hanumantha,
+Could you please trigger the specified DAGs and pause the one mentioned?
+It hasn’t been done yet.
+</pre>
+<pre>
+Hi Anda,
+Since the end of last week, after the release, we’ve been sending the GPG and ctrl.csv files to DBExchange.
+Could you please confirm if the files are being received and if the encryption key appears to be correct?
+Thank you.
+</pre>
+<pre>
+Hi Pryanka,
+I briefly mentioned the changes to him in a meeting this morning, but we haven’t discussed them in detail yet. I’ll try to reach out to him by the end of the day.
+</pre>
+<pre>
+Yes, I think I’ll be able to complete the second DAG as well.
+</pre>
+<pre>
+Ciao Antonio,
+come ti accennavo ieri con Pryanka attualmente è stato definito un processo di questo tipo:
+attualmente nell'ambiente dev di monitoring_tool sono state create le seguenti DAG:
+- dag1 per l'estrazione dei log looker da mtool - schedulata giornalmente per le ore 8 PM
+- dag2 per l'arricchimento del tracciato con la mail dell'utente sulla base dell'user_id - schedulata giornalmente per le ore 9 PM
+Per quanto riguarda questo secondo punto attualmente il file con l'elenco degli utenti mi viene inviato via mail e da quello che ho capito in una prima fase sarà da caricare manualmente in produzione.
+Se il processo sarà questo bisognerà capire la fattibilità di tale processo sul progetto di monitoring tool.
+</pre>
+<pre>
+ I've taken a look at the tables you mentioned, and from an initial analysis, it doesn't seem like they're impacting the data_governance queries.
+</pre>
+<pre>
+Ciao Antonio,
+ti scrivo in quanto mi ha suggerito Antonio Sannino di chiederti per il progetto monitoring_tool.
+Stiamo sviluppando 2 DAG relativi a alla raccolta dei log privacy.
+Si tratta di attività stand-alone.
+Volevo sapere a chi potevo chiedere per l'approvazione della seguente PR
+</pre>
+<pre>
+Hi Akash, I'm available now if you'd like, or after 14:40 CEST
+</pre>
+<pre>
+Hi Janani,
+I don't think I tested it on the reporting-engine DAG, but I did try it on other DAGs where I saw that it doesn't work.
+</pre>
+<pre>
+Ciao Laura,
+inoltro in allegato la nuova estrazione basata sui criteri indicati per la settimana dal 09/06/2025 al 1306/2025.
+Per quanto riguarda l'ndg questo era presente sulla vecchia estrazione nelle sheet old poi non più estratto nelle successive estrazioni automatiche a seguito di filtri sulle date che non andavano oltre la settimana precedente.
+Il filtro per i clienti CIB attualmente non opera sulle pg collegate ma solo sulla segmentazione dell'ndg principale.
+
+Ciao.
+
+</pre>
+<pre>
+Hi everyone,
+I have another call overlapping at 2:00 PM. If possible, could we move today’s meeting to 2:30 PM?
+</pre>
+<pre>
+Hi Satyajit,
+Ignore the previous request — Surendar has already approved the PR.
+</pre>
+<pre>
+Ciao Marco,
+ti scrivo in quanto Antonio Sannino mi ha suggerito di chiedere a te in relazione al progetto monitoring tool.
+Stiamo sviluppando la parte relativa a log privacy e a breve dovremo eseguire il deploy di 2 dag sulla parte composer (PR già inserite).
+Volevo chiederti se potevi darmi indicazioni su chi posso contattare eventualmente (lato devops) per questo tipo di attività sul monitoring tool ed eventualmente in futuro per attività su su abilitazioni service-account.
+
+Ciao e Grazie
+</pre>
+<pre>
+------------------------------------
+Two new reports are needed, and the end-user specifically asked for them to be delivered as Excel files.
+
+We've set up tests for some code changes we made.
+
+The other changes we made are for existing reports:
+
+DT_Regolamento Report: This was a remapping.
+Event-Driven Report: We replaced the bancll2 table with bancllec and banclled.
+Sanction Report: We modified the date extraction logic and the transaction query.
+------------------------
+</pre>
+<pre>
+Hi Akshay,
+I wanted to ask about the daily extract I receive listing the Looker users from the Monitoring Tool project.
+Is this extract generated by filtering the Looker project logs to include only users querying BigQuery tables?
+</pre>
+<pre>
+Just to better understand — is the data in the extract retrieved solely by filtering Looker metadata, or is the user ID retrieved from the table we created (with logs and user_id) in the Monitoring Tool project?
+</pre>
+<pre>
+Hi Sangram,
+I've added just one report on the integrated hierarchy as requested by Enrico Aimone.
+It's a weekly report.
+</pre>
+<pre>
+Hi Janani,
+We’ve developed some DAGs to extract logs from the Monitoring Tool project.
+The query used to search the logs is in this PR — it filters for queries run by the Looker service account.
+The logs only contain the user_id, but not the user_email. To get the email, we need to map it from the Looker project, and we're currently discussing with the Looker team how to do that.
+</pre>
+<pre>
+Assertion 1: Verify that the retrieved rows match the expected ones.
+Assertion 2: Verify that the retrieved keywords/rows match the expected keywords/rows.
+Assertion 3: Verify that row ID3 is not extracted.
+</pre>
+<pre>
+Sample of rows on which to perform the keyword check.
+</pre>
+<pre>
+The function searches for a single keyword within the text, performing initial preprocessing that includes making the text case-insensitive and removing special characters.
+</pre>
+<pre>
+Hi Hanumantha,
+Regarding incident INC24343, I need to verify whether the Oracle tables listed below (checking just one is sufficient) — related to transaction monitoring — contain the column dt_date_business, which the user reports is causing issues in SAS.
+This is just to understand whether the issue is limited to the SAS side.
+
+Thank you.
+</pre>
+<pre>
+The user says they are unable to query the table because the field, although it's of type date, actually contains a string in the format YYYY-MM, like 2025-04.
+Is it possible to either change the data type to string, or keep it as date but convert the values to a proper date format, for example 2025-04-01?
+</pre>
+<pre>
+Hi Fahad,
+I was only trying to check whether Cloud Functions were enabled via the gcloud terminal.
+I attempted to run a simple hello_world command using gcloud, but I received an "access denied" error and immediately stopped all testing activities.
+It was just a test, but it's clear that this is not the correct way to deploy a Cloud Function.
+I’ll make sure to review the proper procedures.
+</pre>
+<pre>
+Thank you, Fadih.
+Just to clarify, the command I tried was intended to generate an upload URL in order to deploy the code by uploading it to a temporary Cloud Storage bucket via a signed URL.
+However, I believe the deployment should instead take place through the GitHub integration. I'll look into the correct procedure in more detail.
+
+The file I was trying to deploy was just a simple text file with the following lines:
+</pre>
+<pre>
+Hi Hanumantha,
+As an alternative, in the next release I will introduce a change in the process of populating the staging tables by modifying the mese_rif field—on which the dt_business_date_dt field is based—so that it contains a string in the correct date format (YYYY-MM-DD), but only for the tables specified by the user. I will first run some tests in UAT.
+</pre>
+<pre>
+We have completed the repopulation of the tables; please proceed with the verification.
+As for the malformed field related to incident INC434343, we will implement the necessary changes in the next release.
+</pre>
+<pre>
+Ciao Enrico,
+penso che le competenze di base siano quelle relative a:
+ - SQL (bigquery)
+ - Google cloud environment (gcloud sdk)
+ - python
+ - Apache Airflow (composer)
+ - git (code versioning)
+ - Apache Spark (Dataproc)
+	- pyspark per lo sviluppo di script python
+	- eventualmente scala
+Poi ci sono servizi più specifici google come:
+ - cloud function
+ - dataflow
+
+</pre>
+<pre>
+Hi Janani,
+I was referring to the monitoring tool project's BigQuery, though it might extend to the PWCC project later.
+
+
+</pre>
+<pre>
+Yes, I asked who was handling development on MTool, and I was told it's Davide Cui.
+I believe Antonio is working on granting the PWCC project's Composer service account access to the MTool logs, so we can proceed with developing the DAG on the PWCC project.
+However, I’m not sure how long the process will take to complete.
+</pre>
+<pre>
+Hi all,
+This morning, we’re experiencing issues with the following DAGs: the tasks in Airflow are failing despite the corresponding Dataproc jobs having completed successfully.
+We would appreciate it if you could look into the issue.
+</pre>
+<pre>
+Details of the comprehensive test:
+The test lists were automatically generated by generative AI (Google Gemini) to cover as many keyword search scenarios as possible.
+
+The VASP model includes a simple preprocessing step applied to the columns under validation.
+The specific columns vary depending on whether the operations are IN or OUT.
+</pre>
+<pre>
+The tests are integrated into the SDLC deployment pipeline in the Google Cloud DED environment.
+</pre>
+<pre>
+We used Google's generative AI (Gemini) to simulate the bonifici table, on which the keyword search from the official VASP list for transaction monitoring was performed (data.csv file).
+
+To run the test, we asked Gemini to generate the expected result based on the provided requirements.
+
+We applied the transaction monitoring keyword search functions to the simulated bonifici table.
+
+We created unit tests to verify that the functions produced the expected result, as defined in the expected.csv file.
+</pre>
+<pre>
+ciao Enrico,
+per Morm di transaction-monitoring ti chiedo se hai una della documentazione da poter fornire per la data-quality su dwh (generico sui dati in origine oltre a quella specifica per TM).
+</pre>
+<pre>
+Could you please mark the Dataproc step as succeeded for the following DAG run dated 20-06-2025?
+</pre>
+<pre>
+Could you please mark the Dataproc step as succeeded for the following DAG run dated 20-06-2025?
+The task is currently marked as failed, even though the Dataproc job completed successfully.
+For reference, I have opened support request SR 3434343.
+</pre>
+<pre>
+Hi Igor,
+The DAG we are currently using is the following:
+looker_bigquery.py, which queries the logs of the dev-mtool project.
+
+The DAG you mentioned, which uses the dblooker project, returns a gcloud.logging.read PERMISSION_DENIED error,
+whereas the looker_bigquery DAG (file: looker_bq_queries) works correctly.
+</pre>
+<pre>
+Hi Surendhar,
+The DAGs ran successfully.
+Thank you.
+</pre>
+<pre>
+The lists were generated prior to the test using Gemini's generative AI. Gemini was prompted to create two CSV files for the test.
+
+The prompt provided was:
+
+"Using the official keyword list for insurance, along with exclusion parameters and the search function, create a list of transactions with the expected format for transaction-monitoring transfers. Based on the above requirements, also create a table with the expected results."
+
+This test aims to verify that applying the searchML function accurately extracts the rows present in the extracted.csv file.
+</pre>
+<pre>
+Hi Laraib,
+I confirm that the alert file was uploaded on June 9th, 2025.
+
+Best regards.
+</pre>
+<pre>
+The following command had been implemented in the code, which does not attempt any modification but simply retrieves the account's permissions.
+However, the command failed and will not be executed again.
+Feel free to contact me if you need any further clarification.
+</pre>
+<pre>
+Hi Davide,
+
+Yes, this was a test carried out in the development environment as part of the PG2 log development work.
+The gcloud command included in the code was used solely to query the permissions of the sa-composer service account for testing purposes.
+
+The development involves data integration between two separate projects (mtool and dblooker).
+The code was designed only to retrieve information, not to perform any modifications. In any case, as shown in the logs, the process returned an error and will not be repeated.
+
+The command used was in fact gcloud projects get-iam-policy, which is strictly for querying assigned roles and permissions.
+</pre>
+<pre>
+Ciao Davide,
+esatto si tratta di un test eseguito in dev nell'ambito dello sviluppo dei log PG2 tramite dag composer.
+L'istruzione gcloud get-iam-policy inserita nel codice era servita per interrogare i permessi del sa-composer alle sole finalità di test.
+Lo sviluppo infatti prevede l'integrazione di dati tra 2 progetti diversi (mtool e dblooker).
+Il codice aveva solo finalità di interrogazione e non di modifica in ogni caso il processo (come si evince dai log) ha restituito un errore e non sarà più replicato.
+
+Il comando utilizzato è infatti gcloud project get-iam-policy che ha finalità solo di interrogative (roles and permission assigned)
+
+Cordiali Saluti
+</pre>
+<pre>
+This is to clarify that the gcloud projects get-iam-policy command was used as part of a controlled test conducted in the development environment during the implementation of the PG2 log feature.
+
+The command was embedded within a Composer DAG and was used solely to retrieve the IAM policy associated with the sa-composer service account. Its exclusive purpose was to verify permissions as part of a test scenario — no modifications or write operations were performed.
+
+This step was necessary to support development work involving data integration between two separate GCP projects (mtool and dblooker). Given that cross-project access is involved, it was essential to validate which permissions were already granted to ensure proper handling during future integration.
+
+It's important to note that:
+
+The command in question (gcloud projects get-iam-policy) is strictly read-only.
+
+The process resulted in an error, as confirmed by the logs.
+
+The operation was part of a one-time test and will not be repeated.
+</pre>
+<pre>
+Hi Alina,
+
+On our end, the files are being sent via SFTP to DBExchange, and the process completes successfully for both the counterparty and position files.
+
+Based on the information available to us, there was an open incident concerning the loading of the position file into the folders you mentioned.
+
+For this reason, I’m looping in @Anda Florea and @Christian to see if there are any updates regarding the resolution of this issue.
+
+Below are the logs from the last two transfers to DBExchange from our side:
+
+log1
+
+log2
+</pre>
+<pre>
+For this reason, I’m reaching out to @Anda Florea and @Christian to check if they have any updates on the resolution status of the issue.
+</pre>
+<pre>
+Thank you, Alexandru.
+
+On the GCP side, the files are being sent to the same folder for both the counterparty and position files.
+Today's transfer was also completed successfully:
+
+file1
+
+file2
+
+We will go ahead and open an incident with DBExchange to further investigate the issue.
+</pre>
+<pre>
+Missing Files - posion.csv and posi2.csv on DBexchange (dbb.us.db.com)
+
+This email concerns an issue with file transfers to your DBexchange server (dbb.us.db.com).
+
+We regularly send the files posion.csv and posi2.csv to the /globerR destination folder on a daily basis. Despite our logs showing that these transfers are successfully completed, the end-user reports not receiving them.
+
+Our standard delivery time for these files is approximately 7:15 AM (UTC), with retrieval typically occurring around 12:00 PM (UTC).
+
+We kindly request your urgent assistance in investigating why the aforementioned files are not reaching the end-user.
+</pre>
+<pre>
+l’estrazione è attualmente pianificata per la prima settimana di luglio.
+
+Durante le attività di test, non siamo in grado di replicare esattamente l’insieme di NDG selezionati nell’estrazione di aprile, in quanto si tratta di un campionamento casuale. Ogni esecuzione del processo genera, per sua natura, un campione differente.
+</pre>
+<pre>
+DAG triggered upon completion of the monthly DAG 124354-transaction-monitoring.
+This process is responsible for loading the individual model tables into the Oracle datamart for use by the AFC team.
+</pre>
+<pre>
+This issue concerns DBExchange, where the end user reports not receiving a specific file, despite regularly receiving another file in the same folder.
+Our logs do not show any errors, and the file appears to have been sent correctly.
+The end user processes the data at 12 PM UTC.
+We need to understand whether the file is being deleted or if, for some reason, it is not reaching its destination.
+</pre>
+<pre>
+Monitoring of the DAGs is carried out according to the standard procedures defined in NAR 125479. It includes sending a summary email to the L2 team multiple times a day, highlighting any failed DAGs and the need to investigate potential technical issues.
+Below is an example of the email format used.
+</pre>
+<pre>
+Hi Tarun,
+Apologies, but I’m not familiar with that table name
+</pre>
+<pre>
+Subject: Recreated Files
+
+Hi Alina,
+I’m sharing the recreated files, built using the same functions as in production.
+Just a note—I don’t have access to download from production and would need to ask someone if needed.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+**Subject: PySpark AWP Issue – Package Incompatibility on Dataproc Cluster**
+
+We are writing to report a package compatibility issue within the Dataproc cluster.
+
+When running the script, importing the `pandas` package—or other Google Cloud packages such as `bigquery`, which depend on `pandas`—results in the following error:
+
+The issue appears to stem from an incompatibility between the versions of `numpy` and `pandas` currently installed on the cluster:
+
+* `numpy`: 3.2.1
+* `pandas`: 1.5.2
+
+We kindly ask if it's possible to resolve this issue.
+
+Thank you.
+
+</pre>
+<pre>
+To be fixed in the next release on July 3rd, as per the following JIRA task.
+</pre>
+<pre>
+Updates to be made to the process:
+
+Add a function to retrieve the latest file in the bucket folder
+
+Apply the change in both reporting-python and Composer
+
+File data should be taken from the Excel file, not from the DAG
+</pre>
+<pre>
+Hi Pryanka,
+Would it be possible to move today's call to after 2:30 PM?
+
+Thanks.
+</pre>
+<pre>
+Hi Alina,
+Attached are the CSV files before encryption.
+</pre>
+<pre>
+Hi Sangram,
+I've started the checks again. Another approval is needed now — could you please approve it?
+</pre>
+<pre>
+Hi Surendhar,
+Could you please re-approve the following PR?
+There was an issue with the checks, which I've now fixed.
+</pre>
+<pre>
+The Pull Request is now approved and merged.
+The issue was with a template I had set up for some tests in UAT.
+</pre>
+<pre>
+Hi Sangram,
+I saw that the DAG related to data_governance failed at the file_exists_check step.
+The file arrived in the bucket the following day.
+I've opened SR 12564646 to clear the failed task from 05/07/2025.
+</pre>
+<pre>
+Regarding DAG 125479-4-kqi dg, please clear the file_check task so the run can continue.
+</pre>
+<pre>
+Hi Sangram,
+I noticed that the DAG related to data_governance failed at the file_exists_check step.
+This happened because the file for 2025-07-05 only arrived in the bucket on 2025-07-06.
+I've opened SR 12564646 to request clearing the failed task from 05/07/2025
+</pre>
+<pre>
+Hi Sangram,
+The DAG failed on `credto_consumo`.
+I believe the issue is related to these two tables.
+To be sure, could you please share the following Dataproc log:
+`1244-job1`?
+</pre>
+<pre>
+I need to ask the L2 team since Sangram doesn't have access to production.
+I'll check with Hanumantha right away.
+</pre>
+<pre>
+I'll check why the column isn't being extracted and, if needed, replace it with a null value.
+The fix will be applied starting from the next release on 16/07.
+</pre>
+<pre>
+I believe so, but I'll let you know if any issues come up.
+I think I'll need to check the CSV file generation step.
+</pre>
+<pre>
+I'm reaching out to the L2 team, as it seems no one currently has access to the production logs.
+However, they were supposedly given temporary access and are currently checking.
+I believe the issue in production is related to the following two tables:
+
+* tab1
+* tab2
+
+These tables likely need the `dt_period` column added, as both have become native tables.
+
+</pre>
+<pre>
+The issue is related to these two tables: ocs_dwh1 and ocs_dwh2, which now include a new column called dt_period.
+The query in the Excel file uses SELECT *, and the tables were modified on 2025-07-05.
+</pre>
+<pre>
+I believe the latest run was on 2025-06-09, while the changes to the tables were made on 2025-06-13.
+</pre>
+<pre>
+Hi Hanumantha,
+I've opened this SR to address the issues with DG.
+The following DAGs need to be triggered:
+
+* dag1
+* dag2
+
+—and only after these have run, then trigger:
+
+* dag3
+
+</pre>
+<pre>
+Hi Sangram,
+The changes to the table won’t fix the problem with the DAG.
+Is there any way to get access to the Dataproc logs?
+Roberto doesn’t have access either.
+</pre>
+<pre>
+Ciao Alessandro,
+ho provato a fare dei controlli e sulla base delle logiche del report ossia l'estrazione del flag_consulenza dal bancll0c non risultano righe in consulenza per il campione di ordini verificati.
+Andando sulla tabella target_market delle righe vengono trovate, non ho accesso a FEU e non riesco a verificare se le risultanze della tabella target ma
+</pre>
+<pre>
+Hi Sangram,
+I finally checked the logs, and the DG DAG for the current month has now completed successfully.
+</pre>
+<pre>
+Hi Hanumantha,
+The DAG has now completed successfully.
+</pre>
+<pre>
+Hi Sangram,
+incident INC53453 concerns the loading of the transaction monitoring tables on Oracle.
+This afternoon’s Oracle DAG run will include the latest release changes. Once completed, the incident will be moved to “Solved Proposed” status.
+</pre>
+<pre>
+Ciao Antonio,
+abbiamo fatto la call oggi relativamente a looker privacy:
+- attualmete Aksai sta eseguendo lo sviluppo della parte cloud_function e necessita di assegnare i seguenti role ai service account (cloud function) di dblooker data_viewer and jod_user
+- successivamente dovrò creare una view la quale verrà mappata con i dati necessari
+	- user_id / timestamp/query_slug
+- dare i permessi a tale view
+</pre>
+<pre>
+Hi Surendhar,
+I've opened SR RIT64546 to trigger this DAG: 12579fgsgd with the following parameters: {d1}.
+</pre>
+<pre>
+HHi Akshai,
+Please note that the table to be used is pwcc_project.tab_name instead of the ones from the monitoring tool.
+As discussed yesterday, our Composer service account is: sa-devsfsd.
+</pre>
+<pre>
+The DAG for loading the transaction_monitoring tables into the Oracle staging environment has successfully run for this month, including data for June 2025 (2025/06).
+This run also applied fixes to the tables that had issues with the mese_rif field.
+I've updated the incident status to solved_proposed.
+</pre>
+<pre>
+The fix related to the mese_rif field has been applied to the specified tables.
+Please check if you can now run queries on the tables.
+</pre>
+<pre>
+Hi Igor,
+Please find below the name of the new log_privacy table for which the service accounts need to be granted access (to be managed via Terraform):
+dblooke.tabella.ta
+</pre>
+<pre>
+Allo stato attuale non riusciamo ad individuare delle anomalie.
+Il processo si è concluso correttamente.
+Rileviamo che le righe nelle tabelle intermedie vasp (tabelle senza filtri di importo) sono sensibilmente inferiori rispetto al mese precedente
+
+Sono però inferiori anche gli importi delle transazioni individuate che dunque vengono filtrate nella fase successiva di calcolo delle priorità
+
+Le numeriche sulle tabelle temp sembrano in linea con i mesi precedenti
+
+La regola 1B è quella che in genere dava più alert attualmente gli importi delle transazioni sono mediamente più bassi e non superano la soglia valore_minimo e importo_totale
+Le righe individuate sono sensibilmente inferiori rispetto ai mesi precedenti
+</pre>
+<pre>
+Hi Ankit,
+The issue is probably with the tbl_eap table, which I modified during the last test. I dropped the dt_period column because I believe that in UAT, some raw tables haven't been migrated to native yet.
+</pre>
+<pre>
+Yes, the DAG is working in UAT, and the issue isn’t with the DAG itself — it runs fine in Composer — but rather with the raw table schemas in UAT being different from those in production.
+</pre>
+<pre>
+As for the activity on log_privacy, I don't think there are any issues.
+</pre>
+<pre>
+Per poter fare un unico invio bisognerebbe creare un dg ad hoc in quanto non mi sembra che in reporting-engine ci sia questa opzione.
+Se necessario nella release di fine giugno si può procedere alla creazione della nuova dag.
+
+Attualmente stiamo verificando come procedere in quanto ci sono delle incongruenze sul bancll35 che stiamo verificando penso che si potrà risolvere dopo la prossima release
+</pre>
+<pre>
+Hi Ashwini,
+the file PWCC_HEALT.ok refers to the loading of the staging table str_tm_tm_alert_health_check3, followed by the execution of the following jobs:
+
+Job 1
+
+Job 2
+</pre>
+<pre>
+The data was loaded into the staging table on 2025-07-09.
+I believe that if the data was loaded correctly, the file can be moved.
+</pre>
+<pre>
+Hi Tarun,
+All good on my end — I've already tested this week's release, so feel free to proceed.
+</pre>
+<pre>
+Hi Laraib,
+The file related to the June 2025 alert was uploaded on July 10, 2025.
+</pre>
+<pre>
+Ciao Christian
+Allo stato attuale in dev è stata sviluppato il dag + log_sink in ambiente di dev. Devo testare la parte di mapping che penso di completare entro domani.
+Siamo in attesa che Anshul completi lo sviluppo della parte su progetto dblooker (temporaneamente utilizzeremo file csv per recuperare gli user_id) ha già richiesto le autorizzazioni alla lettura della nostra tabella.
+Il tutto dovrà poi essere replicato in prod e uat.
+Antonio mi dice che è necessario inoltre l'onboarding su ddh. Chiederò a Marco DeAntoni al suo rientro.
+
+Ciao.
+</pre>
+<pre>
+Lo sviluppo del dag è stato portato sul progetto pwcc con lettura della tabella dei log sul progetto mtool.
+Usando il progetto pwcc potrebbe essere necessario eseguire un altro onboarding altrimenti bisognerà eventualmente dare accesso al sa-composer di pwcc al bucket su mtool
+</pre>
+<pre>
+Hi everyone,
+Would it be possible to move today’s call to 3:00 PM CEST?
+</pre>
+<pre>
+<<<<<<< HEAD
+Hi Pryanka, okay thanks — I'll give it a try later this morning.
+=======
+Ciao Luca,
+il dag è stato impostato e stiamo attendendo il deploy in produzione della release.
+Se tutto va bene in termini di naming del file ecc. alle 11 di ogni giorno il file arricchito dei dati del gestiore viene inviato via mail alla seguente mailing list: ssssss
+</pre>
+<pre>
+The end user has reported that the following Oracle fact tables related to transaction_monitoring do not appear to be updated following the latest upload of the staging tables on the 9th of the current month:
+
+tab1
+
+tab2
+
+tab3
+
+Please advise if it is necessary to proceed with re-uploading the staging tables.
+</pre>
+<pre>
+Ok, I'm available until 3 PM CEST, and then again after 4 PM CEST.
+</pre>
+<pre>
+Ok, no problem. In the meantime, I'll try adding the join with the table from the DBLooker project.
+</pre>
+<pre>
+Issue with DAG – Request for Manual Report Download from Production
+Good morning Team,
+
+We need to manually download a file from production in the coming days, as we are currently experiencing an issue with a DAG that is unable to generate a report.
+Could you please let us know the procedure to follow in order to request a manual download of a file from production?
+
+The file will need to be downloaded manually until the DAG is fixed in the next release.
+
+Best regards.
+>>>>>>> 0a8014e74d6b2654d95221d1e71dae016e1449d8
+</pre>
+<pre>
+Hi Pryanka, okay thanks — I'll give it a try later this morning.
+</pre>
+<pre>
+Hi Akshay,
+I reran the DAG a short while ago, but no looker_user_id was retrieved for user 69.
+Could you please check whether the db-lok_tab table is populated correctly?
+</pre>
+<pre>
+<<<<<<< HEAD
+nibal,
+
+A script issue is currently blocking the generation of a business report.
+Would it be possible to include the necessary fix in next week’s release to avoid delays until month-end?
+
+Thank you for your support.
+=======
+Hi Akshay,
+
+It looks like it's working now, but I need to revise the query because the same user has been extracted multiple times. I’ll either need to apply a DISTINCT on the user_id or include the date/timestamp in the join key.
+<<<<<<< HEAD
+</pre>
+<pre>
+Buongiorno Agnese,
+in questo momento il processo di invio alla Vs casella mail ha ancora una parte di gestione manuale (il file ci arriva invece correttamente).
+Abbiamo preparato una fix per sistemare il problema riscontrato in fase di lettura del file e siamo in attesa dell'autorizzazione per il deploy se possibile in questa settimana.
+
+Ciao.
+=======
+>>>>>>> d5e995f60c3afe2cf7f50864f1e127064a3d161a
+</pre>
+<pre>
+Request to Include Fix in Next Week’s Release
+Hi Anibal,
+Due to an issue in a script that is currently preventing the generation of a business report, a code fix is required.
+Would it be possible to include this fix in next week’s release, in order to avoid leaving the report unavailable until the end of the month?
+</pre>
+<pre>
+Hi Ionela,
+
+Yesterday, the updated position_wm.csv report was sent to DBExchange, including the fixes for the issues identified in the columns.
+Could you please confirm that the file was received correctly?
+
+Best regards,
+Andrea
+</pre>
+<pre>
+We’ve updated the query in production with the July 16th release.
+The next run is scheduled for the 19th.
+Please review the new results when available.
+</pre>
+<pre>
+Abbiamo aggiornto la query relativa al report.
+Il prossimo run è schedulato per il 19/07/2025 dal quale si potrete verificare se l'implementazione risulta corretta.
+
+Cordiali Saluti.
+</pre>
+<pre>
+df = df.withColumn("filtered_array", filter(col("array_col"), lambda x: (x.isNotNull()) & (x != "")))
+</pre>
+<pre>
+Please trigger DAG 125479-4-DATAVAULT with the configuration {"par1": "arg1"}.
+
+Once it completes, please mark the dbaction task of DAG 125479-4-REPORT_PY_DBACTION as successful.
+</pre>
+<pre>
+Hi Hanumantha,
+
+I was expecting the job to fail, but the file was generated correctly. I’m planning to address the issue with a fix in the next release.
+
+In the meantime, could you please mark the dbaction task in DAG 125479-4-DBACTION as successful? This will allow the process to complete by sending the file to the end user.
+
+Thank you again for your support.
+</pre>
+<pre>
+Hi Hanumantha,
+
+I wanted to ask if it would be possible to execute the following DAGs with the corresponding steps and parameters:
+
+DAG: adhocchecks
+Execute a file copy from one bucket to another:
+gsutil cp gs://bucket1/path/to/file gs://bucket2/path/to/file
+This step is necessary to ensure the file is available for the script that it reads only the last file in the bucket ed essendo pervenuto nei giorni precedenti è necessario copiarlo in un'altra cartella
+
+DAG: 125479-4-DATAVAULT
+Please trigger this DAG as part of the workflow.
+{par1
+par2
+par3}
+
+DAG: 125479-4-DBACTION
+DAG: 125479-4-DBACTION
+Kindly clear the send_Email task so that the newly produced file can be sent.
+</pre>
+<pre>
+The issue is still related to the dbaction DAG in handling the file that arrived on Saturday. It will be resolved in the upcoming release.
+</pre>
+<pre>
+This step is necessary to ensure the file is available for the script, which processes only the most recent file in the bucket. Since the file was received a few days ago, it needs to be copied to another folder so it can be correctly picked up by the script.
+</pre>
+<pre>
+There were a few sentences in Italian in the last post.
+Here is the correct version:
+</pre>
+<pre>
+Request for Approval – DBACTION Report Fix
+
+Hi Anibal,
+
+As mentioned in the previous email, I have prepared the Pull Request related to the fix for the DBACTION report.
+We kindly ask for your approval to proceed with an exceptional release this week to deploy the fix.
+In the meantime, we are manually managing the DAG run in production with custom parameters, with support from the L2 team.
+
+Thank you.
+</pre>
+<pre>
+Hi Hanumanntha,
+
+I saw that the file was created for the DAG you triggered.
+Could you please mark the dbaction step of the DBACTION DAG as successful to trigger the sending process?
+
+Thank you!
+</pre>
+<pre>
+I haven’t received any confirmation yet.
+This is the response I got when I made the request last week.
+I'll try reaching out to Anibal on teams.
+</pre>
+<pre>
+Hanumantha just replied a short while ago with the go-ahead to proceed.
+</pre>
+<pre>
+Hi Igor,
+
+These are the activities carried out for the log sink on the monitoring tool project db-dev-mtool:
+
+Creation of the log_sink to a BigQuery table
+
+Granting access to the table for the service account of the pwcc project
+
+Subsequently, the same activities were performed for the dblooker part, specifically for the log_user table.
+</pre>
+<pre>
+Yes, it’s working fine in dev.
+We need to modify the log sink query because the Looker service account used in UAT/PRD is different from the one used in DEV.
+I need to check with Akshay on how to make this change.
+>>>>>>> 7704ca8661f519a03650531204a27fa3f0b97967
+</pre>
+<pre>
+Okay Sangram, do I need to recreate the branch that was merged into UAT?
+</pre>
+<pre>
+I dati presenti nel report si riferiscono alla situazione alla data del 22/07/2025 dove la proposta risultava confermata.
+Probabilmente avremo una situazione aggiornata nel report di domani. 
+Aggiumgo @Federica alla mail per eventuali altri approfondmenti.
+
+Ciao.
+</pre>
+<pre>
+Subject: Issue with Oracle Fact Tables Not Updating After Latest Staging Upload
+
+The end user has reported that the following Oracle fact tables related to transaction_monitoring do not appear to have been updated following the latest upload to the staging tables on the 9th of this month:
+
+tab1
+
+tab2
+
+tab3
+
+Please confirm whether it is necessary to proceed with re-uploading the staging tables.
+</pre>
+<pre>
+Do I need to approve the PR?
+I saw that one of the SDLC checks failed.
+</pre>
+<pre>
+Hi Ankit,
+we’re planning the move to UAT/PRD for the log sink, replicating what we did in dev.
+In dev, we’re using the following query:
+log1
+service account
+Could you please provide the dblooker service accounts that appear in the logs as executing queries on behalf of users in UAT and PROD?
+</pre>
+<pre>
+Hi Surendhar,
+in relazione alla SR rti424322 and the dag 125479-4-DBACTION
+It's now possible to mark the dbaction step as successful so that the send_email task can run.
+</pre>
+<pre>
+Hi Carlo,
+
+I tried Sangram’s suggestion, but I’m getting the same result with the authentication error.
+</pre>
+<pre>
+Subject: Authentication Failed – DataOne Production Server
+
+We are experiencing issues sending a file via SFTP from the GCP production environment to the following server:
+DataOne
+using the following parameters:
+
+param1
+
+param2
+
+param3
+
+Reference: IN1674_02
+
+We are receiving the following error:
+Authentication error
+</pre>
+<pre>
+Subject: Request for Composer External IPs for DBExchange Whitelisting
+
+We’re experiencing issues sending reports via SFTP through DBExchange.
+The open incident indicates that the IP addresses used by Composer to connect are not whitelisted on the DBExchange side.
+
+Could you please provide the list of Composer’s external IPs so we can request whitelisting and resume report delivery?
+
+In recent days, the following IPs have attempted to connect:
+
+100.80.92.217
+
+100.80.432432
+
+Thank you,
+</pre>
+<pre>
+Hi Alain,
+I confirm that the SFTP transfer worked correctly in today’s run.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+Chanfy Cahfry, who is now handling the incident, was the one who requested the IPs be whitelisted.
+</pre>
+<pre>
+Subject: Authentication Issue – IP Address Verification Request
+
+Hi Chavalny,
+
+We're currently performing some checks on the servers used by Composer, and at the moment, it appears that the IP addresses are starting with 10.
+
+The error we're encountering is related to authentication failure.
+
+We've experienced the same issue again today. Attempts to connect were made at the following times:
+
+attempt1
+
+attempt2
+
+attempt3
+
+attempt4
+
+Could you please check whether the IP addresses from which you're receiving the connections always start with 100?
+
+Best regards,
+</pre>
+<pre>
+Hi GCP Firewall Team,
+
+Since July 28th, 2025, we've been experiencing issues connecting to the DbExchange server via Composer when attempting to send files over SFTP.
+
+According to the DbExchange team, the IP addresses from which our GCP Composer environment connects are not currently included in their whitelist.
+
+We have checked the relevant service tags, but we are unable to find the IPs shown in the connection logs as being rejected by the DbExchange server.
+
+We’d like to clarify that the SFTP connection to the DbExchange server is successfully established, but the server is rejecting it due to our IP address (from the Composer production environment, project: dbf-fsddf-fsdfds) not being whitelisted on their side.
+
+Could you please help us retrieve the list of IP addresses used by Composer for the above project, so we can provide it to the DbExchange team for whitelisting?
+
+The IPs currently being rejected by DbExchange are:
+
+ip1
+
+ip2
+
+ip3
+
+Thank you in advance for your support.
+
+Best regards,
+</pre>
+<pre>
+<<<<<<< HEAD
+Si tratta di uno script implementato tempo fa e essenzialmente l'elenco degli NDG viene estratto dall'anagrafe facendo riferimento al flag TIPO_CITTADINANZA 2 E 4 ossia:
+2 - cittadinanza italiana, residenza estera
+4 - cittadinanza estera, residenza estera
+Da questo perimetro iniziale vengono poi popolati i campi relativi ai saldi alle cointestazioni e n_rapporti
+
+L'anno scorso è stato aggiunto uno step di campionamento e la creazione di altri 3 file distinti che estraggono i dati per business line
+=======
+Hi Chalavanthy,
+
+Here is the list of IPs we used in Composer:
+
+CIDR range: 100.80.92.192/27
+IP range:
+From: 100.80.92.193
+To: 100.80.92.222
+
+Let me know if you need anything else..
+</pre>
+<pre>
+Thanks, PavanKumar. Let’s monitor tomorrow’s run to see if the connection issue is resolved
+>>>>>>> fd7ad6cd5995292ebeca21e5ae435cddfe8e62af
+</pre>
+<pre>
+Hi Ionela,
+The run executed this morning worked correctly for both the counterparty and position_wm reports, which have been successfully sent to DBExchange.
+Yesterday, the issue related to the whitelist of our IP addresses was resolved.
+</pre>
+<pre>
+Hi Janani,
+When we try to run the oracle_kqi DAG with the new JAR file, we encounter an error related to credentials (Secret Manager):
+[insert error message here]
+At the moment, we're not sure whether the issue is specific to the development environment or if it's caused by the JAR file itself.
+
+Could you please help us look into this?
+</pre>
+<pre>
+Hi [Name],
+
+Yes, I’m interested in participating in the analysis of the Python development environment.
+Let me know how to proceed.
+
+Best,
+</pre>
+<pre>
+Hi Hanumantha,
+
+I’ve raised a service request to add a column to the KQI tables, as the KQI DAG is currently failing.
+
+DAG: dag_ad-hoc_checks
+Parameters: {args: 1}
+
+After that, it will be necessary to clear the tasks "credito al consumo" and "carte di credito" in the KQI DAG to verify the fix.
+</pre>
+<pre>
+Ciao Alberto,
+il processo implementato prevede lo scarto di quelle segnalazioni aventi data non inclusa nella range di validità del profilo professional.
+Nel caso indicato la controparte 
+il profilo professional risulta avere data_validità compresa tra yyyy-mmm-dd e yyyy-mm-dd
+Ti allego le segnalazioni del foglio old che sono state scartate sulla base di questi criteri.
+Dobbiamo verificare come identificare il profili bloccati all'interno del nuovo tracciato in quanto riporta una data fine validità.
+</pre>
+<pre>
+Hi Ashwini,
+I’ve reviewed the past 30 days, and everything is working as expected.
+There was an issue on August 2nd, 2025, when the data-proc job failed and was retriggered a few days later — but that was the only occurrence. All subsequent runs have completed successfully.
+There’s no need to recover that date, as each run sends the JSON file to be overwritten.
+
+Regarding the schedule: in Airflow, the execution date refers to the start of the data interval, which means a daily DAG scheduled for August 3rd processes data for August 2nd. This is expected behavior by design.
+</pre>
+<pre>
+Hi Ashwini,
+
+I'll need to change the current schedule from a cron expression to @daily. I can make this change in the next release on August 28th.
+
+I'll run some tests in the development environment and get back to you.
+</pre>
+<pre>
+Hi Team,
+today the staging tables for transaction monitoring have been loaded.
+Please check or re-trigger the loading of the following fact tables, which were not previously updated:
+
+table 1
+
+table 2
+
+table 3
+
+table 4
+
+I have opened SR RIT4543543.
+
+Thank you,
+Andrea
+</pre>
+<pre>
+I accidentally pressed the cancel workflow button, but the deployment process was completed anyway.
+</pre>
+<pre>
+Hi [Name],
+
+The DBlooker BigQuery log extraction relies on queries against Cloud Logging. The main potential impact for our project concerns changes in the parameters used in the log_sink, particularly principalEmail.
+
+Currently, in the mtool project, we use the following parameters:
+
+principalEmail
+
+resource.type
+
+logName
+
+I also reviewed the new service account impersonation setup. In the monitoring tool project, impersonation is not yet implemented. However, I checked the pwcc UAT project (125479), where it is in place with the same parameters (principalEmail, resource.type, logName).
+
+From my analysis, in the new impersonation setup a new service account is created, while the existing DBlooker service account remains unchanged. When querying logs, the new account appears only as an internal attribute and does not affect the log_sink query.
+
+For reference, in the pwcc UAT project I tested this using the service account specified in impersonation.yaml with the following query:
+[insert query here]
+In summary, any modification to the DBlooker service account will require corresponding updates to the log_sink.
+
+Best regards,
+</pre>
+<pre>
+Hi Ionela, okay, I’ll set up the script to send the file to UAT with a larger number of records.
+</pre>
+<pre>
+Unfortunately, I haven’t worked with this type of configuration before
+</pre>
+<pre>
+Hi Sangram,
+I wanted to ask who is taking care of the change creation and its planning.
+I also have another question: regarding infrastructure changes, I didn’t see anything on the Confluence page. Is that something we need to handle, or does it follow a different process?
+
+Thank you
+</pre>
+<pre>
+Hi Sangram,
+I’ve created the tags for the repositories, except for the following:
+
+infra1
+
+infra2
+
+For the following repository, I don’t have an sdlc-deployments.yaml:
+
+reporting engine
+</pre>
+
+<pre>
+The error in the SDLC repository for Composer and SDP has now been fixed (it was due to missing test subtasks)
+</pre>
+<pre>
+Hi all,
+The repositories involved in the deployment are the following:
+
+repo1
+
+repo2
+
+repo3
+
+I’ve created the tags for the release, along with the following PRs that are currently waiting for approval.
+
+I’ve also opened a PR on the sdlc repository: all checks have passed
+</pre>
+<pre>
+Ciao Anibal,
+per il progetto log di dblooker serve dare al service account di dblooker accesso a una tabella UAT, così da leggere gli user_id da associare alle mail. L’attività è già stata fatta in dev da Igor, che però al momento è assente. A chi posso rivolgermi per procedere?
+</pre>
+<pre>
+Hi Janani,
+There are some errors in the checks on the sdlc repository, since the checks on the app-composer repository are still in progress.
+</pre>
+<pre>
+Hi Ashwini,
+After yesterday’s release, the scheduling of DAG 1254789-4tmdaily appears to have been modified.
+From today’s run, the scheduled date should now show as August 29 instead of the previous day.
+
+Best regards,
+</pre>
+<pre>
+Could you please delete the following DAGs, which have already been removed from the configuration files?
+</pre>
+<pre>
+Hi Ionela,
+After yesterday’s release, starting today the position file has also been sent to production with the requested changes.
+</pre>
+<pre>
+Hi Surendhar,
+I have opened a service request to trigger the DAG 1255479-prmbanclldo, as the file sent yesterday is still empty,
+with the following parameters:
+
+param1
+
+param2
+
+The file is empty because it is a weekly file, and the last available data for April is 2025-04-25.
+</pre>
+<pre>
+Yes, you can go ahead and close the story. I’ll take care of replying to the email.
+</pre>
+<pre>
+Hi Akshay,
+Could you share the cloud_function service account name and the dblooker project name for the production environment, so we can plan the grant implementation accordingly?
+</pre>
+<pre>
+Could you please trigger the following DAG with these parameters:
+
+124579-4-adhocchecks
+
+param: {}
+
+Only after the completion of the previous DAG, you can clear the tasks from 125479-4-DG_only_KQI by resetting the failed tasks Carte_diCredito_KQI and titoli_mobiliari_KQI.   
+</pre>
+<pre>
+The DAGs have completed successfully. Now I’d like to ask if you could clear the two failed tasks in the DAG 125479-4-DG_Only_KQI.
+</pre>
+<pre>
+Hi Christian,
+
+We performed the test in UAT and identified an issue with the dblooker service account’s access to our table. Together with Akshay, we analyzed the problem and it seems that the job_user role is missing from the dblooker service account (please refer below to the activity performed in DEV).
+
+I would like to ask Igor / Monish if it’s possible to add the same permissions also in UAT.
+
+For the production deployment, we will also need to grant the permissions to the production dblooker service account, which is: abcd@sa.it
+.
+</pre>
+<pre>
+Hi Mohnish,
+In my view, the changes look correct and we can proceed with the deployment to production.
+</pre>
+<pre>
+We will proceed with the closure of incident INC0028953530, as it is linked to INC0026772871. The extraction issue dated 31-05 will be resolved automatically once the source data has been corrected.
+</pre>
+<pre>
+Hi Akshay,
+
+Yesterday we completed the deployment of the role binding on the service account dblooker for the log_looker table.
+
+The service account that needs to be granted access to query your table is:
+
+dblooker-it-com15gsgd
+
+Could you please let me know if you already have a timeline for the production deployment?
+</pre>
+<pre>
+Hi Aksay,
+Could you confirm whether the production deployment of the access and cloud function components has been completed or is scheduled for later this week?
+</pre>
+<pre>
+Ciao Marco,
+è stato indicato nel nome del file il NAR 125429 in quanto è stato prodotto dal progetto pwcc. Posso eventualmente inserire una modifica al nome del file oppure indicare nel campo piattaforma del file csv il nar del sistema segnalante.
+Da UAT purtroppo non sempre ci sono giornalmente delle righe che vengono inviate.
+Ti chiedo chi devo contattare per verificare da DDH per la corretta ricezione del file (se Carlo Ventura o DDH Interface).
+
+Ciao e Grazie.
+</pre>
+<pre>
+Ciao Christian,
+nel run di stamattina gli accessi alla tabella users/email dblooker non erano ancora stati perfezionati.
+Ho contattato Akshay che mi ha comunicato poco fa che sta lavorando sulla parte di deploy in prod.
+</pre>
+<pre>
+Hi All,
+
+Last Friday, I opened SR RITM14354790 to request the unpausing of the DAG 125479-4-TM_MODELS_TEST.
+Could someone please proceed with performing the unpause?
+
+Thank you in advance.
+</pre>
+<pre>
+At present, we have not received from Cedacri any records indicating a change or deletion after 2019.
+A review with the business analysts is currently in progress.
+</pre>
+<pre>
+Hi Laraib,
+
+I don’t handle the Gianos reporting side, only the ones related to Sigma. I’ve forwarded your email to the AFC team (Dario-A Merlino / Andrea Genovese) so they can verify whether they can provide you with this information.
+
+Best regards, and thank you.
+</pre>
+<pre>
+Hi Pryanka,
+we deployed the dblooker component to production yesterday as well.
+The process is working correctly, although we’ll need to make some adjustments on our side, particularly regarding the file’s content and naming.
+</pre>
+<pre>
+Hi Sahana,
+for these DAGs:
+
+dag1
+
+dag2
+
+dag3
+
+I see that the Dataproc job completed successfully, but strangely it wasn’t picked up by Airflow.
+I also noticed that the CSV file was correctly saved in the bucket.
+
+Could you please mark the reporting_engine_job step as succeeded for these three DAGs?
+
+dag1
+
+dag2
+
+dag3
+</pre>
+<pre>
+Now all the DAGs are completed, so you can close the ST. Thank you very much.
+</pre>
+<pre>
+Buongiorno,
+la presente per comunicare che stiamo inviando in uat
+negli ultimi 2 giorni stiamo inviando in uat i file con il nuovo naming.
+Vi chiediamo se potete verificare la corretta ricezione e invio dei flussi.
+
+Cordiali Saluti
+</pre>
+<pre>
+Hi Sangram,
+Regarding the request below, the following service accounts are used within some Python reports.
+I can confirm that no passwords are used; instead, public keys stored in Google Secret Manager are utilized.
+</pre>
+<pre>
+Subject: Request for Upload to Production Bucket
+
+Hi Support Team,
+
+I would like to ask if it’s possible to upload (by opening an SR) a file to a production bucket.
+The file was generated in AWP and should then be uploaded to a production bucket, for example dp-dadsasd, in order to send it to dbexchange via SFTP.
+
+Could you please confirm if this is feasible, or if the upload needs to be handled as part of the release process?
+
+Thank you in advance for your support.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+We have identified an issue with the trusted table t_trd_n1t, where rows corresponding to certain business_dates are missing.
+The missing business_dates are mainly related to August 11, 2023, though other dates are affected as well.
+We kindly ask you to verify the consistency between the raw and trusted tables and to restore the missing data accordingly.
+</pre>
+<pre>
+The majority of missing data was found on 2023-08-11, affecting only certain DETENTO entries (the raw column for customer_od).
+</pre>
+<pre>
+This is a peculiar issue, as the date isn’t missing entirely but only for specific rows. We should try to understand, if possible, why these particular rows were discarded.
+</pre>
+<pre>
+Hi Surendhar
+please find attached the specific record from the raw table bancll1t that we couldn’t find in the trusted table for business_date_start = dt_period.
+</pre>
+<pre>
+Below is the query I used for this specific case.
+The join is based on the primary key fields between the trusted and raw tables, along with business_date_start and dt_period.
+</pre>
+<pre>
+ciao Enrico,
+ho predisposto il dag relativo all'invio giornaliero.
+
+vedo che la tabella non ha un aggiornamento quotidiano ma diversi giorni vengono saltati e attualmente il relativo DAG è il pausa dal 01/10/2025.
+
+Dall'analisi della query vedo che viene utilizzata la current_date da confrontare con la business_date_start.
+nell'actual a fronte del job del 10/10/2025 alle ore 22 la business_date risulta essere del 10/10. Se il dag girasse il giorno successivo 11/10 dovrebbe estrarre la business_date del 10/10 ossia sul giorno precedente
+
+Volevo inoltre chiederti se il file da inviare dovrà avere un naming definito e se nel formato csv dovrà avere come separatore virgola o punto e virgola.
+
+Ciao.
+</pre>
+<pre>
+Hi Ionela,
+Both scripts are based on the same initial scope related to the table t_trd_ana_glober.
+Right now, the data in the table is malformed — in particular, the cod_gestore field.
+
+This table is populated from a file provided by some users, who upload it to a shared network folder. From what I can see, in the past it used to be a CSV file, but it looks like this time an XLSX file was used instead, and reading that file caused the issue during the table load.
+</pre>
+<pre>
+I’ll try to contact someone from the business team who’s responsible for uploading the file, to see if they can place the correct file in the network folder.
+</pre>
+<pre>
+Hi Ionela,
+yes, the users have reuploaded the file in CSV format, and I noticed that after this morning’s report run, the reference table for the master data appears to be correct.
+I’ll go ahead and re-trigger both the position and counterparty jobs.
+You should receive a new data feed later this morning.
+</pre>
+<pre>
+Hi Ionela,
+we successfully re-triggered the jobs for both reports, and the files were sent using the same names as the ones from this morning.
+</pre>
+<pre>
+Hi Surendhar,
+the file cuscotto.xlsx is related to DAG 125479-AUI.
+I saw that it didn’t run correctly on the 28th. At the moment, the run can’t be recovered because it needs to execute on the specific date. I’ll try modifying the query to run it manually.
+</pre>
+<pre>
+Hi Sangram and Surendhar,
+the “cruscotto” report is linked to DAG 125479-REPORT_PY_AUI. Unfortunately, the current DAG doesn’t allow retrieving data for a specific date, as it uses the actual tables.
+For the next release, I’ll try to modify the DAG to make this possible.
+</pre>
+<pre>
+Hi Enrico,
+I tried running the manual trigger for the DAG 125479-reportbpm, and the data was extracted correctly.
+It might be an issue related to dependencies or updates in the tables underlying the query, which were probably being updated at the same time as the run.
+To work around the problem for this release, I postponed the run by a few hours.
+</pre>
+<pre>
+Hi Janani,
+I’ll check the new DAGs and add them today.
+For ID5127, there was an issue with a different renaming between UAT and PRD, but I’ve fixed it now.
+I’ll let you know once it’s all done.
+
+Hi Janani and Ashwini,
+For ID5127, there was a mismatch in the renaming between UAT and PRD, but I’ve fixed it for this week’s release.
+</pre>
+<pre>
+Data Engineer con Master in Business Intelligence e Big Data. Dal 2019 in Deutsche Bank, con precedenti esperienze presso istituti di credito e società di consulenza informatica.
+</pre>
+<pre>
+Hi Hanumantha,
+the file is related to the 125479-report_py_bpm DAG.
+We’ve already sent the missing report file to the end users, and they confirmed that the data is correct (see attached email).
+I believe the incident (INC) can be closed.
+</pre>
+<pre>
+Hi Enrico,
+currently, the production query isn’t configured to retrieve historical dates through the DAG.
+I’ll update it in the next release so that it operates based on the logical_date rather than the actual execution date.
+
+Best regards.
+</pre>
+<pre>
+Hi Sangram,
+the issue is related to the following tables:
+tab1
+tab2
+it will be necessary to add the column dt_period.
+</pre>
+<pre>
+Hi Ashwini,
+the issue is related to the new dt_period column in a table from the raw dataset.
+I opened SR RIT42342432 to trigger the adhocchecks DAG with these parameters: {param}.
+After that, we can clear the failed task in the 125479_carte DAG.
+</pre>
+<pre>
+ACL required to operate in the UAT environment of NAR 125479
+</pre>
+<pre>
+Hi Savaha,
+
+Here’s the list of active DAGs for tmonitor:
+
+dag1 – scheduled daily
+
+dag2 – scheduled weekly
+
+dag3 – scheduled monthly
+
+We haven’t onboarded any new DAGs recently.
+
+For Python reports, we’ve onboarded new DAGs in the latest releases:
+
+dag1 – daily
+
+dag2 – daily
+
+dag3 – daily
+</pre>
+<pre>
+Hi Sahana,
+
+I’m not able to identify the exact issue from the log, as there don’t seem to be any specific code-related errors. It appears to be a resource-related issue on Spark. Maybe we can try clearing the task to see if it works now.
+</pre>
+<pre>
+I think it requires further investigation. I’m not very familiar with the securitization process.
+</pre>
+<pre>
+Buongiorno Umberto,
+abbiamo eseguito un ulteriore deploy in uat oggi con alcune modifiche alla luce dei risultati dei precedenti invii.
+Vi abbiamo inviato oggi il file test1.csv con la codifica EBCDIC la rimozione del blocco 2179 per riga.
+
+Ti chiedo se puoi verificare il file ricevuto se ora risulta corretto o ancora illeggibile.
+
+Grazie in anticipo.
+
+Andrea
+</pre>
+<pre>
+Hi Sahana,
+the run isn’t starting at the moment because the dcc_transaction table hasn’t been updated, and this is a prerequisite for triggering the process.
+I’ll try to contact the L2 team to understand why the file hasn’t arrived yet.
+</pre>
+<pre>
+Transaction Monitoring Blocked – Missing File for t_trd_dm_tr Load
+Hi Team,
+just to let you know, the t_trd_dm_tr table hasn’t been updated for the current month, so the transaction-monitoring process is blocked.
+The DAG that loads the table is currently waiting for the file.
+</pre>
+<pre>
+Ciao Umberto,
+grazie per l feedback. Abbiamo inviato venerdì 20251107 sempre in uat un file senza i caratteri di riempimento sempre in formato ebcdic.
+Ti chiedo se il file è pervenuto e se risulta essere leggibile.
+</pre>
+<pre>
+Regarding the Supervisionati reporting project, please assign the ACL to the technical account SVC_454545 so it can access the file uploaded by the user in the \dbg.ads.com\BM_inst folder.
+</pre>
+<pre>
+Ciao Antonio,
+l'ultimo file inviato a cedacri in formato ebcdic cp500 risulta essere leggibile.
+Provvedo ad eseguire le modifiche richieste in tema di separatore e virgolette sui valori.
+</pre>
+<pre>
+Hi Sahana,
+Could you please clear the failed task for the 125479-TRANSACTION_MONITORING DAG so it can run again? It should restart now, as the dcc_transactions table is updated.
+Thank you!
+</pre>
+<pre>Here’s a clear and natural translation:
+After the latest release, the renaming issue has been resolved.
+The manual trigger was submitted after the fix and completed successfully.
+</pre>
+<pre>
+Could you please trigger the following DAG?
+DAG ID: 125479-PRM_banclldo
+Parameters: {}
+
+After triggering it, please mark the task wait_trusted as succeeded.
+</pre>
+<pre>
+Hi Ashwini,
+
+I’ve opened a new SR (RIT5456446) to request the triggering of the following DAG:
+DAG ID: 125479-PRM_banclldo
+Parameters: {}
+
+After triggering it, please mark the task wait_trusted as succeeded to allow the other tasks to continue.
+
+The end user reported an issue with an empty file in the latest run, so we need to attempt to resubmit the file.
+
+Thank you for your support.
+</pre>
+<pre>
+Ciao Federico,
+al momento l’algoritmo utilizzato per il calcolo dei saldi dei titoli (esclusi fondi, GPM e polizze) opera su una singola data di riferimento. L’estensione all’intera estrazione target_market risulta complessa, in quanto richiederebbe la creazione di una tabella giornaliera contenente i saldi per ciascuna giornata.
+Trattandosi di una modifica significativa, è necessario effettuare una valutazione approfondita su come procedere.
+</pre>
+<pre>
+Versione Italiana (professionale)
+
+Oggetto: Verifica trasferimento file NDG_GLOBER_YYYYMMDD.csv
+
+In riferimento al file NDG_GLOBER_YYYYMMDD.csv, l’utente segnala che, nonostante sia stato correttamente depositato nella cartella di rete (come mostrato nello screenshot allegato), il file non risulta trasferito nel bucket GCP db-lo-fsfd.
+Vi chiediamo cortesemente di verificare la problematica.
+
+Grazie.
+
+English Version (professional)
+
+Subject: Verification of NDG_GLOBER_YYYYMMDD.csv File Transfer
+
+With reference to the NDG_GLOBER_YYYYMMDD.csv file, the user reports that although it has been correctly placed in the network folder (as shown in the attached screenshot), the file is not being transferred to the GCP bucket db-lo-fsfd.
+We kindly request that you look into this issue.
+
+Thank you.
+</pre>
+<pre>
+Ciao Antonio,
+mi è stato segnalato un problema relativo al file ndg_glober_yyyymmgg.csv, che fino al 12/11 veniva depositato dall’utente sulla cartella di rete e da lì trasferito al bucket GCP.
+
+Negli ultimi giorni il processo si è interrotto e il file non viene più letto né prelevato dalla cartella di rete.
+Sembrerebbe che il trasferimento non fosse gestito tramite DDH, ma probabilmente tramite un processo on-premise. Su DDH è stata recentemente censita l’interfaccia IN1871_01 per questo file, ma risulta ancora in fase di implementazione in UAT.
+
+Ti chiedo se sai indicarmi a chi posso rivolgermi per verificare lo stato dei job on-premise relativi al caricamento del file e se risulta che tali job siano stati eventualmente bloccati.
+</pre>
+<pre>
+Please mark the app-reporting-python hard-coded credential finding as a False Positive.
+These are not actual credentials but encrypted files that were used only for UAT testing and have now been removed from the repository.
+</pre>
+<pre>
+Subject: New File Onboarding – Jira Story: WMD-115455-Report
+
+Hi Cristina,
+
+As discussed, we need to move forward with creating a new table sourced from the GCP CSV file Report_controllo_concentrazione_YYYYMMDD.csv.
+
+I’ve updated Jira story WMD-115487 with the following attachments:
+
+The RAW JSON file
+
+The mapping for the corresponding trusted table
+
+Let me know if you need any further information.
+
+Thanks,
+[Your Name]
+</pre>
+<pre>
+Hi Ionela,
+Strangely, the job has been running for 6 hours and is still not finished.
+I’m trying to investigate the issue.
+</pre>
+<pre>
+Hi Sahana,
+Regarding the DAG 125479-Position_WM, could you please mark today’s run as succeeded so we can cancel it? It has been running for 6 hours.
+I’ll try to investigate the issue.
+</pre>
+<pre>
+Hi Ionela,
+I retriggered the DAG and the second run worked fine — the files were sent to DBExchange.
+It might have been a Dataproc cluster issue.
+</pre>
+<pre>
+Currently, the integration with development tools is not very efficient.
+It’s necessary for the tool to integrate more closely with GitHub.
+
+Development of more complex and structured software.
+Data analysis performed directly from BigQuery on GCP.
+Creation of test cases for the developed software.
+</pre>
+<pre>
+Dataproc Cluster Issue — Jobs Running for Hours Without Processing
+Starting from 27/11/2025, we have been experiencing a production issue related to the DAG 125479-POSITION, in which the Dataproc jobs are inexplicably running for several hours without appearing to perform any processing.
+
+Below is the list of jobs:
+
+job1
+
+job2
+
+job3
+
+Since the date mentioned, these jobs have been running for many hours without producing any results.
+Over the past year, each job typically completed in an average of 7 minutes.
+No changes have been made to the code.
+
+I have opened an incident for this issue.
+
+At the moment, there are also three additional Dataproc jobs that have been running for an extended period.
+
+I would like to ask whether it is necessary to proceed with deleting and recreating the Dataproc cluster, which has been running since 2025-11-27, to verify whether this resolves the problem.
+o in che modo procedere per risolvere il problema.
+Thank you.
+</pre>
+<pre>
+Hi Hanumantha;
+thanks for your support. The Dataproc cluster was freshly created, but it seems that the issue is still not resolved. The job gets stuck at the same point without using CPU or resources. It looks like something may have changed in the autoscaling policy or in the configuration.
+</pre>
+<pre>
+Hi Ionela,
+Tomorrow we will release an update to the script to reduce the data read from BigQuery.
+Shortly after, we’ll run it again with more resources on the cluster to check whether this resolves the issue.
+</pre>
+<pre>
+Hi Sangram,
+Yes, I will try resubmitting the job with more resources using the properties suggested by Kuldeep to check whether this resolves the issue.
+</pre>
+<pre>
+Hi Ionela,
+
+Yesterday’s attempt to run the job with increased Spark resources was unsuccessful, and we couldn’t identify the issue.
+The new script version will be released this afternoon, and we’ll check during the first run whether the problem is resolved. If not, we’ll need to review the production YARN logs to understand the root cause, which could be related to BigQuery.
+</pre>
+<pre>
+Hi Hanumantha,
+
+Sangram told me that you have access to view the logs from the YARN UI in production.
+Could you please check the logs in the YARN UI for the following job (id454646fsdfds)? It has been running for a long time and appears to be stuck.
+</pre>
+<pre>
+Hi Surendhar,
+
+Unfortunately, the release did not resolve the issue.
+I’ve asked Hanumantha if it’s possible to check the logs from the YARN UI.
+</pre>
+<pre>
+Hi Surendhar,
+
+From the YARN ResourceManager, please click on the ApplicationMaster link (the last column on the right) for the asset_allocation application. This will open the Spark UI, where you can check the Stages and SQL tabs.
+</pre>
+<pre>
+Hi Ionela,
+
+The recent release did not resolve the position_wm report issue; it remains stuck in both Production and UAT. We are actively running tests to pinpoint the root cause.
+
+Since Monday is a holiday in Italy, we will schedule a call for Tuesday to determine the next steps.
+</pre>
+
+<pre>
+Hi Ionela,
+
+The recent release did not resolve the position_wm report issue; it remains stuck in both Production and UAT. We are actively running tests to pinpoint the root cause.
+Since Monday is a holiday in Italy, if I am not able to identify the issue before then, I will schedule a call with the development team on Tuesday to discuss possible causes and solutions.
+</pre>
+<pre>
+Hi Andrea,
+could you please resend the attachments in a zip file? Outlook blocked them because of the .py extension.
+
+Thanks!
+</pre>
+<pre>
+Hi Surendhar,
+could you please mark the DAG 125479-dag as succeeded and then pause it? We're working on resolving the issue.
+
+Thanks!
+</pre>
+<pre>
+Hi Sahana,
+based on the analysis, it seems that on that date the same NDG was sent to the frontend twice for two different countries (this was a known SRP6 issue, now fixed). This appears to have caused duplicates—possibly because the see_md_out file generation joins on NDG.
+
+One possible way to address the issue could be to remove the duplicates from the raw table using a BigQuery query like the one below. I still need to test it and confirm whether this approach is allowed and feasible:
+</pre>
+<pre>
+Request to Deploy PR for Fixing Blocked DAGs in This Week’s Release
+Hi Anibal,
+
+I’m kindly requesting, if possible, to include the deployment of the following PR for the app-reporting-python repository in this week’s release:
+[PR link]
+
+This fix resolves issues with the following DAGs:
+
+Position_wm (daily DAG blocked since 27th November)
+
+pcorrelate (biweekly DAG)
+
+The reports are currently not being generated due to an issue with the cloud-logging package when using PySpark actions inside log statements.
+
+The fix has been successfully tested in UAT. Including it in this week’s release will restore the Position_wm daily report and allow the job to resume.
+
+Thank you!
+</pre>
+<pre>
+The incident concerns some missing partitions in the table t_trd_b1t. There are rows that appear in the raw table but not in the trusted table.
+</pre>
+<pre>
+Hi Anusha,
+the incident can be closed, although the missing partitions will still need to be recovered next year.
+</pre>
+<pre>
+Hi Ionela,
+we believe we have identified the issue, and the UAT tests were successful.
+The production release is scheduled for this afternoon, and I’ll update you on the outcome of the run as soon as it’s completed.
+</pre>
+<pre>
+Hi Surendhar,
+I see that the production deployment has completed. Could you please unpause the 125479-POSITION DAG? I’ve opened SR RIT4545454.
+</pre>
+<pre>
+Hi Surendhar,
+my apologies — I need to correct my previous request. We need to pause 125479-4 POSITION2 and unpause 125479-POSITION. I realized there’s an issue in the SFTP connection string of the v2 DAG, which I will fix in the next release.
+
+Thank you for your help, and sorry for the confusion.
+</pre>
+<pre>
+As requested, we have sent the requested files to UAT.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+Hi everyone,
+
+The deployment of the following DAG related to the provided reports has been completed in the dev environment.
+
+The files modified for execution on Dataproc are available at the following bucket links:
+
+app-reporting-python: link
+
+app-composer: link
+
+To complete the deployment, the static table REPORT_N30_2 must be created.
+
+Currently, the Dataproc service account of the pwcc project does not appear to have the job.creator role on the dev-dwh project; as a result, the Dataproc script fails with a permission error when using the DATAMART parameter.
+
+I will check with the DevOps team to confirm whether we need to request the required permissions or follow a different procedure.
+</pre>
+<pre>
+<<<<<<< HEAD
+Hi Surendhar,
+
+The DAG failed at the `bashCommandTask` and was retriggered the next day at 3:00 AM. As a result, on 2025-12-20 two files dated 2025-12-20 were generated, and the file for 2025-12-19 was skipped.
+
+I verified that the extraction for the 19th (Friday) would have been identical to that of the 20th, based on the attached queries.
+
+If required, we can manually trigger the **adhocchecks** DAG and send the 20th file renamed as the 19th, using the appropriate parameters.
+
+=======
+Subject: Role binding request – Dataproc pwcc service account access to DWH project
+
+As discussed during yesterday’s meeting, the N30 Python report, currently executed via Dataproc in the pwcc project, needs to read BigQuery tables hosted in the dwh project.
+
+Current status
+
+Service account: sa_dataproc_pwcc
+
+Execution project: pwcc
+
+Data project: dwh
+
+Missing permission: BigQuery Job User / Job Creator on the dwh project
+
+Request
+We kindly ask to proceed with the required IAM role binding on the dwh project, granting the appropriate BigQuery job execution role to the sa_dataproc_pwcc service account in order to enable query execution.
+</pre>
+<pre>
+Buongiorno,
+l'ndg risulta correttamente caricato sulla tabella di riferimento trusted per glober.
+Se ti riferisci ai report position_wm_structured e counterparty_wm_structured questi sono stati prodotti prima del caricamento della tabella con il nuovo ndg avvenuto alle 8 di stamattina.
+L'ndg sarà presente nei report di domani.
+>>>>>>> cd8716547424bac9f57694c17b8ceaad633f1e7c
+</pre>
+<pre>
+Hi Surendhar,
+
+Could you please clear the DAG run for Report_aui for the dates 16 December and 17 December, so that the two reports can be regenerated?
+
+Thank you.
+</pre>
+<pre>
+Hi Ashwini,
+the issue is related to the t_trd_tmp table and the ndg_cointestazione column, which contains an empty string value that causes the error.
+
+A temporary solution is to update the t_trd_tmp table and replace the empty value with 0.
+
+Using adhoc_checks:
+{param: select * from tr}
+</pre>
+<pre>
+Hi Surendhar,
+
+I carried out some checks, and the specified row is present in both trusted tables.
+For this reason, I do not believe the issue is on the Cedacri side.
+
+However, the row is not present in the reference table of the view, namely sg_b35.
+That said, I am not sure why this table is not being populated correctly.
+
+The checks I performed are as follows:
+</pre>
+<pre>
+Hi Ionela,
+we need to raise a request to deploy the new files to UAT. I’ll try to submit the request between today and tomorrow.
+</pre>
+<pre>
+Abbiamo completato il deploy in ambiente UAT degli script N30, utilizzando parametri temporanei per il bucket di storage e senza configurare la schedulazione dei DAG.
+
+Gli script sono stati aggiornati secondo quanto riportato nell’allegato.
+
+I test eseguiti sia sul layer TRUSTED sia sul layer DATAMART hanno restituito esito positivo, impostando manualmente i parametri di data come segue:
+
+25jan2026
+
+26jan2026
+
+Restiamo in attesa delle attività necessarie per il passaggio in ambiente di produzione, che includono:
+
+configurazione del role binding IAM per il service account dataproc-pwcc, al fine di abilitare l’accesso in lettura alle tabelle DWH;
+
+definizione delle date di schedulazione dei DAG;
+
+indicazione del bucket di destinazione definitivo.
+
+Se vuoi, posso anche:
+
+adattare il testo a una mail formale o a un verbale di rilascio;
+
+allinearlo a una terminolo
+</pre>
+<pre>
+Hi Surendhar,
+
+Could you please clear the latest failed task report_varsavia from the DAG 125479-REPORT-VARSAVIA so that we can recover the report?
+
+Thank you.
+</pre>
+<pre>
+Hi Surendhar,
+Could you please trigger the following DAG: 125479-TM_SFTP?
+I’ve opened the SR RIT23423423.
+</pre>
+<pre>
+Hi Ionela,
+
+Yesterday we reran the SFTP file transfer in UAT.
+These are the logs:
+
+log1
+
+log2
+
+log3
+
+log4
+</pre>
+<pre>
+Hi Satyia,
+please disregard the previous message — the PRs have already been approved by Surendhar.
+</pre>
+<pre>
+Hi Bushra,
+
+This change has already been applied in the Dev and UAT environments. We now need to grant the same permissions to the Dataproc service account in Prod.
+</pre>
+<pre>
+Ciao Umberto,
+abbiamo recepito le tue osservazioni e provveduto ad inviare in uat un nuovo flusso.
+Ti chiedo se puoi verificare.
+Ciao.
+</pre>
+<pre>
+We tested the script using the PWCC Dataproc service account in the Dev and UAT environments, and it works as expected.
+The IAM role binding was implemented in the week before Christmas.
+
+The only remaining step is to apply the same configuration in the Prod environment.
+df['date_str'] = df['timestamp_col'].dt.strftime('%Y-%m-%d')
+
+</pre>
+<pre>
+Hi Sumeet,
+the file name is currently generated with the suffix of the day on which the run is executed. In this case, it was the 16th because, due to some dependencies, the run was delayed to the following day.
+We will need to modify the DAG to use the logical date instead.
+</pre>
+<pre>
+Hi Ashwini,
+
+For the following DAGs, I have submitted service request RIT12564554 in order to pause:
+
+dag1
+
+dag2
+
+dag3
+
+The SDP_UPDATE DAG is now successful.
+
+Regarding report_controllo_concentrazione, it comes from the trusted repository, and I don’t understand why it is failing, since the underlying table has been created even though the DAG failed.
+</pre>
+<pre>
+The partition in the trusted table was created successfully, but the job is failing on the DWH side.
+
+Could you please mark the wait task in the report_dbaction DAG as successful so that the report can be produced?
+
+In the meantime, I will work with Himam to understand why the job is failing.
+
+
+Hi Himam,
+
+The Report_controllo_concentrazione DAG is failing in production.
+The partitions of the trusted table have been created correctly and are aligned with the raw data.
+
+Could you please advise on how we should proceed to resolve the issue, which currently requires manual intervention?
+
+Thank you.
+</pre>
+<pre>
+Ok Himam,
+thank you. In the meantime, I will inform Ashwini that the DAG can be marked as successful, since the trusted table is loaded correctly anyway.
+</pre>
+<pre>
+Hi Ashwini,
+
+Could you please mark the day's run of the DAG 125479-4Report_Conc as successful?
+I spoke with Himam, and he said that the issue will be fixed in the next release. Until then, we will need to handle it manually.
+
+Thank you.
+</pre>
+<pre>
+Hi Surendhar,
+From what I can see, these tables are generated by the reporting engine. The query runs on actual data, so re-running the 28/11 job would not reprocess November data; it would likely extract December data again instead.
+</pre>
+<pre>
+Hi Surendhar,
+To recover historical dates, I need to modify the query for those reports by introducing a business date parameter.
+This change can only be implemented as part of the next release.
+</pre>
+<pre>
+Hi Surendhar,
+to recover the partition before the release, we need to run two queries in production using INSERT INTO, but I’m not sure whether this is allowed. I’ve sent Tiziana the report as of 2025-11-30, and she’s checking with the end user to confirm whether the results are correct and sufficient for now.
+</pre>
+<pre>
+Hi Surendhar,
+
+The DAG 125479-4-REPORT_PY_EVENT_DRIVEN failed today due to a cluster issue.
+
+Could you please clear the failed task so the process can be resubmitted?
+
+Thank you.
+</pre>
+<pre>
+Hi Ashwini,
+Yes, all the business_date values are aligned with the raw table report_concentrazioni.
+</pre>
+<pre>
+Hi Bushra, I don’t currently see the changes in prod
+</pre>
+<pre>
+For the other DAGs, I need to check with Tiziana because they are waiting on the BANCLL1L dependency
+</pre>
+<pre>
+Request related to report SRB45454: activation of the technical account is required to transfer the file to the network folder \\dbg446.
+</pre>
+<pre>
+Hi Bushra,  unfortunately, the change does not appear to have been applied in production. The service_account line is still present.
+</pre>
+<pre>
+Hi Ashwini, no, it’s not necessary, as the report runs on the current date. We can leave it in a failed state.
+</pre>
+<pre>
+Hi Ashwini,
+
+Could you please mark the BANCLL1L task in 125479-4-AETOS-GRUPPO1 as successful so that the DAG can proceed?
+
+Only after GRUPPO1 has completed can we mark the failed tasks in the GRUPPO2 DAG as successful. I’ll keep you posted.
+
+Thanks.
+
+The processing of GRUPPO1 has been completed.
+
+Could you please clear the failed tasks on the DAG 125479-GRUPPO4 now?
+
+Thank you.
+
+Hi Ashwini, could you please trigger the 125479-propo DAG with the { "bd" } parameter so that the trusted table can be loaded?
+</pre>
+<pre>
+Hi Hanumantha,
+
+The business analysts have asked for an additional change to the query related to reporting-python (the previous change was already included in the release).
+
+I’d like to ask if it’s possible for you to approve the following PR (currently in dev and will move to UAT) so it can be included in the release. The change affects only one file.
+
+Additionally, I’m unable to merge the PR in the Composer repository after the update. Could you please reauthorize it?
+
+Thank you.
+</pre>
+<pre>
+Hi Ashwini,
+
+Sorry, I made a mistake with the parameters. The correct one is:
+
+{"business_date": "2026-01-12"}
+
+Could you please mark the current run as successful and trigger a new one with the correct parameter?
+
+Thank you.
+</pre>
+<pre>
+Hi Surendhar,
+
+Could you please clear the January 27th run of the DAG 125479-CRUSCOTTI so that yesterday’s report can be generated again?
+
+I’ve opened SR RIT543534534.
+</pre>
+<pre>
+Hi Ashwini,
+
+The missing table t_trd_4458 has now been generated.
+
+Could you please clear the last run of these four DAGs so the reports can be produced?
+
+Thank you.
+</pre>
+<pre>
+Hi Ashwini,
+
+Unfortunately, I wasn’t involved in the onboarding of this file/table
+</pre>
+<pre>
+The file containing the query, should a rollback be required, is the following: gs://fdsfsd. The DAG can remain unchanged.”
+
+
+To clarify, the file containing the query—should a rollback be required—is the following: gs://fdsfsd. The DAG can remain unchanged.
+</pre>
+<pre>
+Hi Hanumantha, I’m in contact with Enrico to figure out how to proceed. Thanks.
+</pre>
+<pre>
+Rollback Request for File gs://fsdfsdfsfsd
+
+Dear Team,
+
+We kindly request to proceed with the rollback of the file `gs://fdfsdfsdfsd` following issues encountered during the production run.
+
+Thank you.
+
+</pre>
+<pre>
+Hi Enrico,
+
+I’ve raised incident INC64545 to proceed with the rollback of the file sdp_update.sql.
+
+I’ve attached the version of the file that will be restored.
+Could you please confirm whether we can proceed?
+
+Best regards,
+Andrea
+
+The refresh has been completed successfully. Thanks a lot, Hanumantha.
+</pre>
+<pre>
+DAG Used for pds_link Table Update
+
+Hi Chaitra,
+
+The DAG used to update the pds_link table is the following:
+125479-REPORT-SDP
+
+GitHub link: url
+
+I’m also attaching the query currently in use, which will likely be changed starting from the next release.
+
+Best regards,
+Andrea
+</pre>
+<pre>
+Hi Hanumantha,
+could you please mark the wait_report_conc on the DAG 125479-DBACTION as successful?
+Thank you.
+</pre>
+<pre>
+Subject: Request for Manual Load of Missing Business Dates – t_trd_proposte_dba
+
+Hi Team,
+
+Regarding the load of the trusted table t_trd_proposte_dba linked to the DAG 125479-PROPOSTE, the business date 20260126 appears to be missing compared to the reference raw table proposte_dba_superv.
+
+Could you please check if it’s possible to manually run the load for the three business dates currently available in the raw tables?
+
+{"business_date": "20260119"}
+
+{"business_date": "20260126"}
+
+{"business_date": "20260202"}
+
+Thank you in advance.
+
+Best regards,
+Andrea
+
+Hi Hanumantha, we may need to truncate the partition after that date, as we’re getting an ‘already acquired partition’ error in the triggered job
+</pre>
+
+<pre>
+Hi Hanumantha,
+
+I’m in contact with Ashwini, and I think the best approach—since this is a small table—is to reload all the business dates by following these steps:
+
+1) Run the ad hoc DAG:
+125479-adhocdag
+
+{}
+
+{}
+
+{}
+
+2) After the above tasks are completed, reload the business dates in the following order:
+125479_proposte
+
+{}
+
+{}
+
+{}
+
+Now the dt_business_date_start values are aligned with the raw data.”
+</pre>
+<pre>
+Buongiorno,
+
+vi chiedo gentilmente di approvare la change CHG4324243, relativa alla creazione di un alias su account tecnico per l’invio di un report tramite SFTP verso una cartella di rete.
+
+Dettagli della change:
+
+Report: Quarterly SRB for Italy
+
+Account tecnico: svc_78787324
+
+Cartella di rete: \dbg\ssdfgd\fsdfs
+
+Resto a disposizione per eventuali chiarimenti.
+Grazie per la collaborazione.
+
+Cordiali saluti,
+</pre>
