@@ -300,3 +300,25 @@ THEN UPDATE SET
   t.NDG = LPAD(d.NDG, 12, '0');
 
 </pre>
+<pre>
+MERGE `project.dataset.t_trd_consigli_target_market_h` t
+USING (
+  SELECT 
+      ID_PROPOSTA,
+      NUM_CONSIGLIO,
+      DT_BUSINESS_DATE_START,
+      NDG
+  FROM `project.dataset.v_trd_pps_consigli_dettaglio`
+
+) d
+ON  t.ID_PROPOSTA = d.ID_PROPOSTA
+AND t.NUM_CONSIGLIO = d.NUM_CONSIGLIO
+AND t.DT_BUSINESS_DATE_START = d.DT_BUSINESS_DATE_START
+
+WHEN MATCHED 
+AND LENGTH(t.NDG) < 12
+AND DATE(t.DT_BUSINESS_DATE_START) 
+    BETWEEN '2025-11-20' AND '2026-01-22'
+THEN UPDATE SET 
+  t.NDG = LPAD(d.NDG, 12, '0');
+</pre>
