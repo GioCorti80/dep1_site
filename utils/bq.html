@@ -280,3 +280,23 @@ ORDER BY ordinal_position;
 
 
 </pre>
+<pre>
+MERGE `db-prd-85hn-pwcc-lake-it.pwcc_lake_it_trusted_dataset.t_trd_consigli_target_market_h` t
+USING (
+  SELECT 
+      ID_PROPOSTA,
+      NUM_CONSIGLIO,
+      DATE(DT_BUSINESS_DATE_START) AS DT_BUSINESS_DATE_START,
+      NDG
+  FROM `db-prd-85hn-pwcc-lake-it.pwcc_lake_it_trusted_dataset.v_trd_pps_consigli_dettaglio`
+) d
+ON  t.ID_PROPOSTA = d.ID_PROPOSTA
+AND t.NUM_CONSIGLIO = d.NUM_CONSIGLIO
+AND DATE(t.DT_BUSINESS_DATE_START) = d.DT_BUSINESS_DATE_START
+
+WHEN MATCHED 
+AND LENGTH(t.NDG) < 12
+THEN UPDATE SET 
+  t.NDG = LPAD(d.NDG, 12, '0');
+
+</pre>
