@@ -43,3 +43,8 @@ Di seguito sono riportati i link relativi alle modalità di deploy tramite pipel
 
 Con la stessa cadenza quindicinale, due giorni prima del deploy, è prevista una call di coordinamento con il Team L2, durante la quale vengono analizzate le Pull Request destinate alla produzione. Nella pagina web di riferimento viene inoltre condiviso l’elenco dei repository pianificati per il rilascio nella settimana considerata.
 </pre>
+<pre>
+Per quanto riguarda il deploy in ambiente UAT, non sono previste finestre temporali specifiche. Le PR predisposte devono essere mergiate nel branch RELEASE_dbc_uat o nel branch main (nel caso di Composer) ed è quindi necessario eseguire la relativa action di deploy, che richiede una doppia approvazione da parte del Team L2.
+
+Si precisa infine che la pipeline SDLC, in occasione del rilascio in produzione, esegue in ogni caso anche il deploy in UAT, al fine di garantire l’allineamento tra i due ambienti.
+</pre>
