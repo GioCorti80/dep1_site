@@ -106,3 +106,22 @@ Al momento siamo in attesa di un riscontro da Umberto (Cedacri) in merito al fil
 
 Per quanto riguarda il rilascio in produzione, è in corso la risoluzione di un tema tecnico relativo all’aggiornamento del log_sink collegato all’estrazione delle query; l’attività è già in carico al team DevOps.
 </pre>
+<pre>
+Ciao Enrico,
+
+si tratta del DAG di aggiornamento della tabella pds_link_payment_position_effect.
+
+Il processo principale funziona correttamente: il file tecnico di esito (file OK vuoto), utilizzato per attivare la dipendenza del DAG position_effect sull’ultima release, viene generato regolarmente. Tuttavia, a seguito di una recente modifica, il file non viene salvato nel percorso atteso.
+
+Nello specifico, ho introdotto un cambiamento per semplificare la gestione dell’output, prevedendo la generazione di un unico file al posto dei due precedenti. Questa modifica ha comportato però la creazione automatica di una sottocartella duplicata:
+
+REPORT_PY_SDP_UPDATE/REPORT_PY_SDP_UPDATE
+
+anziché della directory corretta:
+
+REPORT_PY_SDP_UPDATE
+
+Di conseguenza, il meccanismo di dipendenza non intercetta il file e il team L2 è costretto a intervenire manualmente forzando l’esecuzione del DAG position_effect.
+
+Provvederò a correggere l’anomalia nel prossimo rilascio disponibile, ripristinando il corretto posizionamento del file.
+</pre>
