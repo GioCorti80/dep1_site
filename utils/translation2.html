@@ -125,3 +125,16 @@ Di conseguenza, il meccanismo di dipendenza non intercetta il file e il team L2 
 
 Provvederò a correggere l’anomalia nel prossimo rilascio disponibile, ripristinando il corretto posizionamento del file.
 </pre>
+<pre>
+Hi Sumeet,
+
+In the last release, I introduced a change to generate a single output file instead of two. As a result, the file is now being created in an incorrect nested folder:
+
+REPORT_PY_SDP_UPDATE/REPORT_PY_SDP_UPDATE
+
+instead of:
+
+REPORT_PY_SDP_UPDATE
+
+I will correct the folder path in the next available release.
+</pre>
