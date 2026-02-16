@@ -160,3 +160,24 @@ Yes, it is correct to modify the folder_name as well. I have updated the paramet
 
 Best regards,
 </pre>
+<pre>
+I have a query where one column (queried_table) is a nested field containing a list (array) of table names.
+
+I also have another BigQuery table that contains two columns:
+
+table (table name)
+
+id
+
+What I need to do:
+
+Check whether any table name inside the queried_table array exists in the reference table (table, id).
+
+Filter out rows where none of the table names in the array match any table in the reference table.
+
+Join the nested table names with the reference table.
+
+From the matching results, extract only one id per row — specifically, the first matching id if multiple tables match.
+
+The solution should be written in BigQuery SQL and handle the nested array properly
+</pre>
