@@ -1026,3 +1026,20 @@ print(b)  # False
 <pre>
 '[^'\r\n]*$
 </pre>
+<pre>
+import sqlglot
+from sqlglot import exp
+
+query = """
+SELECT a.*
+FROM project.dataset.table1 a
+LEFT JOIN dataset.table2 b ON a.id = b.id
+WHERE a.NDG = '123'
+"""
+
+parsed = sqlglot.parse_one(query, dialect="bigquery")
+
+tables = [t.sql() for t in parsed.find_all(exp.Table)]
+
+print(tables)
+</pre>
