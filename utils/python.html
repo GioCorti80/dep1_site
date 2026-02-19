@@ -1043,6 +1043,13 @@ tables = [t.sql() for t in parsed.find_all(exp.Table)]
 
 print(tables)
 
+where = parsed.find(exp.Where)
+
+if where:
+    where_sql = where.sql()
+    print(where_sql)
+
+
 import re
 
 text = where_sql.lower()
