@@ -1220,3 +1220,20 @@ df_final = df_queries.join(df_first, "query_id", "left")
 df_final.show(truncate=False)
 
 </pre>
+<pre>
+def extract_tables(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+
+        tables = []
+        for t in parsed.find_all(exp.Table):
+            parts = [t.catalog, t.db, t.name]
+            parts = [p for p in parts if p]   # rimuove None
+            tables.append(".".join(parts))
+
+        return tables
+
+    except Exception:
+        return []
+
+</pre>
