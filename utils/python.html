@@ -1042,4 +1042,5 @@ parsed = sqlglot.parse_one(query, dialect="bigquery")
 tables = [t.sql() for t in parsed.find_all(exp.Table)]
 
 print(tables)
+
 </pre>
