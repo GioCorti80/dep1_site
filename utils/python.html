@@ -1063,3 +1063,73 @@ has_cf = bool(re.search(r'\b[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]\b', 
 has_piva = bool(re.search(r'\b[0-9]{11}\b', text))
 
 </pre>
+<pre>
+import sqlglot
+from sqlglot import exp
+
+def get_where(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+        where = parsed.find(exp.Where)
+        return where.sql() if where else ""
+    except:
+        return ""
+
+import re
+
+def extract_identifiers(where_sql):
+    text = where_sql.lower()
+
+    # NDG numerico (es. ndg = 123456)
+    ndg_values = re.findall(r"ndg\s*=\s*'?([0-9]+)'?", text)
+
+    # NDG in IN (...)
+    ndg_in = re.findall(r"ndg\s+in\s*\((.*?)\)", text)
+    for block in ndg_in:
+        ndg_values += re.findall(r"'?([0-9]+)'?", block)
+
+    # Codice fiscale (pattern standard)
+    cf_values = re.findall(
+        r"\b([a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z])\b",
+        text,
+        re.IGNORECASE
+    )
+
+    # Partita IVA (11 cifre)
+    piva_values = re.findall(r"\b([0-9]{11})\b", text)
+
+    return {
+        "ndg": list(set(ndg_values)),
+        "cf": list(set(cf_values)),
+        "piva": list(set(piva_values))
+    }
+
+    def extract_from_query(query):
+    where_sql = get_where(query)
+    return extract_identifiers(where_sql)
+
+query = """
+SELECT *
+FROM table
+WHERE ndg IN (123, 456)
+AND codice_fiscale = 'RSSMRA80A01H501U'
+AND piva = '12345678901'
+"""
+
+print(extract_from_query(query))
+
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import StructType, StructField, ArrayType, StringType
+
+schema = StructType([
+    StructField("ndg", ArrayType(StringType())),
+    StructField("cf", ArrayType(StringType())),
+    StructField("piva", ArrayType(StringType()))
+])
+
+extract_udf = udf(extract_from_query, schema)
+
+df = df.withColumn("identifiers", extract_udf("query_col"))
+
+</pre>
