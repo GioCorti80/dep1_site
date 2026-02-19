@@ -1133,3 +1133,90 @@ extract_udf = udf(extract_from_query, schema)
 df = df.withColumn("identifiers", extract_udf("query_col"))
 
 </pre>
+<pre>
+############################
+import sqlglot
+from sqlglot import exp
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.getOrCreate()
+
+data = [
+    (1, "SELECT * FROM prj.ds.table1 WHERE ndg = 123"),
+    (2, "SELECT * FROM prj.ds.table2 t LEFT JOIN prj.ds.table3 b ON t.id=b.id"),
+    (3, "SELECT * FROM prj.ds.unknown"),
+]
+
+df_queries = spark.createDataFrame(data, ["query_id", "query"])
+df_queries.show(truncate=False)
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import ArrayType, StringType
+
+def extract_tables(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+        return [t.sql(dialect="bigquery") for t in parsed.find_all(exp.Table)]
+    except:
+        return []
+
+extract_tables_udf = udf(extract_tables, ArrayType(StringType()))
+
+df_queries = df_queries.withColumn(
+    "tables_extracted",
+    extract_tables_udf("query")
+)
+
+df_queries.show(truncate=False)
+
+ref_data = [
+    ("prj.ds.table1", 10),
+    ("prj.ds.table2", 20),
+    ("prj.ds.table3", 30),
+]
+
+df_ref = spark.createDataFrame(ref_data, ["table", "ref_id"])
+df_ref.show()
+
+from pyspark.sql.functions import lower, regexp_replace, expr
+
+df_queries = df_queries.withColumn(
+    "tables_extracted",
+    expr("transform(tables_extracted, x -> lower(regexp_replace(x, '`', '')))")
+)
+
+df_ref = df_ref.withColumn(
+    "table_norm",
+    lower(regexp_replace("table", "`", ""))
+)
+from pyspark.sql.functions import explode
+
+df_exploded = df_queries.withColumn(
+    "table_extracted",
+    explode("tables_extracted")
+)
+
+df_join = df_exploded.join(
+    df_ref,
+    df_exploded.table_extracted == df_ref.table_norm,
+    "left"
+)
+
+from pyspark.sql.window import Window
+from pyspark.sql.functions import row_number
+
+w = Window.partitionBy("query_id").orderBy("table_extracted")
+
+df_first = (
+    df_join
+    .withColumn("rn", row_number().over(w))
+    .filter("rn = 1")
+    .select("query_id", "ref_id")
+)
+
+df_final = df_queries.join(df_first, "query_id", "left")
+
+df_final.show(truncate=False)
+
+</pre>
