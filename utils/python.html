@@ -1043,4 +1043,16 @@ tables = [t.sql() for t in parsed.find_all(exp.Table)]
 
 print(tables)
 
+import re
+
+text = where_sql.lower()
+
+has_ndg = bool(re.search(r'\bndg\b', text))
+
+# codice fiscale (16 caratteri alfanumerici tipico)
+has_cf = bool(re.search(r'\b[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]\b', text))
+
+# partita iva (11 cifre)
+has_piva = bool(re.search(r'\b[0-9]{11}\b', text))
+
 </pre>
