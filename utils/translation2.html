@@ -18,20 +18,16 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Mariagrazia,
+Ciao xxxx,
 
-allego il file con le query estratte alla data di ieri, comprensivo delle modifiche apportate al tracciato.
+attualmente su SEE non è stato creato un bucket dedicato.
 
-Ho temporaneamente sospeso l’invio a Cedacri per effettuare una verifica sulla correttezza delle informazioni estratte; trovi quindi in allegato il file Excel con il dettaglio:
+Il file viene generato dal processo applicativo, salvato nel bucket rawfilelanding e successivamente inviato a DDH via SFTP con il naming definito in fase di censimento dell’interfaccia. In seguito, il file viene trasmesso a Microdata.
 
-* **Sheet1**: estrazione filtrata con le tabelle in scope
-* **Sheet2**: log completo (tutte le query)
-* **File CSV**: tracciato predisposto per l’invio
+È però necessario censire formalmente anche l’interfaccia relativa al file in uscita.
 
-A seguito delle verifiche effettuate, il tracciato risulta coerente con le modifiche richieste. Procedo pertanto con l’invio del file CSV.
+Per quanto riguarda la creazione di un bucket dedicato, possiamo procedere tramite Terraform, orchestrando il deploy attraverso GitHub Actions. In questo caso sarà opportuno coinvolgere il team DevOps per l’allineamento sugli standard infrastrutturali e includere la modifica nella prossima release applicativa.
 
-Resto a disposizione per eventuali chiarimenti.
-
-Un saluto,
+Come possibile naming del bucket potremmo valutare, ad esempio: n30-reports, in linea con le convenzioni esistenti.
 
 </pre>
