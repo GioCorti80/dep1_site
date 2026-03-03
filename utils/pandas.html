@@ -306,4 +306,16 @@ sheet_name = "Data"
 
 # Load sheet
 df = pd.read_excel(file_path, sheet_name=sheet_name)
+
+import bigframes.pandas as bpd
+
+df = bpd.read_gbq("project.dataset.table")
+
+result = (
+    df
+    .groupby("column_name")
+    .agg({"value_column": "sum"})
+)
+
+result
 </pre>
