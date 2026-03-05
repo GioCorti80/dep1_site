@@ -292,3 +292,32 @@ df_pivot = df_count.pivot(
 df["date_str"] = df["date"].dt.strftime("%Y-%m-%d")
 
 </pre>
+<pre>
+import pandas as pd
+
+file_path = "gs://your-bucket/path/file.xlsx"
+
+# Inspect sheets
+xls = pd.ExcelFile(file_path)
+print("Available sheets:", xls.sheet_names)
+
+# Select sheet
+sheet_name = "Data"
+
+# Load sheet
+df = pd.read_excel(file_path, sheet_name=sheet_name)
+
+import bigframes.pandas as bpd
+
+df = bpd.read_gbq("project.dataset.table")
+
+result = (
+    df
+    .groupby("column_name")
+    .agg({"value_column": "sum"})
+)
+
+result
+
+filtered = df[df["timestamp_column"].dt.year == 9999]
+</pre>

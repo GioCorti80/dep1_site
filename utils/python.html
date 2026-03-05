@@ -1026,3 +1026,214 @@ print(b)  # False
 <pre>
 '[^'\r\n]*$
 </pre>
+<pre>
+import sqlglot
+from sqlglot import exp
+
+query = """
+SELECT a.*
+FROM project.dataset.table1 a
+LEFT JOIN dataset.table2 b ON a.id = b.id
+WHERE a.NDG = '123'
+"""
+
+parsed = sqlglot.parse_one(query, dialect="bigquery")
+
+tables = [t.sql() for t in parsed.find_all(exp.Table)]
+
+print(tables)
+
+where = parsed.find(exp.Where)
+
+if where:
+    where_sql = where.sql()
+    print(where_sql)
+
+
+import re
+
+text = where_sql.lower()
+
+has_ndg = bool(re.search(r'\bndg\b', text))
+
+# codice fiscale (16 caratteri alfanumerici tipico)
+has_cf = bool(re.search(r'\b[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]\b', text))
+
+# partita iva (11 cifre)
+has_piva = bool(re.search(r'\b[0-9]{11}\b', text))
+
+</pre>
+<pre>
+import sqlglot
+from sqlglot import exp
+
+def get_where(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+        where = parsed.find(exp.Where)
+        return where.sql() if where else ""
+    except:
+        return ""
+
+import re
+
+def extract_identifiers(where_sql):
+    text = where_sql.lower()
+
+    # NDG numerico (es. ndg = 123456)
+    ndg_values = re.findall(r"ndg\s*=\s*'?([0-9]+)'?", text)
+
+    # NDG in IN (...)
+    ndg_in = re.findall(r"ndg\s+in\s*\((.*?)\)", text)
+    for block in ndg_in:
+        ndg_values += re.findall(r"'?([0-9]+)'?", block)
+
+    # Codice fiscale (pattern standard)
+    cf_values = re.findall(
+        r"\b([a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z])\b",
+        text,
+        re.IGNORECASE
+    )
+
+    # Partita IVA (11 cifre)
+    piva_values = re.findall(r"\b([0-9]{11})\b", text)
+
+    return {
+        "ndg": list(set(ndg_values)),
+        "cf": list(set(cf_values)),
+        "piva": list(set(piva_values))
+    }
+
+    def extract_from_query(query):
+    where_sql = get_where(query)
+    return extract_identifiers(where_sql)
+
+query = """
+SELECT *
+FROM table
+WHERE ndg IN (123, 456)
+AND codice_fiscale = 'RSSMRA80A01H501U'
+AND piva = '12345678901'
+"""
+
+print(extract_from_query(query))
+
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import StructType, StructField, ArrayType, StringType
+
+schema = StructType([
+    StructField("ndg", ArrayType(StringType())),
+    StructField("cf", ArrayType(StringType())),
+    StructField("piva", ArrayType(StringType()))
+])
+
+extract_udf = udf(extract_from_query, schema)
+
+df = df.withColumn("identifiers", extract_udf("query_col"))
+
+</pre>
+<pre>
+############################
+import sqlglot
+from sqlglot import exp
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.getOrCreate()
+
+data = [
+    (1, "SELECT * FROM prj.ds.table1 WHERE ndg = 123"),
+    (2, "SELECT * FROM prj.ds.table2 t LEFT JOIN prj.ds.table3 b ON t.id=b.id"),
+    (3, "SELECT * FROM prj.ds.unknown"),
+]
+
+df_queries = spark.createDataFrame(data, ["query_id", "query"])
+df_queries.show(truncate=False)
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import ArrayType, StringType
+
+def extract_tables(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+        return [t.sql(dialect="bigquery") for t in parsed.find_all(exp.Table)]
+    except:
+        return []
+
+extract_tables_udf = udf(extract_tables, ArrayType(StringType()))
+
+df_queries = df_queries.withColumn(
+    "tables_extracted",
+    extract_tables_udf("query")
+)
+
+df_queries.show(truncate=False)
+
+ref_data = [
+    ("prj.ds.table1", 10),
+    ("prj.ds.table2", 20),
+    ("prj.ds.table3", 30),
+]
+
+df_ref = spark.createDataFrame(ref_data, ["table", "ref_id"])
+df_ref.show()
+
+from pyspark.sql.functions import lower, regexp_replace, expr
+
+df_queries = df_queries.withColumn(
+    "tables_extracted",
+    expr("transform(tables_extracted, x -> lower(regexp_replace(x, '`', '')))")
+)
+
+df_ref = df_ref.withColumn(
+    "table_norm",
+    lower(regexp_replace("table", "`", ""))
+)
+from pyspark.sql.functions import explode
+
+df_exploded = df_queries.withColumn(
+    "table_extracted",
+    explode("tables_extracted")
+)
+
+df_join = df_exploded.join(
+    df_ref,
+    df_exploded.table_extracted == df_ref.table_norm,
+    "left"
+)
+
+from pyspark.sql.window import Window
+from pyspark.sql.functions import row_number
+
+w = Window.partitionBy("query_id").orderBy("table_extracted")
+
+df_first = (
+    df_join
+    .withColumn("rn", row_number().over(w))
+    .filter("rn = 1")
+    .select("query_id", "ref_id")
+)
+
+df_final = df_queries.join(df_first, "query_id", "left")
+
+df_final.show(truncate=False)
+
+</pre>
+<pre>
+def extract_tables(query):
+    try:
+        parsed = sqlglot.parse_one(query, dialect="bigquery")
+
+        tables = []
+        for t in parsed.find_all(exp.Table):
+            parts = [t.catalog, t.db, t.name]
+            parts = [p for p in parts if p]   # rimuove None
+            tables.append(".".join(parts))
+
+        return tables
+
+    except Exception:
+        return []
+
+</pre>
