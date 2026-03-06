@@ -20,9 +20,6 @@
 <pre>
 Hi Ashwini,
 
-I checked the raw and trusted tables, and they appear to be aligned.
-
-In the t_trd_con DAG there is an SFTP step to an Oracle server which I believe has been decommissioned. I will remove it in the next release.
-
-Since the trusted table was loaded correctly, the two business_dates currently pending in the t_trd_dba DAG can be marked as successful.
+We should mark the SFTP step as successful until the next release.
+The DAG does not need to be put on hold.
 </pre>
