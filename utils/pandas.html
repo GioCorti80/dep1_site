@@ -335,19 +335,17 @@ df["grade"] = df["score"].case_when([
 cond = titoli_p["TIPO_TIT"].isin(['01','02','03','06','09'])
 
 titoli_valore = titoli_p.assign(
-    VALORE_TITOLI_EURO=
-    titoli_p["TIPO_TIT"].case_when(
-        [(cond,
-          titoli_p["IMP_PREZZO"]
-          * titoli_p["QTA_REGOLATA"]
-          * titoli_p["MOLTIPLICATORE"] / 100
-          / titoli_p["CAMBIO"]
-        )],
-        default=
-        titoli_p["IMP_PREZZO"]
-        * titoli_p["QTA_REGOLATA"]
-        * titoli_p["MOLTIPLICATORE"]
-        / titoli_p["CAMBIO"]
-    )
+    VALORE_TITOLI_EURO=titoli_p["TIPO_TIT"].case_when([
+        (cond,
+         titoli_p["IMP_PREZZO"]
+         * titoli_p["QTA_REGOLATA"]
+         * titoli_p["MOLTIPLICATORE"] / 100
+         / titoli_p["CAMBIO"]),
+        (True,  # Catch-all instead of default=
+         titoli_p["IMP_PREZZO"]
+         * titoli_p["QTA_REGOLATA"]
+         * titoli_p["MOLTIPLICATORE"]
+         / titoli_p["CAMBIO"])
+    ])
 )
 </pre>
