@@ -323,13 +323,12 @@ filtered = df[df["timestamp_column"].dt.year == 9999]
 
 import bigframes.pandas as bpd
 
-df = bpd.DataFrame({"score": [85, 92, 78, 95]})
+import bigframes.pandas as bpd
 
-df["grade"] = df["score"].case_when(
-    [
-        (df["score"] >= 90, "A"),
-        (df["score"] >= 80, "B"),
-    ],
-    default="C"
-)
+df = bpd.DataFrame({"score": [85, 92, 78, 95]})
+df["grade"] = df["score"].case_when([
+    (df["score"] >= 90, "A"),
+    (df["score"] >= 80, "B"),
+    (True, "C")
+])
 </pre>
