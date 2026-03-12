@@ -320,4 +320,34 @@ result = (
 result
 
 filtered = df[df["timestamp_column"].dt.year == 9999]
+
+import bigframes.pandas as bpd
+
+import bigframes.pandas as bpd
+
+df = bpd.DataFrame({"score": [85, 92, 78, 95]})
+df["grade"] = df["score"].case_when([
+    (df["score"] >= 90, "A"),
+    (df["score"] >= 80, "B"),
+    (True, "C")
+])
+
+cond = titoli_p["TIPO_TIT"].isin(['01','02','03','06','09'])
+
+titoli_valore = titoli_p.assign(
+    VALORE_TITOLI_EURO=titoli_p["TIPO_TIT"].case_when([
+        (cond,
+         titoli_p["IMP_PREZZO"]
+         * titoli_p["QTA_REGOLATA"]
+         * titoli_p["MOLTIPLICATORE"] / 100
+         / titoli_p["CAMBIO"]),
+        (True,  # Catch-all instead of default=
+         titoli_p["IMP_PREZZO"]
+         * titoli_p["QTA_REGOLATA"]
+         * titoli_p["MOLTIPLICATORE"]
+         / titoli_p["CAMBIO"])
+    ])
+)
+
+F.regexp_replace("DATI_A_SUPPORTO_6", r"^PRATICA:\s*", "")
 </pre>
