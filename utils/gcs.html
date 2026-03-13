@@ -114,4 +114,6 @@ def delete_file_and_all_versions(bucket_name, file_name):
 gsutil mv gs://my-data-bucket/documents/report.txt gs://my-data-bucket/documents/report.csv
 
 gsutil cat gs://my-bucket/data/file.txt | tail -n +2 | gsutil cp - gs://my-bucket/data/file_without_header.txt
+
+gsutil cat gs://your-bucket/input.txt | Select-Object -Skip 1 | gsutil cp - gs://your-bucket/output.txt
 </pre>
