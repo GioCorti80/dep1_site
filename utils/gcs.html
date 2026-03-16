@@ -116,4 +116,6 @@ gsutil mv gs://my-data-bucket/documents/report.txt gs://my-data-bucket/documents
 gsutil cat gs://my-bucket/data/file.txt | tail -n +2 | gsutil cp - gs://my-bucket/data/file_without_header.txt
 
 gsutil cat gs://your-bucket/input.txt | Select-Object -Skip 1 | gsutil cp - gs://your-bucket/output.txt
+
+gsutil cp gs://your-bucket/path/*REPORT_PY* .
 </pre>
