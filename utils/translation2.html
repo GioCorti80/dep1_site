@@ -32,4 +32,7 @@ def read_bq(spark, query):
             .option("viewsEnabled", "true")
             .option("query", query)
             .load())
+
+            .option("readDataFormat", "ARROW") 
+      .option("useAvroLogicalTypes", "true")
 </pre>
