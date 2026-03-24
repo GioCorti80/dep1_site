@@ -18,12 +18,21 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-spark = SparkSession.builder \
-    .appName("BigQuery_Europe_West3_Job") \
-    .config("spark.datasource.bigquery.materializationProject", "your-project-id") \
-    .config("spark.datasource.bigquery.materializationDataset", "your_dataset_in_frankfurt") \
-    # Force the connector to use the correct billing/job project
-    .config("spark.datasource.bigquery.parentProject", "your-project-id") \
-    .config("viewsEnabled", "true") \
-    .getOrCreate()
+Hi Team,
+
+I am reporting a recurring "403 Forbidden" error affecting several Airflow DAGs.
+
+While small queries are executing successfully, any operation requiring data materialization (large query result sets or Materialized View creation) is failing. Specifically, BigQuery returns:
+
+"Response too large to return. Consider specifying a destination table in your job configuration."
+
+Even with the correct Spark/BigQuery connector configurations (materializationProject, materializationDataset), the jobs fail because the Dataproc Service Account appears to lack the necessary Write/Create permissions to "land" the data in the destination.
+
+Affected DAGs:
+
+[DAG_Name_1] – Fails during large data pull from BigQuery to Dataproc.
+
+[DAG_Name_2] – Fails during Materialized View creation/refresh.
+
+[DAG_Name_3] – [Short description of failure].
 </pre>
