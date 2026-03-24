@@ -35,4 +35,13 @@ def read_bq(spark, query):
 
             .option("readDataFormat", "ARROW") 
       .option("useAvroLogicalTypes", "true")
+
+def read_bq_as_parquet(spark, table, bucket, path):
+    df = spark.read.format("bigquery") \
+        .option("readMethod", "export") \
+        .option("temporaryGcsBucket", bucket) \
+        .load(table)
+
+    df.write.mode("overwrite").parquet(path)
+    return spark.read.parquet(path)
 </pre>
