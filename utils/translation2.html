@@ -23,4 +23,13 @@ Hi Aksaj,
 I’ll try to test this solution shortly. I have quite a few scripts to go through, so I’m not sure I’ll be able to complete everything within this release—I may need until at least tomorrow morning.
 
 Of course, this depends on the solution working as expected. I’ll start with an initial test on the yemp_credito script in the dev environment, where I encountered the same error, and I’ll keep you posted.
+
+
+def read_bq(spark, query):
+    return (spark.read.format("bigquery")
+            .option("materializationProject", "your-project-id")
+            .option("materializationDataset", "your_temp_dataset")
+            .option("viewsEnabled", "true")
+            .option("query", query)
+            .load())
 </pre>
