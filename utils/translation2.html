@@ -44,7 +44,7 @@ def read_bq_as_parquet(spark, table, bucket, path):
 
     df.write.mode("overwrite").parquet(path)
     return spark.read.parquet(path)
-    
+
 Hi Ajai,
 
 The new Dataproc cluster is running, but it’s using image 2.3 (Debian 12). We’re currently facing a compatibility issue with the BigQuery connector on this version.
@@ -52,4 +52,6 @@ The new Dataproc cluster is running, but it’s using image 2.3 (Debian 12). We�
 Could you please switch it to image 2.2 (Debian 12)?
 
 Thanks,
+
+Hi Satia, I’ve tried several solutions but the issue persists. It looks like the Dataproc service account is missing the BigQuery readSessionUser role. I also compared the current logs with previous working ones, and I can see that the read session is never triggered in the current runs.
 </pre>
