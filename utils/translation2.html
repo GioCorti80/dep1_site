@@ -44,4 +44,12 @@ def read_bq_as_parquet(spark, table, bucket, path):
 
     df.write.mode("overwrite").parquet(path)
     return spark.read.parquet(path)
+    
+Hi Ajai,
+
+The new Dataproc cluster is running, but it’s using image 2.3 (Debian 12). We’re currently facing a compatibility issue with the BigQuery connector on this version.
+
+Could you please switch it to image 2.2 (Debian 12)?
+
+Thanks,
 </pre>
