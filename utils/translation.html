@@ -18,11 +18,12 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-<<<<<<< HEAD
-Hi all,
-could someone please approve the following PR from the DevOps repository? It is needed to resolve an issue with the reporting engine GitHub runner:
-
-PR link
-=======
->>>>>>> d4f671f8293da8bd66c7ca6235fb80b9c56a16d7
+spark = SparkSession.builder \
+    .appName("BigQuery_Europe_West3_Job") \
+    .config("spark.datasource.bigquery.materializationProject", "your-project-id") \
+    .config("spark.datasource.bigquery.materializationDataset", "your_dataset_in_frankfurt") \
+    # Force the connector to use the correct billing/job project
+    .config("spark.datasource.bigquery.parentProject", "your-project-id") \
+    .config("viewsEnabled", "true") \
+    .getOrCreate()
 </pre>
