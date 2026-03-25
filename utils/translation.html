@@ -18,46 +18,21 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import bigframes.pandas as bpd
+# 1. Strip any accidental whitespace
+clean_str = trd1a_filt['VALORE_DATO_NDG'].str.strip()
 
-# 1. If 'trd35_filt' is an intermediate BigFrames DataFrame in memory, 
-# you'll first need to materialize it into a temporary BigQuery table.
-# (If it's already a table or a view, you can skip this step!)
-temp_table_id = "your_project.your_dataset.temp_trd35_filt"
-trd35_filt.to_gbq(temp_table_id, if_exists="replace")
+# 2. Check if it is EXACTLY 8 digits (filters out letters, slashes, short/long strings)
+is_eight_digits = clean_str.str.contains(r'^\d{8}$').fillna(False)
 
-# 2. Use BigQuery's native STRING_AGG(DISTINCT ...) to group and concatenate
-query = f"""
-    SELECT 
-        NDG, 
-        NDG_TITOLARE_COLLEGATO, 
-        STATO_RAPPORTO_COLLEGATO, 
-        SERVIZIO_COLLEGATO, 
-        FILIALE_COLLEGATO, 
-        CONTO_COLLEGATO, 
-        DT_ACCENSIONE_RAP_COLL, 
-        DT_VARIAZIONE_RAP_COLL,
-        
-        -- The equivalent of concat_ws(" ", collect_set(...))
-        STRING_AGG(DISTINCT TIPO_COLLEGAMENTO, ' ') AS COD_TIPO_LEGAME,
-        STRING_AGG(DISTINCT DESC_TIPO_COLLEGAMENTO, ' ') AS DESC_TIPO_LEGAME,
-        STRING_AGG(DISTINCT DESC_COD_TIPO_LEGAME, ' ') AS DESC_COD_TIPO_LEGAME
-        
-    FROM `{temp_table_id}`
-    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
-"""
+# 3. Keep only the 8-digit strings, turn the rest to None
+clean_str = clean_str.where(is_eight_digits, None)
 
-# 3. Read it back into a BigFrames DataFrame
-trd35_agg = bpd.read_gbq(query)
-
-# 1. Replace the dummy zero-strings with None
-# (I included both 7 and 8 zeros just to be safe!)
-clean_dates = trd1a_filt['VALORE_DATO_NDG'].replace({
-    "0000000": None, 
-    "00000000": None,
-    "99999999": None  # Often used as a "future" placeholder, uncomment if needed!
+# 4. Filter out the fake "zero" dates we found earlier
+clean_str = clean_str.replace({
+    "00000000": None, 
+    "0000000": None
 })
 
-# 2. Safely parse the cleaned column
-trd1a_filt['DT_SCADENZA_DOC'] = bpd.to_datetime(clean_dates, format='%d%m%Y')
+# 5. Now it should be safe to parse!
+trd1a_filt['DT_SCADENZA_DOC'] = bpd.to_datetime(clean_str, format='%d%m%Y')
 </pre>
