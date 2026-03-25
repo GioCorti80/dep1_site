@@ -49,4 +49,15 @@ query = f"""
 
 # 3. Read it back into a BigFrames DataFrame
 trd35_agg = bpd.read_gbq(query)
+
+# 1. Replace the dummy zero-strings with None
+# (I included both 7 and 8 zeros just to be safe!)
+clean_dates = trd1a_filt['VALORE_DATO_NDG'].replace({
+    "0000000": None, 
+    "00000000": None,
+    "99999999": None  # Often used as a "future" placeholder, uncomment if needed!
+})
+
+# 2. Safely parse the cleaned column
+trd1a_filt['DT_SCADENZA_DOC'] = bpd.to_datetime(clean_dates, format='%d%m%Y')
 </pre>
