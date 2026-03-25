@@ -18,21 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Team,
+Hi everyone,
 
-I am reporting a recurring "403 Forbidden" error affecting several Airflow DAGs.
+Just a quick note to highlight that it would be great to have the cluster created in production as well.
 
-While small queries are executing successfully, any operation requiring data materialization (large query result sets or Materialized View creation) is failing. Specifically, BigQuery returns:
-
-"Response too large to return. Consider specifying a destination table in your job configuration."
-
-Even with the correct Spark/BigQuery connector configurations (materializationProject, materializationDataset), the jobs fail because the Dataproc Service Account appears to lack the necessary Write/Create permissions to "land" the data in the destination.
-
-Affected DAGs:
-
-[DAG_Name_1] – Fails during large data pull from BigQuery to Dataproc.
-
-[DAG_Name_2] – Fails during Materialized View creation/refresh.
-
-[DAG_Name_3] – [Short description of failure].
+I’ve already updated the DAGs to use the tm_cluster for this week’s production deployment.
 </pre>
