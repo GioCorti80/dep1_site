@@ -18,11 +18,35 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Enrico,
+import bigframes.pandas as bpd
 
-The DAG you’re referring to is 125479-COLLOCAMENTI. We are currently experiencing issues following a Google update of the Dataproc image from 2.2 to 2.3, particularly related to the BigQuery connector.
+# 1. If 'trd35_filt' is an intermediate BigFrames DataFrame in memory, 
+# you'll first need to materialize it into a temporary BigQuery table.
+# (If it's already a table or a view, you can skip this step!)
+temp_table_id = "your_project.your_dataset.temp_trd35_filt"
+trd35_filt.to_gbq(temp_table_id, if_exists="replace")
 
-We will release a fix in tomorrow’s deployment to restore the report.
+# 2. Use BigQuery's native STRING_AGG(DISTINCT ...) to group and concatenate
+query = f"""
+    SELECT 
+        NDG, 
+        NDG_TITOLARE_COLLEGATO, 
+        STATO_RAPPORTO_COLLEGATO, 
+        SERVIZIO_COLLEGATO, 
+        FILIALE_COLLEGATO, 
+        CONTO_COLLEGATO, 
+        DT_ACCENSIONE_RAP_COLL, 
+        DT_VARIAZIONE_RAP_COLL,
+        
+        -- The equivalent of concat_ws(" ", collect_set(...))
+        STRING_AGG(DISTINCT TIPO_COLLEGAMENTO, ' ') AS COD_TIPO_LEGAME,
+        STRING_AGG(DISTINCT DESC_TIPO_COLLEGAMENTO, ' ') AS DESC_TIPO_LEGAME,
+        STRING_AGG(DISTINCT DESC_COD_TIPO_LEGAME, ' ') AS DESC_COD_TIPO_LEGAME
+        
+    FROM `{temp_table_id}`
+    GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+"""
 
-Best regards,
+# 3. Read it back into a BigFrames DataFrame
+trd35_agg = bpd.read_gbq(query)
 </pre>
