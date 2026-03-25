@@ -18,21 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-# 1. Strip any accidental whitespace
-clean_str = trd1a_filt['VALORE_DATO_NDG'].str.strip()
+join_keys = ["ID", "DATE"]
 
-# 2. Check if it is EXACTLY 8 digits (filters out letters, slashes, short/long strings)
-is_eight_digits = clean_str.str.contains(r'^\d{8}$').fillna(False)
+# 1. Add a temporary dummy column to the right dataframe
+df2_subset = df2[join_keys].assign(_matched=True)
 
-# 3. Keep only the 8-digit strings, turn the rest to None
-clean_str = clean_str.where(is_eight_digits, None)
+# 2. Perform a standard left join
+merged = df1.merge(df2_subset, on=join_keys, how="left")
 
-# 4. Filter out the fake "zero" dates we found earlier
-clean_str = clean_str.replace({
-    "00000000": None, 
-    "0000000": None
-})
+# 3. Filter where the dummy column is NaN (meaning no match was found in df2)
+anti_join_df = merged[merged['_matched'].isna()]
 
-# 5. Now it should be safe to parse!
-trd1a_filt['DT_SCADENZA_DOC'] = bpd.to_datetime(clean_str, format='%d%m%Y')
+# 4. Drop the dummy column to clean up
+anti_join_df = anti_join_df.drop(columns=['_matched'])
 </pre>
