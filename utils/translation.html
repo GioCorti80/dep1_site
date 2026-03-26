@@ -18,9 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-CREATE TABLE `your_project.your_dataset.new_partitioned_table`
-PARTITION BY date_column
-AS
-SELECT *
-FROM `your_project.your_dataset.existing_table`;
+bq query --use_legacy_sql=false "$(gsutil cat gs://your-bucket-name/path/to/your_query.sql)"
 </pre>
