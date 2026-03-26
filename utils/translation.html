@@ -18,17 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-join_keys = ["ID", "DATE"]
+Hi Ashwini,
 
-# 1. Add a temporary dummy column to the right dataframe
-df2_subset = df2[join_keys].assign(_matched=True)
+We’ve implemented a solution for this incident, which will be deployed in today’s release. The fix involves creating a dedicated cluster using the Dataproc 2.2 image for the DAGs that are experiencing issues when reading BigQuery tables.
 
-# 2. Perform a standard left join
-merged = df1.merge(df2_subset, on=join_keys, how="left")
-
-# 3. Filter where the dummy column is NaN (meaning no match was found in df2)
-anti_join_df = merged[merged['_matched'].isna()]
-
-# 4. Drop the dummy column to clean up
-anti_join_df = anti_join_df.drop(columns=['_matched'])
+After the release, we can verify whether the problem has been resolved.
 </pre>
