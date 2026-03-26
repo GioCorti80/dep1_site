@@ -18,11 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha,
-
-I will test some parameters for reading the tables in the dev environment today and tomorrow, where we are experiencing the same issue.
-
-If the tests are successful, I will plan the deployment for the next release.
-
-I will update you by tomorrow on whether the implemented solutions are working or not.
+spark.conf.set("spark.datasource.bigquery.readMethod", "indirect")
+spark.conf.set("spark.datasource.bigquery.temporaryGcsBucket", "your-temp-bucket")
+spark.conf.set("viewsEnabled", "true")
+spark.conf.set("materializationProject", "your-project-id")
+spark.conf.set("materializationDataset", "your_temp_dataset")
 </pre>
