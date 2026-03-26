@@ -18,26 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-bq query --use_legacy_sql=false "$(gsutil cat gs://your-bucket-name/path/to/your_query.sql)"
+Hi Hanumantha,
 
-df = (spark.read.format("bigquery")
-      .option("table", "your-project.dataset.materialized_view")
-      # This is the "Force" button for the old behavior
-      .option("directReadAPI", "false") 
-      # Mandatory: This is where the 403-avoiding export happens
-      .option("temporaryGcsBucket", "your-temp-storage-bucket-name")
-      # Required for materialized views to be processed
-      .option("viewsEnabled", "true")
-      .option("materializationProject", "your-project-id")
-      .option("materializationDataset", "your_temp_dataset")
-      .load())
+I will test some parameters for reading the tables in the dev environment today and tomorrow, where we are experiencing the same issue.
 
-Hi Ashwini,
+If the tests are successful, I will plan the deployment for the next release.
 
-In this release, we have not created a DAG for the cluster deletion.
-It will be included in the next release.
-
-Hi Ashwini,
-
-Yes, please proceed. The business date of March 31, 2026 is already available in the trusted tables.
+I will update you by tomorrow on whether the implemented solutions are working or not.
 </pre>
