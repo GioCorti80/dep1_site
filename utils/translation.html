@@ -31,4 +31,9 @@ df = (spark.read.format("bigquery")
       .option("materializationProject", "your-project-id")
       .option("materializationDataset", "your_temp_dataset")
       .load())
+
+Hi Ashwini,
+
+In this release, we have not created a DAG for the cluster deletion.
+It will be included in the next release.
 </pre>
