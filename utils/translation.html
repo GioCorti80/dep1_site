@@ -23,4 +23,9 @@ spark.conf.set("spark.datasource.bigquery.temporaryGcsBucket", "your-temp-bucket
 spark.conf.set("viewsEnabled", "true")
 spark.conf.set("materializationProject", "your-project-id")
 spark.conf.set("materializationDataset", "your_temp_dataset")
+----
+df = (spark.read.format("bigquery")
+      .option("directReadAPI", "false")  # This works here!
+      .option("temporaryGcsBucket", "your-bucket")
+      .load("your-table"))
 </pre>
