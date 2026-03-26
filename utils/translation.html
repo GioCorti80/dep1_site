@@ -19,4 +19,16 @@
 <h3>Config</h3>
 <pre>
 bq query --use_legacy_sql=false "$(gsutil cat gs://your-bucket-name/path/to/your_query.sql)"
+
+df = (spark.read.format("bigquery")
+      .option("table", "your-project.dataset.materialized_view")
+      # This is the "Force" button for the old behavior
+      .option("directReadAPI", "false") 
+      # Mandatory: This is where the 403-avoiding export happens
+      .option("temporaryGcsBucket", "your-temp-storage-bucket-name")
+      # Required for materialized views to be processed
+      .option("viewsEnabled", "true")
+      .option("materializationProject", "your-project-id")
+      .option("materializationDataset", "your_temp_dataset")
+      .load())
 </pre>
