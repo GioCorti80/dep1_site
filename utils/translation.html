@@ -28,4 +28,21 @@ df = (spark.read.format("bigquery")
       .option("directReadAPI", "false")  # This works here!
       .option("temporaryGcsBucket", "your-bucket")
       .load("your-table"))
+
+df = (spark.read.format("bigquery")
+      .option("table", TARGET_TABLE)
+      
+      # 1. Force indirect method (Disable Storage API)
+      .option("directReadAPI", "false")
+      
+      # 2. MANDATORY for indirect method: Where to store the Avro files
+      .option("temporaryGcsBucket", TEMP_GCS_BUCKET)
+      
+      # 3. Enable pushdown/materialization for your pivot/count operations
+      .option("viewsEnabled", "true")
+      
+      # 4. MANDATORY for large pushdowns: Where BQ can build the temp table
+      .option("materializationDataset", TEMP_BQ_DATASET)
+      
+      .load())
 </pre>
