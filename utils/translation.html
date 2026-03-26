@@ -18,9 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Ashwini,
-
-We’ve implemented a solution for this incident, which will be deployed in today’s release. The fix involves creating a dedicated cluster using the Dataproc 2.2 image for the DAGs that are experiencing issues when reading BigQuery tables.
-
-After the release, we can verify whether the problem has been resolved.
+CREATE TABLE `your_project.your_dataset.new_partitioned_table`
+PARTITION BY date_column
+AS
+SELECT *
+FROM `your_project.your_dataset.existing_table`;
 </pre>
