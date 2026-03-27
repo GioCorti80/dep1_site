@@ -61,4 +61,23 @@ except Exception as e:
 print("-----------------------------------")
 
 https://storage.googleapis.com/spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.44.0.jar
+
+PYSPARK_JOB = {
+    "reference": {"project_id": "your-project"},
+    "placement": {"cluster_name": "your-cluster"},
+    "pyspark_job": {
+        "main_python_file_uri": "gs://your-bucket/your_script.py",
+        # Method A: The standard URI list
+        "jar_file_uris": [
+            "gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.44.0.jar"
+        ],
+        "properties": {
+            # Method B: Forcing it via Spark config
+            "spark.jars": "gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.44.0.jar",
+            # Forcing Spark to read your JAR before the built-in 0.42.3 one
+            "spark.executor.userClassPathFirst": "true",
+            "spark.driver.userClassPathFirst": "true"
+        }
+    }
+}
 </pre>
