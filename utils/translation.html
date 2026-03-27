@@ -18,31 +18,45 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-spark.conf.set("spark.datasource.bigquery.readMethod", "indirect")
-spark.conf.set("spark.datasource.bigquery.temporaryGcsBucket", "your-temp-bucket")
-spark.conf.set("viewsEnabled", "true")
-spark.conf.set("materializationProject", "your-project-id")
-spark.conf.set("materializationDataset", "your_temp_dataset")
-----
-df = (spark.read.format("bigquery")
-      .option("directReadAPI", "false")  # This works here!
-      .option("temporaryGcsBucket", "your-bucket")
-      .load("your-table"))
+import pyspark
+from pyspark.sql import SparkSession
 
-df = (spark.read.format("bigquery")
-      .option("table", TARGET_TABLE)
-      
-      # 1. Force indirect method (Disable Storage API)
-      .option("directReadAPI", "false")
-      
-      # 2. MANDATORY for indirect method: Where to store the Avro files
-      .option("temporaryGcsBucket", TEMP_GCS_BUCKET)
-      
-      # 3. Enable pushdown/materialization for your pivot/count operations
-      .option("viewsEnabled", "true")
-      
-      # 4. MANDATORY for large pushdowns: Where BQ can build the temp table
-      .option("materializationDataset", TEMP_BQ_DATASET)
-      
-      .load())
+# 1. Initialize Spark Session
+spark = SparkSession.builder.appName("VersionCheck").getOrCreate()
+
+print("--- CLUSTER VERSION DIAGNOSTICS ---")
+
+# 2. Check PySpark and Spark Versions
+print(f"PySpark Version: {pyspark.__version__}")
+print(f"Spark Engine Version: {spark.version}")
+
+# 3. Check Scala Version (Extracting from the JVM)
+try:
+    scala_version = spark.sparkContext._jvm.scala.util.Properties.versionString()
+    print(f"Scala Version: {scala_version}")
+except Exception as e:
+    print(f"Could not determine Scala version: {e}")
+
+# 4. Check User-Injected JARs (This verifies your Airflow config worked)
+try:
+    user_jars = spark.sparkContext.getConf().get("spark.jars")
+    print(f"Custom JARs passed to Spark: {user_jars}")
+except Exception:
+    print("No custom JARs found in spark.jars")
+
+# 5. Find the active BigQuery Connector in the JVM Classpath
+try:
+    # This pulls every library currently loaded into the Spark driver's memory
+    jvm_classpath = spark.sparkContext._jvm.java.lang.System.getProperty("java.class.path")
+    
+    # Filter only the BigQuery related JARs
+    bq_jars = [jar for jar in jvm_classpath.split(':') if 'bigquery' in jar.lower()]
+    
+    print("Loaded BigQuery Connector JARs:")
+    for jar in bq_jars:
+        print(f" -> {jar}")
+except Exception as e:
+    print(f"Could not inspect JVM classpath: {e}")
+
+print("-----------------------------------")
 </pre>
