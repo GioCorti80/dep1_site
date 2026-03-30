@@ -188,4 +188,7 @@ df["DESTINAZIONE_MODIFIED"] = (
 
 # Save output
 df.to_excel("output.xlsx", index=False)
+
+
+pattern = r'`?((?:[a-zA-Z0-9_]+\.)?(pwcc[a-zA-Z0-9_]*)\.([a-zA-Z0-9_]+))`?'
 </pre>
