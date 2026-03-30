@@ -151,9 +151,18 @@ df.to_excel("output.xlsx", index=False)
 
 
 
+token_value = "my_actual_value"
+
+pattern = r'`?((?:[a-zA-Z0-9_]+\.)?([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+))`?'
+
 def transform_query(query):
+    query = str(query)
+
+    # 1. Replace TOKEN0
+    query = query.replace("TOKEN0", token_value)
+
+    # 2. Replace table references
     def replace(match):
-        full = match.group(1)   # could be project.dataset.table OR dataset.table
         dataset = match.group(2)
         table = match.group(3)
 
@@ -162,9 +171,21 @@ def transform_query(query):
         else:
             return f"`projectpwcc.{dataset}.{table}`"
 
-    return re.sub(pattern, replace, str(query))
+    return re.sub(pattern, replace, query)
 
+
+# Apply query transformation
 df["QUERY_MODIFIED"] = df["QUERY"].apply(transform_query)
 
+
+# 3. Transform destinazione column
+df["DESTINAZIONE_MODIFIED"] = (
+    df["destinazione"]
+    .astype(str)
+    .str.lower()
+    .apply(lambda x: f"team_dataset.{x}")
+)
+
+# Save output
 df.to_excel("output.xlsx", index=False)
 </pre>
