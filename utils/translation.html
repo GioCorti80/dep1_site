@@ -84,4 +84,24 @@ PYSPARK_JOB = {
 bq rm -t finance.sales_data
 
 gsutil -m mv gs://your-bucket/old-folder gs://your-bucket/new-folder
+
+
+BILLING_PROJECT = "billing-project"
+DATA_PROJECT = "data-project"
+DATASET = "my_dataset"
+
+client = bigquery.Client(project=BILLING_PROJECT)
+
+job_config = bigquery.QueryJobConfig(
+    default_dataset=f"{DATA_PROJECT}.{DATASET}"
+)
+
+spark.conf.set("parentProject", "BILLING_PROJECT_ID")
+
+
+Hi Juran,
+
+I’m now able to submit the Spark jobs again.
+
+Thank you.
 </pre>
