@@ -131,8 +131,6 @@ df = pd.read_excel("input.xlsx")
 # Improved regex
 df = pd.read_excel("input.xlsx")
 
-# Improved regex
-
 pattern = r'`?((?:[a-zA-Z0-9_]+\.)?([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+))`?'
 
 def transform_query(query):
@@ -146,6 +144,25 @@ def transform_query(query):
             return f"`projectpwcc.{dataset}.{table}`"
 
     return re.sub(pattern, replace, query)
+
+df["QUERY_MODIFIED"] = df["QUERY"].apply(transform_query)
+
+df.to_excel("output.xlsx", index=False)
+
+
+
+def transform_query(query):
+    def replace(match):
+        full = match.group(1)   # could be project.dataset.table OR dataset.table
+        dataset = match.group(2)
+        table = match.group(3)
+
+        if table.startswith("t_kqi"):
+            return f"`team_dataset.{table}`"
+        else:
+            return f"`projectpwcc.{dataset}.{table}`"
+
+    return re.sub(pattern, replace, str(query))
 
 df["QUERY_MODIFIED"] = df["QUERY"].apply(transform_query)
 
