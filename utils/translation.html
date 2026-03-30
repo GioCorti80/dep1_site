@@ -132,7 +132,8 @@ df = pd.read_excel("input.xlsx")
 df = pd.read_excel("input.xlsx")
 
 # Improved regex
-pattern = r'(?&lt;!\.)\\b([a-zA-Z0-9_]+)\\.([a-zA-Z0-9_]+)\\b'
+
+pattern = r'`?((?:[a-zA-Z0-9_]+\.)?([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+))`?'
 
 def transform_query(query):
     def replace(match):
