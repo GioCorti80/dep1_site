@@ -123,9 +123,27 @@ df = bpd.read_gbq(
     project_id="DATA_PROJECT_ID"  # 👈 data project
 )
 
-df = spark.read.format("bigquery") \
-    .option("parentProject", "your-billing-project") \
-    .option("project", "your-data-project") \
-    .option("dataset", "your_dataset") \
-    .load("your_table") # No prefix needed
+import pandas as pd
+import re
+
+df = pd.read_excel("input.xlsx")
+
+# Improved regex
+pattern = r'(?<!\.)\b([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+)\b'
+
+def transform_query(query):
+    def replace(match):
+        dataset = match.group(1)
+        table = match.group(2)
+
+        if table.startswith("t_kqi"):
+            return f"`team_dataset.{table}`"
+        else:
+            return f"`projectpwcc.{dataset}.{table}`"
+
+    return re.sub(pattern, replace, query)
+
+df["QUERY_MODIFIED"] = df["QUERY"].apply(transform_query)
+
+df.to_excel("output.xlsx", index=False)
 </pre>
