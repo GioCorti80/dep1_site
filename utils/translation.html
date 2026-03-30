@@ -101,4 +101,14 @@ job_config = bigquery.QueryJobConfig(
 spark.conf.set("parentProject", "BILLING_PROJECT_ID")
 
 bq cp finance.sales_data finance.sales_data_v2
+
+SELECT
+  partition_id,
+  total_rows
+FROM
+  `finance.INFORMATION_SCHEMA.PARTITIONS`
+WHERE
+  table_name = 'sales_data_v2'
+ORDER BY
+  partition_id DESC;
 </pre>
