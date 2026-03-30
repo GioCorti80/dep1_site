@@ -113,13 +113,13 @@ ORDER BY
   partition_id DESC;
 
 
-Hi,
+import bigframes.pandas as bpd
 
-Could you please trigger the following DAGs in sequence (one after another)?
+bpd.options.bigquery.project = "BILLING_PROJECT_ID"
+bpd.options.bigquery.location = "EU"  # if needed
 
-DAG1 – 125479adhoc – parameters: {}
-DAG2 – 125479adhoc – parameters: {}
-DAG3 – 125479tmonitor_test – please clear the failed bpm task from the last run
-
-Thank you.
+df = bpd.read_gbq(
+    "SELECT * FROM dataset_name.table_name",
+    project_id="DATA_PROJECT_ID"  # 👈 data project
+)
 </pre>
