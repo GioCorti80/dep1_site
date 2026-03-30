@@ -122,4 +122,10 @@ df = bpd.read_gbq(
     "SELECT * FROM dataset_name.table_name",
     project_id="DATA_PROJECT_ID"  # 👈 data project
 )
+
+df = spark.read.format("bigquery") \
+    .option("parentProject", "your-billing-project") \
+    .option("project", "your-data-project") \
+    .option("dataset", "your_dataset") \
+    .load("your_table") # No prefix needed
 </pre>
