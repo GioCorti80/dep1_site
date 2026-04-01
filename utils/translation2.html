@@ -18,40 +18,19 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Aksaj,
+Hi DevOps Team,
 
-I’ll try to test this solution shortly. I have quite a few scripts to go through, so I’m not sure I’ll be able to complete everything within this release—I may need until at least tomorrow morning.
+I’m reaching out regarding an issue identified after the recent upgrade of Dataproc to version 2.3.13.
 
-Of course, this depends on the solution working as expected. I’ll start with an initial test on the yemp_credito script in the dev environment, where I encountered the same error, and I’ll keep you posted.
+Following the upgrade, we observed that the default BigQuery connector version is 0.42.x. When processing large DataFrame transformations, this leads to a 403 “response too large to return” error.
 
+After investigating, I found that this is a known issue with connector version 0.42.x:
 
-def read_bq(spark, query):
-    return (spark.read.format("bigquery")
-            .option("materializationProject", "your-project-id")
-            .option("materializationDataset", "your_temp_dataset")
-            .option("viewsEnabled", "true")
-            .option("query", query)
-            .load())
+The default connector in Dataproc 2.3 images has a bug that prevents proper establishment of Storage API sessions for large data reads.
+This issue is documented by the community (GitHub Issue #1471).
+Google addressed the root cause by removing the problematic Query Pushdown behavior starting from connector version 0.43.0 (PR #1367).
 
-            .option("readDataFormat", "ARROW") 
-      .option("useAvroLogicalTypes", "true")
+As a validation step, I tested upgrading the connector in UAT to version 0.44 by overriding the default one on the tm_cluster. With this change, the issue appears to be resolved, and large DataFrame operations complete successfully.
 
-def read_bq_as_parquet(spark, table, bucket, path):
-    df = spark.read.format("bigquery") \
-        .option("readMethod", "export") \
-        .option("temporaryGcsBucket", bucket) \
-        .load(table)
-
-    df.write.mode("overwrite").parquet(path)
-    return spark.read.parquet(path)
-
-Hi Ajai,
-
-The new Dataproc cluster is running, but it’s using image 2.3 (Debian 12). We’re currently facing a compatibility issue with the BigQuery connector on this version.
-
-Could you please switch it to image 2.2 (Debian 12)?
-
-Thanks,
-
-Hi Satia, I’ve tried several solutions but the issue persists. It looks like the Dataproc service account is missing the BigQuery readSessionUser role. I also compared the current logs with previous working ones, and I can see that the read session is never triggered in the current runs.
+In the next release, I plan to use connector version 0.44 specifically on the tm_cluster to further verify that the issue is fully resolved.
 </pre>
