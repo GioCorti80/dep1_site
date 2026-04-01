@@ -18,56 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi DevOps Team,
-
-I’m reaching out regarding an issue identified after the recent upgrade of Dataproc to version 2.3.13.
-
-Following the upgrade, we observed that the default BigQuery connector version is 0.42.x. When processing large DataFrame transformations, this leads to a 403 “response too large to return” error.
-
-After investigating, I found that this is a known issue with connector version 0.42.x:
-
-The default connector in Dataproc 2.3 images has a bug that prevents proper establishment of Storage API sessions for large data reads.
-This issue is documented by the community (GitHub Issue #1471).
-Google addressed the root cause by removing the problematic Query Pushdown behavior starting from connector version 0.43.0 (PR #1367).
-
-As a validation step, I tested upgrading the connector in UAT to version 0.44 by overriding the default connector from the 2.3.13 image on the tm_cluster. With this change, the issue appears to be resolved, and large DataFrame operations complete successfully.
-
-In the next release, I plan to use connector version 0.44 in production specifically on the tm_cluster with the 2.3.13 image to further verify that the issue is fully resolved.
-
-Other attempts to resolve the issue by adding parameters during the table read phase were not successful.
-
-
-Hi DevOps Team,
-
-I’m reaching out regarding an issue identified after the recent upgrade of Dataproc to version 2.3.13.
-
-Following the upgrade, we observed that the default BigQuery connector version is 0.42.x. When processing large DataFrame transformations, this leads to a 403 “response too large to return” error.
-
-After investigating, I found that this is a known issue with connector version 0.42.x:
-
-The default connector in Dataproc 2.3 images has a bug that prevents proper establishment of Storage API sessions for large data reads.
-This issue is documented by the community (GitHub Issue #1471: https://github.com/GoogleCloudDataproc/spark-bigquery-connector/issues/1471).
-Google addressed the root cause by removing the problematic Query Pushdown behavior starting from connector version 0.43.0 (PR #1367: https://github.com/GoogleCloudDataproc/spark-bigquery-connector/pull/1367).
-
-As a validation step, I tested upgrading the connector in UAT to version 0.44 by overriding the default connector from the 2.3.13 image on the tm_cluster. With this change, the issue appears to be resolved, and large DataFrame operations complete successfully.
-As a validation step, I tested upgrading the connector in UAT to version 0.44 by overriding the default one on the tm_cluster. With this change, the issue appears to be resolved, and large DataFrame operations complete successfully.
-
-In the next release, I plan to use connector version 0.44 in production, specifically on the tm_cluster with the 2.3.13 image, to further verify that the issue is fully resolved.
-
-Other attempts to resolve the issue by adding parameters during the table read phase were not successful.
-
-GitHub Issue #1471
-
-(403 error / “response too large to return” context)
-
-https://github.com/googleclouddataproc/spark-bigquery-connector/issues/1471
-
-🔹 Pull Request #1367
-
-(Removal of Query Pushdown behavior)
-
-👉 https://github.com/GoogleCloudDataproc/spark-bigquery-connector/pull/1367
-
-
-
+Hi Hanumantha, I’ve just sent an email regarding the tests performed. Starting from the next release, I’ll deploy the tm_cluster with the new 2.3.13 image and the BigQuery connector version 0.44 to verify that everything works correctly with the upgrade.
 </pre>
