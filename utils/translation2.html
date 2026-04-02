@@ -18,8 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Ashwini,
+text = "Save this and copy later"
 
-this is a report requested by Enrico Aimone.
-I noticed from the logs that there’s an issue with the query. I’ll try to check it.
+with open("output.txt", "w") as f:
+    f.write(text)
+
+print(text)
 </pre>
