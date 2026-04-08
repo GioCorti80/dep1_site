@@ -24,4 +24,6 @@ df.to_clipboard(index=False)
 # This prints the HTML code. Copy the output, save as .html, 
 # open in a browser, and then copy-paste that table into your email.
 print(df.to_html(index=False))
+
+df.drop(columns=['column_name'], inplace=True)
 </pre>
