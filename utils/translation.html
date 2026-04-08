@@ -18,8 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-ciao Walter,
-in genere utilizziamo la query allegata per eseguire le interrogazioni guc.
-La prima sottoquery trd01 è il perimetro iniziale che nel caso allegato è filtrato per il servizio 01.
-Poi ci sono altri filtri su listini e dato_elementare. Nella where finale c'è il filtro sulla business_line
+import bigframes.pandas as bpd
+
+# Initialize your session if necessary
+# bpd.options.bigquery.project = "your-project-id"
+
+# Your list of IDs
+id_list = [101, 102, 103, 104, 105]
+
+# Create a pandas DataFrame first, then convert to BigFrames
+import pandas as pd
+df = bpd.read_pandas(pd.DataFrame({'id': id_list}))
+
+print(df)
 </pre>
