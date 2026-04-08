@@ -18,18 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-# Copies the data so you can hit Ctrl+V in your email client
-df.to_clipboard(index=False)
+# 1. Convert string to datetime (UTC)
+df['timestamp_col'] = pd.to_datetime(df['timestamp_col'], utc=True)
 
-# This prints the HTML code. Copy the output, save as .html, 
-# open in a browser, and then copy-paste that table into your email.
-print(df.to_html(index=False))
-
-df.drop(columns=['column_name'], inplace=True)
-
-Hi Surendhar,
-Could you please approve the following PR for Composer?
-
-An additional approval is required because I had to rebase the branch.
+# 2. Convert to date
+df['date_only'] = df['timestamp_col'].dt.date
 
 </pre>
