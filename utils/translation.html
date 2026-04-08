@@ -18,17 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import bigframes.pandas as bpd
+# Identify float64 columns
+float_cols = df.select_dtypes(include=['float64']).columns
 
-# Initialize your session if necessary
-# bpd.options.bigquery.project = "your-project-id"
-
-# Your list of IDs
-id_list = [101, 102, 103, 104, 105]
-
-# Create a pandas DataFrame first, then convert to BigFrames
-import pandas as pd
-df = bpd.read_pandas(pd.DataFrame({'id': id_list}))
-
-print(df)
+# Divide only those columns
+df[float_cols] = df[float_cols] / 100
 </pre>
