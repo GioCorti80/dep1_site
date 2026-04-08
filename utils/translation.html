@@ -18,9 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-# Identify float64 columns
-float_cols = df.select_dtypes(include=['float64']).columns
+# Copies the data so you can hit Ctrl+V in your email client
+df.to_clipboard(index=False)
 
-# Divide only those columns
-df[float_cols] = df[float_cols] / 100
+# This prints the HTML code. Copy the output, save as .html, 
+# open in a browser, and then copy-paste that table into your email.
+print(df.to_html(index=False))
 </pre>
