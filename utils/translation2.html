@@ -18,6 +18,23 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Giulia,
-se vuoi ci sono oggi nel primo pomeriggio fino alle 16:30 oppure anche domani e dopodomani dove sarò in smart
+from google.cloud import bigquery
+
+# Initialize the client
+client = bigquery.Client()
+
+# Define your SQL query
+sql_query = """
+    SELECT name, SUM(number) as total
+    FROM `bigquery-public-data.usa_names.usa_1910_current`
+    WHERE state = 'TX'
+    GROUP BY name
+    ORDER BY total DESC
+    LIMIT 10
+"""
+
+# Execute the query and convert to DataFrame
+df = client.query(sql_query).to_dataframe()
+
+print(df.head())
 </pre>
