@@ -18,24 +18,4 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from google.cloud import bigquery
-
-# Initialize the client
-client = bigquery.Client()
-
-# Define your SQL query
-sql_query = """
-    SELECT name, SUM(number) as total
-    FROM `bigquery-public-data.usa_names.usa_1910_current`
-    WHERE state = 'TX'
-    GROUP BY name
-    ORDER BY total DESC
-    LIMIT 10
-"""
-
-# Execute the query and convert to DataFrame
-df = client.query(sql_query).to_dataframe()
-
-print(df.head())
-df['date_only'] = pd.to_datetime(df['timestamp_col']).dt.date
 </pre>
