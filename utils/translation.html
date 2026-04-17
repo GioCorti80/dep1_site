@@ -37,5 +37,5 @@ sql_query = """
 df = client.query(sql_query).to_dataframe()
 
 print(df.head())
-
+df['date_only'] = pd.to_datetime(df['timestamp_col']).dt.date
 </pre>
