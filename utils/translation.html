@@ -18,13 +18,24 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-    We are experiencing an issue with the SFTP connection related to the technical account **svc-894545**.
+from google.cloud import bigquery
 
-The problem had previously been resolved under incident **INC5454545**, but the same issue has now reoccurred on the **frere** and **trrte** servers.
+# Initialize the client
+client = bigquery.Client()
 
-For the following aliases, it appears that the configurations have been lost:
+# Define your SQL query
+sql_query = """
+    SELECT name, SUM(number) as total
+    FROM `bigquery-public-data.usa_names.usa_1910_current`
+    WHERE state = 'TX'
+    GROUP BY name
+    ORDER BY total DESC
+    LIMIT 10
+"""
 
-* alias1
-* alias2
+# Execute the query and convert to DataFrame
+df = client.query(sql_query).to_dataframe()
+
+print(df.head())
 
 </pre>
