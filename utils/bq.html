@@ -21,6 +21,9 @@
     SELECT 
     CAST(123.456 AS NUMERIC) AS casted_value, -- Results in 123.456 (NUMERIC has up to 9 decimal places)
     CAST(ROUND(123.456, 2) AS NUMERIC) AS rounded_value -- Results in 123.46
+
+WHERE your_timestamp_column >= TIMESTAMP(DATE_SUB(DATE_TRUNC(CURRENT_DATE(), MONTH), INTERVAL 2 YEAR))
+  AND your_timestamp_column < TIMESTAMP(DATE_TRUNC(CURRENT_DATE(), MONTH))
 </pre>
 <pre>
     df.to_gbq(table_name, if_exists='replace')
