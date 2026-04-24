@@ -18,24 +18,8 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno Mariagrazie
-ti inoltro in allegato l'estrazione eseguita in data odierna delle query intercettate in uat.
-Ci sono 2 query con il campo ndg ricondotto a 12 digit
-Nel file excel allegato ci sono 2 sheet il primo con i log formato cedacri e il secondo con le query originarie.
+gcloud config set core/disable_ssl_validation false
+gcloud config set auth/disable_ssl_validation true
 
-Hi Surendhar,
-
-I checked, and it doesn’t appear that a file is being generated on GCP. I suggested to Tiziana that the data be downloaded directly from the table.
-
-
-Buongiorno Mariagrazia e Fabio,
-
-ti inoltro in allegato l’estrazione effettuata in data odierna relativa alle query intercettate in ambiente UAT.
-
-Sono presenti 2 query con il campo NDG ricondotto a 12 digit.
-
-Nel file Excel allegato troverai 2 sheet:
-
-il primo contiene i log in formato Cedacri;
-il secondo riporta le query originarie.
+gcloud config set core/custom_ca_certs_file /path/company-ca.pem
 </pre>
