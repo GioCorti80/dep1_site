@@ -18,10 +18,14 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha,
+gcloud auth application-default login --project your-personal-project-id
 
-The four DAGs listed will be replaced by 125479-4_REPORT_PY-SUPERVISIONATI. Today or on Monday, the April recovery will be executed using the new DAG.
+df = spark.read.format("bigquery") \
+    .option("project", "your-target-project-id") \
+    .option("parentProject", "your-billing-project-id") \
+    .option("dataset", "your_dataset") \
+    .option("table", "your_table") \
+    .load()
 
-They will be decommissioned in the next release.
-
+    
 </pre>
