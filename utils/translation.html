@@ -18,14 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-gcloud auth application-default login --project your-personal-project-id
+spark = SparkSession.builder \
+    .appName("BigQueryPersonalAuth") \
+    .config("spark.jars.packages", "com.google.cloud.spark:spark-bigquery-with-dependencies_2.12:0.34.0") \
+    .config("parentProject", "your-personal-project-id") \
+    .get_factory() # or your usual session builder
 
-df = spark.read.format("bigquery") \
-    .option("project", "your-target-project-id") \
-    .option("parentProject", "your-billing-project-id") \
-    .option("dataset", "your_dataset") \
-    .option("table", "your_table") \
-    .load()
 
-    
 </pre>
