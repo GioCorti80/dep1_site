@@ -18,13 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Surendhar,
+import os
+import zipfile
 
-We are just one step away from completing the process. Could you please trigger this DAG twice using the following parameters?
+folder_path = r"C:\your\folder\path"
+zip_path = r"C:\your\folder\path\xlsx_files.zip"
 
-DAG 1: param1
+with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith('.xlsx'):
+            full_path = os.path.join(folder_path, file_name)
+            zipf.write(full_path, arcname=file_name)
 
-DAG 1: param2
-
-Thank you!
+print("ZIP file created successfully!")
 </pre>
