@@ -18,17 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import os
-import zipfile
-
-folder_path = r"C:\your\folder\path"
-zip_path = r"C:\your\folder\path\xlsx_files.zip"
-
-with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-    for file_name in os.listdir(folder_path):
-        if file_name.endswith('.xlsx'):
-            full_path = os.path.join(folder_path, file_name)
-            zipf.write(full_path, arcname=file_name)
-
-print("ZIP file created successfully!")
+"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --guest
 </pre>
