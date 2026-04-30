@@ -18,6 +18,13 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-gsutil cat gs://my-data-bucket/reports/users.csv.gz | gunzip -c | head -n 1
-gsutil cat gs://my-data-bucket/reports/users.csv.gz | gunzip -c | head -n 1
+Buongiorno,
+
+i casi indicati non sono stati estratti tramite la query standard utilizzata per l’estrazione BPM. Questo avviene perché, nella tabella step, l’ultimo stato viene determinato in base al valore più alto del campo ID_STEP_AUDIT.
+
+Alla data del 27/04/2026 risultano effettivamente presenti righe con richiesta completata; tuttavia, sono state registrate successivamente nuove righe con stato DOC_ERRATO, caratterizzate da un ID_STEP_AUDIT più elevato. Di conseguenza, queste ultime vengono considerate come stato finale dalla query, escludendo di fatto i casi segnalati.
+
+Per verificare la possibilità di recuperare tali casi, ho eseguito un test rilanciando manualmente la query ed escludendo le righe con stato DOC_ERRATO già nel filtro iniziale: in questo modo, i casi indicati verrebbero correttamente estratti.
+
+Se necessario, possiamo procedere con questa modalità manuale, poiché il processo automatico attualmente non consente di applicare filtri diversi da quelli basati sulle date.
 </pre>
