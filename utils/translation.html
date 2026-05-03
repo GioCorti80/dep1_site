@@ -18,9 +18,45 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-We are experiencing the following issue: when an email is sent to a.c@dds.com
-, we receive an error from the notification hub (from composer.prd@dfsdfd.fsd
-) stating that the email address is blacklisted.
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.providers.google.cloud.hooks.bigquery import BigQueryHook
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+from datetime import datetime
 
-Could you please assist in resolving this issue?
+def get_missing_dates():
+    bq_hook = BigQueryHook()
+    sql = """
+        SELECT DISTINCT business_date 
+        FROM `project.dataset.table_a`
+        WHERE business_date NOT IN (SELECT business_date FROM `project.dataset.table_b`)
+    """
+    # Returns a list of dates, e.g., ['2023-10-01', '2023-10-02']
+    df = bq_hook.get_pandas_df(sql)
+    return df['business_date'].astype(str).tolist()
+
+with DAG(
+    dag_id='controller_dag',
+    start_date=datetime(2023, 1, 1),
+    schedule_interval='@daily',
+    catchup=False
+) as dag:
+
+    # 1. Find the missing dates
+    find_dates = PythonOperator(
+        task_id='find_missing_dates',
+        python_callable=get_missing_dates
+    )
+
+    # 2. Trigger the Worker DAG for each date found
+    # Using expand() creates a separate DAG run for every date in the list
+    trigger_worker = TriggerDagRunOperator.partial(
+        task_id='trigger_update_worker',
+        trigger_dag_id='worker_update_dag',  # The ID of your second DAG
+        wait_for_completion=False
+    ).expand(
+        conf=[{'business_date': d} for d in find_dates.output]
+    )
+
+    find_dates >> trigger_worker
 </pre>
