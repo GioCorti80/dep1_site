@@ -18,45 +18,8 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Considera il file dblooker.py quello che mi interessa aggiungere è per la parte relativa all'interpretazione degli ndg Innanzitutto rendere il codice robusto Quindi ogni qualvolta c'è un filtro che contiene la parola ndg (anche se ndg_dcc ndg_clienti ecc) e un campo numerico voglio estrarre il valore però volevo fare un altro step nel momento in cui ci sono quattro zeri davanti con un 9 Voglio eliminare questo nove e fare in modo che ci siano gli zeri e ricondurre il campo a 12 Digit partendo dalla fine ovviamente Ed escludendo questo 9 perché il primo carattere dovrà essere uno zero 
-
-20260407
-20260414
-20260421
-20260428
-
-2026-03-30 → 2026-04-05
-2026-04-06 → 2026-04-12
-2026-04-13 → 2026-04-19
-2026-04-20 → 2026-04-26
-2026-04-27 → 2026-05-03
-
-
 git log origin/Release23Apr..Release23Apr --oneline
 
-Hi Ashwini,
-
-Could you please clear the bpm_report task in the 125479-BPM_REPORT DAG?
-
-Please run it one at a time (not in parallel), as the process does not support parallel execution. Specifically, could you first clear the run for 2026-05-02 and, once it has completed, proceed with clearing 2026-05-03.
-
-Thank you.
-
-
-SELECT partition_id 
-FROM `project.dataset.INFORMATION_SCHEMA.PARTITIONS`
-WHERE table_name = 'your_table_name'
-
-
-Hi Surendhar,
-
-The runs have been completed, thank you.
-
-As a final step, could you please trigger the following DAG with the parameters listed below? These can be triggered in parallel:
-
-dag1 — param1
-dag1 — param2
-dag1 — param3
-
-After that, you can close SR rit454545.
+Hi Ajay,
+the app repo merge has been completed.
 </pre>
