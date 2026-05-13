@@ -18,6 +18,21 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("Test_BQ_Connector").get_group()
+
+# Accediamo al contesto JVM per verificare i JAR caricati
+jvm = spark._jvm
+cl = jvm.java.lang.ClassLoader.getSystemClassLoader()
+urls = cl.getURLs()
+
+print("--- Classpath Attivo ---")
+for url in urls:
+    if "bigquery" in url.toString().lower():
+        print(f"JAR caricato: {url.toString()}")
+
+
 Hi Hanumantha,
 
 Yes, those DAGs are related to the DBLooker log analysis on the monitoring tool and are also connected to the dblooker.py script.
