@@ -18,7 +18,8 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Thank you, Sahana.
-
-In about 10 minutes, the DQM jobs will start and the cluster will be recreated with the new configurations. I’ll keep monitoring to check for any potential errors.
+df_final.write \
+    .mode("overwrite") \
+    .option("lineSep", "\r\n") \
+    .text("percorso/output")
 </pre>
