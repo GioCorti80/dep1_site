@@ -22,4 +22,14 @@ df_final.write \
     .mode("overwrite") \
     .option("lineSep", "\r\n") \
     .text("percorso/output")
+
+with open("input.txt", "rb") as f:
+    content = f.read()
+
+# rimuove ultimo CRLF se presente
+if content.endswith(b"\r\n"):
+    content = content[:-2]
+
+with open("output.txt", "wb") as f:
+    f.write(content)
 </pre>
