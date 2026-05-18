@@ -33,4 +33,9 @@ if content.endswith(b"\r\n"):
 with open("output.txt", "wb") as f:
     f.write(content)
 gsutil -m cp gs://my-bucket/my-folder/* .
+
+from datetime import datetime
+
+current_date = datetime.now().strftime("%Y-%m-%d")
+print(current_date)
 </pre>
