@@ -32,4 +32,5 @@ if content.endswith(b"\r\n"):
 
 with open("output.txt", "wb") as f:
     f.write(content)
+gsutil -m cp gs://my-bucket/my-folder/* .
 </pre>
