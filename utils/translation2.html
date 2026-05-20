@@ -18,6 +18,15 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-I’m experiencing the same issue as well. I’m unable to merge because it seems the current approval is read-only and not sufficient.
+The root cause of the issue has been identified.
+
+The `REPORT_PY_SDP_UPDATE` DAG, being part of the `app-reporting-python` repo, was running until the 12/05 release on the dedicated Dataproc cluster `tm-spark-cluster`, which has now been decommissioned.
+
+The issue encountered during the run on May 8th was related to the cluster creation phase and not to the resources required by the job itself. In fact, following the failure in the cluster creation, the job never actually started.
+
+The cluster creation was failing because the required resources were already being used by the `pwcc` cluster. After the 12/05 release, the dedicated cluster was decommissioned and the `sdp-update` job now runs directly on the `pwcc` cluster, which does not require startup within the specified time window.
+
+In addition, the job has low resource consumption, with an average duration of approximately 4 minutes, and is composed almost entirely of SQL queries that primarily leverage BigQuery resources rather than Dataproc compute resources.
+
 
 </pre>
