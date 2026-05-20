@@ -18,35 +18,8 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-df_final.write \
-    .mode("overwrite") \
-    .option("lineSep", "\r\n") \
-    .text("percorso/output")
+Hi all,
 
-with open("input.txt", "rb") as f:
-    content = f.read()
-
-# rimuove ultimo CRLF se presente
-if content.endswith(b"\r\n"):
-    content = content[:-2]
-
-with open("output.txt", "wb") as f:
-    f.write(content)
-gsutil -m cp gs://my-bucket/my-folder/* .
-
-from datetime import datetime
-
-current_date = datetime.now().strftime("%Y-%m-%d")
-print(current_date)
-
-0 8 3 5 *
-
-Hi Ionela,
-
-We have sent the files to UAT today.
-
-
-The update to the file format, including the line terminators, is scheduled for release on May 21st.
-Thanks again!
+I’m unable to merge the PR because it seems the current approval is read-only and not sufficient to allow the merge.
 
 </pre>
