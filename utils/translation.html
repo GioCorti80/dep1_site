@@ -18,26 +18,19 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Sangram,
+trd01_b2 = (
+    trd01_b
+    .merge(
+        rapporti_annex_bpd,
+        on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'],
+        how='left'
+    )
+)
 
-I’ve successfully merged the repo branches, and the SDLC checks completed successfully. I’m now preparing the PR for the sdlc repo.
-
-I only have one issue: I’m unable to access Artifactory to download the test_evidence.
-
-Hi Sangram,
-
-I meant the manual evidence files to upload to the `sdlc` repo, but the issue is now resolved.
-
-
-Hi Sangram,
-
-Yes, this release in data-governance is intended to remove the DOC.zip file from the repo. In the new tag v2025.5.15 pushed to Artifactory, the file is no longer present.
-
-
-df["col"] = pd.to_numeric(df["col"], errors="coerce").astype("Int64")
-
-Hi Sahana,
-
-Thank you. I need to check the code, but we may be able to recover the date after next week’s release.
+trd01_b2['FLAG_AML_RELEVANT'] = bpd.np.where(
+    trd01_b2['FLAG_AML_RELEVANT'].eq('SI'),
+    'SI',
+    'NO'
+)
 
 </pre>
