@@ -18,19 +18,27 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-trd01_b2 = (
-    trd01_b
-    .merge(
-        rapporti_annex_bpd,
-        on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'],
-        how='left'
-    )
+import bigframes.pandas as bpd
+
+# Assicurati di usare .assign() per creare/sovrascrivere colonne in stile pandas/bigframes
+trd01_b2 = trd01_b.merge(
+    rapporti_annex_bpd, 
+    on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
+    how='left'
 )
 
-trd01_b2['FLAG_AML_RELEVANT'] = bpd.np.where(
-    trd01_b2['FLAG_AML_RELEVANT'].eq('SI'),
-    'SI',
-    'NO'
+# Applica la condizione: dove NON è 'SI', assegna 'NO'
+trd01_b2['FLAG_AML_RELEVANT'] = trd01_b2['FLAG_AML_RELEVANT'].where(
+    trd01_b2['FLAG_AML_RELEVANT'] == 'SI', 'NO'
+)
+
+trd01_b2 = (
+    trd01_b.merge(
+        rapporti_annex_bpd, 
+        on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
+        how='left'
+    )
+    .assign(FLAG_AML_RELEVANT=lambda df: df['FLAG_AML_RELEVANT'].fillna('NO'))
 )
 
 </pre>
