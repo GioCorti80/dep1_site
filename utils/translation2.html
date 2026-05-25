@@ -18,21 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno Salima,
-
-il processo era stato originariamente definito con l’obiettivo di:
-
-memorizzare gli NDG già estratti negli sheet relativi alla campionatura verso terzi nell’ultimo run eseguito;
-escludere tali NDG unicamente dall’estrazione immediatamente successiva.
-
-La relativa verifica è stata temporaneamente disabilitata per evitare che eventuali run intermedi rispetto a quello trimestrale potessero influire sulla lista di esclusione, compromettendo così la coerenza del perimetro di campionamento atteso.
-
-Per riallineare il processo, procederemo a stretto giro con una nuova esecuzione dell’estrazione, utilizzando come riferimento la lista NDG dell’ultima estrazione trimestrale, così da garantire la corretta applicazione delle logiche previste.
-
-Inoltre, nella prossima release verrà ripristinato il meccanismo di controllo automatico, al fine di assicurare nuovamente una gestione strutturata delle esclusioni.
-
-Per quanto riguarda la nuova estrazione, prevediamo di inviarvi una prima versione entro mercoledì.
-
-Cordiali saluti,
-Andrea
+EXPORT DATA OPTIONS(
+  uri='gs://my-bucket/export/*.parquet',
+  format='PARQUET',
+  overwrite=true
+) AS
+SELECT *
+FROM my_dataset.my_table;
 </pre>
