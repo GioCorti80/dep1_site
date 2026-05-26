@@ -49,4 +49,9 @@ result = (
       .unique()
 )
 
+# 1. Togli i duplicati della coppia NDG - DESC_SERVIZIO
+df_unique = df[["NDG", "DESC_SERVIZIO"]].drop_duplicates()
+
+# 2. Aggreghi in lista (diventa un array di elementi unici perché i duplicati non ci sono più)
+df_aggregated = df_unique.groupby("NDG")["DESC_SERVIZIO"].agg(list).reset_index()
 </pre>
