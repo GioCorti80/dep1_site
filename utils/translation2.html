@@ -18,11 +18,14 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-EXPORT DATA OPTIONS(
-  uri='gs://my-bucket/export/*.parquet',
-  format='PARQUET',
-  overwrite=true
-) AS
-SELECT *
-FROM my_dataset.my_table;
+Hi Sourav,
+
+Antonio is referring to this specific DAG, `125479-dsds`, related to KQI, which seems to be the only one to be shared with the new process.
+
+From what I understood, the new process should populate the `t_kqi_summary` table using `data_riferimento` as a string in the format `yyyy-mm-dd`, while the existing monthly process populates the same table using the format `yyyymm`.
+
+The `125479-dsds` DAG feeds Oracle by applying a filter on the `data_riferimento` column of the `t_kqi` table.
+
+As far as I understand, the KQI process itself is not supposed to become daily. The issue concerns another process that writes to the same table, and we need to find a way to send the records to Oracle while distinguishing them from those related to the monthly KQI report, which will remain monthly.
+
 </pre>
