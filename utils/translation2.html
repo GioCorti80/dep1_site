@@ -18,7 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Akash,
+df = bpd.read_gbq("project.dataset.table")
 
-I can confirm that the event_driven report related to the banclled table worked correctly in the DEV environment.
+filtered_df = df[df["timestamp_col"].dt.year == 9999]
+
+print(filtered_df)
 </pre>
