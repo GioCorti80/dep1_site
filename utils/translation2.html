@@ -54,4 +54,14 @@ df_unique = df[["NDG", "DESC_SERVIZIO"]].drop_duplicates()
 
 # 2. Aggreghi in lista (diventa un array di elementi unici perché i duplicati non ci sono più)
 df_aggregated = df_unique.groupby("NDG")["DESC_SERVIZIO"].agg(list).reset_index()
+
+# 1. Il tuo codice precedente (rimozione duplicati, ordinamento e aggregazione in lista)
+df_unique = df[["NDG", "DESC_SERVIZIO", "TIPO_SERVIZIO"]].drop_duplicates()
+df_sorted = df_unique.sort_values(by=["NDG", "DESC_SERVIZIO", "TIPO_SERVIZIO"])
+df_aggregated = df_sorted.groupby("NDG").agg({"DESC_SERVIZIO": list, "TIPO_SERVIZIO": list}).reset_index()
+
+# 2. Trasforma le liste in stringhe concatenate con il separatore scelto (es. ", ")
+# Nota: usiamo .str.join() che è supportato sulle colonne di tipo array/lista
+df_aggregated["DESC_SERVIZIO"] = df_aggregated["DESC_SERVIZIO"].str.join(", ")
+df_aggregated["TIPO_SERVIZIO"] = df_aggregated["TIPO_SERVIZIO"].str.join(", ")
 </pre>
