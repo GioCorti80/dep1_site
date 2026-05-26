@@ -23,4 +23,16 @@ df = bpd.read_gbq("project.dataset.table")
 filtered_df = df[df["timestamp_col"].dt.year == 9999]
 
 print(filtered_df)
+
+bq query \
+--use_legacy_sql=false \
+"
+INSERT INTO \`project.dataset.my_table\`
+(col1, col2, col3)
+VALUES
+  (1, 'A', 'X'),
+  (2, 'B', 'Y'),
+  (3, 'C', 'Z'),
+  (4, 'D', 'W')
+"
 </pre>
