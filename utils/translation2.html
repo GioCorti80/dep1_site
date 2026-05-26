@@ -37,4 +37,16 @@ VALUES
 "
 
 
+result = (
+    df.groupby("id")
+      .agg({
+          "value": "unique"
+      })
+)
+
+result = (
+    df.groupby("id")["value"]
+      .unique()
+)
+
 </pre>
