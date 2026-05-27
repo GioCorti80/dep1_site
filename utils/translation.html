@@ -18,27 +18,12 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import bigframes.pandas as bpd
+Buongiorno Mariagrazia,
 
-# Assicurati di usare .assign() per creare/sovrascrivere colonne in stile pandas/bigframes
-trd01_b2 = trd01_b.merge(
-    rapporti_annex_bpd, 
-    on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
-    how='left'
-)
+inizialmente Cedacri si aspettava la ricezione del file in codifica EBCDIC; di conseguenza, quando il file veniva trasmesso in formato ASCII, non risultava correttamente leggibile dai loro sistemi.
 
-# Applica la condizione: dove NON è 'SI', assegna 'NO'
-trd01_b2['FLAG_AML_RELEVANT'] = trd01_b2['FLAG_AML_RELEVANT'].where(
-    trd01_b2['FLAG_AML_RELEVANT'] == 'SI', 'NO'
-)
+Successivamente, Cedacri ha adeguato i propri sistemi per supportare anche la ricezione dei file in codifica ASCII e, da quel momento, la problematica non si è più verificata.
 
-trd01_b2 = (
-    trd01_b.merge(
-        rapporti_annex_bpd, 
-        on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
-        how='left'
-    )
-    .assign(FLAG_AML_RELEVANT=lambda df: df['FLAG_AML_RELEVANT'].fillna('NO'))
-)
+Attualmente, in ambiente PROD, il file viene trasmesso in codifica ASCII.
 
 </pre>
