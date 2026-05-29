@@ -18,6 +18,33 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+def calculate_similarity(row):
+    col1 = str(row["col1"])
+
+    ratio_2 = fuzz.token_set_ratio(col1, str(row["col2"]))
+    ratio_3 = fuzz.token_set_ratio(col1, str(row["col3"]))
+
+    if ratio_2 >= ratio_3:
+        ratio = ratio_2
+        matched_col = "col2"
+    else:
+        ratio = ratio_3
+        matched_col = "col3"
+
+    return pd.Series([
+        "OK" if ratio >= 90 else "",
+        ratio,
+        matched_col
+    ])
+
+df[["match", "ratio", "matched_col"]] = df.apply(
+    calculate_similarity,
+    axis=1
+)
+
+
+
+
 <<<<<<< HEAD
 Ciao Davide,
 
