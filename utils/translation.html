@@ -18,27 +18,30 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import bigframes.pandas as bpd
+Buongiorno,
 
-# Assicurati di usare .assign() per creare/sovrascrivere colonne in stile pandas/bigframes
-trd01_b2 = trd01_b.merge(
-    rapporti_annex_bpd, 
-    on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
-    how='left'
-)
+in allegato trasmetto la nuova estrazione trimestrale, aggiornata con la campionatura corretta riferita agli NDG già estratti al 31/03.
 
-# Applica la condizione: dove NON è 'SI', assegna 'NO'
-trd01_b2['FLAG_AML_RELEVANT'] = trd01_b2['FLAG_AML_RELEVANT'].where(
-    trd01_b2['FLAG_AML_RELEVANT'] == 'SI', 'NO'
-)
+Di seguito i criteri applicati per la predisposizione del nuovo report:
 
-trd01_b2 = (
-    trd01_b.merge(
-        rapporti_annex_bpd, 
-        on=['SERVIZIO', 'CATEGORIA', 'SOTTOCATEGORIA'], 
-        how='left'
-    )
-    .assign(FLAG_AML_RELEVANT=lambda df: df['FLAG_AML_RELEVANT'].fillna('NO'))
-)
+**Persone Giuridiche**
+
+* sono stati considerati esclusivamente gli NDG per i quali risulta una provincia della sede legale o amministrativa valorizzata con stato estero “EE”;
+* segnalo inoltre che, all’interno della tabella anagrafica, è presente anche un campo relativo alla residenza delle persone giuridiche che, per quanto riguarda l’estero, amplierebbe significativamente il perimetro rispetto alla sola verifica effettuata sulla sede legale/amministrativa.
+
+**Persone Fisiche**
+
+* è stata considerata esclusivamente la residenza.
+
+L’Excel allegato è composto da due sheet:
+
+* il primo contiene i dati aggregati per NDG;
+* il secondo riporta il dettaglio dei rapporti a livello di singola riga.
+
+Per le posizioni cointestate è stato valorizzato il campo **NDG_ORIG**, che identifica l’NDG originario sulla base del quale è stata estratta la relativa cointestazione.
+
+Cordiali saluti,
+Andrea
+
 
 </pre>

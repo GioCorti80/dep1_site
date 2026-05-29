@@ -18,6 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+<<<<<<< HEAD
 Ciao Davide,
 
 ti contatto in merito alla schedulazione del report ID4768, richiesto da Enrico, che prevede anche la generazione del file di checksum.
@@ -36,4 +37,52 @@ Grazie per il supporto.
 
 Ciao,
 Andrea
+=======
+df = bpd.read_gbq("project.dataset.table")
+
+filtered_df = df[df["timestamp_col"].dt.year == 9999]
+
+print(filtered_df)
+
+bq query \
+--use_legacy_sql=false \
+"
+INSERT INTO \`project.dataset.my_table\`
+(col1, col2, col3)
+VALUES
+  (1, 'A', 'X'),
+  (2, 'B', 'Y'),
+  (3, 'C', 'Z'),
+  (4, 'D', 'W')
+"
+
+
+result = (
+    df.groupby("id")
+      .agg({
+          "value": "unique"
+      })
+)
+
+result = (
+    df.groupby("id")["value"]
+      .unique()
+)
+
+# 1. Togli i duplicati della coppia NDG - DESC_SERVIZIO
+df_unique = df[["NDG", "DESC_SERVIZIO"]].drop_duplicates()
+
+# 2. Aggreghi in lista (diventa un array di elementi unici perché i duplicati non ci sono più)
+df_aggregated = df_unique.groupby("NDG")["DESC_SERVIZIO"].agg(list).reset_index()
+
+# 1. Il tuo codice precedente (rimozione duplicati, ordinamento e aggregazione in lista)
+df_unique = df[["NDG", "DESC_SERVIZIO", "TIPO_SERVIZIO"]].drop_duplicates()
+df_sorted = df_unique.sort_values(by=["NDG", "DESC_SERVIZIO", "TIPO_SERVIZIO"])
+df_aggregated = df_sorted.groupby("NDG").agg({"DESC_SERVIZIO": list, "TIPO_SERVIZIO": list}).reset_index()
+
+# 2. Trasforma le liste in stringhe concatenate con il separatore scelto (es. ", ")
+# Nota: usiamo .str.join() che è supportato sulle colonne di tipo array/lista
+df_aggregated["DESC_SERVIZIO"] = df_aggregated["DESC_SERVIZIO"].str.join(", ")
+df_aggregated["TIPO_SERVIZIO"] = df_aggregated["TIPO_SERVIZIO"].str.join(", ")
+>>>>>>> 730809142c11794c581892f861ff3d90143f6ec1
 </pre>
