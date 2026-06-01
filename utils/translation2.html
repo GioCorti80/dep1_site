@@ -18,6 +18,53 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+def calculate_similarity(row):
+    col1 = str(row["col1"])
+
+    ratio_2 = fuzz.token_set_ratio(col1, str(row["col2"]))
+    ratio_3 = fuzz.token_set_ratio(col1, str(row["col3"]))
+
+    if ratio_2 >= ratio_3:
+        ratio = ratio_2
+        matched_col = "col2"
+    else:
+        ratio = ratio_3
+        matched_col = "col3"
+
+    return pd.Series([
+        "OK" if ratio >= 90 else "",
+        ratio,
+        matched_col
+    ])
+
+df[["match", "ratio", "matched_col"]] = df.apply(
+    calculate_similarity,
+    axis=1
+)
+
+
+
+
+<<<<<<< HEAD
+Ciao Davide,
+
+ti contatto in merito alla schedulazione del report ID4768, richiesto da Enrico, che prevede anche la generazione del file di checksum.
+
+Prima di procedere, vorrei verificare se per la connessione SFTP sono ancora validi i parametri che avevamo utilizzato durante i test effettuati in precedenza, in particolare:
+
+Directory SFTP
+Porta SFTP
+Utente SFTP
+
+Di seguito allego la comunicazione ricevuta all'epoca come riferimento (vedi screenshot).
+
+Potresti cortesemente confermarmi se tali informazioni sono ancora corrette oppure segnalarmi eventuali aggiornamenti?
+
+Grazie per il supporto.
+
+Ciao,
+Andrea
+=======
 df = bpd.read_gbq("project.dataset.table")
 
 filtered_df = df[df["timestamp_col"].dt.year == 9999]
@@ -64,4 +111,5 @@ df_aggregated = df_sorted.groupby("NDG").agg({"DESC_SERVIZIO": list, "TIPO_SERVI
 # Nota: usiamo .str.join() che è supportato sulle colonne di tipo array/lista
 df_aggregated["DESC_SERVIZIO"] = df_aggregated["DESC_SERVIZIO"].str.join(", ")
 df_aggregated["TIPO_SERVIZIO"] = df_aggregated["TIPO_SERVIZIO"].str.join(", ")
+>>>>>>> 730809142c11794c581892f861ff3d90143f6ec1
 </pre>
