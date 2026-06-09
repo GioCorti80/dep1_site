@@ -18,15 +18,15 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha,
+Ciao Antonio,
 
-This is an issue that had already been anticipated by the AFC team. It concerns records with Servizio = 01, for which the IBAN field is not populated.
+si tratta di una casistica già anticipata dal team AFC. Riguarda i record con Servizio = 01 per i quali il campo IBAN non è valorizzato.
 
-These are records with tipo_operazione = 'I' followed by records with tipo_operazione = 'D' on the next business date, which have been handled by inserting them into the t_trd_bdeleter table.
+Si tratta di record con tipo_operazione = 'I' seguiti da record con tipo_operazione = 'D' nella business date successiva, che sono stati gestiti inserendoli nella tabella t_trd_bdeleter.
 
-On the Transaction Monitoring side, we will address the issue by filtering out these records. However, we may need to plan how to handle the 'D' records that are subsequently received in the BANCLL table. For this specific point, I believe it should be evaluated by the business team to determine whether any action is required.
+Dal lato Transaction Monitoring gestiremo il problema filtrando questi record. Tuttavia, sarà necessario valutare come gestire i record 'D' che successivamente vengono ricevuti nella tabella BANCLL.
 
-The following queries can be used to identify the affected records:
+Di seguito le query che consentono di identificare i record interessati:
 
 Actual
 
@@ -39,4 +39,9 @@ query
 Raw
 
 query
+
+Grazie.
+
+Cordiali saluti,
+Andrea
 </pre>
