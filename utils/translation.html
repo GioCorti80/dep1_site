@@ -18,8 +18,20 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Review of the issues encountered during the deployment of the query scheduling process on MTool and discussion of the temporary scheduling on PWCC.
-Discussion of the issues related to GitHub Actions.
-Verification of the presence of the required keys in the production environment.
-Validation of SDLC executability.
+Temporary Deployment of KYC Query Scheduling on the PWCC Lake Project
+
+Good morning,
+
+As agreed during yesterday's meeting, we propose temporarily scheduling the KYC queries on the PWCC Lake project while the issues affecting deployment on the Monitoring Tool (MTool) project are being resolved.
+
+The main blockers preventing deployment on MTool are:
+
+Issues encountered during the deployment of the query scheduling process on MTool.
+Ongoing investigations related to GitHub Actions, which are delaying the validation of the SDLC deployment process.
+Inability to complete the planned UAT validation of the SFTP keys, as firewall restrictions prevent testing SFTP connectivity from the UAT environment.
+Following the Composer upgrade, DAGs can no longer be triggered with parameters, introducing an additional implementation constraint.
+
+Given these constraints, deploying the KYC scheduling on PWCC Lake is the lowest-risk option to meet the expected timelines and ensure continuity of operations.
+
+This is intended as a temporary solution. Jira tasks have already been created to track the migration to the MTool project as soon as the outstanding issues are resolved and the deployment process has been fully validated.
 </pre>
