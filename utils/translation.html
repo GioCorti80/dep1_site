@@ -18,11 +18,14 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-The ACL is required to grant the technical account svc23232 write access to the \cart\card network folder, where the MUTUIESTINT21 and MUTUIESTINT22 reports delivered via SFTP are stored.
+Ciao [Nome],
 
-SELECT
-  ['Domenica','Lunedì','Martedì','Mercoledì',
-   'Giovedì','Venerdì','Sabato']
-  [OFFSET(EXTRACT(DAYOFWEEK FROM my_date)-1)] AS giorno_it
-FROM my_table;
+ti segnalo che la modifica dell'indirizzo email del report non è entrata nella release odierna. Durante le verifiche ho identificato la causa in una modifica che non è stata correttamente pubblicata sul repository e che quindi non è stata inclusa nel deploy.
+
+La correzione verrà inserita nella prossima release disponibile; nel frattempo sarà necessario continuare ad aggiornare/gestire manualmente l'invio del report.
+
+Mi dispiace per l'inconveniente e ti ringrazio per il supporto.
+
+Ciao,
+[Il tuo nome]
 </pre>
