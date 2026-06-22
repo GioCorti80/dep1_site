@@ -41,4 +41,10 @@ I’m currently looking into these points and should be able to provide a more d
 df = df.assign(
     codice_ko = df["codice_operazione"].where(df["stato"] == "KO")
 )
+
+cond = df["TIPO_GESTORE_NDG"].isin(["AU1", "AU2"])
+
+df = df.assign(
+    BUSINESS_LINE_NDG=df["BUSINESS_LINE_NDG"].where(~cond, "BANK1")
+)
 </pre>
