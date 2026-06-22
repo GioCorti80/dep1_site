@@ -36,4 +36,9 @@ In both cases, support from the DevOps team will be required.
 For the Docker image, I still need to verify how we can carry out testing in the DEV and UAT environments.
 
 I’m currently looking into these points and should be able to provide a more detailed update shortly.
+
+
+df = df.assign(
+    codice_ko = df["codice_operazione"].where(df["stato"] == "KO")
+)
 </pre>
