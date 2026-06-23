@@ -47,8 +47,93 @@ For the Docker image, I still need to verify how we can carry out testing in the
 I’m currently looking into these points and should be able to provide a more detailed update shortly.
 
 
-Hi Sourdan,
-I checked in UAT and the connection to Oracle doesn’t seem to be working there either. However, it looks like the secrets are being correctly loaded into GSM.
-It could be, but I’m not sure since I don’t have the documentation.
-Access to Microsoft 365 Copilot is requested to support the creation of business-facing documentation from technical developments and requirements, as well as the analysis of Excel files related to business-driven requests. This would improve communication efficiency and streamline interactions with business users.
+I need your help to analyze two repositories related to a Cloud Run application:
+
+1. **App Cloud Run repository** – the repository containing the application code deployed to Cloud Run
+2. **LandingZone Cloud Run repository** – the repository used to build, package, and deploy the Cloud Run application
+
+### Context
+
+A vulnerability assessment performed by our central security team identified vulnerable packages in the Docker image currently used by the Cloud Run service.
+I need to understand:
+
+* what the **App Cloud Run** repository actually does;
+* what the **LandingZone Cloud Run** repository does and how it is used to build/deploy the application;
+* where the Docker image is defined and built;
+* where the vulnerable packages are introduced;
+* how the image is produced and promoted across environments;
+* what changes are required to remediate the vulnerabilities safely.
+
+### What I need from you
+
+Please analyze both repositories and provide a structured explanation covering the following points.
+
+## 1) Functional overview
+
+For each repository, explain:
+
+* its purpose;
+* the main components/modules;
+* the entry points;
+* the runtime flow;
+* how it interacts with Cloud Run and any other GCP services;
+* whether it is an application repository, infrastructure/deployment repository, or both.
+
+## 2) Build and deployment chain
+
+Please identify and explain:
+
+* where the Dockerfile(s) are located;
+* how the Docker image is built;
+* whether the base image is internal or public;
+* whether package installation happens in the Dockerfile, build scripts, CI/CD pipeline, or elsewhere;
+* how the LandingZone repository contributes to the build and deployment process;
+* how the final image is deployed to Cloud Run.
+
+## 3) Vulnerability remediation analysis
+
+I need to understand how to fix vulnerabilities in packages found in the Docker image.
+Please help me identify:
+
+* which file(s) I need to modify to update vulnerable packages;
+* whether the vulnerable packages come from:
+
+  * the base image,
+  * OS-level packages installed with apt/yum/apk,
+  * Python packages,
+  * Node packages,
+  * Java/Maven/Gradle dependencies,
+  * custom internal artifacts,
+  * or build tooling;
+* whether the fix should be applied in the App repository, the LandingZone repository, or both;
+* whether updating the base image alone could solve part of the issue.
+
+## 4) Concrete remediation plan
+
+Based on the repository contents, please propose a step-by-step remediation plan including:
+
+1. files to inspect first;
+2. files to modify;
+3. dependency/package versions to review;
+4. how to rebuild the image;
+5. how to validate that the new image no longer contains the vulnerabilities;
+6. possible regression risks after the upgrade;
+7. any compatibility checks I should perform before promoting the fix.
+
+## 5) Output format
+
+Please answer with:
+
+* a **repository-by-repository summary**;
+* a **build/deployment flow diagram in text form**;
+* a **table of relevant files** with their role in the process;
+* a **list of suspected locations of vulnerable packages**;
+* a **recommended remediation path** ordered by priority.
+
+If possible, also tell me:
+
+* which repository should be updated first;
+* whether this looks like an application dependency issue or mainly a Docker/base image issue;
+* whether DevOps support is likely required for the remediation/deployment steps.
+
 </pre>
