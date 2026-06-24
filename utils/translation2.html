@@ -112,4 +112,12 @@ df_aggregated = df_sorted.groupby("NDG").agg({"DESC_SERVIZIO": list, "TIPO_SERVI
 df_aggregated["DESC_SERVIZIO"] = df_aggregated["DESC_SERVIZIO"].str.join(", ")
 df_aggregated["TIPO_SERVIZIO"] = df_aggregated["TIPO_SERVIZIO"].str.join(", ")
 >>>>>>> 730809142c11794c581892f861ff3d90143f6ec1
+
+Hi [Name],
+I’m looking into the app-cloud-run repo for the MT SOAP service because of the package vulnerabilities.
+
+My main doubt is on the UAT test side: from what I’ve seen, the service seems to receive SOAP requests through an upstream flow, so I’m not sure how we could actually reproduce that in UAT after the update.
+
+Do you know if there’s an existing UAT flow for it, or any way to simulate those requests for testing?
+
 </pre>
