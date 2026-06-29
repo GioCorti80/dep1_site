@@ -18,19 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+from decimal import Decimal
 
-    Request to Upload File to Production Bucket
-Hi Team,
-
-Could you please upload the attached file to the production bucket?
-
-fdsfsdfsdfsd
-
-This is an exceptional one-time request required to enable the subsequent transfer of the file to Microdata via SFTP.
-
-As this is not part of the standard deployment process, we would greatly appreciate your support in performing this upload to facilitate the file delivery.
-
-Thank you very much for your help.
-
-Kind regards,
+for col in df.select_dtypes(include="object").columns:
+    if df[col].apply(lambda x: isinstance(x, Decimal)).any():
+        print(col, "-> Decimal")
 </pre>
