@@ -38,4 +38,11 @@ def export_csv_2_decimals(df, file_name, **to_csv_kwargs):
             )
 
     df_export.to_csv(file_name, index=False, **to_csv_kwargs)
+
+export_csv_2_decimals(
+    df,
+    "output.csv",
+    sep=";",
+    encoding="utf-8-sig"
+)
 </pre>
