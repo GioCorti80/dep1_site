@@ -18,9 +18,24 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
-for col in df.select_dtypes(include="object").columns:
-    if df[col].apply(lambda x: isinstance(x, Decimal)).any():
-        print(col, "-> Decimal")
+def export_csv_2_decimals(df, file_name, **to_csv_kwargs):
+    """
+    Esporta un DataFrame in CSV formattando automaticamente
+    tutte le colonne Decimal (NUMERIC/BIGNUMERIC) con 2 decimali.
+    """
+
+    df_export = df.copy()
+
+    for col in df_export.select_dtypes(include="object").columns:
+        if df_export[col].apply(lambda x: isinstance(x, Decimal)).any():
+            df_export[col] = df_export[col].apply(
+                lambda x: format(
+                    x.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP),
+                    "f"
+                ) if isinstance(x, Decimal) else x
+            )
+
+    df_export.to_csv(file_name, index=False, **to_csv_kwargs)
 </pre>
