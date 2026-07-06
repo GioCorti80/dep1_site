@@ -18,9 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Ashwini,
+Hi Akash,
 
-I'm not familiar with the process, but the files from the previous release should have been saved in a backup bucket.
+The issue with the image was that it was using BigQuery Connector 0.42 by default, which contained a known bug.
 
-Hanumantha and I performed a similar rollback back in February this year, although I'm not sure which bucket contains the previous version of the files.
+I would need to check which BigQuery Connector version is included by default in the new Dataproc image. If it's version 0.44 or later, there shouldn't be any issues.
 </pre>
