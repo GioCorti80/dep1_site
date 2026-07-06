@@ -18,25 +18,31 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Bushra,
+Hi Hanumantha,
 
-The reported vulnerabilities are mainly related to the Cloud Run Docker image. I will try to deploy the updated image to the UAT environment either today or tomorrow.
+I have raised the following PR for the production environment, and it is currently awaiting approval.
 
-However, we still need to address the testing approach. Since the Docker image exposes an endpoint, we need to determine the best way to validate that it is correctly receiving and processing incoming messages.
+At the same time, we kindly request that you unpause the following DAG:
 
+125479-dfdfd
 
-
-Request to Verify IAM Permissions for Dataproc Service Accounts
-
-Hi DevOps Team,
-
-We are currently experiencing an issue when accessing mtool BigQuery tables from PWCC using the Dataproc service accounts.
-
-Although the BigQuery plugin indicates that the required permissions are correctly assigned to the composer_pwcc and dataproc_pwcc service accounts, these permissions are not visible from the Google Cloud Console UI. As a result, the Dataproc jobs executed by our Airflow DAGs are failing when running BigQuery queries.
-
-Could you please verify whether any of the recent infrastructure changes may have affected the IAM permissions or role bindings for these service accounts?
+We have also opened the corresponding Service Request to track these activities.
 
 Thank you for your support.
 
 Kind regards,
+
+------------------------
+Please perform the following production activities:
+
+Roll back the following files:
+file1
+file2
+file3
+Approve the Production Pull Request.
+Unpause the following Airflow DAG:
+125479-dfdfd
+
+Please confirm once all activities have been completed.
+
 </pre>
