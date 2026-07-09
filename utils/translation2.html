@@ -41,4 +41,13 @@ the promotion of the tfe_discard_cancel.yml workflow, which was already availabl
 Regarding the terraform apply failure, I had already observed the same behavior during the deployments to both Dev and UAT. Although the workflow reported an error, the infrastructure changes were applied successfully. The Production deployment behaved in the same way.
 
 Based on this, I don't see any indication that the changes introduced by this PR are related to the current terraform apply issue. The apply failure was already occurring in the lower environments before the Production deployment.
+
+Hi Bushra,
+
+Thank you for the update.
+
+I can confirm that we have tested the DAGs, and the issue now appears to be resolved.
+
+Thank you!
+
 </pre>
