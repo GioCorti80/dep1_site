@@ -18,36 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Bushra,
+Hi Surendhar,
 
-I've completed the first step of the Airflow 2.10.5 upgrade by updating the requirements.txt and constraints.txt files to validate compatibility with the new Composer image.
+Please disregard my previous request. It has already been completed by Ashwini.
 
-The unit tests configured in the Composer repository have completed successfully, and the following PR has been opened for review.
-
-That said, given the way our DAGs are structured and generated, we'll need to validate them through end-to-end execution in the target environment to confirm there are no additional compatibility or runtime issues that are not covered by the current unit tests.
-
-
-Hi Bushra,
-
-I reviewed the changes included in my previous deployment.
-
-The only functional infrastructure change was the update to the Log Sink configuration in log_sink.tf, where the principalEmail filter was removed.
-
-The remaining changes were made to align the branches across Dev, UAT, and Production:
-
-the removal of the unused test notification channel entries from locals.tf;
-the promotion of the tfe_discard_cancel.yml workflow, which was already available in the Dev environment and was simply propagated to UAT and Production as part of the environment alignment.
-
-Regarding the terraform apply failure, I had already observed the same behavior during the deployments to both Dev and UAT. Although the workflow reported an error, the infrastructure changes were applied successfully. The Production deployment behaved in the same way.
-
-Based on this, I don't see any indication that the changes introduced by this PR are related to the current terraform apply issue. The apply failure was already occurring in the lower environments before the Production deployment.
-
-Hi Bushra,
-
-Thank you for the update.
-
-I can confirm that we have tested the DAGs, and the issue now appears to be resolved.
-
-Thank you!  
+Thanks.
 
 </pre>
