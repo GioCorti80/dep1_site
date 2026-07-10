@@ -18,11 +18,33 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao,
+Buongiorno Enrico,
 
-abbiamo provato a utilizzare i parametri SFTP forniti, effettuando il collegamento dal server che utilizziamo abitualmente per Data Governance e per lo scambio dei file SAS.
+ho provato a utilizzare i parametri SFTP forniti effettuando il collegamento dal server che utilizziamo abitualmente per Data Governance e per lo scambio dei file SAS:
 
-Al momento, tuttavia, non riusciamo a stabilire la connessione. Questo potrebbe dipendere dal fatto che le credenziali non siano valide per il server utilizzato, che l'endpoint non sia raggiungibile da GCP, che il percorso di destinazione non sia abilitato oppure che sia necessario utilizzare un server SFTP differente.
+Hostname: fraptdbsasapppp1.de.db.com
+Porta: 22
+Username: fsftpdg
 
-Per poter completare l'invio del file, avremmo bisogno di un vostro riscontro su quale di questi casi si applica. Nel caso fosse previsto un server diverso, vi chiediamo cortesemente di indicarci l'hostname corretto e l'utenza da utilizzare per la connessione.
+Al momento, tuttavia, non riusciamo a completare la connessione verso la directory indicata:
+
+/applications/SAS/Storage/DeutscheBankInternational/Italy/OCS/output_file/
+
+Dalle verifiche effettuate sembrerebbe che il percorso non sia presente sul server indicato oppure che l'utenza fsftpdg non disponga delle autorizzazioni necessarie per accedervi.
+
+Abbiamo inoltre verificato il percorso alternativo relativo a Microdata:
+
+Host: 10.247.11.84
+Utente: sftp_sasa
+Path: /STORICO_AG/GIORNALIERO/
+
+ma non abbiamo trovato alcun riferimento a tale configurazione nel repository PWCC e, pertanto, non siamo in grado di verificare se rappresenti il server corretto da utilizzare da GCP.
+
+Per poter procedere con l'invio del file N30, avremmo bisogno di conferma su quale sia il server SFTP corretto da utilizzare e sulle relative credenziali/autorizzazioni. Qualora fosse previsto un server diverso da quello utilizzato per Data Governance, sarebbe utile ricevere anche l'hostname e l'utenza corretti.
+
+@Anibal DosSantos, puoi cortesemente confermare se esiste già un server/account SFTP dedicato accessibile da GCP per l'invio dei file N30 oppure indicarci il referente a cui possiamo fare riferimento?
+
+Grazie.
+
+Cordiali saluti,
 </pre>
