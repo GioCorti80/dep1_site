@@ -18,16 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Esito test – Sanction and Embargo
-
-Buongiorno Enrico,
-
-ti inoltro in allegato l'estrazione di test relativa a Sanction and Embargo, eseguita con le nuove regole e riferita alla data del 09/07/2026.
-
-Dalle verifiche effettuate, l'esito risulta coerente con quanto atteso e le modifiche introdotte sembrano aver prodotto il comportamento previsto.
-
-Salvo ulteriori osservazioni, provvederò a includere tali modifiche nella prossima release.
-
-Ciao,
-Andrea
+result = df1.join(
+    df2,
+    F.array_contains(df2["codici"], df1["codice"]),
+    "left"
+)
 </pre>
