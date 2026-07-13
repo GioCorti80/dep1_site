@@ -23,4 +23,15 @@ result = df1.join(
     F.array_contains(df2["codici"], df1["codice"]),
     "left"
 )
+
+result = df1.alias("a").join(
+    df2.alias("b"),
+    (
+        (F.col("a.servizio") == F.col("b.servizio")) &
+        (F.col("a.filiale") == F.col("b.filiale")) &
+        (F.col("a.conto") == F.col("b.conto")) &
+        F.array_contains(F.col("b.codici"), F.col("a.codice"))
+    ),
+    "left"
+)
 </pre>
