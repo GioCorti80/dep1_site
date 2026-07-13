@@ -18,33 +18,16 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+Esito test – Sanction and Embargo
+
 Buongiorno Enrico,
 
-ho provato a utilizzare i parametri SFTP forniti effettuando il collegamento dal server che utilizziamo abitualmente per Data Governance e per lo scambio dei file SAS:
+ti inoltro in allegato l'estrazione di test relativa a Sanction and Embargo, eseguita con le nuove regole e riferita alla data del 09/07/2026.
 
-Hostname: fraptdbsasapppp1.de.db.com
-Porta: 22
-Username: fsftpdg
+Dalle verifiche effettuate, l'esito risulta coerente con quanto atteso e le modifiche introdotte sembrano aver prodotto il comportamento previsto.
 
-Al momento, tuttavia, non riusciamo a completare la connessione verso la directory indicata:
+Salvo ulteriori osservazioni, provvederò a includere tali modifiche nella prossima release.
 
-/applications/SAS/Storage/DeutscheBankInternational/Italy/OCS/output_file/
-
-Dalle verifiche effettuate sembrerebbe che il percorso non sia presente sul server indicato oppure che l'utenza fsftpdg non disponga delle autorizzazioni necessarie per accedervi.
-
-Abbiamo inoltre verificato il percorso alternativo relativo a Microdata:
-
-Host: 10.247.11.84
-Utente: sftp_sasa
-Path: /STORICO_AG/GIORNALIERO/
-
-ma non abbiamo trovato alcun riferimento a tale configurazione nel repository PWCC e, pertanto, non siamo in grado di verificare se rappresenti il server corretto da utilizzare da GCP.
-
-Per poter procedere con l'invio del file N30, avremmo bisogno di conferma su quale sia il server SFTP corretto da utilizzare e sulle relative credenziali/autorizzazioni. Qualora fosse previsto un server diverso da quello utilizzato per Data Governance, sarebbe utile ricevere anche l'hostname e l'utenza corretti.
-
-@Anibal DosSantos, puoi cortesemente confermare se esiste già un server/account SFTP dedicato accessibile da GCP per l'invio dei file N30 oppure indicarci il referente a cui possiamo fare riferimento?
-
-Grazie.
-
-Cordiali saluti,
+Ciao,
+Andrea
 </pre>
