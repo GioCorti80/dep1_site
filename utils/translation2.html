@@ -18,20 +18,15 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-result = df1.join(
-    df2,
-    F.array_contains(df2["codici"], df1["codice"]),
-    "left"
-)
+Hi Ajai,
 
-result = df1.alias("a").join(
-    df2.alias("b"),
-    (
-        (F.col("a.servizio") == F.col("b.servizio")) &
-        (F.col("a.filiale") == F.col("b.filiale")) &
-        (F.col("a.conto") == F.col("b.conto")) &
-        F.array_contains(F.col("b.codici"), F.col("a.codice"))
-    ),
-    "left"
-)
+I have posted the update in the **rdm-x** chat.
+
+
+Hi Ashwini,
+
+This is a data-related issue. The query exceeded BigQuery's maximum memory limit.
+
+The same issue is also affecting **portafoglio-sintetico** and **portafoglio-sintetico-run1**.
+
 </pre>
