@@ -18,7 +18,30 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Satyat,
+Hi Team,
 
-Apologies for the delay. I was going to approve it, but I saw that it had already been approved by someone else.
+Following the Composer image upgrade in the DEV environment, the validation activities were performed based on the available project documentation.
+
+Validation summary
+
+Relevant DAGs were manually triggered following the documented recovery sequence.
+Supporting files were manually created in the Cloud Storage bucket where required.
+The execution of the selected DAGs, Dataproc cluster creation (where applicable), Cloud Storage access, and configured processing steps was verified.
+
+Observations
+
+A few jobs, mainly related to specific routines, failed due to missing data in the DEV environment.
+Based on the observed behavior, these failures do not appear to be related to the Composer image upgrade.
+No additional issues related to the Composer image upgrade were observed during the validation activities.
+
+Executed DAGs
+
+DAG1
+DAG2
+DAG3
+
+Based on the validation activities performed, I approve proceeding with the Composer image upgrade in the UAT environment.
+
+Thanks,
+Andrea
 </pre>
