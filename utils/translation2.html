@@ -18,30 +18,37 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Team,
+Ciao <Nome>,
 
-Following the Composer image upgrade in the DEV environment, the validation activities were performed based on the available project documentation.
+ho analizzato la query dinamica attualmente utilizzata per generare le colonne relative ai trimestri.
 
-Validation summary
+L'implementazione corrente sfrutta funzionalità di BigQuery Scripting, come DECLARE, SET, EXECUTE IMMEDIATE e la costruzione dinamica della query tramite STRING_AGG. Questa sintassi non è compatibile con il motore Spark SQL che utilizzeremo, in quanto il motore supporta l'esecuzione di una singola query SQL statica e non di script composti da più istruzioni.
 
-Relevant DAGs were manually triggered following the documented recovery sequence.
-Supporting files were manually created in the Cloud Storage bucket where required.
-The execution of the selected DAGs, Dataproc cluster creation (where applicable), Cloud Storage access, and configured processing steps was verified.
+Per questo motivo la query dovrà essere convertita. Le possibili soluzioni sono principalmente due.
 
-Observations
+Soluzione 1 – Quarter statici
 
-A few jobs, mainly related to specific routines, failed due to missing data in the DEV environment.
-Based on the observed behavior, these failures do not appear to be related to the Composer image upgrade.
-No additional issues related to the Composer image upgrade were observed during the validation activities.
+La prima possibilità consiste nel sostituire la parte dinamica con un PIVOT (o con espressioni CASE) dichiarando esplicitamente tutti i quarter richiesti, ad esempio:
 
-Executed DAGs
+2017-T1
+2017-T2
+...
+2026-T4
 
-DAG1
-DAG2
-DAG3
+Questa soluzione mantiene lo stesso schema di output della query attuale e richiede solamente un piccolo aggiornamento annuale, aggiungendo i quattro quarter del nuovo anno.
 
-Based on the validation activities performed, I approve proceeding with the Composer image upgrade in the UAT environment.
+Soluzione 2 – Quarter relativi
 
-Thanks,
-Andrea
+Un'alternativa consiste nel non utilizzare più i nomi assoluti dei quarter, ma dei quarter relativi, ad esempio:
+
+Y0_Q1 ... Y0_Q4 → anno corrente
+Y1_Q1 ... Y1_Q4 → un anno fa
+...
+Y9_Q1 ... Y9_Q4 → nove anni fa
+
+In questo caso la query calcola dinamicamente la corrispondenza tra il quarter reale (ad esempio 2026-T1) e quello relativo (Y0_Q1).
+
+Il principale vantaggio è che lo schema di output rimane invariato nel tempo e non richiede alcuna manutenzione annuale. L'unico aspetto da verificare è che gli eventuali processi a valle possano utilizzare colonne con nomi relativi invece dei quarter reali.
+
+In entrambi gli approcci è possibile eliminare completamente la logica di SQL dinamico, ottenendo una query compatibile con il motore Spark SQL attualmente previsto.
 </pre>
