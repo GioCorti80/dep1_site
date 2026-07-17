@@ -18,31 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from decimal import Decimal, ROUND_HALF_UP
+Hi Surendhar,
 
-def export_csv_2_decimals(df, file_name, **to_csv_kwargs):
-    """
-    Esporta un DataFrame in CSV formattando automaticamente
-    tutte le colonne Decimal (NUMERIC/BIGNUMERIC) con 2 decimali.
-    """
-
-    df_export = df.copy()
-
-    for col in df_export.select_dtypes(include="object").columns:
-        if df_export[col].apply(lambda x: isinstance(x, Decimal)).any():
-            df_export[col] = df_export[col].apply(
-                lambda x: format(
-                    x.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP),
-                    "f"
-                ) if isinstance(x, Decimal) else x
-            )
-
-    df_export.to_csv(file_name, index=False, **to_csv_kwargs)
-
-export_csv_2_decimals(
-    df,
-    "output.csv",
-    sep=";",
-    encoding="utf-8-sig"
-)
+We haven't made any changes to the underlying code of the report. Could you please mark the task as Succeeded so that the DAG can continue and complete successfully?
 </pre>
