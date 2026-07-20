@@ -18,8 +18,26 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Surendhar,
+Hi Team,
 
-I noticed that the SFTP transfer completed successfully on the second attempt.
+We have completed the UAT validation activities for the Composer upgrade. The detailed execution results are available in the attached Excel file.
+
+The validation was performed within the capabilities of the UAT environment. The following limitations should be taken into account when reviewing the results:
+
+SFTP connectivity could not be validated, as the required integration was not available in the UAT environment.
+Some DAG executions failed due to schema discrepancies between the UAT tables and the expected schema. These failures are environment-related and are not attributable to the Composer upgrade.
+
+For the workflow validation, the DAGs were executed following the recovery sequence reported in the attached table to ensure that all upstream dependencies were satisfied before validating downstream processes.
+
+The following functional areas were successfully validated:
+
+Dataproc cluster provisioning and job execution.
+BigQuery routine invocation and execution.
+Read operations from Google Cloud Storage (GCS) buckets.
+End-to-end DAG orchestration for all scenarios not affected by the environmental limitations described above.
+
+No issues related to the Composer upgrade were identified during the executed validation scope.
+
+Based on the completed UAT validation and considering the known UAT environment constraints, we confirm the UAT sign-off for the Composer upgrade and have no objections to proceeding with the next deployment phase.
 
 </pre>
