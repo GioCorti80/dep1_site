@@ -18,26 +18,88 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Team,
+Verifica problemi di connettività SFTP - Account 896115245 e 896155
 
-We have completed the UAT validation activities for the Composer upgrade. The detailed execution results are available in the attached Excel file.
+Buongiorno,
 
-The validation was performed within the capabilities of the UAT environment. The following limitations should be taken into account when reviewing the results:
+stiamo riscontrando problemi di connettività SFTP relativi ai seguenti account.
 
-SFTP connectivity could not be validated, as the required integration was not available in the UAT environment.
-Some DAG executions failed due to schema discrepancies between the UAT tables and the expected schema. These failures are environment-related and are not attributable to the Composer upgrade.
+Vorremmo evidenziare che entrambi gli account hanno sempre funzionato correttamente, anche dopo la migrazione sul server vshep. Il problema si è manifestato solo da alcuni mesi, senza che siano state apportate modifiche lato applicativo.
 
-For the workflow validation, the DAGs were executed following the recovery sequence reported in the attached table to ensure that all upstream dependencies were satisfied before validating downstream processes.
+Account 896115245 (priorità alta)
 
-The following functional areas were successfully validated:
+Non riusciamo ad accedere dal server vshep alla directory:
 
-Dataproc cluster provisioning and job execution.
-BigQuery routine invocation and execution.
-Read operations from Google Cloud Storage (GCS) buckets.
-End-to-end DAG orchestration for all scenarios not affected by the environmental limitations described above.
+/cart1/cart2
 
-No issues related to the Composer upgrade were identified during the executed validation scope.
+Per agevolare l'accesso è stato creato anche un alias che punta direttamente a tale directory tramite la Change CHG454154. Nonostante ciò, il problema continua a presentarsi.
 
-Based on the completed UAT validation and considering the known UAT environment constraints, we confirm the UAT sign-off for the Composer upgrade and have no objections to proceeding with the next deployment phase.
+Durante il tentativo di connessione il server restituisce il seguente errore:
+
+"File not found specified"
+
+Abbiamo già verificato che:
+
+l'account risulta attivo;
+l'ACL è correttamente associata all'account.
+Account 896155
+
+Per questo account non conosciamo la directory root, ma esclusivamente la sottodirectory:
+
+/cart2/addad
+
+Anche in questo caso non riusciamo ad accedere alla directory tramite SFTP dal server vshep, ricevendo il medesimo errore:
+
+"File not found specified"
+
+Precisiamo inoltre che, per questo account, il collegamento ha funzionato regolarmente anche dopo la migrazione a vshep e ha iniziato a presentare problemi solo negli ultimi mesi.
+
+Vi chiediamo cortesemente di verificare la configurazione dei due account e, in particolare, di accertare se siano intervenute modifiche lato server o nel mapping delle directory che possano giustificare il mancato accesso tramite SFTP.
+
+Grazie per il supporto.
+
+Cordiali saluti,
+-----------------------------------
+Request to Investigate SFTP Connectivity Issues - Accounts 896115245 and 896155
+
+Hello,
+
+We are experiencing SFTP connectivity issues with the following accounts.
+
+We would like to highlight that both accounts were working correctly, including after the migration to the vshep server. The issue only started a few months ago, and no application-side changes have been made during this period.
+
+Account 896115245 (High Priority)
+
+We are unable to access the following directory from the vshep server:
+
+/cart1/cart2
+
+To simplify the access, an alias pointing directly to this directory was created under Change CHG454154. However, the issue still persists.
+
+During the connection attempt, the server returns the following error:
+
+"File not found specified"
+
+We have already verified that:
+
+the account is active;
+the ACL is correctly associated with the account.
+Account 896155
+
+For this account, we do not know the root directory; we only have access to the following subdirectory:
+
+/cart2/addad
+
+We are also unable to access this directory via SFTP from the vshep server, receiving the same error:
+
+"File not found specified"
+
+We would also like to point out that this account continued to work correctly after the migration to vshep and only started experiencing this issue a few months ago.
+
+Could you please investigate the configuration of both accounts and verify whether any server-side configuration or directory mapping changes may have caused the SFTP access to stop working?
+
+Thank you for your support.
+
+Kind regards,
 
 </pre>
