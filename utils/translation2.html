@@ -18,37 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao <Nome>,
+Hi Ajay,
 
-ho analizzato la query dinamica attualmente utilizzata per generare le colonne relative ai trimestri.
+I have prepared these two PRs for the deployment of app-reporting-python as part of the 2026-07-23 release.
 
-L'implementazione corrente sfrutta funzionalità di BigQuery Scripting, come DECLARE, SET, EXECUTE IMMEDIATE e la costruzione dinamica della query tramite STRING_AGG. Questa sintassi non è compatibile con il motore Spark SQL che utilizzeremo, in quanto il motore supporta l'esecuzione di una singola query SQL statica e non di script composti da più istruzioni.
+Could you please review and approve them?
 
-Per questo motivo la query dovrà essere convertita. Le possibili soluzioni sono principalmente due.
-
-Soluzione 1 – Quarter statici
-
-La prima possibilità consiste nel sostituire la parte dinamica con un PIVOT (o con espressioni CASE) dichiarando esplicitamente tutti i quarter richiesti, ad esempio:
-
-2017-T1
-2017-T2
-...
-2026-T4
-
-Questa soluzione mantiene lo stesso schema di output della query attuale e richiede solamente un piccolo aggiornamento annuale, aggiungendo i quattro quarter del nuovo anno.
-
-Soluzione 2 – Quarter relativi
-
-Un'alternativa consiste nel non utilizzare più i nomi assoluti dei quarter, ma dei quarter relativi, ad esempio:
-
-Y0_Q1 ... Y0_Q4 → anno corrente
-Y1_Q1 ... Y1_Q4 → un anno fa
-...
-Y9_Q1 ... Y9_Q4 → nove anni fa
-
-In questo caso la query calcola dinamicamente la corrispondenza tra il quarter reale (ad esempio 2026-T1) e quello relativo (Y0_Q1).
-
-Il principale vantaggio è che lo schema di output rimane invariato nel tempo e non richiede alcuna manutenzione annuale. L'unico aspetto da verificare è che gli eventuali processi a valle possano utilizzare colonne con nomi relativi invece dei quarter reali.
-
-In entrambi gli approcci è possibile eliminare completamente la logica di SQL dinamico, ottenendo una query compatibile con il motore Spark SQL attualmente previsto.
+Thanks
 </pre>
