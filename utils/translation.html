@@ -18,39 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno,
-
-a seguito della richiesta di inviare il report nelle nuove cartelle OCS, abbiamo effettuato alcune verifiche dal lato GCP.
-
-Dall'analisi della configurazione attualmente presente nel repository GitHub e nella Landing Zone, risulta che i trasferimenti SFTP oggi configurati utilizzano un account dedicato che ha accesso alle cartelle SAS Visual Analytics.
-
-Per verificare la nuova configurazione, abbiamo eseguito alcuni test utilizzando lo stesso account sulle cartelle OCS che ci sono state fornite. In tutti i casi il trasferimento non è andato a buon fine perché il percorso remoto non viene trovato.
-
-A questo punto avremmo bisogno del supporto del team Quality SAS per verificare la configurazione lato SAS e confermare:
-
-quale account SFTP deve essere utilizzato per scrivere nelle nuove cartelle OCS;
-che tale account sia autorizzato ad accedere alle cartelle indicate;
-che sull'account sia configurata la chiave pubblica GCP utilizzata per l'autenticazione dal nostro ambiente.
-
-Non appena avremo queste informazioni, potremo completare le verifiche e procedere con i test di invio verso le nuove cartelle.
-
-Grazie.
-
-Hello,
-
-We are currently validating the SFTP configuration required to deliver reports to the new OCS folders.
-
-From our analysis of the current GitHub repository and the Google Cloud Landing Zone configuration, the existing SFTP transfers are configured to use a dedicated account that has access to the SAS Visual Analytics folders.
-
-To validate the new configuration, we performed several tests using the same SFTP account against the new OCS folders that were provided. In every case, the transfer failed because the remote path could not be found.
-
-Could you please confirm the following:
-
-Which SFTP account should be used to write files into the new OCS folders?
-Does this account have the required permissions to access those folders?
-Is the GCP public SSH key used by our environment configured for that account?
-
-Once we receive this information, we will be able to complete the validation and proceed with the report delivery tests.
-
-Thank you in advance for your support.
+There was a delay in loading the trusted tables.
 </pre>
