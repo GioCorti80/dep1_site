@@ -18,5 +18,18 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-When triggering the DAG, could you please paste the following JSON into the Generated Configuration JSON section?
+Ciao,
+
+ti allego il codice relativo al report sviluppato tempo fa.
+
+Dall'analisi dei rilievi sono emerse alcune possibili cause delle differenze riscontrate:
+
+* **Rapporti non attivi**: inizialmente l'estrazione considerava solo i rapporti attivi presenti nel **BCLN 01**. Successivamente è stata integrata con il **BCLL 35** per includere anche le controparti associate a rapporti non attivi. Tuttavia, questa logica richiede la valorizzazione del campo **Servizio Filiale ANAG**, che non è presente per tutte le occorrenze. Per questo motivo sto verificando la possibilità di recuperare tali casi direttamente dalla tabella **RAW**.
+
+* **Rapporti di prestito**: la reportistica trimestrale estrae i rapporti sulla base della presenza di saldi nelle tabelle settoriali, includendo quindi anche i rapporti di prestito. La nuova estrazione mensile, invece, seleziona esclusivamente i rapporti attivi presenti nel **BCLL 35**. Questa differenza di criterio spiega le difformità riscontrate per alcuni soggetti intestatari di prestiti.
+
+* **Rapporti indiretti**: l'estrazione deve includere anche i rapporti indiretti derivanti da contestazioni. Tuttavia, la **CRL34** sembrerebbe contenere anche altre tipologie di collegamento oltre alle contestazioni, mentre la nuova estrazione considera esclusivamente i collegamenti di questo tipo presenti nel **BCLL 35**. Anche questa diversa logica potrebbe giustificare parte delle differenze riscontrate.
+
+Posso eventualmente rieseguire l'estrazione tenendo conto di queste considerazioni e verificando se consentono di recuperare i casi segnalati. Per effettuare una validazione puntuale, però, sarebbe utile disporre di un maggiore livello di dettaglio, poiché dal file Excel che ci è stato fornito non è semplice ricostruire come siano stati ottenuti i risultati riportati e verificare puntualmente le singole casistiche.
+
 </pre>
