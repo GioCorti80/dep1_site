@@ -18,11 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno Giampaolo,
+Hi Mohnish,
 
-il report è già schedulato per l'invio automatico in data 03/09/2026.
+I tried updating the deploy.yaml file as follows:
 
-Qualora fosse necessario anticipare l'estrazione, possiamo chiedere al team L2 di effettuare un run estemporaneo. In tal caso, l'invio anticipato si aggiungerebbe comunque a quello già previsto automaticamente per il 03/09.
+IF env = dev → RELEASE_DBC_DEV
+IF env = uat → RELEASE_DBC_UAT
+IF env = prd → RELEASE_DBC_PRD
 
-Grazie,
+I can see that the deployment in UAT is now working correctly and no longer gets stuck at the “get secrets” step.
+
+For the time being, I think we can proceed with this approach as a workaround for the app-cloud-run deployment.
+
+Thanks
 </pre>
