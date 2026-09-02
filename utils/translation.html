@@ -18,9 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Marco,
+Hi Mohnish,
 
-siamo riusciti a completare con successo il deploy in ambiente UAT dell’immagine Docker di Credit Validator su Cloud Run.
+I changed this line, which previously contained only the GOOGLE_PROJECT_DBC_DEV secret, and added the corresponding secret for each environment/project (DEV, UAT, and PRD).
 
-Prima di procedere con la schedulazione del deploy in produzione, ti chiedevo se fosse possibile effettuare un test end-to-end del microservizio in UAT, inviando alcuni messaggi verso l’endpoint esposto dal servizio, così da verificare il corretto funzionamento dell’immagine e dell’integrazione a valle.
+In particular, the configuration now selects the appropriate secret based on the environment input: GOOGLE_PROJECT_DBC_UAT for UAT, GOOGLE_PROJECT_DBC_PRD for PRD, and GOOGLE_PROJECT_DBC_DEV as the default for DEV.
 </pre>
