@@ -33,11 +33,9 @@ with zipfile.ZipFile(zip_path, "r") as z:
 
     for name in z.namelist():
 
-        # Considera solo i file TXT
         if not name.lower().endswith(".txt"):
             continue
 
-        # Usa solo il nome del file, eliminando eventuali sottocartelle
         filename = name.split("/")[-1]
 
         if not filename:
@@ -45,17 +43,17 @@ with zipfile.ZipFile(zip_path, "r") as z:
 
         blob = bucket.blob(gcs_prefix + filename)
 
-        print(f"Uploading: {name} -> gs://{bucket_name}/{gcs_prefix}{filename}")
+        print(
+            f"Uploading {name} -> "
+            f"gs://{bucket_name}/{gcs_prefix}{filename}"
+        )
 
         with z.open(name) as source:
-            with blob.open("wb") as destination:
-
-                while True:
-                    chunk = source.read(8 * 1024 * 1024)  # 8 MB
-                    if not chunk:
-                        break
-
-                    destination.write(chunk)
+            blob.upload_from_file(
+                source,
+                rewind=True,
+                timeout=3600
+            )
 
 print("Upload completato.")
 </pre>
