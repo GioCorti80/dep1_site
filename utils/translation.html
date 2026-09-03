@@ -18,8 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-df_filtrato = df[
-    (df["data"] >= date.fromisoformat(data_inizio)) &
-    (df["data"] <= date.fromisoformat(data_fine))
-]
+gcloud storage rsync ./notebooks gs://mio-bucket/notebooks \
+  --recursive \
+  --exclude="(^|/)\.ipynb_checkpoints(/|$)|(^|/)__pycache__(/|$)"
 </pre>
