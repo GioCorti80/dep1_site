@@ -18,7 +18,44 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-gcloud storage rsync ./notebooks gs://mio-bucket/notebooks \
-  --recursive \
-  --exclude="(^|/)\.ipynb_checkpoints(/|$)|(^|/)__pycache__(/|$)"
+import zipfile
+from google.cloud import storage
+
+zip_path = r"C:\data\miofile.zip"
+
+bucket_name = "mio-bucket"
+gcs_prefix = "txt/"
+
+client = storage.Client()
+bucket = client.bucket(bucket_name)
+
+with zipfile.ZipFile(zip_path, "r") as z:
+
+    for name in z.namelist():
+
+        # Considera solo i file TXT
+        if not name.lower().endswith(".txt"):
+            continue
+
+        # Usa solo il nome del file, eliminando eventuali sottocartelle
+        filename = name.split("/")[-1]
+
+        if not filename:
+            continue
+
+        blob = bucket.blob(gcs_prefix + filename)
+
+        print(f"Uploading: {name} -> gs://{bucket_name}/{gcs_prefix}{filename}")
+
+        with z.open(name) as source:
+            with blob.open("wb") as destination:
+
+                while True:
+                    chunk = source.read(8 * 1024 * 1024)  # 8 MB
+                    if not chunk:
+                        break
+
+                    destination.write(chunk)
+
+print("Upload completato.")
 </pre>
