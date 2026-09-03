@@ -18,9 +18,8 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Mohnish,
-
-I changed this line, which previously contained only the GOOGLE_PROJECT_DBC_DEV secret, and added the corresponding secret for each environment/project (DEV, UAT, and PRD).
-
-In particular, the configuration now selects the appropriate secret based on the environment input: GOOGLE_PROJECT_DBC_UAT for UAT, GOOGLE_PROJECT_DBC_PRD for PRD, and GOOGLE_PROJECT_DBC_DEV as the default for DEV.
+df_filtrato = df[
+    (df["data"] >= date.fromisoformat(data_inizio)) &
+    (df["data"] <= date.fromisoformat(data_fine))
+]
 </pre>
