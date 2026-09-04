@@ -18,42 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-import zipfile
-from google.cloud import storage
-
-zip_path = r"C:\data\miofile.zip"
-
-bucket_name = "mio-bucket"
-gcs_prefix = "txt/"
-
-client = storage.Client()
-bucket = client.bucket(bucket_name)
-
-with zipfile.ZipFile(zip_path, "r") as z:
-
-    for name in z.namelist():
-
-        if not name.lower().endswith(".txt"):
-            continue
-
-        filename = name.split("/")[-1]
-
-        if not filename:
-            continue
-
-        blob = bucket.blob(gcs_prefix + filename)
-
-        print(
-            f"Uploading {name} -> "
-            f"gs://{bucket_name}/{gcs_prefix}{filename}"
-        )
-
-        with z.open(name) as source:
-            blob.upload_from_file(
-                source,
-                rewind=True,
-                timeout=3600
-            )
-
-print("Upload completato.")
+git rev-list --count @{u}..HEAD
 </pre>
