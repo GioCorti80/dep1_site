@@ -18,17 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno,
+Hi Akash, the reason why the Reporting Engine class was used was mainly to handle the logical date. With Composer cron schedules, the logical date corresponds to the start date, which for daily schedules is generally the previous day. This makes the handling of the logical date a bit more challenging.
 
-in allegato trovate le estrazioni relative alle operazioni di bonifico estero, effettuate sia dalle tabelle Trusted Banche LL sia dalla tabella Temp Estero utilizzata dai processi Sigma.
-
-Il file Excel è organizzato come segue:
-
-Sheet 1: estrazione dalla tabella Trusted Banche LL;
-Sheet 2: estrazione dalla tabella Temp Estero;
-Sheet 3: operazioni individuate per i singoli modelli e relative priorità.
-
-Nello Sheet 3 sono riportate tutte le operazioni individuate nel corso dell'analisi; per alcune di esse è stata inoltre identificata una specifica priorità, sulla base della ricerca effettuata per i singoli modelli.
-
-Grazie.
+I’ll look into whether we can manage this without using the Reporting Engine class. In the meantime, I’ve opened a Jira task to investigate the possible approaches.
 </pre>
