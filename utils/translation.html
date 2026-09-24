@@ -18,5 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-I tried again, but the deployment is still failing due to an error similar to the one we encountered in UAT.
+Hi SDDC team, we are currently unable to complete the production deployment of the App Cloud Run due to a credentials issue in the GitHub Actions deploy_image workflow.
+
+The same issue was previously encountered in UAT. We have also tried to restore the previous deployment configuration, but the production deployment is still failing with a similar credentials-related error: the workflow cannot access Google Secret Manager (GSM) to retrieve the Artifactory credentials.
+
+Could you please investigate this issue urgently and intervene as soon as possible? At the moment, we are blocked and unable to proceed with the production deployment.
 </pre>
