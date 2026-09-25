@@ -18,9 +18,15 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi SDDC team, we are currently unable to complete the production deployment of the App Cloud Run due to a credentials issue in the GitHub Actions deploy_image workflow.
+Buongiorno Daniela,
 
-The same issue was previously encountered in UAT. We have also tried to restore the previous deployment configuration, but the production deployment is still failing with a similar credentials-related error: the workflow cannot access Google Secret Manager (GSM) to retrieve the Artifactory credentials.
+se Hanumantha ha rimandato la gestione a noi, possiamo eventualmente verificare le dimensioni del file da caricare e, sulla base di questo, decidere come procedere.
 
-Could you please investigate this issue urgently and intervene as soon as possible? At the moment, we are blocked and unable to proceed with the production deployment.
+Se il file è di dimensioni contenute, possiamo valutare di includere la creazione della tabella nella release, caricando il file su GitHub e attendendo quindi la release per il relativo deploy.
+
+Se invece il file dovesse essere di dimensioni rilevanti, sarà necessario accordarci con Hanumantha per effettuare un caricamento extra-release, in quanto attualmente solo il loro team è abilitato tramite CyberArk a effettuare il caricamento dei file in produzione.
+
+Un altro aspetto da verificare riguarda il contenuto del file. Se dovesse contenere dati dei clienti, ad esempio Codice Fiscale o nome e cognome, il caricamento su GitHub potrebbe essere problematico, in quanto tali dati risulterebbero potenzialmente visibili agli utenti con accesso ai repository. In questo caso sarebbe quindi più opportuno procedere con il caricamento tramite CyberArk.
+
+A quel punto, dovremmo chiedere al team L2 di effettuare il caricamento tramite apposita SR.
 </pre>
