@@ -18,9 +18,9 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-PR Approval – Production Release 10/09
+Hi Bushra, Mohnish previously handled the IAM permissions for the GitHub Actions service account.
 
-Hi Hanumatha,
+I had updated the YAML workflow to use separate Google Secret Manager paths for UAT, PRD, and DEV, and the deployment worked successfully in UAT.
 
-Hi Anumanta, most of the DAGs are now on the Confluence page. I’m confident I’ll complete the remaining ones shortly.
+I’ve now reverted the workflow to the previous configuration, using the DEV Secret Manager path for Artifactory credentials, consistent with the other repositories. However, the deploy_image workflow is still failing during the PRD deployment with a credentials-related error.
 </pre>
