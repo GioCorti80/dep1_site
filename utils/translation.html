@@ -18,6 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha, I’ve raised SR RIT15905 with the instructions to fix the CEssioni_mb table.
-If you’d like, I’m available now until 10:30.
+Hi Hanumantha, I’ve reviewed Anibal’s request.
+
+We don’t retain the Spark job logs, so retrospectively we can mainly verify whether the expected partitions have been loaded into the model tables.
+
+One possible approach is to query the view that includes all the models and check that all expected months (data_rif partitions) are present. This would provide a consolidated check across all models.
+
+I can also look for additional queries, although these would only cover individual model tables.
 </pre>
