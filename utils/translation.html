@@ -25,4 +25,19 @@ come anticipato ad Hanumantha, per la verifica ex-post dell’elaborazione dei m
 In allegato trovi i file estratti, ottenuti dalla vista pc_tm.tmonitr, che contiene l’UNION ALL di tutte le tabelle dei modelli. Dai dati estratti si rileva, per ciascun modello, la presenza delle 14 partizioni a partire da luglio 2025. Tale evidenza supporta l’avvenuta elaborazione e il caricamento dei relativi risultati.
 
 Attualmente non è prevista una retention dei log Dataproc per Transaction Monitoring. Potremo eventualmente prevederla a partire dai prossimi run mensili, per rendere disponibili ulteriori evidenze nelle future verifiche.
+--------------------
+Hi SDDC team, we need your support on the CCMT production deployment issue.
+
+We attempted to run the deploy_image workflow again using the correct change number for the CCMT project, but the same Google Secret Manager (GSM) access error occurred again.
+
+The deployment is currently blocked. Could you please investigate the service account permissions and access to the required secrets in GSM?
+------------------------
+Buongiorno,
+
+al momento non è possibile procedere con il deployment in produzione a causa di un problema di accesso a Google Secret Manager (GSM) da parte della GitHub Action deploy_image.
+
+Lo stesso problema si era già verificato in UAT ed era stato successivamente risolto. Abbiamo effettuato un nuovo tentativo in produzione con il corretto numero di Change per CCMT, ma l’errore si è ripresentato.
+
+Abbiamo quindi richiesto il supporto del team SDDC per la risoluzione del problema.
+
 </pre>
