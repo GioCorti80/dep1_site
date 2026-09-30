@@ -54,4 +54,9 @@ These five DAGs need to be triggered with the expected logical date correspondin
 
 As for Reporting Engine – report_mandatory, specific logical dates are generally not specified in the individual reports.
 
+
+Hi Raman,
+I analyzed the various XLSX files related to the reporting and found that the num_cellulare field is used in some queries, but it is already being cast as STRING. Therefore, there should be no impact from changing the field type from INTEGER to STRING.
+
+I did not find any other references to the other table.
 </pre>
