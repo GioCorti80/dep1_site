@@ -18,6 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Mohnish, I’ve opened this PR [PR #XXX] to revert the changes that introduced support for multiple environments and restore the deploy_image.yaml file to its original configuration, using the DEV environment only.
-Could you please review and approve it?
+Hi Hanumantha,
+
+The only difference for BNACLLDO is that the date passed in the -P parameter should not necessarily be 30 September. You need to identify the latest available date before 30 September, which is usually around 27 September, as using 30 September directly would return no data.
+
+All DAGs starting with 125479-4-REPORT_PRM need to be triggered.
+
+I'll open an SR to track this task.
 </pre>
