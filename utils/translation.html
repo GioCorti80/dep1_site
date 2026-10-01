@@ -18,47 +18,5 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Anibal,
 
-come anticipato ad Hanumantha, per la verifica ex-post dell’elaborazione dei modelli possiamo utilizzare come evidenza la presenza delle partizioni nelle relative tabelle di output.
-
-In allegato trovi i file estratti, ottenuti dalla vista pc_tm.tmonitr, che contiene l’UNION ALL di tutte le tabelle dei modelli. Dai dati estratti si rileva, per ciascun modello, la presenza delle 14 partizioni a partire da luglio 2025. Tale evidenza supporta l’avvenuta elaborazione e il caricamento dei relativi risultati.
-
-Attualmente non è prevista una retention dei log Dataproc per Transaction Monitoring. Potremo eventualmente prevederla a partire dai prossimi run mensili, per rendere disponibili ulteriori evidenze nelle future verifiche.
---------------------
-Hi SDDC team, we need your support on the CCMT production deployment issue.
-
-We attempted to run the deploy_image workflow again using the correct change number for the CCMT project, but the same Google Secret Manager (GSM) access error occurred again.
-
-The deployment is currently blocked. Could you please investigate the service account permissions and access to the required secrets in GSM?
-------------------------
-Buongiorno,
-
-al momento non è possibile procedere con il deployment in produzione a causa di un problema di accesso a Google Secret Manager (GSM) da parte della GitHub Action deploy_image.
-
-Lo stesso problema si era già verificato in UAT ed era stato successivamente risolto. Abbiamo effettuato un nuovo tentativo in produzione con il corretto numero di Change per CCMT, ma l’errore si è ripresentato.
-
-Abbiamo quindi richiesto il supporto del team SDDC per la risoluzione del problema.
-Hi Hanumantha,
-
-In UAT, Mohnish made some changes to the lz-main repository. I then updated the deploy-image.yaml file accordingly, and the deployment was successful.
-
-Hi Ashwini, unfortunately, I don’t have any specific DAG in mind for this, and I’m not aware of any existing Cloud SQL DAG in CCM Tool that could provide this output.
-
-
-Ciao Marco, al momento non sono ancora riusciti a risolvere il problema. Ho provato a sollecitare nuovamente in chat.
-
-Nel frattempo mi ha contattato Hanumantha, che ha coinvolto Rakesh e Mohnish, perché dovrebbe trattarsi di un problema lato DevOps relativo alla gestione dei permessi sul repo lz-main.
-
-These five DAGs need to be triggered with the expected logical date corresponding to the run date.
-
-As for Reporting Engine – report_mandatory, specific logical dates are generally not specified in the individual reports.
-
-
-Hi Raman,
-I analyzed the various XLSX files related to the reporting and found that the num_cellulare field is used in some queries, but it is already being cast as STRING. Therefore, there should be no impact from changing the field type from INTEGER to STRING.
-
-I did not find any other references to the other table.
-
-Hi Ajai, I’ve never set up secrets in GSM myself. I know that the DevOps team usually works with the lz-54326-1-001-main-a repository for this kind of configuration, but I’m not familiar with the actual process.
 </pre>
