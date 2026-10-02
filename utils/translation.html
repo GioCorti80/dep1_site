@@ -18,14 +18,19 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Daniela,
+Hi L2 Team,
 
-ho chiesto un parere anche ad Antonio Sano e anche lui ha individuato le soluzioni che avevamo già prospettato.
+We would like to ask for your support in uploading a CSV file to the production GCS bucket using CyberArk.
 
-- **Censimento della tabella:** procedere tramite app-liquibase, facendo puntare la configurazione al file CSV relativo alla tabella, che dovrà essere presente in un bucket di produzione.
-- **Caricamento del file in produzione:** considerata la dimensione del file, suggerirei di comprimerlo in formato ZIP e richiederne il caricamento in un bucket di produzione, ad esempio `raw-file landing` oppure `reporting out`. Successivamente, potremmo gestire l'estrazione del file tramite una DAG, effettuando prima una prova in UAT.
+We have prepared a dedicated Liquibase changelog in the app-liquibase repository to load the data from this CSV file into the corresponding BigQuery table.
 
-Non credo invece che sia possibile caricare il file direttamente su GitHub, considerati i limiti dimensionali previsti per i file.
+However, due to the file size, we are unable to store it in the GitHub repository.
 
-Direi quindi di anticipare la richiesta di caricamento del file in produzione al team L2, in modo da verificare con loro la fattibilità della soluzione proposta.
+Could you please upload the CSV file to the designated production GCS bucket using CyberArk? This will allow Liquibase to access the file and execute the data load into the target table.
+
+Please let us know if you need any additional information, such as the file, the target GCS path, or the required access details.
+
+Thank you for your support.
+
+Best regards,
 </pre>
