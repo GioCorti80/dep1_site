@@ -25,5 +25,7 @@ ho chiesto un parere anche ad Antonio Sano e anche lui ha individuato le soluzio
 - **Censimento della tabella:** procedere tramite app-liquibase, facendo puntare la configurazione al file CSV relativo alla tabella, che dovrà essere presente in un bucket di produzione.
 - **Caricamento del file in produzione:** considerata la dimensione del file, suggerirei di comprimerlo in formato ZIP e richiederne il caricamento in un bucket di produzione, ad esempio `raw-file landing` oppure `reporting out`. Successivamente, potremmo gestire l'estrazione del file tramite una DAG, effettuando prima una prova in UAT.
 
-Non credo invece che sia possibile caricare il file direttamente su GitHub, considerato che esistono limiti dimensionali piuttosto stringenti per i file caricabili.
+Non credo invece che sia possibile caricare il file direttamente su GitHub, considerati i limiti dimensionali previsti per i file.
+
+Direi quindi di anticipare la richiesta di caricamento del file in produzione al team L2, in modo da verificare con loro la fattibilità della soluzione proposta.
 </pre>
