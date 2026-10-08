@@ -18,9 +18,91 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Davide,
+from google.cloud import storage
+import pandas as pd
 
-pensavo si trattasse dei file generati dai DAG PRM, però in UAT non ne trovo nessuno.
+# ==========================
+# CONFIGURAZIONE
+# ==========================
 
-Per le polizze, invece, dovrebbe essere un file prodotto in locale e poi inviato a Stefano De Carlo, che si occupa successivamente dell’invio alla microdata. Non ho però evidenza di un’attività di questo tipo fatta in UAT a marzo.
+BUCKET_NAME = "nome-del-tuo-bucket"
+OUTPUT_FILE = "lista_file_bucket.xlsx"
+
+# Prefissi delle sottocartelle da considerare
+PREFIXES = (
+    "PRM",
+    "Palermo",
+    "Roma",
+    "Mantova"
+)
+
+# ==========================
+# CONNESSIONE A GCS
+# ==========================
+
+client = storage.Client()
+bucket = client.bucket(BUCKET_NAME)
+
+# ==========================
+# ESTRAZIONE FILE
+# ==========================
+
+records = []
+
+for blob in client.list_blobs(bucket):
+
+    # Ignora eventuali oggetti che non iniziano
+    # con uno dei prefissi richiesti
+    if not blob.name.startswith(PREFIXES):
+        continue
+
+    # Ignora eventuali "cartelle" virtuali
+    if blob.name.endswith("/"):
+        continue
+
+    # Percorso del file
+    parts = blob.name.split("/")
+
+    # Prima cartella del percorso
+    sottocartella = parts[0]
+
+    # Nome del file senza il prefisso della cartella
+    nome_file = "/".join(parts[1:])
+
+    # Dimensione
+    size_bytes = blob.size or 0
+    size_mb = size_bytes / (1024 ** 2)
+    size_gb = size_bytes / (1024 ** 3)
+
+    # Data ultima modifica
+    data_modifica = blob.updated
+
+    records.append({
+        "Sottocartella": sottocartella,
+        "File": nome_file,
+        "Dimensione (bytes)": size_bytes,
+        "Dimensione (MB)": round(size_mb, 2),
+        "Dimensione (GB)": round(size_gb, 3),
+        "Data modifica": data_modifica
+    })
+
+# ==========================
+# CREAZIONE EXCEL
+# ==========================
+
+df = pd.DataFrame(records)
+
+# Ordina per sottocartella e file
+df = df.sort_values(
+    by=["Sottocartella", "File"]
+)
+
+df.to_excel(
+    OUTPUT_FILE,
+    index=False,
+    engine="openpyxl"
+)
+
+print(f"Creato file: {OUTPUT_FILE}")
+print(f"Numero file estratti: {len(df)}")
 </pre>
