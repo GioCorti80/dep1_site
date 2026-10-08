@@ -18,91 +18,14 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from google.cloud import storage
-import pandas as pd
+Hi Monish,
 
-# ==========================
-# CONFIGURAZIONE
-# ==========================
+To start testing Monitoring Tool with Composer 3, we first need the GitHub Action that deploys/copies the DAG files to the new Composer 3 bucket.
 
-BUCKET_NAME = "nome-del-tuo-bucket"
-OUTPUT_FILE = "lista_file_bucket.xlsx"
+At the moment, I cannot find this GitHub Action in the repository, so we are currently not able to proceed with the testing.
 
-# Prefissi delle sottocartelle da considerare
-PREFIXES = (
-    "PRM",
-    "Palermo",
-    "Roma",
-    "Mantova"
-)
+Could you please check whether the required action has already been created or is planned to be added? Once it is available, we can proceed with the Composer 3 upgrade testing on Monitoring Tool.
 
-# ==========================
-# CONNESSIONE A GCS
-# ==========================
-
-client = storage.Client()
-bucket = client.bucket(BUCKET_NAME)
-
-# ==========================
-# ESTRAZIONE FILE
-# ==========================
-
-records = []
-
-for blob in client.list_blobs(bucket):
-
-    # Ignora eventuali oggetti che non iniziano
-    # con uno dei prefissi richiesti
-    if not blob.name.startswith(PREFIXES):
-        continue
-
-    # Ignora eventuali "cartelle" virtuali
-    if blob.name.endswith("/"):
-        continue
-
-    # Percorso del file
-    parts = blob.name.split("/")
-
-    # Prima cartella del percorso
-    sottocartella = parts[0]
-
-    # Nome del file senza il prefisso della cartella
-    nome_file = "/".join(parts[1:])
-
-    # Dimensione
-    size_bytes = blob.size or 0
-    size_mb = size_bytes / (1024 ** 2)
-    size_gb = size_bytes / (1024 ** 3)
-
-    # Data ultima modifica
-    data_modifica = blob.updated
-
-    records.append({
-        "Sottocartella": sottocartella,
-        "File": nome_file,
-        "Dimensione (bytes)": size_bytes,
-        "Dimensione (MB)": round(size_mb, 2),
-        "Dimensione (GB)": round(size_gb, 3),
-        "Data modifica": data_modifica
-    })
-
-# ==========================
-# CREAZIONE EXCEL
-# ==========================
-
-df = pd.DataFrame(records)
-
-# Ordina per sottocartella e file
-df = df.sort_values(
-    by=["Sottocartella", "File"]
-)
-
-df.to_excel(
-    OUTPUT_FILE,
-    index=False,
-    engine="openpyxl"
-)
-
-print(f"Creato file: {OUTPUT_FILE}")
-print(f"Numero file estratti: {len(df)}")
+Thanks,
+Giovanni
 </pre>
