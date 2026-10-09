@@ -20,7 +20,11 @@
 <pre>
 AFC/DWH: allineamento SIGMA - release per simulazione di TEST
 
-Hi Rakesh, I can see that the DAGs have been created successfully, although in some cases the creation fails due to missing Airflow variables.
+Hi Mohnish and Rakesh,
 
-I’ll look into this and check what is missing.
+The issue seems to be related to the fact that the Variables.json file is being copied to the dev subfolder.
+
+I manually moved the file to the correct location and the deployment is now working successfully.
+
+The YAML file should therefore be updated accordingly to copy Variables.json to the correct location.
 </pre>
