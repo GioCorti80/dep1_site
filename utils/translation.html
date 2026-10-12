@@ -20,68 +20,18 @@
 <pre>
 AFC/DWH: allineamento SIGMA - release per simulazione di TEST
 
-from datetime import date
+Hi Surendhar,
 
-df = spark.createDataFrame(
-    [(date.today(),)],
-    ["DATE_RUN"]
-)
+Could you please perform the following tasks under SR RITM9999?
 
+DAG: 125479-4Controlli
+Clear the failed controlli4 task so that it can be restarted.
 
-from datetime import date
+DAG: 125479-4Forzature sigma
+Mark the wait task as successful to allow the subsequent tasks to proceed.
 
-from google.cloud import bigquery
-from pyspark.sql import functions as F
+DAG: 12547+-4tm_test
+Unpause the DAG.
 
-client = bigquery.Client()
-
-table_id = "my_project.my_dataset.report_execution_log"
-interval_days = 14
-
-# 1. Check whether the BigQuery table exists
-try:
-    client.get_table(table_id)
-    table_exists = True
-except Exception as e:
-    from google.api_core.exceptions import NotFound
-    if isinstance(e, NotFound):
-        table_exists = False
-    else:
-        raise
-
-# 2. Get today's date
-today_df = spark.range(1).select(
-    F.current_date().alias("DATE_RUN")
-)
-
-if not table_exists:
-    # First execution: no previous date
-    date_diff = None
-    df_run = today_df
-
-else:
-    # 3. Read the table and retrieve MAX(DATE_RUN)
-    df_last_run = (
-        spark.read.format("bigquery")
-        .load(table_id)
-        .agg(F.max("DATE_RUN").alias("MAX_DATE_RUN"))
-    )
-
-    # 4. Calculate the date difference
-    row = df_last_run.first()
-    last_date = row["MAX_DATE_RUN"]
-
-    if last_date is None:
-        date_diff = None
-    else:
-        date_diff = (date.today() - last_date).days
-
-    df_run = today_df
-
-# 5. Decide whether to execute the report
-if date_diff is None or date_diff >= interval_days:
-    print("Execute report")
-    # Execute your report query here
-else:
-    print(f"Skip report: only {date_diff} days elapsed")
+Thank you for your support!
 </pre>
