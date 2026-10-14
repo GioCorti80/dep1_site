@@ -20,23 +20,16 @@
 <pre>
 AFC/DWH: allineamento SIGMA - release per simulazione di TEST
 
+from pyspark.sql import functions as F
 
-Request for Production Deployment – Ad Hoc Release This Week SIGMA_TO_PREVENTION_yyyymmdd
-Hi all,
-
-As discussed, could you please include the deployment of app-composer-dag and app-reporting-engine in this week’s ad hoc production release?
-
-The two pull requests requiring review and approval are:
-
-app-composer-dag: [PR link]
-
-app-reporting-engine: [PR link]
-
-Could you please review and approve both PRs to ensure the changes can be deployed within the planned release window?
-
-Thank you for your support.
-
-Best regards,
+df_filtered = df.filter(
+    (F.col("REGOLA") != "103") |
+    (
+        (F.col("REGOLA") == "103") &
+        (~F.col("TIPOLOGIA_GESTORE").isin("EAG00", "ESD00")) &
+        (F.col("FILIALE_PREVALENTE") != "060")
+    )
+)
 
 
 </pre>
