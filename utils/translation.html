@@ -20,16 +20,6 @@
 <pre>
 AFC/DWH: allineamento SIGMA - release per simulazione di TEST
 
-from pyspark.sql import functions as F
-
-df_filtered = df.filter(
-    (F.col("REGOLA") != "103") |
-    (
-        (F.col("REGOLA") == "103") &
-        (~F.col("TIPOLOGIA_GESTORE").isin("EAG00", "ESD00")) &
-        (F.col("FILIALE_PREVALENTE") != "060")
-    )
-)
-
+Hi Marco, the following change has been opened for the Monitoring Tool release, covering the deployment of the app-cloud-run repository.
 
 </pre>
