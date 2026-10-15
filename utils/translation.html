@@ -18,12 +18,40 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-AFC/DWH: allineamento SIGMA - release per simulazione di TEST
+Ciao Daniele,
 
-Ciao Stefano,
+di seguito i chiarimenti relativi ai punti di competenza TDI.
 
-attualmente siamo in attesa dell’approvazione della change necessaria per procedere con il deploy della nuova versione della Docker image di app Cloud Run, finalizzato alla risoluzione delle vulnerabilità rilevate sul servizio Credit Validator.
+**1. Modelli interessati dall'esclusione della keyword “PAYPAL”**
 
-Resta da completare la verifica relativa a Trusted Engine: le anomalie vengono rilevate sulla versione 0.15.0, mentre l’ultima release attualmente in produzione è la 0.15.1, sulla quale le stesse anomalie non vengono intercettate dai controlli.
+L'esclusione è prevista per i modelli che utilizzano il package VASP:
+- Insurance
+- VASP
+- Money Transfer
+- Trust
 
+Questi modelli importano il package VASP e applicano le regole di individuazione delle transazioni secondo le medesime modalità.
+
+**2. Tabelle e campi sui quali viene applicato il filtro**
+
+Il filtro viene applicato su una tabella intermedia generata durante l'elaborazione di ciascun modello.
+
+In particolare, ogni modello intercetta le transazioni che presentano le keyword previste nelle rispettive liste di riferimento e valorizza i campi derivati `keyword` e `campo_keyword`, che identificano rispettivamente la keyword intercettata e il campo nel quale è stata individuata.
+
+L'esclusione delle transazioni con keyword “PAYPAL” viene effettuata sulla base di questi campi, presenti nelle tabelle intermedie, poiché il campo `keyword` non è disponibile direttamente nelle tabelle DWH di origine.
+
+**6. Impatto sulle regole di assegnazione delle priorità**
+
+Il filtro viene applicato a priori, prima dell'applicazione delle regole di assegnazione delle priorità.
+
+- Gli NDG che presentano esclusivamente transazioni PAYPAL non accedono alle successive fasi di assegnazione delle priorità.
+- Gli NDG individuati anche attraverso altre keyword possono invece accedere al calcolo delle priorità; le relative transazioni PAYPAL vengono escluse esclusivamente ai fini dell'assegnazione delle priorità.
+
+Il filtro non comporta quindi l'esclusione delle transazioni PAYPAL dal calcolo dei volumi complessivi delle transazioni del cliente.
+
+Grazie,
+
+[Nome]
+
+[Nome]
 </pre>
