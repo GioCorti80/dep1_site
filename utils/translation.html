@@ -18,40 +18,13 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Daniele,
+Buongiorno a tutti,
 
-di seguito i chiarimenti relativi ai punti di competenza TDI.
+vi informo che, a seguito dell’anticipazione della call per la discussione della release da martedì a lunedì, l’ultima scadenza utile per inviare i file da includere nella release è lunedì mattina.
 
-**1. Modelli interessati dall'esclusione della keyword “PAYPAL”**
+Vi chiedo pertanto di farci pervenire eventuali file entro tale termine, così da consentirne la valutazione e l’inclusione nella release.
 
-L'esclusione è prevista per i modelli che utilizzano il package VASP:
-- Insurance
-- VASP
-- Money Transfer
-- Trust
+Grazie per la collaborazione.
 
-Questi modelli importano il package VASP e applicano le regole di individuazione delle transazioni secondo le medesime modalità.
-
-**2. Tabelle e campi sui quali viene applicato il filtro**
-
-Il filtro viene applicato su una tabella intermedia generata durante l'elaborazione di ciascun modello.
-
-In particolare, ogni modello intercetta le transazioni che presentano le keyword previste nelle rispettive liste di riferimento e valorizza i campi derivati `keyword` e `campo_keyword`, che identificano rispettivamente la keyword intercettata e il campo nel quale è stata individuata.
-
-L'esclusione delle transazioni con keyword “PAYPAL” viene effettuata sulla base di questi campi, presenti nelle tabelle intermedie, poiché il campo `keyword` non è disponibile direttamente nelle tabelle DWH di origine.
-
-**6. Impatto sulle regole di assegnazione delle priorità**
-
-Il filtro viene applicato a priori, prima dell'applicazione delle regole di assegnazione delle priorità.
-
-- Gli NDG che presentano esclusivamente transazioni PAYPAL non accedono alle successive fasi di assegnazione delle priorità.
-- Gli NDG individuati anche attraverso altre keyword possono invece accedere al calcolo delle priorità; le relative transazioni PAYPAL vengono escluse esclusivamente ai fini dell'assegnazione delle priorità.
-
-Il filtro non comporta quindi l'esclusione delle transazioni PAYPAL dal calcolo dei volumi complessivi delle transazioni del cliente.
-
-Grazie,
-
-[Nome]
-
-[Nome]
+Buona giornata,
 </pre>
