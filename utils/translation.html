@@ -18,6 +18,53 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-I tried rerunning the workflow from the app-cloud-run repository, as the deployment from the SDLC repository had failed
+CREATE OR REPLACE PROCEDURE
+  `my-project.snapshot.create_table_snapshots`(
+    tables ARRAY<STRING>,
+    snapshot_date DATE
+  )
+BEGIN
+  DECLARE table_name STRING;
+  DECLARE snapshot_name STRING;
+  DECLARE source_exists BOOL;
 
+  FOR tbl IN (
+    SELECT table_name
+    FROM UNNEST(tables) AS table_name
+  )
+  DO
+    SET table_name = tbl.table_name;
+
+    -- Accetta solo nomi di tabelle semplici
+    ASSERT REGEXP_CONTAINS(table_name, r'^[A-Za-z0-9_]+$')
+      AS 'Nome tabella non valido';
+
+    -- Verifica che la tabella sorgente esista
+    SET source_exists = (
+      SELECT COUNTIF(table_name = table_name_check) > 0
+      FROM (
+        SELECT table_name AS table_name_check
+        FROM `my-project.tm_dataset.INFORMATION_SCHEMA.TABLES`
+        WHERE table_type = 'BASE TABLE'
+      )
+      WHERE table_name_check = table_name
+    );
+
+    ASSERT source_exists AS 'Tabella sorgente inesistente';
+
+    SET snapshot_name = FORMAT(
+      '%s_%s',
+      table_name,
+      FORMAT_DATE('%Y%m%d', snapshot_date)
+    );
+
+    EXECUTE IMMEDIATE FORMAT("""
+      CREATE SNAPSHOT TABLE IF NOT EXISTS
+        `my-project.snapshot.%s`
+      CLONE
+        `my-project.tm_dataset.%s`
+    """, snapshot_name, table_name);
+
+  END FOR;
+END;
 </pre>
