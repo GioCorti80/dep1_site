@@ -21,6 +21,8 @@
 
 Hi Subramiam, we can try clearing the job, although I don't think it will work, especially since the `credit_event_run` version isn't working either. I'll also need to fix the initial queries that generate duplicates in the next release.
 
+The tables containing the list of NDGs can only be modified through a release. Users do not have individual access to modify these tables.
+
 CREATE OR REPLACE PROCEDURE
   `my-project.snapshot.create_table_snapshots`(
     tables ARRAY<STRING>,
