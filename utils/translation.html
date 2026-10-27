@@ -31,6 +31,17 @@ query = blob.download_as_text(encoding="utf-8")
 
 print(query)
 
+import json
+from google.cloud import storage
+
+client = storage.Client()
+
+blob = client.bucket("my-bucket").blob("config/config.txt")
+
+content = blob.download_as_text(encoding="utf-8")
+
+data = json.loads(content)
+
 CREATE OR REPLACE PROCEDURE
   `my-project.snapshot.create_table_snapshots`(
     tables ARRAY<STRING>,
