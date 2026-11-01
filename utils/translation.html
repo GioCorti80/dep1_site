@@ -18,17 +18,25 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from pathlib import Path
+from google.cloud import storage
+import os
 
-q1 = Path(args.query).read_text()
+# Initialize GCS client
+storage_client = storage.Client()
 
-df3 = (
-    spark.read
-    .format("bigquery")
-    .option("query", q1)
-    .option("NamedParameters.date_start", f"DATE:{date_start}")
-    .option("NamedParameters.date_end", f"DATE:{date_end}")
-    .load()
-    .transform(simplify)
-)
+# Get destination bucket
+bucket = storage_client.bucket(args.bucket_name)
+
+# Define destination object
+blob_name = os.path.join(
+    args.folder_name,
+    os.path.basename(args.file_gpg)
+).replace("\\", "/")
+
+blob = bucket.blob(blob_name)
+
+# Upload encrypted file
+blob.upload_from_filename(args.file_gpg)
+
+print(f"Encrypted file uploaded to gs://{args.bucket_name}/{blob_name}")
 </pre>
