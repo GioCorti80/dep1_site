@@ -18,5 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Subramaniam,, could you please clear the email task in today's DAG run for the Rusibergrusi 100K client? The end user reported that they haven't received the email. Thanks.
+from pathlib import Path
+
+q1 = Path(args.query).read_text()
+
+df3 = (
+    spark.read
+    .format("bigquery")
+    .option("query", q1)
+    .option("NamedParameters.date_start", f"DATE:{date_start}")
+    .option("NamedParameters.date_end", f"DATE:{date_end}")
+    .load()
+    .transform(simplify)
+)
 </pre>
