@@ -39,4 +39,15 @@ blob = bucket.blob(blob_name)
 blob.upload_from_filename(args.file_gpg)
 
 print(f"Encrypted file uploaded to gs://{args.bucket_name}/{blob_name}")
+
+from pathlib import PurePosixPath
+import os
+
+blob_name = str(
+    PurePosixPath(args.folder_name) /
+    os.path.basename(args.file_gpg)
+)
+
+blob = bucket.blob(blob_name)
+blob.upload_from_filename(args.file_gpg)
 </pre>
