@@ -18,36 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-from google.cloud import storage
-import os
+Hi Mohnish, in DEV and UAT I usually use this DAG:
 
-# Initialize GCS client
-storage_client = storage.Client()
-
-# Get destination bucket
-bucket = storage_client.bucket(args.bucket_name)
-
-# Define destination object
-blob_name = os.path.join(
-    args.folder_name,
-    os.path.basename(args.file_gpg)
-).replace("\\", "/")
-
-blob = bucket.blob(blob_name)
-
-# Upload encrypted file
-blob.upload_from_filename(args.file_gpg)
-
-print(f"Encrypted file uploaded to gs://{args.bucket_name}/{blob_name}")
-
-from pathlib import PurePosixPath
-import os
-
-blob_name = str(
-    PurePosixPath(args.folder_name) /
-    os.path.basename(args.file_gpg)
-)
-
-blob = bucket.blob(blob_name)
-blob.upload_from_filename(args.file_gpg)
+I'll check internally and get back to you once we have a clearer timeline.
 </pre>
