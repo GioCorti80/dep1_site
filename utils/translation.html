@@ -21,4 +21,12 @@
 Hi Mohnish, in DEV and UAT I usually use this DAG:
 
 I'll check internally and get back to you once we have a clearer timeline.
+
+job_config = bigquery.QueryJobConfig(
+    destination="project.dataset.nome_tabella",
+    write_disposition=bigquery.WriteDisposition.WRITE_APPEND
+)
+
+query_job = client.query(query, job_config=job_config)
+query_job.result()
 </pre>
