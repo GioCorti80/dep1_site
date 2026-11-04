@@ -31,4 +31,13 @@ The standard Raw mapping process would not be applicable in this case, as the in
 Alternatively, would this type of activity be possible as part of the current Service Request, or would we need to wait for the next release and load the data into the relevant tables through Liquibase?
 
 We would appreciate your clarification on the available options so that we can identify the most appropriate approach.
+
+
+df.coalesce(1) \
+    .write \
+    .mode("overwrite") \
+    .option("header", "true") \
+    .option("sep", ";") \
+    .option("compression", "gzip") \
+    .csv(output_path)
 </pre>
