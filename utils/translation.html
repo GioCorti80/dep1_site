@@ -18,7 +18,17 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi @Leonardo, @Surbhi, @Akash, could you please merge your PRs?
+Hi Hanumantha,
 
-@Francesco Staiano, I couldn't find the link to your PR on the Release Tracker Confluence page.
+We would need some clarification regarding the table loading process.
+
+Some of the tables may need to be populated using CSV files that do not match the format expected by the Raw layer, as the original Raw files are provided in a tabular format rather than CSV.
+
+In this scenario, could you please confirm whether your team can perform manual data loading into the Trusted layer, and potentially the Raw layer, using CyberArk and SQL statements such as INSERT INTO?
+
+The standard Raw mapping process would not be applicable in this case, as the incoming files have a different structure and format, which has also changed over time.
+
+Alternatively, would this type of activity be possible as part of the current Service Request, or would we need to wait for the next release and load the data into the relevant tables through Liquibase?
+
+We would appreciate your clarification on the available options so that we can identify the most appropriate approach.
 </pre>
