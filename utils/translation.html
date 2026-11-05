@@ -18,25 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi L2 Team,
+Hi Monish, yes, I think that in the next release we will also need to deploy the DAGs to the Composer V3 cluster.
 
-The release scheduled for this afternoon has already been prepared: GitHub tags have been created, the pipeline configured, and the UAT deployment completed.
+However, Hannibal suggested a gradual migration, starting with a subset of DAGs to avoid potential issues.
 
-An additional change is required in the Reporting Python repository to handle a data format difference identified in production: Cedacri, which provides the file used to populate the production table, is now sending the NDG field as an 8-digit value instead of the 16-digit format used in DEV and UAT.
-
-The related Change Request has already been created and moved to Planning status.
-
-Could you please confirm if I can proceed with the following steps to include this change in the current release?
-
-Merge the PR into the production branch (the change is currently available on DEV).
-
-Recreate the Reporting Python release tag.
-
-Redeploy to UAT for validation before production deployment.
-
-Thanks for your support.
-
-
-Approval Request – Reporting Python Change in Current Release
+We need to agree on which DAGs to migrate first. I'll check with Accenture, possibly with Marco De Antoni, on how to proceed.
 
 </pre>
