@@ -22,11 +22,13 @@ Hi L2 Team,
 
 The release scheduled for this afternoon has already been prepared: GitHub tags have been created, the pipeline configured, and the UAT deployment completed.
 
-An additional change has been requested for the Reporting Python repository. The related Change Request has already been created and moved to Planning status.
+An additional change is required in the Reporting Python repository to handle a data format difference identified in production: Cedacri, which provides the file used to populate the production table, is now sending the NDG field as an 8-digit value instead of the 16-digit format used in DEV and UAT.
 
-Could you please confirm if I can proceed with the following steps to include it in the current release?
+The related Change Request has already been created and moved to Planning status.
 
-Merge the PR into the production branch (currently available on DEV).
+Could you please confirm if I can proceed with the following steps to include this change in the current release?
+
+Merge the PR into the production branch (the change is currently available on DEV).
 
 Recreate the Reporting Python release tag.
 
