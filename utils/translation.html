@@ -18,7 +18,88 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Subramiam,
+import bigframes.pandas as bpd
+import re
 
-Yes, it's already been taken care of. Thanks!
+def filter_by_keyword_dataframe(
+    target_df: bpd.DataFrame,
+    search_columns: list[str],
+    keyword_bpd: bpd.DataFrame,
+    kw_col: str = "keyword",
+    type_col: str = "tipo",
+    case_sensitive: bool = False
+) -> bpd.DataFrame:
+    """
+    Filtra un target_df in base a un dataframe di keyword contenente le logiche 'exactmatch' e 'contains'.
+    
+    Parametri:
+    - target_df: bpd.DataFrame, la tabella dati da filtrare.
+    - search_columns: list[str], le colonne del target_df in cui cercare.
+    - keyword_bpd: bpd.DataFrame, la tabella delle keyword (può risiedere su BQ).
+    - kw_col: str, il nome della colonna con le parole chiave.
+    - type_col: str, il nome della colonna con il tipo (deve contenere 'exactmatch' o 'contains').
+    - case_sensitive: bool, True per rispettare maiuscole/minuscole.
+    """
+    
+    # 1. Portiamo in RAM locale (Pandas) il dizionario delle keyword.
+    # Questo è sicuro ed essenziale perché origina da Excel (pochi MB al massimo) 
+    # e ci permette di evitare un CROSS JOIN esplosivo su BigQuery.
+    local_kw_df = keyword_bpd.to_pandas()
+    
+    # Pulizia standard
+    local_kw_df[kw_col] = local_kw_df[kw_col].astype(str).str.strip()
+    local_kw_df[type_col] = local_kw_df[type_col].astype(str).str.strip().str.lower()
+    
+    # 2. Separiamo le keyword per logica di ricerca
+    exact_list = local_kw_df[local_kw_df[type_col] == 'exactmatch'][kw_col].tolist()
+    contains_list = local_kw_df[local_kw_df[type_col] == 'contains'][kw_col].tolist()
+    
+    # Rimuoviamo eventuali stringhe vuote
+    exact_list = [k for k in exact_list if k]
+    contains_list = [k for k in contains_list if k]
+    
+    if not exact_list and not contains_list:
+        print("Nessuna keyword valida trovata. Restituisco target_df non filtrato.")
+        return target_df
+
+    # 3. Prepariamo il pattern Regex per il 'contains'
+    regex_pattern = None
+    if contains_list:
+        escaped_contains = [re.escape(k) for k in contains_list]
+        regex_pattern = "|".join(escaped_contains)
+
+    final_mask = None
+
+    # 4. Costruzione della maschera BigFrames distribuita
+    for col in search_columns:
+        col_mask = None
+        
+        # A. Valutazione logica EXACT MATCH (si traduce in SQL: col IN (val1, val2...))
+        if exact_list:
+            if case_sensitive:
+                mask_exact = target_df[col].isin(exact_list)
+            else:
+                lower_exact = [k.lower() for k in exact_list]
+                mask_exact = target_df[col].str.lower().isin(lower_exact)
+            
+            col_mask = mask_exact
+
+        # B. Valutazione logica CONTAINS (si traduce in SQL: REGEXP_CONTAINS(col, 'pat1|pat2...'))
+        if contains_list:
+            mask_contains = target_df[col].str.contains(regex_pattern, case=case_sensitive, na=False, regex=True)
+            
+            # Combiniamo exact match e contains sulla singola colonna
+            if col_mask is None:
+                col_mask = mask_contains
+            else:
+                col_mask = col_mask | mask_contains
+
+        # C. Combiniamo i filtri delle diverse colonne (Logica OR tra colonne)
+        if final_mask is None:
+            final_mask = col_mask
+        else:
+            final_mask = final_mask | col_mask
+
+    # Restituisce il DataFrame BigFrames con la query traslata su BigQuery
+    return target_df[final_mask]
 </pre>
