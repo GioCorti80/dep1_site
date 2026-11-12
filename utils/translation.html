@@ -48,4 +48,13 @@ SELECT
     IMPORTO,
     DESCRIZIONE
 FROM `project.dataset.ext_csv`;
+
+SELECT
+    partition_id,
+    total_rows,
+    total_logical_bytes,
+    last_modified_time
+FROM `project.dataset.INFORMATION_SCHEMA.PARTITIONS`
+WHERE table_name = 'TM_TABLE'
+ORDER BY partition_id;
 </pre>
