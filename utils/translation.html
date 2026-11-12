@@ -18,43 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
--- STEP 1: Creazione External Table
-CREATE OR REPLACE EXTERNAL TABLE
-`project.dataset.ext_csv`
-(
-    ID STRING,
-    DT_PERIOD DATE,
-    IMPORTO STRING,
-    DESCRIZIONE STRING
-)
-OPTIONS (
-    format = 'CSV',
-    uris = ['gs://my-bucket/input/file.csv'],
-    skip_leading_rows = 1,
-    field_delimiter = ';'
-);
+I have completed the table load in Dev. Could you please verify that everything is correct?
 
--- STEP 2: Caricamento nella tabella definitiva
-INSERT INTO `project.dataset.TM_TABLE`
-(
-    ID,
-    DT_PERIOD,
-    IMPORTO,
-    DESCRIZIONE
-)
-SELECT
-    ID,
-    DT_PERIOD,
-    IMPORTO,
-    DESCRIZIONE
-FROM `project.dataset.ext_csv`;
-
-SELECT
-    partition_id,
-    total_rows,
-    total_logical_bytes,
-    last_modified_time
-FROM `project.dataset.INFORMATION_SCHEMA.PARTITIONS`
-WHERE table_name = 'TM_TABLE'
-ORDER BY partition_id;
+If everything looks good, we can proceed with the production steps, namely uploading the CSV file to the bucket and executing the attached SQL scripts.
 </pre>
