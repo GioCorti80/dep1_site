@@ -18,9 +18,55 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Enrico, nel deploy di giovedì il DAG compensation non è stato incluso per errore nella schedulazione di produzione.
+CREATE OR REPLACE TABLE `project.dataset.tabella_destinazione`
+PARTITION BY DT_PERIOD
+AS
 
-Al momento, visto che gli script sono stati comunque deployati, possiamo procedere con un'esecuzione manuale in modalità estemporanea, passando i parametri necessari, così da effettuare il caricamento della tabella PDS_COMP.
+CREATE TABLE `project.dataset.tabella_clone`
+CLONE `project.dataset.tabella_origine`;
+-----------------------------
+Request to Populate BanciLL1T Table – Microfondato Process
 
-Per ripristinare anche la schedulazione automatica sarà invece necessario attendere il prossimo rilascio.
+Hi Team,
+
+We have identified an issue with the **BanciLL1T** table in the Row layer. Currently, the table only contains data starting from May, meaning that the historical data required for the September 30th reporting date is incomplete.
+
+This is impacting the Microfondato DAGs, which rely on this table to retrieve the data to be sent to Microdata.
+
+We have noticed that backup tables are available in the production environment.
+
+Could you please check whether it would be possible to populate the BanciLL1T table using the query provided below, so that all the required records are available in the Row layer?
+
+Once the table has been correctly populated, we will be able to rerun the Microfondato process and send Microdata the table containing the complete and correct set of records.
+
+Thank you in advance for your support.
+
+Best regards,
+
+------------------------------
+Missing Historical Data in BanciLL1T Table – Impact on Microfondato Process
+
+Description:
+
+We have identified an issue with the BanciLL1T table in the Row layer. The table currently contains data only from May onwards, resulting in incomplete historical data.
+
+This issue affects the Microfondato DAGs, which use the BanciLL1T table as a source to extract and send data to Microdata for the reporting date of September 30th.
+
+As the required historical records are currently missing from the Row layer, the data extraction process cannot produce the complete dataset required for the Microdata submission.
+
+Requested Action:
+
+We have identified backup tables available in the production environment.
+
+We kindly request the support of the responsible team to verify whether the BanciLL1T table can be repopulated using the SQL query provided below.
+
+Expected Outcome:
+
+The BanciLL1T table in the Row layer should contain all the required historical records, including those needed for the September 30th reporting date.
+
+Once the data has been restored, we will rerun the Microfondato DAGs and proceed with the submission of the complete and correct dataset to Microdata.
+
+Business Impact:
+
+The issue is currently preventing the correct execution of the Microfondato process and the submission of complete data to Microdata.
 </pre>
