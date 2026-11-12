@@ -18,71 +18,34 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-CREATE OR REPLACE TABLE `project.dataset.tabella_destinazione`
-PARTITION BY DT_PERIOD
-AS
+-- STEP 1: Creazione External Table
+CREATE OR REPLACE EXTERNAL TABLE
+`project.dataset.ext_csv`
+(
+    ID STRING,
+    DT_PERIOD DATE,
+    IMPORTO STRING,
+    DESCRIZIONE STRING
+)
+OPTIONS (
+    format = 'CSV',
+    uris = ['gs://my-bucket/input/file.csv'],
+    skip_leading_rows = 1,
+    field_delimiter = ';'
+);
 
-CREATE TABLE `project.dataset.tabella_clone`
-CLONE `project.dataset.tabella_origine`;
------------------------------
-Request to Populate BanciLL1T Table – Microfondato Process
-
-Hi Team,
-
-We have identified an issue with the **BanciLL1T** table in the Row layer. Currently, the table only contains data starting from May, meaning that the historical data required for the September 30th reporting date is incomplete.
-
-This is impacting the Microfondato DAGs, which rely on this table to retrieve the data to be sent to Microdata.
-
-We have noticed that backup tables are available in the production environment.
-
-Could you please check whether it would be possible to populate the BanciLL1T table using the query provided below, so that all the required records are available in the Row layer?
-
-Once the table has been correctly populated, we will be able to rerun the Microfondato process and send Microdata the table containing the complete and correct set of records.
-
-Thank you in advance for your support.
-
-Best regards,
-
-------------------------------
-Missing Historical Data in BanciLL1T Table – Impact on Microfondato Process
-
-Description:
-
-We have identified an issue with the BanciLL1T table in the Row layer. The table currently contains data only from May onwards, resulting in incomplete historical data.
-
-This issue affects the Microfondato DAGs, which use the BanciLL1T table as a source to extract and send data to Microdata for the reporting date of September 30th.
-
-As the required historical records are currently missing from the Row layer, the data extraction process cannot produce the complete dataset required for the Microdata submission.
-
-Requested Action:
-
-We have identified backup tables available in the production environment.
-
-We kindly request the support of the responsible team to verify whether the BanciLL1T table can be repopulated using the SQL query provided below.
-
-Expected Outcome:
-
-The BanciLL1T table in the Row layer should contain all the required historical records, including those needed for the September 30th reporting date.
-
-Once the data has been restored, we will rerun the Microfondato DAGs and proceed with the submission of the complete and correct dataset to Microdata.
-
-Business Impact:
-
-The issue is currently preventing the correct execution of the Microfondato process and the submission of complete data to Microdata.
-
-------------------------------------
-Buongiorno,
-
-Abbiamo individuato la problematica nella tabella sorgente BanciLL1T del Raw Layer, che non contiene tutti i dati necessari al 30 settembre e risulta quindi incompleta.
-
-Abbiamo aperto un incident e coinvolto il team L2, suggerendo come possibile soluzione il ripristino dei dati mancanti utilizzando le tabelle di backup già presenti in produzione.
-
-Restiamo in attesa di un loro riscontro per poter ripristinare la completezza della tabella, rieseguire il processo Microfondato e procedere con il nuovo invio a Microdata.
-
-Grazie.
-
-------------------------------------
-
-ALTER TABLE `my-project.my_dataset.tm_table_tmp`
-RENAME TO tm_table;
+-- STEP 2: Caricamento nella tabella definitiva
+INSERT INTO `project.dataset.TM_TABLE`
+(
+    ID,
+    DT_PERIOD,
+    IMPORTO,
+    DESCRIZIONE
+)
+SELECT
+    ID,
+    DT_PERIOD,
+    IMPORTO,
+    DESCRIZIONE
+FROM `project.dataset.ext_csv`;
 </pre>
