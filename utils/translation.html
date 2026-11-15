@@ -18,5 +18,50 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Marco, per quanto riguarda il deploy, possiamo tranquillamente procedere con la prossima release, che includerà il deploy in produzione dei DAG. L'istanza, aggiornata alla versione 3, è già attualmente in produzione.
+# Modifiche Sanction Embargo
+
+### 1. Gestione delle segnalazioni Deleted
+
+**Contesto e problematica**
+
+La gestione delle segnalazioni con stato *Deleted* era già stata implementata nelle fasi iniziali del progetto. Tuttavia, la successiva introduzione del filtro basato sulla `business_date`, applicato su base giornaliera, ha determinato un'anomalia nella selezione delle segnalazioni, escludendo alcuni record che avrebbero dovuto essere considerati.
+
+**Intervento correttivo**
+
+È stata corretta la logica di gestione delle segnalazioni *Deleted*, prevedendo la sovrascrittura del campo `business_date_start` con il valore di `business_date` recuperato dalla relativa tabella Deleted.
+
+In questo modo viene ripristinata la corretta gestione delle segnalazioni, evitando che il filtro temporale ne comprometta l'elaborazione.
+
+### 2. PGRR2 – Revisione della logica di generazione delle segnalazioni
+
+**Logica precedente**
+
+La regola, derivata dal modello SRP5, prevedeva l'utilizzo di uno specifico elenco di Paesi PGRR.
+
+Il processo si articolava nelle seguenti fasi:
+- Individuazione delle persone fisiche sulla base della presenza dei Paesi nell'elenco PGRR.
+- Ricerca dei soggetti collegati di tipo Persona Giuridica (PG) attraverso la rete UBO.
+- Generazione della segnalazione qualora venissero individuati soggetti collegati.
+
+**Nuova logica**
+
+Con la revisione introdotta, PGRR viene evoluto per replicare il modello di funzionamento SRP6.
+
+La nuova logica prevede:
+- Verifica dei Paesi con i quali il soggetto intrattiene relazioni commerciali, confrontandoli con quelli presenti nell'elenco PGRR.
+- Introduzione di un'ulteriore condizione: oltre ai Paesi previsti dall'elenco PGRR, deve essere rilevata anche la presenza della Russia o della Bielorussia.
+
+La modifica comporta quindi un'evoluzione dei criteri di individuazione delle segnalazioni, allineandoli al modello SRP6 e introducendo le ulteriori condizioni geografiche previste.
+
+### 3. Rimozione del filtro di non ripetitività delle segnalazioni
+
+**Contesto**
+
+Fin dall'avvio del progetto è stato previsto un meccanismo per evitare la generazione di segnalazioni duplicate. A supporto di questa funzionalità era stata introdotta un'apposita tabella di log, utilizzata per tracciare le segnalazioni già elaborate e impedirne la riproposizione.
+
+**Modifica introdotta**
+
+A partire dalla prossima release, il filtro di non ripetitività verrà rimosso.
+
+Di conseguenza, non sarà più applicato il controllo basato sulla tabella di log per escludere segnalazioni già generate in precedenza. La logica di elaborazione non prevederà quindi il blocco delle segnalazioni sulla base della loro precedente presenza nello storico.
 </pre>
