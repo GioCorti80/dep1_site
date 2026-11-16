@@ -18,26 +18,14 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno a tutti,
+Buongiorno,
 
-ho predisposto un notebook che consente di eseguire ricerche basate su **keyword e RO Tool**, automatizzando le attività di individuazione e analisi delle corrispondenze.
+dovrò verificare con il team L2 quale processo genera le tabelle, così da valutare la possibilità di replicarne l'esecuzione in UAT.
 
-In allegato condivido i risultati ottenuti a seguito di una prima esecuzione delle ricerche sui campi **ORIGINATOR, BENEFICIARY e CAUSALE**, utilizzando come riferimento la lista Terrorismo.
+Per quanto riguarda il Service Account indicato, è necessario verificare che sia abilitato all'invio dei file nella cartella di destinazione. La procedura prevede l'associazione dell'ACL (nome ACL) e la successiva creazione dell'alias tramite apposita Change Request. Al momento non abbiamo conferma che queste attività siano già state avviate.
 
-Durante questa prima elaborazione sono state create le seguenti tabelle intermedie:
-- tab1
-- tab2
-- tab3
+Segnalo inoltre che il Service Account non dispone delle chiavi relative all'ambiente UAT, pertanto il suo funzionamento in tale ambiente potrebbe non essere garantito.
 
-Il notebook include inoltre una funzionalità che consente di associare automaticamente il cluster al relativo nominativo, agevolando la classificazione e l'analisi dei risultati.
-
-Di seguito riporto le istruzioni per scaricare e utilizzare il notebook:
-- **Istruzioni gcloud:** [inserire istruzioni]
-
-Resto a disposizione per eventuali approfondimenti o per valutare insieme i risultati ottenuti.
-
-Grazie.
---------------------------
-È stata eseguita la prima ricerca tramite keyword su una delle liste Terrorismo. Stiamo procedendo con le ricerche sulle altre liste, per completare l'attività e verificare i risultati ottenuti.
+L'associazione dell'ACL e la creazione dell'alias possono essere completate anche successivamente al passaggio in produzione. Tuttavia, fino al completamento di queste attività, non sarà possibile effettuare trasferimenti verso la cartella di destinazione.
 
 </pre>
