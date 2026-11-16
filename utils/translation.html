@@ -18,50 +18,23 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-# Modifiche Sanction Embargo
+Buongiorno a tutti,
 
-### 1. Gestione delle segnalazioni Deleted
+ho predisposto un notebook che consente di eseguire ricerche basate su **keyword e RO Tool**, automatizzando le attività di individuazione e analisi delle corrispondenze.
 
-**Contesto e problematica**
+In allegato condivido i risultati ottenuti a seguito di una prima esecuzione delle ricerche sui campi **ORIGINATOR, BENEFICIARY e CAUSALE**, utilizzando come riferimento la lista Terrorismo.
 
-La gestione delle segnalazioni con stato *Deleted* era già stata implementata nelle fasi iniziali del progetto. Tuttavia, la successiva introduzione del filtro basato sulla `business_date`, applicato su base giornaliera, ha determinato un'anomalia nella selezione delle segnalazioni, escludendo alcuni record che avrebbero dovuto essere considerati.
+Durante questa prima elaborazione sono state create le seguenti tabelle intermedie:
+- tab1
+- tab2
+- tab3
 
-**Intervento correttivo**
+Il notebook include inoltre una funzionalità che consente di associare automaticamente il cluster al relativo nominativo, agevolando la classificazione e l'analisi dei risultati.
 
-È stata corretta la logica di gestione delle segnalazioni *Deleted*, prevedendo la sovrascrittura del campo `business_date_start` con il valore di `business_date` recuperato dalla relativa tabella Deleted.
+Di seguito riporto le istruzioni per scaricare e utilizzare il notebook:
+- **Istruzioni gcloud:** [inserire istruzioni]
 
-In questo modo viene ripristinata la corretta gestione delle segnalazioni, evitando che il filtro temporale ne comprometta l'elaborazione.
+Resto a disposizione per eventuali approfondimenti o per valutare insieme i risultati ottenuti.
 
-### 2. PGRR2 – Revisione della logica di generazione delle segnalazioni
-
-**Logica precedente**
-
-La regola, derivata dal modello SRP5, prevedeva l'utilizzo di uno specifico elenco di Paesi PGRR.
-
-Il processo si articolava nelle seguenti fasi:
-- Individuazione delle persone fisiche sulla base della presenza dei Paesi nell'elenco PGRR.
-- Ricerca dei soggetti collegati di tipo Persona Giuridica (PG) attraverso la rete UBO.
-- Generazione della segnalazione qualora venissero individuati soggetti collegati.
-
-**Nuova logica**
-
-Con la revisione introdotta, PGRR viene evoluto per replicare il modello di funzionamento SRP6.
-
-La nuova logica prevede:
-- Verifica dei Paesi con i quali il soggetto intrattiene relazioni commerciali, confrontandoli con quelli presenti nell'elenco PGRR.
-- Introduzione di un'ulteriore condizione: oltre ai Paesi previsti dall'elenco PGRR, deve essere rilevata anche la presenza della Russia o della Bielorussia.
-
-La modifica comporta quindi un'evoluzione dei criteri di individuazione delle segnalazioni, allineandoli al modello SRP6 e introducendo le ulteriori condizioni geografiche previste.
-
-### 3. Rimozione del filtro di non ripetitività delle segnalazioni
-
-**Contesto**
-
-Fin dall'avvio del progetto è stato previsto un meccanismo per evitare la generazione di segnalazioni duplicate. A supporto di questa funzionalità era stata introdotta un'apposita tabella di log, utilizzata per tracciare le segnalazioni già elaborate e impedirne la riproposizione.
-
-**Modifica introdotta**
-
-A partire dalla prossima release, il filtro di non ripetitività verrà rimosso.
-
-Di conseguenza, non sarà più applicato il controllo basato sulla tabella di log per escludere segnalazioni già generate in precedenza. La logica di elaborazione non prevederà quindi il blocco delle segnalazioni sulla base della loro precedente presenza nello storico.
+Grazie.
 </pre>
