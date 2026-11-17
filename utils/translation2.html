@@ -18,7 +18,23 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha,
+Hi Team,
 
-Since the business date 2026-10-31 was processed manually, I believe we need to mark the wait task associated with the crmaneex6 DAG as successful.
+Regarding the AAR_REQ DAG, you can proceed with the recovery of the following business dates: 2026-11-11 and 2026-11-17.
+
+Please perform the recovery in the following order:
+
+Business date 2026-11-11:
+
+Perform the business date recovery.
+
+Then clear the 2026-11-11 run of the DWH_AAR DAG by marking the corresponding wait task as successful.
+
+Business date 2026-11-17:
+
+Perform the business date recovery only.
+
+The DWH_AAR DAG will be triggered automatically this evening.
+
+Thank you.
 </pre>
