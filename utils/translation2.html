@@ -18,23 +18,7 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Team,
+Regarding the NDG_GLOBER table, could you please trigger the NDG_GLOBER DAG with the following parameters to recover the corresponding business date?
 
-Regarding the AAR_REQ DAG, you can proceed with the recovery of the following business dates: 2026-11-11 and 2026-11-17.
-
-Please perform the recovery in the following order:
-
-Business date 2026-11-11:
-
-Perform the business date recovery.
-
-Then clear the 2026-11-11 run of the DWH_AAR DAG by marking the corresponding wait task as successful.
-
-Business date 2026-11-17:
-
-Perform the business date recovery only.
-
-The DWH_AAR DAG will be triggered automatically this evening.
-
-Additionally, could you please investigate why the Trusted table scheduling is not starting automatically? A service request (SR RIT4546) has been opened to track this issue.
+{"business_date": "2026-11-17"}
 </pre>
