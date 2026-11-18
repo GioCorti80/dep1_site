@@ -18,7 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Regarding the NDG_GLOBER table, could you please trigger the NDG_GLOBER DAG with the following parameters to recover the corresponding business date?
-
-{"business_date": "2026-11-17"}
+LOAD DATA INTO `project_id.dataset_id.table_name`
+FROM FILES (
+  format = 'CSV',
+  uris = ['gs://bucket_name/path/file.csv'],
+  skip_leading_rows = 1,
+  field_delimiter = ','
+);
 </pre>
