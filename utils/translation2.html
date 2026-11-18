@@ -41,4 +41,12 @@ OPTIONS (
   skip_leading_rows = 1,
   field_delimiter = ','
 );
+
+INSERT INTO `project_id.dataset_id.table_name`
+SELECT
+  campo1,
+  campo2,
+  campo3,
+  campo4
+FROM `project_id.dataset_id.ext_table`;
 </pre>
