@@ -18,35 +18,16 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-LOAD DATA INTO `project_id.dataset_id.table_name`
-FROM FILES (
-  format = 'CSV',
-  uris = ['gs://bucket_name/path/file.csv'],
-  skip_leading_rows = 1,
-  field_delimiter = ','
-);
+Hi Hanumantha Satya,
 
+I am writing regarding the AAR process and the DWH AAR report.
 
-CREATE OR REPLACE EXTERNAL TABLE
-`project_id.dataset_id.ext_table`
-(
-  campo1 STRING,
-  campo2 STRING,
-  campo3 STRING,
-  campo4 STRING
-)
-OPTIONS (
-  format = 'CSV',
-  uris = ['gs://bucket_name/path/file.csv'],
-  skip_leading_rows = 1,
-  field_delimiter = ','
-);
+We need to modify the reporting-python schedule as described in the PR below:
+[PR URL]
 
-INSERT INTO `project_id.dataset_id.table_name`
-SELECT
-  campo1,
-  campo2,
-  campo3,
-  campo4
-FROM `project_id.dataset_id.ext_table`;
+Could you please check whether it would be possible to include this change in the current release, recreating the existing tag if the Change Request has not already been created?
+
+Additionally, could you please confirm whether the issue affecting the loading of the AAR-related trusted table will be resolved in this release?
+
+Thank you for your support.
 </pre>
