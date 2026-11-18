@@ -25,4 +25,20 @@ FROM FILES (
   skip_leading_rows = 1,
   field_delimiter = ','
 );
+
+
+CREATE OR REPLACE EXTERNAL TABLE
+`project_id.dataset_id.ext_table`
+(
+  campo1 STRING,
+  campo2 STRING,
+  campo3 STRING,
+  campo4 STRING
+)
+OPTIONS (
+  format = 'CSV',
+  uris = ['gs://bucket_name/path/file.csv'],
+  skip_leading_rows = 1,
+  field_delimiter = ','
+);
 </pre>
