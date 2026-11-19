@@ -19,9 +19,15 @@
 <h3>Config</h3>
 <pre>
 CREATE TABLE `project_id.dataset_id.accodamenti_backup`
-PARTITION BY _PARTITIONDATE
-AS
-SELECT *
+LIKE `project_id.dataset_id.accodamenti`;
+
+INSERT INTO `project_id.dataset_id.accodamenti_backup`
+(_PARTITIONTIME, colonna1, colonna2, colonna3)
+SELECT
+  _PARTITIONTIME,
+  colonna1,
+  colonna2,
+  colonna3
 FROM `project_id.dataset_id.accodamenti`
-WHERE FALSE;
+WHERE _PARTITIONTIME != TIMESTAMP('2026-11-18');
 </pre>
