@@ -18,16 +18,11 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-CREATE TABLE `project_id.dataset_id.accodamenti_backup`
-LIKE `project_id.dataset_id.accodamenti`;
+Good morning,
 
-INSERT INTO `project_id.dataset_id.accodamenti_backup`
-(_PARTITIONTIME, colonna1, colonna2, colonna3)
-SELECT
-  _PARTITIONTIME,
-  colonna1,
-  colonna2,
-  colonna3
-FROM `project_id.dataset_id.accodamenti`
-WHERE _PARTITIONTIME != TIMESTAMP('2026-11-18');
+I have opened Service Request **1234**, which contains the instructions to be followed for loading the **Default Risk** table.
+
+The operations must be performed in the specified sequence.
+
+The final section contains the steps to delete the incorrect partition from Hadoop.
 </pre>
