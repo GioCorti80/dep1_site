@@ -18,6 +18,31 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
+Perform a READ-ONLY technical assessment of the EKM to BYOK migration for the DEV environment.
+
+Focus on `dev/kms_main.tf` in the `lz-125479-4-001-kms-plugin` repository.
+
+Important context:
+- The existing EKM key is used by the Transaction Monitoring application.
+- Mohnish mentioned that a BYOK key was created for Cloud Storage.
+- I suspect the BYOK key material may not have been uploaded or provisioned yet.
+- I do not have access to Google Secret Manager to upload the required key material.
+
+Please investigate:
+
+1. Does the Terraform configuration reference an already existing BYOK key, or does it create one?
+2. Is the BYOK key material expected to be retrieved from Google Secret Manager?
+3. Which secrets, permissions and service accounts are required?
+4. Is the BYOK configuration complete for both GCS and BigQuery?
+5. Can the migration proceed without additional actions from the KMS/security team?
+6. What actions must be performed by the infrastructure team versus the application team?
+
+Do not modify any files or execute Terraform commands that change infrastructure.
+
+Provide a list of missing prerequisites, responsible teams and recommended next steps.
+--------------------------------------------------
+
+
 I need to migrate the DEV CMEK configuration from Cloud EKM to BYOK (Bring Your Own Key) for the Transaction Monitoring application.
 
 Please analyze the Terraform configuration in this repository, focusing on:
