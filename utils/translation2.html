@@ -18,114 +18,34 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-# Task: Analyze Google Cloud KMS migration from Cloud EKM to BYOK
+Hi Mohnish,
 
-## Background
+I've found the original email from the Crypto Service Desk regarding the EKM to BYOK migration for MTOOL.
 
-We need to migrate the Google Cloud encryption key configuration from Cloud EKM to BYOK for project **544231**.
+The request explicitly identifies only one key to be migrated, for the DEV environment:
 
-The same migration has already been implemented successfully in project **125479**.
+**Existing EKM key:**
+`NAR_54326-1-001_cc-mtool-cloud-storage-key_ekm`
 
-The infrastructure configuration is managed through three GitHub repositories for each project:
+**KMS details:**
+- Project: `db-dev-91ai-dbkeyprotect-2`
+- Location: `europe-west3`
+- Keyring: `gcp_cloud_storage`
 
-**Project 125479 – Already migrated**
-- KMS repository
-- GCS repository
-- BigQuery repository
+The requested migration is from Cloud EKM to BYOK, with a deadline of November 20, 2026.
 
-**Project 544231 – Migration to be implemented**
-- KMS repository
-- GCS repository
-- BigQuery repository
+Based on this email, the scope appears to be limited to the GCS encryption key. BigQuery is not mentioned in the request.
 
-I will also provide a Confluence page containing the general technical instructions and guidelines for performing this type of migration.
+I've also analyzed the PWCC KMS and GCS repositories, as well as the corresponding MTOOL repositories, and identified the existing configuration differences.
 
-## Objective
+Could you please help me identify:
 
-I need you to perform a detailed analysis of all six repositories and the Confluence documentation to understand how the migration was implemented in project 125479 and identify exactly what needs to be changed in project 544231.
+1. The exact new BYOK key that should be created or used for this migration.
+2. The corresponding KMS Terraform configuration and outputs to be added or updated in MTOOL.
+3. Whether the migration should be limited to the DEV GCS configuration, following the same approach already implemented in PWCC.
+4. Any existing PR or implementation we can use as a reference.
 
-At this stage, I do NOT know which encryption keys need to be updated. Identifying the relevant keys is one of the main objectives of this analysis.
+I can share the original Crypto Service Desk email and my repository analysis for reference.
 
-## Analysis requirements
-
-Please perform the following activities:
-
-### 1. Analyze the Confluence documentation
-- Understand the official migration procedure from Cloud EKM to BYOK.
-- Identify the resources, encryption keys, configuration parameters and dependencies involved.
-- Identify any prerequisites or constraints.
-
-### 2. Analyze the three repositories of project 125479
-- Identify all KMS keys and key rings involved in the migration.
-- Identify the changes introduced to support BYOK instead of Cloud EKM.
-- Identify the GCS buckets and BigQuery resources using CMEK.
-- Identify the relevant Terraform configurations, variables, modules, YAML files and other infrastructure definitions.
-- Identify the relationships between KMS keys and the GCS/BigQuery resources.
-
-### 3. Analyze the three repositories of project 544231
-- Identify the current KMS configuration.
-- Identify all existing Cloud EKM references.
-- Identify the GCS buckets and BigQuery resources currently associated with CMEK.
-- Identify the corresponding resources and configurations in project 125479.
-
-### 4. Compare the two projects
-
-Perform a detailed comparison between the corresponding repositories.
-
-For each relevant resource, identify:
-- Current configuration in project 544231.
-- Configuration already implemented in project 125479.
-- Differences between the two configurations.
-- Whether the resource requires migration.
-- Which encryption key should be updated or replaced.
-- Any dependencies or changes required in other repositories.
-
-Do not assume that resource names or key names are identical between the two projects.
-
-### 5. Identify the exact changes required
-
-Provide a consolidated list of all changes required in project 544231, grouped by repository:
-
-- KMS
-- GCS
-- BigQuery
-
-For each change, provide:
-- Repository name.
-- File path.
-- Resource name.
-- Current key reference.
-- Expected key reference or configuration.
-- Explanation of the required change.
-- Reference to the corresponding implementation in project 125479.
-- Reference to the relevant Confluence instructions.
-
-## Expected output
-
-I need a technical assessment containing:
-
-1. **Executive summary:** What was migrated in project 125479 and what needs to be migrated in project 544231.
-
-2. **Encryption keys inventory:** A table listing all relevant KMS keys, key rings, key versions and their associated resources in both projects.
-
-3. **Repository comparison:** A detailed comparison of the three repository pairs.
-
-4. **Migration mapping:** An explicit mapping between the existing Cloud EKM keys and the BYOK keys to be used in project 544231.
-
-5. **Required changes:** A checklist of the exact files and configurations that need to be updated, grouped by repository.
-
-6. **Dependencies and execution order:** Explain whether changes must be performed in a specific sequence across KMS, GCS and BigQuery.
-
-7. **Open questions:** List anything that cannot be determined from the repositories or Confluence documentation and that requires confirmation from the DevOps or Cloud Infrastructure team.
-
-## Important instructions
-
-- Do not modify any files or create commits or pull requests.
-- This is an analysis-only task.
-- Do not assume that the migration performed in project 125479 can be copied blindly to project 544231.
-- Do not invent key names or resource mappings.
-- Clearly distinguish verified information from assumptions or open questions.
-- Support every conclusion with concrete references to repository files and Confluence documentation.
-
-The main goal is to give me enough technical information to answer the DevOps team when they ask which encryption keys need to be updated in project 544231.
+Thanks for your support.
 </pre>
