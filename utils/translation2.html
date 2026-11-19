@@ -18,9 +18,10 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Hi Hanumantha,
-
-Essentially, once the file is uploaded to the bucket, we will need to rename it and then execute the SQL statements for table creation, as described in the SR I've opened (SR 151515).
-
-Thanks!
+CREATE TABLE `project_id.dataset_id.accodamenti_backup`
+PARTITION BY _PARTITIONDATE
+AS
+SELECT *
+FROM `project_id.dataset_id.accodamenti`
+WHERE FALSE;
 </pre>
