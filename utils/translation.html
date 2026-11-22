@@ -18,31 +18,13 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Ciao Tommaso,
+Ciao Enrico,
 
-per quanto riguarda l'esecuzione degli script PDS in produzione su AWP (Jupyter Hub), ho preparato un notebook che puoi scaricare direttamente dal bucket GCS di AWP.
+i file DWH AAR sono stati regolarmente inviati al termine dell'elaborazione sul Trusted.
 
-Per scaricarlo, devi eseguire da terminale AWP, partendo dalla cartella iniziale awp/work, le seguenti tre istruzioni:
+Da una prima verifica, sembrerebbe che i due report siano stati inviati con contenuto identico. Questo farebbe pensare che il 21 sia stato generato e inviato un file vuoto, senza nuovi dati.
 
-istruzione 1
+Il workflow del Trusted è stato comunque innescato dalla ricezione del file e l'elaborazione del report è quindi partita utilizzando gli ultimi dati disponibili nelle tabelle Trusted, ovvero quelli aggiornati al 20.
 
-istruzione 2
-
-istruzione 3
-
-Le istruzioni creeranno una nuova cartella chiamata python_scripts, contenente il notebook payment_internal_sepèa.ipynb.
-
-Il notebook è strutturato in diversi blocchi:
-
-Variabili: nella prima parte puoi impostare le date di inizio e fine elaborazione.
-
-Configurazione Spark: la seconda cella deve essere obbligatoriamente eseguita per configurare la sessione Spark.
-
-Codice degli script: i blocchi successivi prevedono di copiare e incollare le relative porzioni di codice dagli script originali.
-
-Salvataggio JSON: la parte finale gestisce il salvataggio del JSON direttamente nell'ambiente AWP, anziché sul bucket GCS.
-
-Ti consiglio di seguire le istruzioni e di eseguire le celle nell'ordine indicato.
-
-Se hai bisogno di chiarimenti, chiamami pure: possiamo anche organizzare una breve call per vedere insieme i vari passaggi.
+Ti riallego i file per un'ulteriore verifica.
 </pre>
