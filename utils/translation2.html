@@ -18,9 +18,15 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-The SDP report should remain on Composer v2 until the new Reporting Engine scheduler is fully implemented and operational.
+import bigframes.pandas as bpd
 
-This report relies on a specific scheduling mechanism, which, to the best of my knowledge, is not yet supported in Composer v3.
+df["importo_totale"] = (
+    df.groupby(["cod_cliente", "cod_conto"])["importo"]
+      .transform("sum")
+)
 
-Therefore, I would recommend keeping it on Composer v2 until the new scheduler is available.
+df["numero_righe"] = (
+    df.groupby(["cod_cliente", "cod_conto"])["importo"]
+      .transform("count")
+)
 </pre>
