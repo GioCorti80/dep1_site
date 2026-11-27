@@ -18,13 +18,35 @@
 <h1>Translation</h1>
 <h3>Config</h3>
 <pre>
-Buongiorno a tutti,
+Ciao Giuseppe,
 
-con la presente vi informiamo che è stata inserita la seguente Change Request, n. [NUMERO CHANGE], attualmente in attesa di una vostra approvazione.
+di seguito i riscontri ai tuoi punti:
 
-La richiesta riguarda la creazione di un alias associato a un Service Account, necessario per la connessione SFTP.
+**1. DAG dinamico e verifica della disponibilità delle sorgenti**
 
-Restiamo in attesa della vostra approvazione.
+Il Service Account di Airflow è abilitato a eseguire query su BigQuery e a scrivere file sui bucket GCS.
 
-Grazie per la collaborazione.
+Per implementare il comportamento descritto sarebbe tuttavia necessario intervenire sul DAG attualmente in uso, introducendo una logica di controllo dedicata. I sensori attualmente presenti su Airflow sono infatti utilizzati per monitorare l'esecuzione dei job Trusted e determinarne il completamento, ai fini dell'attivazione del DAG. La verifica della disponibilità delle sorgenti tramite query BigQuery richiederebbe quindi un'estensione delle logiche attualmente implementate.
+
+**2. Timezone e variabile di ambiente**
+
+Il cron di Composer è configurato in UTC e la variabile `environment` in PROD assume valore `prd`.
+
+**3. Gestione dello stato del DAG**
+
+Il DAG può essere messo in pausa e successivamente riattivato tramite apposita SR, da parte del team L2.
+
+**4. Permessi sui dataset Trusted**
+
+I Service Account utilizzati da Composer e Dataproc dispongono dei permessi necessari per operare sulle tabelle del dataset Trusted, inclusa la creazione di tabelle e l'esecuzione di operazioni di INSERT.
+
+**5. Tabella T_CRT_DEFAULT_RISK in UAT**
+
+Verifico se è possibile procedere con la creazione della tabella in UAT, in modo da allineare i due ambienti.
+
+**6. Creazione delle tabelle in PROD**
+
+Se hai a disposizione le istruzioni per la creazione delle due tabelle (`t_crt_prodotti` e `t_crt_classe_taeg`) e i relativi file, posso occuparmi direttamente della loro creazione in PROD.
+
+Grazie.
 </pre>
